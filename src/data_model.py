@@ -43,3 +43,8 @@ class API(BaseModel):
 class APIMapping(BaseModel):
     APIs: list[API]
     low_level_goal: LowLevelGoal
+
+
+class Critique(BaseModel):
+    score: float
+    comment: str

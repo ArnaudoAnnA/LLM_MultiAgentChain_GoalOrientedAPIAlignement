@@ -28,6 +28,113 @@ example1_actors = """
         "name: Owner of a GitHub account, description: Individuals who own GitHub accounts\n"
         """
 
+example1_actors_withFeedback1 = """
+
+        **Example:**
+        The following is a description of a software project: 
+        CatWatch is
+        a web application that fetches GitHub statistics for your GitHub accounts,
+        processes and saves your GitHub data in a database, then makes the data
+        available via a REST API. The data reveals the popularity of your open
+        source projects, most active contributors, and other interesting points. As
+        an example, you can see the data at work behind the Zalando Open Source
+        page. To compare it to CoderStats: CatWatch aggregates your statistics over
+        a list of GitHub accounts.
+        
+        **Extracted Roles:**
+        name: GithHub user, description: Individuals who own GitHub accounts
+        
+        **Score:** 10
+        **Feedback:**
+        This is the only actor of the system.
+        
+        """
+
+example1_actors_withFeedback2 = """
+
+        **Example:**
+        The following is a description of a software project: 
+        CatWatch is
+        a web application that fetches GitHub statistics for your GitHub accounts,
+        processes and saves your GitHub data in a database, then makes the data
+        available via a REST API. The data reveals the popularity of your open
+        source projects, most active contributors, and other interesting points. As
+        an example, you can see the data at work behind the Zalando Open Source
+        page. To compare it to CoderStats: CatWatch aggregates your statistics over
+        a list of GitHub accounts.
+
+        **Extracted Roles:**
+        name: Developers, description: Individuals who develop code
+
+        **Score:** 7
+        **Feedback:** "Developers" is too generic and do not completely match the description of
+        the system users.
+        """
+
+example1_actors_withFeedback3 = """
+
+        **Example:**
+        The following is a description of a software project: 
+        CatWatch is
+        a web application that fetches GitHub statistics for your GitHub accounts,
+        processes and saves your GitHub data in a database, then makes the data
+        available via a REST API. The data reveals the popularity of your open
+        source projects, most active contributors, and other interesting points. As
+        an example, you can see the data at work behind the Zalando Open Source
+        page. To compare it to CoderStats: CatWatch aggregates your statistics over
+        a list of GitHub accounts.
+
+        **Extracted Roles:**
+        name: Zalando system administrator, description: Responsable of the data collected by the platform
+
+        **Score:** 0
+        **Feedback:** "Zalando system administrator" is not an actor of the application described. Moreover,
+        "GitHub User" is missing.
+        """
+
+example1_actors_withFeedback3 = """
+
+        **Example:**
+        The following is a description of a software project: 
+        CatWatch is
+        a web application that fetches GitHub statistics for your GitHub accounts,
+        processes and saves your GitHub data in a database, then makes the data
+        available via a REST API. The data reveals the popularity of your open
+        source projects, most active contributors, and other interesting points. As
+        an example, you can see the data at work behind the Zalando Open Source
+        page. To compare it to CoderStats: CatWatch aggregates your statistics over
+        a list of GitHub accounts.
+
+        **Extracted Roles:**
+        name: Zalando system administrator, description: Responsable of the data collected by the platform
+
+        **Score:** 0
+        **Feedback:** "Zalando system administrator" is not an actor of the application described. Moreover,
+        "GitHub User" is missing.
+        """
+
+example1_actors_withFeedback4 = """
+
+        **Example:**
+        The following is a description of a software project: 
+        CatWatch is
+        a web application that fetches GitHub statistics for your GitHub accounts,
+        processes and saves your GitHub data in a database, then makes the data
+        available via a REST API. The data reveals the popularity of your open
+        source projects, most active contributors, and other interesting points. As
+        an example, you can see the data at work behind the Zalando Open Source
+        page. To compare it to CoderStats: CatWatch aggregates your statistics over
+        a list of GitHub accounts.
+
+        **Extracted Roles:**
+        name: Zalando system administrator, description: Responsable of the data collected by the platform.
+        name: GitHub User, description: Individuals who own GitHub accounts
+
+        **Score:** 6
+        **Feedback:** While "Github User" has been correctly identified, 
+        "Zalando system administrator" is not an actor of the application described. 
+        """
+
 example2_actors = """
 
         **Example:**\n\n
@@ -76,6 +183,110 @@ example1_hl = """
     "The stakeholder requires CatWatch to seamlessly integrate with their existing workflow tools and development environments, enhancing productivity and user experience.",
     "The stakeholder aims to access detailed analytics and reports generated by CatWatch, offering insights into project performance, community engagement, and other relevant metrics."
     ]}'
+    """
+
+example1_hl_withFeedback1 = """
+    **Example:**\n\n
+
+    Description: \n\n
+    CatWatch is
+    a web application that fetches GitHub statistics for your GitHub accounts,
+    processes and saves your GitHub data in a database, then makes the data
+    available via a REST API. The data reveals the popularity of your open
+    source projects, most active contributors, and other interesting points. As
+    an example, you can see the data at work behind the Zalando Open Source
+    page. To compare it to CoderStats: CatWatch aggregates your statistics over
+    a list of GitHub accounts.\n\n
+    Actors:\n
+    "name: Owner of a GitHub account, description: Individuals who own GitHub accounts\n
+    Output:\n
+    '{ "highLevelGoals": ["The stakeholder aims to effortlessly monitor the popularity metrics of their open source projects across various GitHub accounts using CatWatch."]
+    }'
+
+    ***Score:*** 4/10
+    ***Comment:*** Major omission. The description mentions that the app tracks active contributors and provides data via a REST API, yet the goals only cover basic popularity monitoring.
+    """
+
+example1_hl_withFeedback2 = """
+    **Example:**\n\n
+
+    Description: \n\n
+    CatWatch is
+    a web application that fetches GitHub statistics for your GitHub accounts,
+    processes and saves your GitHub data in a database, then makes the data
+    available via a REST API. The data reveals the popularity of your open
+    source projects, most active contributors, and other interesting points. As
+    an example, you can see the data at work behind the Zalando Open Source
+    page. To compare it to CoderStats: CatWatch aggregates your statistics over
+    a list of GitHub accounts.\n\n
+    Actors:\n
+    "name: Owner of a GitHub account, description: Individuals who own GitHub accounts\n
+    Output:\n
+    '{ "highLevelGoals": ["The stakeholder aims to effortlessly monitor the popularity metrics of their open source projects across various GitHub accounts using CatWatch.",
+    "The stakeholder seeks a feature that highlights the most active contributors and collaborators in their GitHub repositories through CatWatch.",
+    "The stakeholder desires a notification system within CatWatch that alerts them promptly about significant activities, such as new contributions or rising project trends",
+    "The stakeholder insists on CatWatch implementing robust data security measures and compliance with privacy standards to safeguard their GitHub account information.",
+    "The stakeholder requires CatWatch to seamlessly integrate with their existing workflow tools and development environments, enhancing productivity and user experience.",
+    "The stakeholder aims to access detailed analytics and reports generated by CatWatch, offering insights into project performance, community engagement, and other relevant metrics.",
+    "The stakeholder wants to use CatWatch to automatically process and pay monthly invoices to freelance contributors via Stripe integration."
+    ]}'
+
+    ***Score:*** 6/10
+    ***Comment:*** Erroneous addition. The description defines CatWatch as a tool for fetching and revealing statistics, not a financial or payment processing platform.
+    """
+
+example1_hl_withFeedback3 = """
+    **Example:**\n\n
+
+    Description: \n\n
+    CatWatch is
+    a web application that fetches GitHub statistics for your GitHub accounts,
+    processes and saves your GitHub data in a database, then makes the data
+    available via a REST API. The data reveals the popularity of your open
+    source projects, most active contributors, and other interesting points. As
+    an example, you can see the data at work behind the Zalando Open Source
+    page. To compare it to CoderStats: CatWatch aggregates your statistics over
+    a list of GitHub accounts.\n\n
+    Actors:\n
+    "name: Owner of a GitHub account, description: Individuals who own GitHub accounts\n
+    Output:\n
+    '{ "highLevelGoals": ["The stakeholder aims to manually input statistics for their open source projects into the CatWatch database.",
+    "The stakeholder seeks a feature that highlights the most active contributors and collaborators in their GitHub repositories through CatWatch.",
+    "The stakeholder desires a notification system within CatWatch that alerts them promptly about significant activities, such as new contributions or rising project trends",
+    "The stakeholder insists on CatWatch implementing robust data security measures and compliance with privacy standards to safeguard their GitHub account information.",
+    "The stakeholder requires CatWatch to seamlessly integrate with their existing workflow tools and development environments, enhancing productivity and user experience.",
+    "The stakeholder aims to access detailed analytics and reports generated by CatWatch, offering insights into project performance, community engagement, and other relevant metrics."
+    ]}'
+
+    ***Score:*** 7/10
+    ***Comment:*** Slight modification error. The description states that CatWatch "fetches" data automatically, so a goal describing "manual input" is inconsistent with the application's automated nature.
+    """
+
+example1_hl_withFeedback4 = """
+    **Example:**\n\n
+
+    Description: \n\n
+    CatWatch is
+    a web application that fetches GitHub statistics for your GitHub accounts,
+    processes and saves your GitHub data in a database, then makes the data
+    available via a REST API. The data reveals the popularity of your open
+    source projects, most active contributors, and other interesting points. As
+    an example, you can see the data at work behind the Zalando Open Source
+    page. To compare it to CoderStats: CatWatch aggregates your statistics over
+    a list of GitHub accounts.\n\n
+    Actors:\n
+    "name: Owner of a GitHub account, description: Individuals who own GitHub accounts\n
+    Output:\n
+    '{ "highLevelGoals": ["The stakeholder aims to effortlessly monitor the popularity metrics of their open source projects across various GitHub accounts using CatWatch.",
+    "The stakeholder seeks a feature that highlights the most active contributors and collaborators in their GitHub repositories through CatWatch.",
+    "The stakeholder wants to use the system to track the health, feeding schedules, and GPS locations of actual cats in a rescue shelter.",
+    "The stakeholder insists on CatWatch implementing robust data security measures and compliance with privacy standards to safeguard their GitHub account information.",
+    "The stakeholder requires CatWatch to seamlessly integrate with their existing workflow tools and development environments, enhancing productivity and user experience.",
+    "The stakeholder aims to access detailed analytics and reports generated by CatWatch, offering insights into project performance, community engagement, and other relevant metrics."
+    ]}'
+
+    ***Score:*** 3/10
+    ***Comment:*** Heavy modification (Out of context). Despite the name "CatWatch," the description clearly specifies this is a GitHub statistics web app. The goal regarding tracking physical cats is completely unrelated.
     """
 
 example2_hl = """
@@ -154,6 +365,111 @@ example1_ll = """
         "Tailor analytics reports in CatWatch by customizing parameters, allowing me to focus on specific project performance and engagement metrics of interest.",
       ]
     }\n\n
+    """
+
+example1_ll_withFeedback1 = """
+    **Example:**\n\n
+
+    High Level Goals:\n
+    '{ "highLevelGoals": [
+        "The stakeholder aims to effortlessly monitor the popularity metrics of their open source projects across various GitHub accounts using CatWatch.",
+        "The stakeholder seeks a feature that highlights the most active contributors and collaborators in their GitHub repositories through CatWatch.",
+        "The stakeholder desires a notification system within CatWatch that alerts them promptly about significant activities, such as new contributions or rising project trends",
+        "The stakeholder insists on CatWatch implementing robust data security measures and compliance with privacy standards to safeguard their GitHub account information.",
+        "The stakeholder requires CatWatch to seamlessly integrate with their existing workflow tools and development environments, enhancing productivity and user experience.",
+        "The stakeholder aims to access detailed analytics and reports generated by CatWatch, offering insights into project performance, community engagement, and other relevant metrics."
+    ]}'
+
+    Output:\n
+    '{ "lowLevelGoals": [
+        "The system shall fetch the number of stars, forks, and watchers for all repositories in the linked GitHub accounts every 24 hours.",
+        "The system shall provide a REST API endpoint to export raw data in JSON format for external tool integration."
+    ]}'
+
+    ***Score:*** 4/10
+    ***Comment:*** Major omission. The high-level goals explicitly require features for highlighting active contributors, a notification system for trends, and robust security compliance, yet none of these are addressed in the low-level goals.
+    """
+
+example1_ll_withFeedback2 = """
+    **Example:**\n\n
+
+    High Level Goals:\n
+    '{ "highLevelGoals": [
+        "The stakeholder aims to effortlessly monitor the popularity metrics of their open source projects across various GitHub accounts using CatWatch.",
+        "The stakeholder seeks a feature that highlights the most active contributors and collaborators in their GitHub repositories through CatWatch.",
+        "The stakeholder desires a notification system within CatWatch that alerts them promptly about significant activities, such as new contributions or rising project trends",
+        "The stakeholder insists on CatWatch implementing robust data security measures and compliance with privacy standards to safeguard their GitHub account information.",
+        "The stakeholder requires CatWatch to seamlessly integrate with their existing workflow tools and development environments, enhancing productivity and user experience.",
+        "The stakeholder aims to access detailed analytics and reports generated by CatWatch, offering insights into project performance, community engagement, and other relevant metrics."
+    ]}'
+
+    Output:\n
+    '{ "lowLevelGoals": [
+        "The system shall fetch the number of stars, forks, and watchers for all repositories in the linked GitHub accounts every 24 hours.",
+        "The system shall rank contributors based on the number of commits and merged pull requests over a 30-day period.",
+        "The system shall send real-time Slack notifications when a repository gains more than 10 stars in an hour.",
+        "The system shall encrypt all stored GitHub OAuth tokens using AES-256 encryption.",
+        "The system shall provide a REST API endpoint to export raw data in JSON format for external tool integration.",
+        "The system shall generate a weekly PDF report summarizing growth and engagement metrics.",
+        "The system shall automatically publish a 'Developer of the Month' tweet on the company's official Twitter account."
+    ]}'
+
+    ***Score:*** 7/10
+    ***Comment:*** Erroneous addition. The high-level goals focus on monitoring, internal analytics, and workflow integration; there is no mention of social media automation or public marketing features.
+    """
+
+example1_ll_withFeedback3 = """
+    **Example:**\n\n
+
+    High Level Goals:\n
+    '{ "highLevelGoals": [
+        "The stakeholder aims to effortlessly monitor the popularity metrics of their open source projects across various GitHub accounts using CatWatch.",
+        "The stakeholder seeks a feature that highlights the most active contributors and collaborators in their GitHub repositories through CatWatch.",
+        "The stakeholder desires a notification system within CatWatch that alerts them promptly about significant activities, such as new contributions or rising project trends",
+        "The stakeholder insists on CatWatch implementing robust data security measures and compliance with privacy standards to safeguard their GitHub account information.",
+        "The stakeholder requires CatWatch to seamlessly integrate with their existing workflow tools and development environments, enhancing productivity and user experience.",
+        "The stakeholder aims to access detailed analytics and reports generated by CatWatch, offering insights into project performance, community engagement, and other relevant metrics."
+    ]}'
+
+    Output:\n
+    '{ "lowLevelGoals": [
+        "The system shall fetch the number of stars, forks, and watchers for all repositories in the linked GitHub accounts every 24 hours.",
+        "The system shall identify and list the 10 most inactive contributors who have not made a commit in the last year.",
+        "The system shall send real-time Slack notifications when a repository gains more than 10 stars in an hour.",
+        "The system shall encrypt all stored GitHub OAuth tokens using AES-256 encryption.",
+        "The system shall provide a REST API endpoint to export raw data in JSON format for external tool integration.",
+        "The system shall generate a weekly PDF report summarizing growth and engagement metrics."
+    ]}'
+
+    ***Score:*** 6/10
+    ***Comment:*** Modification error. While the high-level goals specify highlighting "active contributors and collaborators," the low-level goal focuses on "inactive contributors," which does not align with the stakeholder's objective of monitoring project engagement.
+    """
+
+example1_ll_withFeedback4 = """
+    **Example:**\n\n
+
+    High Level Goals:\n
+    '{ "highLevelGoals": [
+        "The stakeholder aims to effortlessly monitor the popularity metrics of their open source projects across various GitHub accounts using CatWatch.",
+        "The stakeholder seeks a feature that highlights the most active contributors and collaborators in their GitHub repositories through CatWatch.",
+        "The stakeholder desires a notification system within CatWatch that alerts them promptly about significant activities, such as new contributions or rising project trends",
+        "The stakeholder insists on CatWatch implementing robust data security measures and compliance with privacy standards to safeguard their GitHub account information.",
+        "The stakeholder requires CatWatch to seamlessly integrate with their existing workflow tools and development environments, enhancing productivity and user experience.",
+        "The stakeholder aims to access detailed analytics and reports generated by CatWatch, offering insights into project performance, community engagement, and other relevant metrics."
+    ]}'
+
+    Output:\n
+    '{ "lowLevelGoals": [
+        "The system shall fetch the number of stars, forks, and watchers for all repositories in the linked GitHub accounts every 24 hours.",
+        "The system shall monitor the temperature and humidity levels of the server room to prevent hardware failure.",
+        "The system shall send real-time Slack notifications when a repository gains more than 10 stars in an hour.",
+        "The system shall encrypt all stored GitHub OAuth tokens using AES-256 encryption.",
+        "The system shall provide a REST API endpoint to export raw data in JSON format for external tool integration.",
+        "The system shall generate a weekly PDF report summarizing growth and engagement metrics."
+    ]}'
+
+    ***Score:*** 5/10
+    ***Comment:*** Heavy modification (Out of context). The high-level goals describe a software application for GitHub analytics. The low-level goal regarding server room hardware monitoring (temperature/humidity) is completely unrelated to the intended software functionality.
     """
 
 # OK

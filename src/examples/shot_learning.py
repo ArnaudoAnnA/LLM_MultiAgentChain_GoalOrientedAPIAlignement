@@ -92,26 +92,6 @@ example1_actors_withFeedback3 = """
         "GitHub User" is missing.
         """
 
-example1_actors_withFeedback3 = """
-
-        **Example:**
-        The following is a description of a software project: 
-        CatWatch is
-        a web application that fetches GitHub statistics for your GitHub accounts,
-        processes and saves your GitHub data in a database, then makes the data
-        available via a REST API. The data reveals the popularity of your open
-        source projects, most active contributors, and other interesting points. As
-        an example, you can see the data at work behind the Zalando Open Source
-        page. To compare it to CoderStats: CatWatch aggregates your statistics over
-        a list of GitHub accounts.
-
-        **Extracted Roles:**
-        name: Zalando system administrator, description: Responsable of the data collected by the platform
-
-        **Score:** 0
-        **Feedback:** "Zalando system administrator" is not an actor of the application described. Moreover,
-        "GitHub User" is missing.
-        """
 
 example1_actors_withFeedback4 = """
 

@@ -58,14 +58,14 @@ def generate_response_llama(prompt, sys_prompt):
     for _ in range(0, count_Llama_keys()*2):
         try:
             response = llama.beta.chat.completions.parse(
-            messages=[
-            {"role": "system", "content": sys_prompt},
-            {"role": "user", "content": prompt}
-            ],
-            model = "llama-3.3-70b-versatile",
-                # model="llama3.1-8b",
-            max_tokens = 6000,
-            temperature = 0
+                messages=[
+                    {"role": "system", "content": sys_prompt},
+                    {"role": "user", "content": prompt}
+                ],
+                model = "llama-3.3-70b-versatile",
+                    # model="llama3.1-8b",
+                max_tokens = 6000,
+                temperature = 0
             )
             return response.choices[0].message.content
 

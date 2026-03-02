@@ -103,7 +103,7 @@ class GoalEvaluator:
                              reference_goals_dict: dict[str, list[str]], hide_prec_rec=False,
                              save_to_file=False, output_file="output.txt", threshold=0.9, rate_table=False):
 
-        with open(output_file, "a") as f:
+        with open(output_file, "w") as f:
             f.write("dataset name; recall; precision; f1_score;\n")
 
         weighted_recalls = np.array([0.0] * 101)
@@ -144,6 +144,10 @@ class GoalEvaluator:
         weighted_f1 = 2 * weighted_p * weighted_r / (weighted_p + weighted_r) if weighted_r + weighted_p else 0
         summary_str = f"Precision: {weighted_p}; Recall: {weighted_r}; F1-score: {weighted_f1};"
 
+        if save_to_file:
+            with open(output_file, "a") as f:
+                f.write("Weighted averages; "+ summary_str + "\n")
+
         auc_prec_rec = auc(weighted_recalls[::-1], weighted_precisions[::-1])
 
         if not hide_prec_rec:
@@ -157,7 +161,7 @@ class GoalEvaluator:
             plt.grid()
             plt.show()
 
-        return auc_prec_rec, summary_str, weighted_p, weighted_r, weighted_f1
+        return auc_prec_rec, summary_str
 
     def print_best_f1(self, generated_goals_dict: dict[str, list[str]], reference_goals_dict: dict[str, list[str]],
                       save_to_file=False, output_file="output.txt", ):

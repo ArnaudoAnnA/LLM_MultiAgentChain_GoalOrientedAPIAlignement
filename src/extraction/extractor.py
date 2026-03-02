@@ -80,7 +80,9 @@ def generate_high_level_goals(project_description, actors, feedback=None, mode=S
         "You're tasked to extract high level goals from a software description for each provided actor that is expected to interact with the software."
         "Following the Goal-Oriented Requirements Engineering (GORE) frameworks, high-level goals are strategic objectives that define the 'why' behind a system. "
         "They are usually abstract, business-oriented, and independent of technical implementation. They represent the needs of stakeholders or the organization. "
-        "Focus: Vision and justification."
+        "Focus: Vision and justification. "
+        "Generate ONLY the functional goals."
+
         #" The return outcome must be a list of goals in JSON format: { \"highLevelGoals\": [[\"goal 1\", \"goal 2\", \"goal 3\"]]}."
         #" Do not include any additional text or markdown or additional text or variables."
     )
@@ -110,7 +112,8 @@ def generate_high_level_goals(project_description, actors, feedback=None, mode=S
     prompt = f"""
         {(example1_hl if mode == ShotPromptingMode.ONE_SHOT else f"{example1_hl}, {example2_hl}" if mode == ShotPromptingMode.FEW_SHOT else "")}\n
         
-        \nYour task: based on your understanding of the typical needs and interests of the following actors in the following software project, help generate a list of higl level goals.\n
+        \nYour task: based on your understanding of the typical needs and interests of the following actors in the following software project, generate a list of high level goals.\n
+        
 
         **Description:** \n\n
         {project_description}\n
@@ -137,7 +140,8 @@ def generate_low_level_goals(highLevelGoals, feedback=None, mode=ShotPromptingMo
         "Following the Goal-Oriented Requirements Engineering (GORE) framework, low-level goals are technical objectives "
         "that describe 'how' the high-level goals will be achieved. \n"
         "They are more concrete and are eventually refined into specific requirements or software specifications. \n"
-        "Focus: Implementation and constraints."
+        "Focus: Implementation and constraints. "
+        "Generate ONLY the functional goals."
     )
 
     if feedback != None:

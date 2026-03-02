@@ -38,6 +38,9 @@ def get_evaluation(eval_mode: EvalMode, description, actors, high_level_goals=No
         "-  low-level goals are technical objectives that describe 'how' the high-level goals will be achieved. \n"
         "   They are more concrete and are eventually refined into specific requirements or software specifications. \n"
         "   Focus: Implementation and constraints.\n"
+        "You can propose new goals taking into account the already present ones. Consider that high-level "
+        "goals often answer the WHY question, while low-level goals often address the HOW."
+        "\n\n ### Examples:\n\n"
         )
 
     if eval_mode == EvalMode.ACTORS:
@@ -111,7 +114,7 @@ def get_evaluation(eval_mode: EvalMode, description, actors, high_level_goals=No
             raise ValueError("EvalMode.HIGH_LEVEL can only be used when low_level_goals is None and high_level_goals is not None.")
         provided_with = "a software description, actors and high-level goals for said software. "
         assume_this_is_ok = "Assuming the work done on actors is ok,"
-        critique_this = "defining high-level end users goals. Multiple actors can have the same goals (i.e., overlapping goals)."
+        critique_this = "defining high-level end users goals. Multiple actors can have the same goals (i.e., overlapping goals). You must ensure that ONLY functional goals are present."
         additional_prompt = f"""
         **High-level goals:**\n\n
         {high_level_goals}
@@ -122,7 +125,7 @@ def get_evaluation(eval_mode: EvalMode, description, actors, high_level_goals=No
             raise ValueError("EvalMode.LOW_LEVEL can only be used when both low_level_goals and high_level_goals are not None.")
         provided_with = "a software description, actors, high-level goals and low-level goals for said software"
         assume_this_is_ok = "Assuming the work done on actors and high-level goals is ok,"
-        critique_this = "defining low-level end users goals.  Each low-level goal should theoretically correspond to a single action of the actor with the software. Multiple actors can have the same goals (i.e., overlapping goals). "
+        critique_this = "defining low-level end users goals.  Each low-level goal should theoretically correspond to a single action of the actor with the software. Multiple actors can have the same goals (i.e., overlapping goals). You must ensure that ONLY functional goals are present."
         additional_prompt =  f"""
         **High-level goals:**\n\n
         {high_level_goals}
@@ -152,14 +155,20 @@ def get_evaluation(eval_mode: EvalMode, description, actors, high_level_goals=No
 
         Do not add any other comments, just the above mentioned lines.\n
 
-        **Description:** \n\n
+        ### Target Analysis
+        **Description:** 
         {description}
 
-        **Actors:**\n\n
+        **Actors:**
         {actors}
 
         {additional_prompt}
-        **Output:**\n\n
+        
+        ---
+        ### Final Evaluation
+        Generate the feedback and the score now.
+        
+        Feedback: 
     """
 
     critique = generate_response_llama(prompt, sys_prompt)
@@ -186,7 +195,6 @@ def parse_evaluation(evaluation: str|Critique):
 
     return score, feedback
 
-    return score, feedback
 
 
 

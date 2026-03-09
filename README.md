@@ -35,31 +35,11 @@ Ensure you have Python installed along with the necessary dependencies.
    ```
 3. **Run the notebook experiments.ipynb in notebook folder**
 
-## Research Questions
-
-This project aims to explore the following research questions:
-
-- RQ1: What is the effectiveness of LLM agents in modeling high-level goals?
-- RQ2: What is the effectiveness of LLM agents in decomposing high-level goals to low-level goals?
-- RQ3: What is the effectiveness of LLM agents in mapping low-level goals to API endpoints?
-
-## Case Study: Genome Nexus
-
-Genome Nexus is an open-source project that aggregates, annotates, and standardizes genomic variant data. Our system applies automated goal decomposition to align its objectives with available API functionalities. The structured goal mapping facilitates efficient API interactions, reducing manual effort in requirement-to-API translation.
-[Genome Github Repository](https://github.com/WebFuzzing/EMB/tree/master/jdk_8_maven/cs/rest-gui/genome-nexus)
-
 ## License
 
+This project has been forked from https://github.com/dadoluca/LLM_MultiAgentChain_GoalOrientedAPIAlignement
 This project is licensed under the **GNU GPL Version 3 License**. See the [LICENSE](LICENSE) file for details.
-
-## Contact 📬 
-
-**Authors:**  
-- 🧑‍💻 [Luca Dadone](https://github.com/dadoluca) 
-- 🧑‍💻 [Andrea Bioddo](https://github.com/andreabioddo) 
-- 🧑‍💻 [Angelo Bongiorno](https://github.com/AngeloBongiorno) 
-
-For any inquiries, please reach out to the authors.  
+ 
 
 
 

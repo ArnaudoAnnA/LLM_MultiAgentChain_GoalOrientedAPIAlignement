@@ -3,7 +3,7 @@ GENOME = {
     "link-readme": "https://github.com/WebFuzzing/EMB/tree/master/jdk_8_maven/cs/rest-gui/genome-nexus#readme",
     "swagger": "https://raw.githubusercontent.com/WebFuzzing/EMB/refs/heads/master/openapi-swagger/genome-nexus.json",
     "actors": [
-        "Researchers", "Clinicians", "biologists", "Bioinformaticians", "Geneticists"
+        "Researchers", "Clinicians"
     ],
     "highLevelGoals":  ["Provide fast and automated annotation of genetic variants",
                 "Enable high-throughput interpretation of genetic variants",

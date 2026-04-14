@@ -227,6 +227,8 @@ administrators, it is possible to view, in addition to the public statistics, ch
         "Activate account",
         "Submit account registration",
         "Fill-in a report",
+"Associate a report with a specific location on the map",
+"Select anonimity for a report",
         "Submit a report",
         "Send a message",
         "Activate email notifications",
@@ -241,7 +243,8 @@ administrators, it is possible to view, in addition to the public statistics, ch
         "Add a comment related to a report",
         "Assign a report to an external company",
         "Add a report to the set of followed reports",
-        "View the details of a report"
+        "View the details of a report",
+"Log-in"
     ]
 }
 

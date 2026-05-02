@@ -112,7 +112,7 @@ GESTAO_HOSPITAL = {
         #"Allow hospital managers and healthcare staff to manage hospital beds and patients",
         "Enable healthcare staff to view patient info and their medical history",
         "Register a Patient at a Hospital, entering personal information and contact info",
-        "Allow patients to confirm their arrival at the ospital online or in presence"
+        "Allow patients to confirm their arrival at the hospital online or in presence",
         "Show estimated check in times for patient arriving at the hospital",
         "Allow healthcare staff to save notes regarding patients and their treatment in the system",
         "Change Patient Info and medical history",

@@ -2,6 +2,8 @@ torch
 transformers
 torchtext
 openai
+groq
+pandas
 icecream
 tqdm
 tabulate

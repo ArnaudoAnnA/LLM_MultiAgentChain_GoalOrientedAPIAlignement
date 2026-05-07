@@ -1,11 +1,46 @@
 # function to retreave the readme and the swagger APIs
+import re
 import requests
 import json 
 
 from src.data_model import API
 
+def _to_raw_github_url(url: str) -> str:
+    """
+    Convert a GitHub web page URL to the equivalent raw content URL.
+
+    Example:
+      https://github.com/owner/repo/tree/branch/path/to/dir#readme
+      → https://raw.githubusercontent.com/owner/repo/branch/path/to/dir/README.md
+
+      https://github.com/owner/repo/blob/branch/path/to/file.md
+      → https://raw.githubusercontent.com/owner/repo/branch/path/to/file.md
+    """
+    # Match GitHub web URLs: /tree/... or /blob/...
+    match = re.match(
+        r"https://github\.com/([^/]+/[^/]+)/(tree|blob)/([^#?]+)",
+        url
+    )
+    if not match:
+        return url  # not a GitHub web URL, return unchanged
+
+    repo_path = match.group(1)   # e.g. "owner/repo"
+    ref_type  = match.group(2)   # "tree" or "blob"
+    rest      = match.group(3)   # e.g. "master/path/to/dir" or "master/path/to/file.md"
+
+    if ref_type == "tree":
+        # Directory page with #readme anchor → append README.md
+        raw_url = f"https://raw.githubusercontent.com/{repo_path}/{rest}/README.md"
+    else:
+        # File page (blob) → direct raw content
+        raw_url = f"https://raw.githubusercontent.com/{repo_path}/{rest}"
+
+    return raw_url
+
+
 def get_markdown(link: str):
-    res = requests.get(url=link)
+    raw_url = _to_raw_github_url(link)
+    res = requests.get(url=raw_url)
     return res.text
 
 

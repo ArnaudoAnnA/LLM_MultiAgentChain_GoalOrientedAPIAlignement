@@ -1,0 +1,68 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T19:59:04",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Patient",
+        "Hospital Staff",
+        "Logistics Coordinator"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to optimize the allocation of hospital resources, including products, blood, and beds, across the entire public health system to minimize waste and ensure efficient patient care.",
+        "The Public Health System Administrator seeks to ensure that patients are directed to the most appropriate and available hospital in a timely manner, improving patient outcomes and reducing wait times.",
+        "The Public Health System Administrator desires comprehensive visibility into the real-time status of all hospitals, including their inventory levels and bed availability, to make informed strategic decisions.",
+        "The Patient aims to receive accurate and efficient recommendations for the closest hospital with available beds, minimizing travel time and ensuring prompt access to care.",
+        "The Patient expects a streamlined and hassle-free check-in and check-out process at hospitals, reducing administrative burden and allowing for a focus on their health.",
+        "The Hospital Staff aims to efficiently manage patient check-in and check-out processes, ensuring accurate record-keeping and smooth transitions for patients.",
+        "The Hospital Staff seeks to maintain accurate and up-to-date inventory levels for products and blood banks within their hospital, preventing shortages and ensuring necessary supplies are always available.",
+        "The Hospital Staff desires to monitor available beds in real-time to effectively manage hospital capacity and facilitate patient admissions and transfers.",
+        "The Logistics Coordinator aims to efficiently facilitate the transfer of essential products, such as blood, between hospitals to address critical shortages and support patient needs across the system.",
+        "The Logistics Coordinator seeks to ensure the timely and secure delivery of transferred products to recipient hospitals, minimizing delays and maintaining product integrity."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator can update the quantity of a particular product in a hospital's inventory.",
+        "The Public Health System Administrator can modify the current blood bank reserves for a given hospital.",
+        "The Public Health System Administrator can change the number of available beds in a particular hospital.",
+        "The Public Health System Administrator can query the system to find hospitals that meet specific availability requirements for patient placement.",
+        "The Public Health System Administrator can formally assign a patient to an available hospital.",
+        "The Public Health System Administrator can get an up-to-the-minute view of product stock in every hospital.",
+        "The Public Health System Administrator can get an up-to-the-minute view of blood bank reserves in every hospital.",
+        "The Public Health System Administrator can get an up-to-the-minute view of available beds in every hospital.",
+        "The Patient can request a recommendation for the nearest hospital that has available beds.",
+        "The Patient can provide their details to initiate the check-in process at a hospital.",
+        "The Patient can confirm their departure from a hospital, completing the check-out process.",
+        "Hospital Staff can record the arrival of a new patient, capturing relevant details.",
+        "Hospital Staff can log the departure of a patient, updating their status in the system.",
+        "Hospital Staff can adjust the stock level of a particular product within their hospital.",
+        "Hospital Staff can modify the current blood bank reserves for their hospital.",
+        "Hospital Staff can query the system to get the real-time number of available beds in their hospital.",
+        "Hospital Staff can adjust the number of available beds in their hospital as changes occur.",
+        "The Logistics Coordinator can create a request to move products from one hospital to another.",
+        "The Logistics Coordinator can authorize a product transfer request, moving it to the next stage of fulfillment.",
+        "The Logistics Coordinator can monitor the progress of a product transfer from dispatch to delivery.",
+        "The Logistics Coordinator can mark a product transfer as successfully completed upon its arrival at the destination."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

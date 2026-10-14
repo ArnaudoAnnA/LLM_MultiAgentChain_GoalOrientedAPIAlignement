@@ -1,0 +1,142 @@
+grouping,group,n_cells,all_equal,two_equal,all_different,precision_range_median,precision_range_max,recall_range_median,recall_range_max,f1_range_median,f1_range_max
+node,actors,72,46,21,5,0.0,0.3333,0.0,0.25,0.0,0.3
+node,highLevelGoals,72,2,38,32,0.0431,0.4241,0.0117,0.0577,0.0443,0.2907
+node,lowLevelGoals,72,1,10,61,0.0718,0.4008,0.0159,0.2808,0.0641,0.3082
+node+critic,actors | ON,36,18,13,5,0.0,0.3333,0.0,0.2339,0.0,0.3
+node+critic,highLevelGoals | ON,36,1,17,18,0.0401,0.2228,0.0143,0.0577,0.0386,0.1992
+node+critic,lowLevelGoals | ON,36,0,2,34,0.0718,0.4008,0.0149,0.1731,0.0674,0.298
+node+critic,actors | OFF,36,28,8,0,0.0,0.192,0.0,0.25,0.0,0.1592
+node+critic,highLevelGoals | OFF,36,1,21,14,0.0468,0.4241,0.0088,0.052,0.0479,0.2907
+node+critic,lowLevelGoals | OFF,36,1,8,27,0.0691,0.3967,0.0159,0.2808,0.049,0.3082
+node+critic+shot,actors | ON | ZERO_SHOT,12,8,2,2,0.0,0.3073,0.0,0.2339,0.0,0.1765
+node+critic+shot,highLevelGoals | ON | ZERO_SHOT,12,1,6,5,0.016,0.1463,0.0143,0.0577,0.0164,0.1159
+node+critic+shot,lowLevelGoals | ON | ZERO_SHOT,12,0,0,12,0.0765,0.2713,0.0086,0.1731,0.0538,0.298
+node+critic+shot,actors | OFF | ZERO_SHOT,12,9,3,0,0.0,0.192,0.0,0.25,0.0,0.1592
+node+critic+shot,highLevelGoals | OFF | ZERO_SHOT,12,1,6,5,0.0332,0.4241,0.0093,0.052,0.032,0.2907
+node+critic+shot,lowLevelGoals | OFF | ZERO_SHOT,12,1,2,9,0.0704,0.2956,0.0256,0.2808,0.0359,0.147
+node+critic+shot,actors | ON | ONE_SHOT,12,5,4,3,0.0,0.2807,0.0,0.1914,0.0,0.2506
+node+critic+shot,highLevelGoals | ON | ONE_SHOT,12,0,5,7,0.1019,0.1342,0.014,0.0232,0.0832,0.1426
+node+critic+shot,lowLevelGoals | ON | ONE_SHOT,12,0,0,12,0.0873,0.2459,0.0213,0.1493,0.083,0.1682
+node+critic+shot,actors | OFF | ONE_SHOT,12,8,4,0,0.0,0.1624,0.0,0.0454,0.0,0.0733
+node+critic+shot,highLevelGoals | OFF | ONE_SHOT,12,0,7,5,0.0569,0.1277,0.0067,0.0264,0.0472,0.1156
+node+critic+shot,lowLevelGoals | OFF | ONE_SHOT,12,0,3,9,0.0669,0.3967,0.0125,0.1306,0.06,0.3082
+node+critic+shot,actors | ON | FEW_SHOT,12,5,7,0,0.0061,0.3333,0.0,0.0734,0.0061,0.3
+node+critic+shot,highLevelGoals | ON | FEW_SHOT,12,0,6,6,0.0281,0.2228,0.0143,0.0335,0.0315,0.1992
+node+critic+shot,lowLevelGoals | ON | FEW_SHOT,12,0,2,10,0.0528,0.4008,0.0295,0.1114,0.0385,0.2531
+node+critic+shot,actors | OFF | FEW_SHOT,12,11,1,0,0.0,0.0734,0.0,0.0734,0.0,0.0734
+node+critic+shot,highLevelGoals | OFF | FEW_SHOT,12,0,8,4,0.0492,0.1546,0.0151,0.0429,0.0559,0.1331
+node+critic+shot,lowLevelGoals | OFF | FEW_SHOT,12,0,3,9,0.0724,0.2385,0.0159,0.2099,0.0571,0.2018
+node+set,actors | dev,24,12,9,3,0.0,0.3073,0.0,0.1614,0.0,0.2506
+node+set,actors | holdout,48,34,12,2,0.0,0.3333,0.0,0.25,0.0,0.3
+node+set,highLevelGoals | dev,24,1,12,11,0.0613,0.1871,0.0141,0.0577,0.0505,0.1976
+node+set,highLevelGoals | holdout,48,1,26,21,0.0281,0.4241,0.0105,0.052,0.0314,0.2907
+node+set,lowLevelGoals | dev,24,0,5,19,0.0856,0.4008,0.0343,0.2099,0.0703,0.2531
+node+set,lowLevelGoals | holdout,48,1,5,42,0.0653,0.3967,0.0127,0.2808,0.0514,0.3082
+node+system,actors | SIA Project 25 26,6,4,2,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+system,actors | Assegno Unico Universale - SIA Project 24 25,6,5,1,0,0.0,0.0036,0.0,0.0072,0.0,0.0048
+node+system,actors | La Reine Marlene - SIA Project 23 24,6,3,2,1,0.0061,0.1167,0.0061,0.1914,0.0035,0.0889
+node+system,actors | Ethical Purchasing Group - SIA Project 22 23,6,4,2,0,0.0,0.0734,0.0,0.0734,0.0,0.0734
+node+system,actors | Event Organization Portal - SIA Project 21 22,6,6,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+system,actors | Genome Nexus,6,3,2,1,0.0013,0.2269,0.0,0.1614,0.0141,0.2506
+node+system,actors | Gestao Hospital,6,1,3,2,0.1772,0.3073,0.0285,0.0504,0.0882,0.1765
+node+system,actors | London Ambulance Service,6,4,2,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+system,actors | Calculator,6,6,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+system,actors | Fitness Tracker,6,4,1,1,0.0,0.1667,0.0,0.2339,0.0,0.1667
+node+system,actors | Planning Poker,6,3,3,0,0.0,0.3333,0.0,0.0,0.0,0.3
+node+system,actors | Recycling,6,3,3,0,0.0191,0.2807,0.0,0.25,0.0394,0.1597
+node+system,highLevelGoals | SIA Project 25 26,6,0,4,2,0.0762,0.0932,0.0085,0.0178,0.0566,0.0667
+node+system,highLevelGoals | Assegno Unico Universale - SIA Project 24 25,6,0,1,5,0.0302,0.0498,0.0151,0.0264,0.0437,0.0618
+node+system,highLevelGoals | La Reine Marlene - SIA Project 23 24,6,0,3,3,0.0486,0.2228,0.0076,0.027,0.0475,0.1966
+node+system,highLevelGoals | Ethical Purchasing Group - SIA Project 22 23,6,1,2,3,0.0347,0.076,0.0109,0.0191,0.0381,0.0831
+node+system,highLevelGoals | Event Organization Portal - SIA Project 21 22,6,0,3,3,0.0258,0.0695,0.0088,0.0208,0.0247,0.0689
+node+system,highLevelGoals | Genome Nexus,6,0,3,3,0.0498,0.1342,0.0233,0.0577,0.0498,0.1216
+node+system,highLevelGoals | Gestao Hospital,6,0,1,5,0.0833,0.1342,0.0181,0.0429,0.0758,0.1239
+node+system,highLevelGoals | London Ambulance Service,6,1,4,1,0.0103,0.1871,0.0073,0.0197,0.0142,0.1976
+node+system,highLevelGoals | Calculator,6,0,6,0,0.0043,0.1215,0.0047,0.0064,0.0051,0.0961
+node+system,highLevelGoals | Fitness Tracker,6,0,5,1,0.0732,0.1031,0.0135,0.0215,0.0426,0.0898
+node+system,highLevelGoals | Planning Poker,6,0,4,2,0.0784,0.2469,0.0139,0.0235,0.0804,0.2116
+node+system,highLevelGoals | Recycling,6,0,2,4,0.0614,0.4241,0.0278,0.052,0.0652,0.2907
+node+system,lowLevelGoals | SIA Project 25 26,6,0,0,6,0.1583,0.248,0.0354,0.1491,0.0703,0.1682
+node+system,lowLevelGoals | Assegno Unico Universale - SIA Project 24 25,6,0,0,6,0.1256,0.3967,0.0146,0.0322,0.1344,0.3082
+node+system,lowLevelGoals | La Reine Marlene - SIA Project 23 24,6,0,0,6,0.1191,0.2385,0.0159,0.0426,0.0916,0.2018
+node+system,lowLevelGoals | Ethical Purchasing Group - SIA Project 22 23,6,1,0,5,0.0387,0.1865,0.0245,0.1078,0.0452,0.1999
+node+system,lowLevelGoals | Event Organization Portal - SIA Project 21 22,6,0,1,5,0.0419,0.0866,0.0102,0.0223,0.0268,0.0702
+node+system,lowLevelGoals | Genome Nexus,6,0,3,3,0.0373,0.113,0.0808,0.2099,0.0723,0.1099
+node+system,lowLevelGoals | Gestao Hospital,6,0,0,6,0.1522,0.4008,0.0196,0.0483,0.1042,0.2531
+node+system,lowLevelGoals | London Ambulance Service,6,0,2,4,0.013,0.0452,0.0304,0.1114,0.0217,0.075
+node+system,lowLevelGoals | Calculator,6,0,2,4,0.1022,0.2129,0.0335,0.1731,0.0682,0.149
+node+system,lowLevelGoals | Fitness Tracker,6,0,0,6,0.0582,0.1143,0.0145,0.0353,0.0596,0.1319
+node+system,lowLevelGoals | Planning Poker,6,0,2,4,0.0414,0.0851,0.0085,0.0702,0.0253,0.0433
+node+system,lowLevelGoals | Recycling,6,0,0,6,0.068,0.2956,0.011,0.2808,0.0462,0.1619
+node+critic+system,actors | ON | SIA Project 25 26,3,2,1,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | ON | Assegno Unico Universale - SIA Project 24 25,3,3,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | ON | La Reine Marlene - SIA Project 23 24,3,0,2,1,0.0479,0.1167,0.101,0.1914,0.0123,0.0889
+node+critic+system,actors | ON | Ethical Purchasing Group - SIA Project 22 23,3,2,1,0,0.0,0.0734,0.0,0.0734,0.0,0.0734
+node+critic+system,actors | ON | Event Organization Portal - SIA Project 21 22,3,3,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | ON | Genome Nexus,3,0,2,1,0.1667,0.2269,0.1037,0.1614,0.1333,0.2506
+node+critic+system,actors | ON | Gestao Hospital,3,0,1,2,0.1964,0.3073,0.0415,0.0504,0.1122,0.1765
+node+critic+system,actors | ON | London Ambulance Service,3,2,1,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | ON | Calculator,3,3,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | ON | Fitness Tracker,3,1,1,1,0.1667,0.1667,0.0,0.2339,0.1667,0.1667
+node+critic+system,actors | ON | Planning Poker,3,1,2,0,0.0,0.3333,0.0,0.0,0.0,0.3
+node+critic+system,actors | ON | Recycling,3,1,2,0,0.1181,0.2807,0.0,0.0218,0.0787,0.1597
+node+critic+system,highLevelGoals | ON | SIA Project 25 26,3,0,3,0,0.0626,0.0932,0.0106,0.0178,0.0464,0.066
+node+critic+system,highLevelGoals | ON | Assegno Unico Universale - SIA Project 24 25,3,0,0,3,0.0187,0.0498,0.0081,0.0221,0.0295,0.058
+node+critic+system,highLevelGoals | ON | La Reine Marlene - SIA Project 23 24,3,0,1,2,0.1463,0.2228,0.0195,0.027,0.1159,0.1966
+node+critic+system,highLevelGoals | ON | Ethical Purchasing Group - SIA Project 22 23,3,0,2,1,0.028,0.0415,0.0116,0.0191,0.0333,0.0428
+node+critic+system,highLevelGoals | ON | Event Organization Portal - SIA Project 21 22,3,0,2,1,0.0189,0.0266,0.0104,0.0208,0.0182,0.0259
+node+critic+system,highLevelGoals | ON | Genome Nexus,3,0,0,3,0.0601,0.1342,0.0233,0.0577,0.0753,0.1216
+node+critic+system,highLevelGoals | ON | Gestao Hospital,3,0,0,3,0.0894,0.1342,0.0226,0.0311,0.0757,0.1239
+node+critic+system,highLevelGoals | ON | London Ambulance Service,3,1,1,1,0.1127,0.1871,0.0146,0.0197,0.1426,0.1976
+node+critic+system,highLevelGoals | ON | Calculator,3,0,3,0,0.0043,0.1215,0.0047,0.0064,0.0051,0.0961
+node+critic+system,highLevelGoals | ON | Fitness Tracker,3,0,2,1,0.0831,0.1031,0.0104,0.018,0.0367,0.0703
+node+critic+system,highLevelGoals | ON | Planning Poker,3,0,2,1,0.1052,0.212,0.0139,0.0156,0.1026,0.1992
+node+critic+system,highLevelGoals | ON | Recycling,3,0,1,2,0.0113,0.1007,0.0335,0.0425,0.0057,0.1089
+node+critic+system,lowLevelGoals | ON | SIA Project 25 26,3,0,0,3,0.1587,0.2459,0.0094,0.0097,0.1028,0.1682
+node+critic+system,lowLevelGoals | ON | Assegno Unico Universale - SIA Project 24 25,3,0,0,3,0.1368,0.2713,0.0135,0.0268,0.1549,0.298
+node+critic+system,lowLevelGoals | ON | La Reine Marlene - SIA Project 23 24,3,0,0,3,0.1003,0.2021,0.0194,0.0426,0.0805,0.1611
+node+critic+system,lowLevelGoals | ON | Ethical Purchasing Group - SIA Project 22 23,3,0,0,3,0.0381,0.0393,0.0384,0.0642,0.045,0.0455
+node+critic+system,lowLevelGoals | ON | Event Organization Portal - SIA Project 21 22,3,0,1,2,0.078,0.0866,0.0088,0.013,0.0492,0.0702
+node+critic+system,lowLevelGoals | ON | Genome Nexus,3,0,0,3,0.0274,0.113,0.0322,0.1493,0.0626,0.1099
+node+critic+system,lowLevelGoals | ON | Gestao Hospital,3,0,0,3,0.1806,0.4008,0.0458,0.0483,0.1248,0.2531
+node+critic+system,lowLevelGoals | ON | London Ambulance Service,3,0,0,3,0.0163,0.0452,0.0786,0.1114,0.0278,0.075
+node+critic+system,lowLevelGoals | ON | Calculator,3,0,1,2,0.2009,0.2129,0.0659,0.1731,0.092,0.149
+node+critic+system,lowLevelGoals | ON | Fitness Tracker,3,0,0,3,0.0639,0.0651,0.0303,0.0353,0.0657,0.0683
+node+critic+system,lowLevelGoals | ON | Planning Poker,3,0,0,3,0.0562,0.0656,0.007,0.0176,0.0344,0.0433
+node+critic+system,lowLevelGoals | ON | Recycling,3,0,0,3,0.0318,0.2048,0.0078,0.0119,0.0264,0.1619
+node+critic+system,actors | OFF | SIA Project 25 26,3,2,1,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | OFF | Assegno Unico Universale - SIA Project 24 25,3,2,1,0,0.0,0.0036,0.0,0.0072,0.0,0.0048
+node+critic+system,actors | OFF | La Reine Marlene - SIA Project 23 24,3,3,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | OFF | Ethical Purchasing Group - SIA Project 22 23,3,2,1,0,0.0,0.0734,0.0,0.0734,0.0,0.0734
+node+critic+system,actors | OFF | Event Organization Portal - SIA Project 21 22,3,3,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | OFF | Genome Nexus,3,3,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | OFF | Gestao Hospital,3,1,2,0,0.1624,0.192,0.0156,0.0454,0.0733,0.1031
+node+critic+system,actors | OFF | London Ambulance Service,3,2,1,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | OFF | Calculator,3,3,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | OFF | Fitness Tracker,3,3,0,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | OFF | Planning Poker,3,2,1,0,0.0,0.0,0.0,0.0,0.0,0.0
+node+critic+system,actors | OFF | Recycling,3,2,1,0,0.0,0.0381,0.0,0.25,0.0,0.1592
+node+critic+system,highLevelGoals | OFF | SIA Project 25 26,3,0,1,2,0.0882,0.0932,0.0064,0.0178,0.066,0.0667
+node+critic+system,highLevelGoals | OFF | Assegno Unico Universale - SIA Project 24 25,3,0,1,2,0.0416,0.0445,0.0224,0.0264,0.0594,0.0618
+node+critic+system,highLevelGoals | OFF | La Reine Marlene - SIA Project 23 24,3,0,2,1,0.0192,0.0691,0.0007,0.0027,0.0157,0.0659
+node+critic+system,highLevelGoals | OFF | Ethical Purchasing Group - SIA Project 22 23,3,1,0,2,0.0492,0.076,0.0103,0.016,0.0537,0.0831
+node+critic+system,highLevelGoals | OFF | Event Organization Portal - SIA Project 21 22,3,0,1,2,0.0266,0.0695,0.0073,0.0142,0.0259,0.0689
+node+critic+system,highLevelGoals | OFF | Genome Nexus,3,0,3,0,0.0491,0.0505,0.0228,0.0386,0.0458,0.0537
+node+critic+system,highLevelGoals | OFF | Gestao Hospital,3,0,1,2,0.0773,0.1277,0.0118,0.0429,0.076,0.1156
+node+critic+system,highLevelGoals | OFF | London Ambulance Service,3,0,3,0,0.0032,0.0174,0.0034,0.0112,0.005,0.0235
+node+critic+system,highLevelGoals | OFF | Calculator,3,0,3,0,0.0043,0.1215,0.0047,0.0064,0.0051,0.0961
+node+critic+system,highLevelGoals | OFF | Fitness Tracker,3,0,3,0,0.0633,0.0941,0.0165,0.0215,0.0486,0.0898
+node+critic+system,highLevelGoals | OFF | Planning Poker,3,0,2,1,0.0516,0.2469,0.0139,0.0235,0.0582,0.2116
+node+critic+system,highLevelGoals | OFF | Recycling,3,0,1,2,0.1546,0.4241,0.021,0.052,0.1331,0.2907
+node+critic+system,lowLevelGoals | OFF | SIA Project 25 26,3,0,0,3,0.158,0.248,0.1306,0.1491,0.0269,0.0741
+node+critic+system,lowLevelGoals | OFF | Assegno Unico Universale - SIA Project 24 25,3,0,0,3,0.1053,0.3967,0.0156,0.0322,0.114,0.3082
+node+critic+system,lowLevelGoals | OFF | La Reine Marlene - SIA Project 23 24,3,0,0,3,0.1376,0.2385,0.0119,0.0268,0.0977,0.2018
+node+critic+system,lowLevelGoals | OFF | Ethical Purchasing Group - SIA Project 22 23,3,1,0,2,0.0814,0.1865,0.0106,0.1078,0.087,0.1999
+node+critic+system,lowLevelGoals | OFF | Event Organization Portal - SIA Project 21 22,3,0,0,3,0.0261,0.0568,0.0117,0.0223,0.0216,0.032
+node+critic+system,lowLevelGoals | OFF | Genome Nexus,3,0,3,0,0.0473,0.088,0.1111,0.2099,0.0821,0.0963
+node+critic+system,lowLevelGoals | OFF | Gestao Hospital,3,0,0,3,0.1469,0.1575,0.0126,0.023,0.1041,0.1043
+node+critic+system,lowLevelGoals | OFF | London Ambulance Service,3,0,2,1,0.0098,0.019,0.0244,0.0363,0.0156,0.0322
+node+critic+system,lowLevelGoals | OFF | Calculator,3,0,1,2,0.0557,0.1487,0.0132,0.0539,0.0444,0.1194
+node+critic+system,lowLevelGoals | OFF | Fitness Tracker,3,0,0,3,0.0524,0.1143,0.0137,0.0154,0.0536,0.1319
+node+critic+system,lowLevelGoals | OFF | Planning Poker,3,0,2,1,0.0207,0.0851,0.0101,0.0702,0.0169,0.0337
+node+critic+system,lowLevelGoals | OFF | Recycling,3,0,0,3,0.1014,0.2956,0.0256,0.2808,0.0659,0.147

@@ -1,0 +1,92 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T20:03:25",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Bioinformatician",
+        "Oncologist",
+        "Clinical Geneticist/Pathologist",
+        "Research Scientist",
+        "Data Analyst"
+    ],
+    "highLevelGoals": [
+        "To rapidly and automatically annotate genetic variants in cancer using integrated information from various existing resources.",
+        "To centralize and integrate information from databases converting DNA to protein changes, predicting functional effects, and containing mutation frequencies, gene function, variant effects, and clinical actionability.",
+        "To enable high-throughput annotation and interpretation of genetic variants to process large datasets efficiently.",
+        "To provide accurate and comprehensive variant interpretations to guide clinical decisions for cancer patients.",
+        "To easily access information regarding the clinical actionability of genetic variants for treatment planning.",
+        "To provide reliable and comprehensive genetic variant interpretations to support diagnostic and therapeutic decisions.",
+        "To ensure the accuracy and reliability of integrated genetic variant data for critical diagnostic and therapeutic applications.",
+        "To enable rapid and high-throughput annotation of genetic variants to accelerate research into cancer genomics.",
+        "To provide comprehensive data on variant effects and gene function to support in-depth research investigations.",
+        "To analyze aggregated genetic variant data to identify patterns, trends, and novel insights for research or clinical applications.",
+        "To provide a robust platform for analyzing large datasets of genetic variants to support data-driven research initiatives."
+    ],
+    "lowLevelGoals": [
+        "The Bioinformatician can upload a VCF or similar file containing genetic variants to initiate the automated annotation process.",
+        "The Bioinformatician can select specific annotation databases and algorithms to be used for a given variant annotation job.",
+        "The Bioinformatician can download a structured report containing the automatically annotated genetic variants and their associated information.",
+        "The Bioinformatician can retrieve information on how specific DNA changes translate into protein changes for a given variant.",
+        "The Bioinformatician can query and view predicted functional effects of a variant from integrated prediction tools.",
+        "The Bioinformatician can access and display mutation frequencies of a specific variant across different populations or cancer types.",
+        "The Bioinformatician can retrieve detailed information about the function of a gene associated with a variant.",
+        "The Bioinformatician can query and display information regarding the clinical actionability of a variant, including associated therapies or prognoses.",
+        "The Bioinformatician can submit multiple variant files simultaneously for high-throughput annotation and processing.",
+        "The Bioinformatician can view the real-time status and progress of ongoing high-throughput annotation jobs.",
+        "The Bioinformatician can generate aggregated summary reports for large sets of annotated variants, highlighting key findings.",
+        "The Oncologist can input patient genetic data to retrieve comprehensive interpretations for clinical decision-making.",
+        "The Oncologist can filter variant interpretations to display only those with high clinical relevance for treatment options or prognosis.",
+        "The Oncologist can export a formatted report of variant interpretations suitable for inclusion in patient records.",
+        "The Oncologist can search for actionable variants based on specific genes or variant identifiers.",
+        "The Oncologist can view a list of recommended therapies or clinical trials associated with identified actionable variants.",
+        "The Oncologist can compare the clinical actionability of multiple variants to prioritize treatment strategies.",
+        "The Clinical Geneticist/Pathologist can submit patient genetic data to receive a diagnostic interpretation report.",
+        "The Clinical Geneticist/Pathologist can review system-generated therapeutic recommendations based on identified variants.",
+        "The Clinical Geneticist/Pathologist can add their own clinical notes and interpretations to the system-generated reports.",
+        "The Clinical Geneticist/Pathologist can inspect the origin and version of each data source used for variant annotation.",
+        "The Clinical Geneticist/Pathologist can review a complete audit trail of how a specific variant was annotated and interpreted over time.",
+        "The Clinical Geneticist/Pathologist can flag and report any identified discrepancies or inaccuracies in the integrated data.",
+        "The Research Scientist can upload large genomic datasets (e.g., whole exome sequencing cohorts) for high-throughput annotation.",
+        "The Research Scientist can trigger the automated annotation pipeline for uploaded large datasets.",
+        "The Research Scientist can download aggregated and summarized annotation results for large research cohorts.",
+        "The Research Scientist can search for variants based on their predicted effect types (e.g., missense, nonsense, frameshift).",
+        "The Research Scientist can retrieve associated Gene Ontology (GO) terms for genes of interest to understand their biological functions.",
+        "The Research Scientist can visualize protein domain annotations and how variants map to these domains.",
+        "The Data Analyst can execute analyses on aggregated genetic variant data from multiple patients or samples.",
+        "The Data Analyst can identify genetic variants that frequently occur across a defined cohort.",
+        "The Data Analyst can perform statistical correlations between specific genetic variants and patient clinical outcomes (e.g., treatment response, survival).",
+        "The Data Analyst can retrieve both raw and processed genetic variant data for custom analysis.",
+        "The Data Analyst can use a specialized query language to extract specific subsets of genetic variant data based on complex criteria.",
+        "The Data Analyst can export data in compatible formats for analysis with external statistical or bioinformatics software."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            6.0,
+            6.0
+        ],
+        "highLevelGoals": [
+            9.5
+        ],
+        "lowLevelGoals": [
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

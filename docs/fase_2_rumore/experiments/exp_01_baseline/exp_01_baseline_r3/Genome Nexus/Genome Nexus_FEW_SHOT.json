@@ -1,0 +1,82 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T20:33:42",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Researcher",
+        "Bioinformatician",
+        "Clinician",
+        "External Genetic Databases"
+    ],
+    "highLevelGoals": [
+        "The Researcher aims to automate the annotation of genetic variants to accelerate research and clinical interpretation.",
+        "The Researcher seeks to perform high-throughput interpretation of genetic variants to efficiently process large datasets and identify significant findings.",
+        "The Researcher aims to access a unified and centralized resource for diverse genetic information to streamline variant analysis and interpretation.",
+        "The Bioinformatician aims to integrate diverse genetic information from various external resources into a centralized system for comprehensive variant analysis.",
+        "The Bioinformatician seeks to manage and curate integrated genetic data within the system.",
+        "The Clinician aims to obtain interpretations of genetic variants to guide patient care and treatment decisions.",
+        "The Clinician seeks to rapidly access integrated genetic and clinical information to support timely and informed patient care decisions.",
+        "The Clinician aims to access a unified and centralized resource for diverse genetic information to streamline variant analysis and interpretation for patient care."
+    ],
+    "lowLevelGoals": [
+        "The Researcher can upload a VCF (Variant Call Format) file containing genetic variants to initiate the automated annotation process.",
+        "The Researcher can specify custom parameters and databases to be used during the automated variant annotation process.",
+        "The Researcher can download the VCF file after the automated annotation is complete, containing enriched variant information.",
+        "The Researcher can initiate the process to convert DNA changes in a VCF file to corresponding protein changes.",
+        "The Researcher can request the system to predict the functional effects of protein mutations identified from a VCF file.",
+        "The Researcher can submit multiple VCF files simultaneously for automated annotation, enabling high-throughput processing.",
+        "The Researcher can view the status and progress of ongoing batch annotation jobs.",
+        "The Researcher can apply filters (e.g., gene, pathogenicity, frequency) and sort results to prioritize variants of interest from large datasets.",
+        "The Researcher can query the centralized database for specific variants using their genomic location or associated gene.",
+        "The Researcher can access comprehensive data for a specific variant, including annotations from multiple sources, clinical significance, and population frequencies.",
+        "The Researcher can explore the list of external genetic resources that are integrated and accessible through the centralized system.",
+        "The Bioinformatician can specify the connection details and data schema for a new external genetic resource to be integrated into the system.",
+        "The Bioinformatician can trigger the process to pull data from an external genetic database into the centralized system.",
+        "The Bioinformatician can view the progress, success, or failure of data integration tasks from external sources.",
+        "The Bioinformatician can manually input or upload new genetic variant data into the system.",
+        "The Bioinformatician can modify details of existing genetic variants, such as clinical interpretations or associated literature.",
+        "The Bioinformatician can remove outdated or incorrect genetic variant records from the centralized system.",
+        "The Bioinformatician can review changes made to genetic data by other users and approve them to maintain data quality.",
+        "The Clinician can submit a genetic variant to the system to generate a report detailing its clinical actionability and therapeutic implications.",
+        "The Clinician can access a numerical score and supporting evidence (e.g., guidelines, trials) indicating the clinical actionability of a variant.",
+        "The Clinician can narrow down the list of clinical actionability reports based on specific cancer types or therapeutic approaches.",
+        "The Clinician can access a unified view of a patient's genetic test results, treatment history, and clinical outcomes.",
+        "The Clinician can create a concise report summarizing a patient's key genetic and clinical findings for quick review and decision-making.",
+        "The Clinician can query the centralized database for specific variants relevant to a patient's case using their genomic location or associated gene.",
+        "The Clinician can access comprehensive data for a specific variant, including annotations from multiple sources, clinical significance, and population frequencies, to inform patient treatment.",
+        "The Clinician can explore the list of external genetic resources that are integrated and accessible through the centralized system to gather additional clinical insights."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            4.0,
+            4.0
+        ],
+        "highLevelGoals": [
+            2.0,
+            4.0,
+            10.0
+        ],
+        "lowLevelGoals": [
+            7.0,
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 3,
+        "lowLevelGoals": 2
+    }
+}

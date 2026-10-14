@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="it"><meta charset="utf-8"><title>Intervallo di confidenza e test di Wilcoxon: guida semplice</title>
+<style>
+ :root{--bg:#fff;--fg:#14171a;--mut:#5d6b7a;--line:#e3e8ef;--card:#f7f9fb;--accent:#c2410c;--up:#2563a8;--down:#c2410c;--soft:#b9c7d6}
+ @media (prefers-color-scheme:dark){:root{--bg:#0f1418;--fg:#eef2f6;--mut:#9aa8b6;--line:#243039;--card:#161d23;--accent:#fb923c;--up:#6aa8ee;--down:#fb923c;--soft:#3b4b59}}
+ *{box-sizing:border-box}
+ body{margin:0 auto;max-width:880px;background:var(--bg);color:var(--fg);padding:36px 24px 100px;font:16.5px/1.65 ui-sans-serif,-apple-system,"Segoe UI",Roboto,sans-serif}
+ h1{font-size:28px;margin:0 0 6px;line-height:1.25}
+ h2{font-size:23px;margin:54px 0 10px;padding-top:14px;border-top:2px solid var(--line)}
+ h3{font-size:18px;margin:30px 0 6px}
+ .meta{color:var(--mut);font-size:14px;margin:0 0 20px}
+ .box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 18px;margin:16px 0}
+ .box.key{border-left:4px solid var(--accent)}
+ .quote{border-left:3px solid var(--soft);margin:12px 0;padding:6px 16px;background:var(--card);border-radius:0 8px 8px 0}
+ .quote .en{font-style:italic}
+ .quote .src{color:var(--mut);font-size:14px;margin-top:4px}
+ table{border-collapse:collapse;width:100%;margin:12px 0;font-size:15.5px}
+ th,td{border-bottom:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+ th{background:var(--card);font-weight:600}
+ td.num{text-align:right;font-variant-numeric:tabular-nums}
+ .read{color:var(--mut);font-size:15px;margin:8px 0}
+ .read b{color:var(--fg)}
+ .step{display:grid;grid-template-columns:36px 1fr;gap:10px;margin:12px 0}
+ .step .n{width:30px;height:30px;border-radius:50%;background:var(--accent);color:var(--bg);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+ .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;margin:14px 0}
+ .flow div{flex:1 1 150px;border:1px solid var(--line);background:var(--card);border-radius:8px;padding:10px 12px;font-size:14.5px}
+ .flow .arrow{flex:0 0 auto;border:none;background:none;align-self:center;font-size:20px;padding:0 2px;color:var(--mut)}
+ .flow .main{border-color:var(--accent);border-width:2px}
+ .part{display:inline-block;font-size:12.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);margin-bottom:-6px}
+ dl{margin:10px 0} dt{font-weight:700;margin-top:10px} dd{margin:2px 0 0 0;color:var(--fg)}
+ svg{width:100%;height:auto;display:block;margin:10px 0}
+ svg .up{fill:var(--up)} svg .down{fill:var(--down)} svg .in{fill:var(--up)} svg .out{fill:var(--soft)}
+ svg .ax{stroke:var(--mut);stroke-width:1} svg .zero{stroke:var(--down);stroke-width:2} svg .cut{stroke:var(--fg);stroke-width:1.5;stroke-dasharray:4 3}
+ svg .tk{fill:var(--mut);font-size:11.5px} svg .b{font-weight:700}
+ code{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:14px}
+ ul{padding-left:22px} li{margin:5px 0}
+
+ :root{--upbg:#dbe8f7;--downbg:#fbe0d3}
+ @media (prefers-color-scheme:dark){:root{--upbg:#1c3552;--downbg:#4a2c18}}
+ h4{font-size:17px;margin:26px 0 6px}
+ h3.passo{border-top:1px solid var(--line);padding-top:16px;margin-top:40px}
+ tr.hl td{background:var(--card)}
+ td.cell{text-align:center;font-weight:700;width:46px}
+ td.cell.pos{background:var(--upbg);color:var(--up)} td.cell.neg{background:var(--downbg);color:var(--down)}
+ .plates{display:flex;gap:18px;align-items:flex-end;margin:16px 0;flex-wrap:wrap}
+ .plate{flex:1 1 300px}
+ .stack{display:flex;flex-direction:column-reverse;gap:2px;min-height:20px}
+ .blk{display:flex;align-items:center;padding:0 10px;font-size:13.5px;border-radius:3px;color:var(--fg)}
+ .blk.up{background:var(--upbg);border-left:5px solid var(--up)} .blk.down{background:var(--downbg);border-left:5px solid var(--down)}
+ .lab{margin-top:8px;font-size:15px;border-top:2px solid var(--mut);padding-top:6px}
+ .eq{display:grid;grid-template-columns:1fr 34px 1fr;gap:6px;align-items:stretch;margin:16px 0}
+ .eq div{border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:var(--card)}
+ .eq .sym{border:none;background:none;text-align:center;font-size:22px;padding:12px 0;color:var(--mut)}
+ .coins{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+ .coin{min-width:112px;text-align:center;border:2px solid var(--line);border-radius:10px;padding:8px 6px;background:var(--card);cursor:pointer;font:inherit;color:var(--fg)}
+ .coin.pos{border-color:var(--up);background:var(--upbg)} .coin.neg{border-color:var(--down);background:var(--downbg)}
+ .coin small{display:block;color:var(--mut)}
+ .out2{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+ .out2 div{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--card)}
+ .out2 b{font-size:20px;display:block}
+ button.reset{font:inherit;font-size:14px;padding:6px 12px;border-radius:7px;border:1px solid var(--accent);background:transparent;color:var(--accent);cursor:pointer}
+</style>
+
+<h1>Intervallo di confidenza e test di Wilcoxon</h1>
+<p class="meta">2026-10-14 · Guida semplice a due strumenti statistici: definizione dagli articoli, funzionamento passo per passo, uso nel nostro progetto. Non serve conoscere il progetto.</p>
+
+<div class="box key">
+<b>Di che cosa si tratta, in tre righe.</b><br>
+Abbiamo due versioni di un sistema (per esempio «con» e «senza» un componente) e vogliamo sapere se una è davvero migliore dell'altra, oppure se la differenza che vediamo è solo fortuna. Questi due strumenti rispondono a questa domanda in due modi diversi. Per ciascuno vedrai: <b>1)</b> cosa dice l'articolo che lo definisce, <b>2)</b> come funziona, con numeri piccoli, <b>3)</b> come lo usiamo noi.
+</div>
+
+<h2>0. Il problema, partendo da zero</h2>
+
+<h3>Cosa facciamo nel progetto</h3>
+<p>Un modello linguistico (LLM) legge il documento dei requisiti di un'applicazione software e ne ricava un elenco di <i>obiettivi</i> (goal). Un esperto ha scritto a mano l'elenco corretto. Un punteggio, chiamato <b>F1</b>, dice quanto l'elenco prodotto somiglia a quello corretto: da 0 (niente in comune) a 1 (identici). Proviamo modifiche alla pipeline e vogliamo sapere se fanno salire l'F1.</p>
+
+<h3>Le parole che userò</h3>
+<dl>
+<dt>Sistema</dt><dd>Una delle 12 applicazioni software del nostro corpus (per esempio <i>Calculator</i> o <i>Fitness Tracker</i>). Ognuna ha il suo documento dei requisiti e il suo elenco corretto.</dd>
+<dt>Configurazione</dt><dd>Un modo di far girare la pipeline. Esempio: «critico acceso» contro «critico spento». Il <b>critico</b> è un secondo LLM che controlla l'elenco del primo e chiede correzioni.</dd>
+<dt>Replica</dt><dd>Lo stesso lancio, ripetuto. L'LLM non risponde sempre uguale, anche senza cambiare niente. Per questo ogni configurazione si esegue 3 volte.</dd>
+<dt>Differenza</dt><dd>Per ogni sistema: F1 con la modifica meno F1 senza. Positiva = la modifica ha aiutato quel sistema.</dd>
+<dt>Rumore</dt><dd>La variazione dell'F1 che si ottiene rilanciando <i>senza cambiare niente</i>. È il metro con cui si decide se una differenza conta.</dd>
+</dl>
+
+<h3>La domanda</h3>
+<p>Una modifica può far salire l'F1 in media, ma per puro caso: un lancio fortunato, due sistemi che per caso vanno bene. Serve una regola per dire: <b>«questa differenza è più grande di quello che il rumore da solo produrrebbe»</b>. Tutti e due gli strumenti partono dalla stessa tabella: <b>una differenza per sistema</b>.</p>
+
+<h3>Un esempio giocattolo, che useremo per entrambi</h3>
+<p>Sei sistemi inventati, con F1 senza e con la modifica (le repliche sono già mediate):</p>
+<table>
+<tr><th></th><th>F1 senza modifica</th><th>F1 con modifica</th><th>Differenza</th></tr>
+<tr><td>Sistema A</td><td class="num">0.40</td><td class="num">0.50</td><td class="num">+0.10</td></tr><tr><td>Sistema B</td><td class="num">0.55</td><td class="num">0.59</td><td class="num">+0.04</td></tr><tr><td>Sistema C</td><td class="num">0.62</td><td class="num">0.60</td><td class="num">-0.02</td></tr><tr><td>Sistema D</td><td class="num">0.30</td><td class="num">0.36</td><td class="num">+0.06</td></tr><tr><td>Sistema E</td><td class="num">0.48</td><td class="num">0.49</td><td class="num">+0.01</td></tr><tr><td>Sistema F</td><td class="num">0.35</td><td class="num">0.43</td><td class="num">+0.08</td></tr>
+</table>
+<p class="read"><b>Come leggerla.</b> Ogni riga è un sistema; l'ultima colonna è «con − senza».<br>
+<b>Cosa significa.</b> 5 sistemi migliorano e 1 peggiora; la media delle differenze è <b>+0.045</b>.<br>
+<b>Esempio di lettura.</b> Sistema A: da 0.40 a 0.50, differenza +0.10.</p>
+<p>Domanda: +0.045 è un miglioramento vero, o poteva venire anche dal caso?</p>
+
+<div class="flow">
+<div><b>Tabella</b><br>una differenza per sistema</div><div class="arrow">→</div>
+<div><b>Test dei ranghi</b><br>guarda <i>in quanti sistemi</i> e con che peso</div>
+<div class="arrow">+</div>
+<div><b>Intervallo</b><br>guarda <i>quanto è incerta</i> la media</div>
+</div>
+
+<!-- ===================== WILCOXON ===================== -->
+<h2>1. Il test dei ranghi di Wilcoxon</h2>
+<span class="part">Nome vero: Wilcoxon signed-rank test (test dei ranghi con segno)</span>
+
+<h3>1.1 Cosa dice l'articolo</h3>
+<p><b>Fonte:</b> J. Demšar, «Statistical Comparisons of Classifiers over Multiple Data Sets», <i>Journal of Machine Learning Research</i> 7, 2006, §3.1.3. Demšar descrive il test di Wilcoxon (1945) e lo raccomanda per confrontare due algoritmi su più insiemi di dati.</p>
+<div class="quote">
+<div class="en">«The Wilcoxon signed-ranks test (Wilcoxon, 1945) is a non-parametric alternative to the paired t-test, which ranks the differences in performances of two classifiers for each data set, ignoring the signs, and compares the ranks for the positive and the negative differences.»</div>
+<div>In italiano: è un test che non assume una distribuzione dei dati. Per ogni data set prende la differenza fra i due classificatori, <b>le mette in classifica senza guardare il segno</b>, e poi confronta le posizioni di chi ha differenza positiva con quelle di chi ha differenza negativa.</div>
+<div class="src">Demšar (2006), §3.1.3</div>
+</div>
+<p>L'articolo aggiunge la formula: R<sup>+</sup> è la somma dei ranghi dei data set in cui il secondo algoritmo vince, R<sup>−</sup> quella dei data set in cui perde. Si prende <b>T = il più piccolo tra R<sup>+</sup> e R<sup>−</sup></b>: più T è piccolo, più la differenza è sbilanciata da una parte sola.</p>
+
+<h3>Come lo usa l'articolo</h3>
+<p>Demšar confronta due versioni dell'algoritmo C4.5 su 14 data set. Trova R<sup>+</sup> = 93 e R<sup>−</sup> = 12. Per 14 data set e soglia 0.05 la tabella dice che T deve essere ≤ 21 per concludere che c'è differenza. T = 12 ≤ 21: <b>differenza riconosciuta</b>. Nei suoi termini, il «data set» è l'unità su cui si ripete il confronto; da noi quell'unità è il <b>sistema</b>.</p>
+<p>L'articolo ne indica anche i vantaggi: non richiede dati «a campana», e i valori anomali (pochi data set molto buoni o molto cattivi) pesano meno che in un test sulla media. Il costo: <i>«the absolute magnitudes are ignored»</i>, le grandezze assolute si ignorano.</p>
+
+<h3>1.2 Come funziona, sul giocattolo</h3>
+<div class="step"><div class="n">1</div><div><b>Prendi le differenze e togli il segno.</b> Restano 0.10, 0.04, 0.02, 0.06, 0.01, 0.08.</div></div>
+<div class="step"><div class="n">2</div><div><b>Mettile in classifica dalla più piccola alla più grande.</b> La più piccola (0.01, sistema E) ha rango 1, la più grande (0.10, sistema A) ha rango 6. Da qui la grandezza esatta non serve più: conta solo il posto in classifica.</div></div>
+<svg viewBox="0 0 640 230" role="img"><line x1="50" y1="121.0" x2="632" y2="121.0" class="ax"/><rect class="up" x="60.0" y="114.3" width="87.0" height="6.7"/><text x="103.5" y="109.3" text-anchor="middle" class="tk">+0.01</text><text x="103.5" y="212" text-anchor="middle" class="tk">E</text><text x="103.5" y="225" text-anchor="middle" class="tk b">rango 1</text><rect class="down" x="155.0" y="121.0" width="87.0" height="13.3"/><text x="198.5" y="146.3" text-anchor="middle" class="tk">-0.02</text><text x="198.5" y="212" text-anchor="middle" class="tk">C</text><text x="198.5" y="225" text-anchor="middle" class="tk b">rango 2</text><rect class="up" x="250.0" y="94.3" width="87.0" height="26.7"/><text x="293.5" y="89.3" text-anchor="middle" class="tk">+0.04</text><text x="293.5" y="212" text-anchor="middle" class="tk">B</text><text x="293.5" y="225" text-anchor="middle" class="tk b">rango 3</text><rect class="up" x="345.0" y="81.0" width="87.0" height="40.0"/><text x="388.5" y="76.0" text-anchor="middle" class="tk">+0.06</text><text x="388.5" y="212" text-anchor="middle" class="tk">D</text><text x="388.5" y="225" text-anchor="middle" class="tk b">rango 4</text><rect class="up" x="440.0" y="67.7" width="87.0" height="53.3"/><text x="483.5" y="62.7" text-anchor="middle" class="tk">+0.08</text><text x="483.5" y="212" text-anchor="middle" class="tk">F</text><text x="483.5" y="225" text-anchor="middle" class="tk b">rango 5</text><rect class="up" x="535.0" y="54.3" width="87.0" height="66.7"/><text x="578.5" y="49.3" text-anchor="middle" class="tk">+0.10</text><text x="578.5" y="212" text-anchor="middle" class="tk">A</text><text x="578.5" y="225" text-anchor="middle" class="tk b">rango 6</text></svg>
+<p class="read"><b>Come leggerla.</b> Le barre sono i sistemi in ordine di rango (sotto: lettera e rango). Blu verso l'alto = la modifica ha migliorato; arancione verso il basso = ha peggiorato.<br>
+<b>Cosa significa.</b> L'unico sistema che peggiora (C) è il secondo più piccolo in classifica: il peggioramento è piccolo, i miglioramenti sono più grandi.</p>
+
+<h3 class="passo">Passo 3 — Sommare i ranghi per verso, e cos'è T</h3>
+
+<h4>I ranghi come «punti»</h4>
+<p>Dopo i passi 1 e 2, ogni sistema ha un rango da 1 a 6. Pensali come <b>punti</b>: in tutto ci sono 1+2+3+4+5+6 = <b>21 punti</b>. Un sistema che migliora mette i suoi punti da una parte; un sistema che peggiora li mette dall'altra.</p>
+<div class="plates">
+<div class="plate"><div class="stack"><div class="blk up" style="height:20px">rango 1 · sistema E · +0.01</div><div class="blk up" style="height:60px">rango 3 · sistema B · +0.04</div><div class="blk up" style="height:80px">rango 4 · sistema D · +0.06</div><div class="blk up" style="height:100px">rango 5 · sistema F · +0.08</div><div class="blk up" style="height:120px">rango 6 · sistema A · +0.10</div></div><div class="lab"><b>Lato «migliora»</b><br>R<sup>+</sup> = 1+3+4+5+6 = <b>19</b></div></div>
+<div class="plate"><div class="stack"><div class="blk down" style="height:40px">rango 2 · sistema C · -0.02</div></div><div class="lab"><b>Lato «peggiora»</b><br>R<sup>−</sup> = <b>2</b></div></div>
+</div>
+<p class="read"><b>Come leggerla.</b> Ogni blocco è un sistema; l'altezza è il suo rango. A sinistra stanno i sistemi che migliorano, a destra quelli che peggiorano.<br>
+<b>Cosa significa.</b> Quasi tutti i punti sono da una parte: 19 contro 2. R<sup>+</sup> e R<sup>−</sup> sono solo i nomi di queste due somme (il «+» e il «−» indicano il verso).<br>
+<b>Controllo:</b> 19 + 2 = 21. Le due somme danno sempre il totale dei punti, perché ogni sistema è da una parte o dall'altra.</p>
+
+<h4>T: il lato più piccolo</h4>
+<div class="eq">
+<div><b>T = il più piccolo fra R<sup>+</sup> e R<sup>−</sup></b><br>Qui: il più piccolo fra 19 e 2.</div>
+<div class="sym">=</div>
+<div><b>T = 2</b><br>I punti che stanno dalla parte «in minoranza».</div>
+</div>
+<p><b>Cosa indica T.</b> Indica <i>quanto è sbilanciata</i> la distribuzione dei punti.</p>
+<ul>
+<li><b>T = 0</b>: nessun punto da una delle due parti. Tutti i sistemi vanno nello stesso verso. È lo sbilanciamento massimo.</li>
+<li><b>T piccolo (come 1, 2, 3)</b>: quasi tutti i punti dalla stessa parte.</li>
+<li><b>T = 10</b>: il massimo possibile con 21 punti (10 da una parte, 11 dall'altra). Nessuno squilibrio: miglioramenti e peggioramenti si equivalgono.</li>
+</ul>
+<p>T può quindi andare da 0 a 10. Il nostro T = 2 è vicino allo sbilanciamento massimo.</p>
+
+<div class="box"><b>Cosa T <u>non</u> dice.</b> T da solo non dice se «2 è abbastanza piccolo». Un T piccolo potrebbe capitare anche per pura fortuna, e quanto spesso dipende da quanti sistemi ci sono. Stabilirlo è il lavoro del passo 4.</div>
+
+
+<h3 class="passo">Passo 4 — La domanda su T e il valore p</h3>
+
+<h4>La domanda, in parole semplici</h4>
+<div class="box key">
+<b>«Se la modifica non facesse assolutamente nulla, quanto spesso ci capiterebbe, per solo caso, un T piccolo come 2 (o ancora più piccolo)?»</b>
+</div>
+<p>Questa è la domanda. Se la risposta è «quasi mai», allora è difficile credere che sia solo fortuna: probabilmente la modifica ha un effetto. Se la risposta è «abbastanza spesso», la fortuna basta a spiegarlo.</p>
+
+<h4>Cosa c'entra il valore p: è proprio quella risposta</h4>
+<div class="eq">
+<div><b>La domanda</b><br>«Senza effetto, quanto spesso vedrei un T così piccolo?»</div>
+<div class="sym">=</div>
+<div><b>Il valore p</b><br>La probabilità di un T piccolo come il nostro o più piccolo, <i>supponendo che la modifica non faccia nulla</i>.</div>
+</div>
+<p>Non è un'analogia: <b>il valore p è, per definizione, la risposta a questa domanda</b>. Lo dice anche l'articolo di Berg-Kirkpatrick et al. (2012, §2.1), parlando di un test statistico in generale:</p>
+<div class="quote">
+<div class="en">«Hypothesis testing guards against the case where A's victory over B was an unlikely event, due merely to chance. We would therefore like to know how likely it would be that a new, independent test set x′ would show a similar victory for A assuming that A is no better than B […]. We refer to p(δ(X) > δ(x)|H0) as p-value(x).»</div>
+<div>In italiano: il test serve a proteggersi dal caso in cui la «vittoria» di A su B sia un evento improbabile dovuto solo al caso. Si vuole sapere <b>quanto sarebbe probabile una vittoria simile, ammesso che A non sia meglio di B</b>. Quella probabilità si chiama valore p.</div>
+<div class="src">Berg-Kirkpatrick, Burkett &amp; Klein (2012), §2.1</div>
+</div>
+<p>Nel test di Wilcoxon la «vittoria osservata» è il nostro T = 2, e «ammesso che non sia meglio» significa «ammesso che la modifica non faccia nulla».</p>
+
+<h4>Come si risponde alla domanda: contare</h4>
+<div class="step"><div class="n">a</div><div><b>Cosa vuol dire «senza effetto» per i segni.</b> Se la modifica non fa nulla, la differenza di ogni sistema è solo rumore, e il rumore è altrettanto probabile positivo che negativo, come una moneta. Quello che il caso decide è <b>solo da che parte va</b> il sistema. Il suo rango (quanto pesa) resta quello che è: i punti 1, 2, 3, 4, 5, 6 ci sono sempre.</div></div>
+<div class="step"><div class="n">b</div><div><b>Quindi il caso poteva fare questo:</b> prendere i 6 «gettoni» numerati da 1 a 6 e lanciarli, uno per uno: testa = il gettone va dalla parte «migliora», croce = va dalla parte «peggiora». Per ogni gettone ci sono 2 possibilità, quindi in tutto 2×2×2×2×2×2 = <b>64 combinazioni</b>, tutte ugualmente probabili.</div></div>
+<div class="step"><div class="n">c</div><div><b>Per ognuna delle 64 combinazioni</b> si calcola T, esattamente come abbiamo fatto per la nostra: si sommano i punti di ciascun lato e si prende il più piccolo.</div></div>
+<div class="step"><div class="n">d</div><div><b>Si contano</b> le combinazioni in cui T è piccolo come il nostro o più piccolo, e si divide per 64.</div></div>
+
+<h4>Prova tu: lancia i gettoni</h4>
+<p>Clicca un gettone per cambiare il suo verso. Parti dal nostro caso e prova a rendere lo squilibrio più o meno forte.</p>
+<div class="coins" id="coins"></div>
+<div class="out2">
+<div>R<sup>+</sup> (migliora)<b id="rp">–</b></div>
+<div>R<sup>−</sup> (peggiora)<b id="rm">–</b></div>
+<div>T (il più piccolo)<b id="tt">–</b></div>
+<div>Combinazioni con T ≤ questo<b id="cnt">–</b></div>
+<div>p = combinazioni / 64<b id="pp">–</b></div>
+</div>
+<p id="verdict" class="read"></p>
+<p><button class="reset" id="reset">Torna al nostro caso</button></p>
+
+<h4>Il conteggio completo</h4>
+<p>Ecco, per ogni valore di T, quante delle 64 combinazioni lo producono.</p>
+<table>
+<tr><th>T</th><th>Quante combinazioni danno esattamente questo T</th><th>Quante danno questo T o meno (cumulate)</th><th>Quota sul totale</th></tr>
+<tr class="hl"><td class="num">0</td><td class="num">2</td><td class="num">2</td><td class="num">2/64 = 0.031</td></tr><tr class="hl"><td class="num">1</td><td class="num">2</td><td class="num">4</td><td class="num">4/64 = 0.062</td></tr><tr class="hl"><td class="num">2</td><td class="num">2</td><td class="num">6</td><td class="num">6/64 = 0.094</td></tr><tr><td class="num">3</td><td class="num">4</td><td class="num">10</td><td class="num">10/64 = 0.156</td></tr><tr><td class="num">4</td><td class="num">4</td><td class="num">14</td><td class="num">14/64 = 0.219</td></tr><tr><td class="num">5</td><td class="num">6</td><td class="num">20</td><td class="num">20/64 = 0.312</td></tr><tr><td class="num">6</td><td class="num">8</td><td class="num">28</td><td class="num">28/64 = 0.438</td></tr><tr><td class="num">7</td><td class="num">8</td><td class="num">36</td><td class="num">36/64 = 0.562</td></tr><tr><td class="num">8</td><td class="num">8</td><td class="num">44</td><td class="num">44/64 = 0.688</td></tr><tr><td class="num">9</td><td class="num">10</td><td class="num">54</td><td class="num">54/64 = 0.844</td></tr><tr><td class="num">10</td><td class="num">10</td><td class="num">64</td><td class="num">64/64 = 1.000</td></tr>
+</table>
+<svg viewBox="0 0 640 220" role="img" aria-label="Quante delle 64 combinazioni danno ciascun valore di T"><rect class="in" x="44.0" y="146.8" width="45.6" height="29.2"/><text x="66.8" y="141.8" text-anchor="middle" class="tk">2</text><text x="66.8" y="192" text-anchor="middle" class="tk">0</text><rect class="in" x="97.6" y="146.8" width="45.6" height="29.2"/><text x="120.5" y="141.8" text-anchor="middle" class="tk">2</text><text x="120.5" y="192" text-anchor="middle" class="tk">1</text><rect class="in" x="151.3" y="146.8" width="45.6" height="29.2"/><text x="174.1" y="141.8" text-anchor="middle" class="tk">2</text><text x="174.1" y="192" text-anchor="middle" class="tk">2</text><rect class="out" x="204.9" y="117.6" width="45.6" height="58.4"/><text x="227.7" y="112.6" text-anchor="middle" class="tk">4</text><text x="227.7" y="192" text-anchor="middle" class="tk">3</text><rect class="out" x="258.5" y="117.6" width="45.6" height="58.4"/><text x="281.4" y="112.6" text-anchor="middle" class="tk">4</text><text x="281.4" y="192" text-anchor="middle" class="tk">4</text><rect class="out" x="312.2" y="88.4" width="45.6" height="87.6"/><text x="335.0" y="83.4" text-anchor="middle" class="tk">6</text><text x="335.0" y="192" text-anchor="middle" class="tk">5</text><rect class="out" x="365.8" y="59.2" width="45.6" height="116.8"/><text x="388.6" y="54.2" text-anchor="middle" class="tk">8</text><text x="388.6" y="192" text-anchor="middle" class="tk">6</text><rect class="out" x="419.5" y="59.2" width="45.6" height="116.8"/><text x="442.3" y="54.2" text-anchor="middle" class="tk">8</text><text x="442.3" y="192" text-anchor="middle" class="tk">7</text><rect class="out" x="473.1" y="59.2" width="45.6" height="116.8"/><text x="495.9" y="54.2" text-anchor="middle" class="tk">8</text><text x="495.9" y="192" text-anchor="middle" class="tk">8</text><rect class="out" x="526.7" y="30.0" width="45.6" height="146.0"/><text x="549.5" y="25.0" text-anchor="middle" class="tk">10</text><text x="549.5" y="192" text-anchor="middle" class="tk">9</text><rect class="out" x="580.4" y="30.0" width="45.6" height="146.0"/><text x="603.2" y="25.0" text-anchor="middle" class="tk">10</text><text x="603.2" y="192" text-anchor="middle" class="tk">10</text><line x1="40" y1="176" x2="630" y2="176" class="ax"/><text x="335.0" y="212" text-anchor="middle" class="tk">valore di T (il lato più piccolo)</text><text x="6" y="14" class="tk">n. di combinazioni</text></svg>
+<p class="read"><b>Come leggerla.</b> Ogni barra conta le combinazioni, tra le 64 possibili, con quel valore di T. Le barre blu sono quelle con T ≤ 2, cioè sbilanciate come la nostra o di più.<br>
+<b>Cosa significa.</b> Le combinazioni molto sbilanciate sono poche (2 per ogni T basso), quelle quasi equilibrate sono tante. Per caso si finisce quasi sempre nel mezzo.<br>
+<b>Esempio di lettura.</b> Riga T = 2: 2 combinazioni danno esattamente T = 2; in totale 6 danno T = 2 o meno; 6/64 = 0.094.</p>
+
+<h4>Le sei combinazioni «sbilanciate come la nostra o di più»</h4>
+<p>Sono queste. Ogni riga è una combinazione dei segni dei ranghi 1…6 (blu = migliora, arancione = peggiora).</p>
+<table>
+<tr><th>rango 1</th><th>rango 2</th><th>rango 3</th><th>rango 4</th><th>rango 5</th><th>rango 6</th><th>R<sup>+</sup></th><th>R<sup>−</sup></th><th>T</th></tr>
+<tr><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="num">21</td><td class="num">0</td><td class="num"><b>0</b></td></tr><tr><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="num">0</td><td class="num">21</td><td class="num"><b>0</b></td></tr><tr><td class="cell neg">−</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="num">20</td><td class="num">1</td><td class="num"><b>1</b></td></tr><tr><td class="cell pos">+</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="num">1</td><td class="num">20</td><td class="num"><b>1</b></td></tr><tr class=hl><td class="cell pos">+</td><td class="cell neg">−</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="cell pos">+</td><td class="num">19</td><td class="num">2</td><td class="num"><b>2</b> <b>← il nostro caso</b></td></tr><tr><td class="cell neg">−</td><td class="cell pos">+</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="cell neg">−</td><td class="num">2</td><td class="num">19</td><td class="num"><b>2</b></td></tr>
+</table>
+<p class="read"><b>Come leggerla.</b> Le righe sono le combinazioni con T ≤ 2.<br>
+<b>Cosa significa.</b> La nostra è la riga evidenziata: solo il rango 2 va dalla parte «peggiora». Le altre cinque sono sbilanciate quanto lei o di più: tutti dalla stessa parte, oppure solo il rango 1 dall'altra (poi, per ciascuna, lo specchio).<br>
+<b>Perché sei e non tre:</b> la metà sono lo «specchio» delle altre (tutti peggiorano invece di tutti migliorano). Il test chiede «la modifica cambia qualcosa, in un verso o nell'altro?». Un risultato altrettanto sbilanciato ma verso il peggio sarebbe stato altrettanto sorprendente, quindi si conta anche lui. Si chiama test <i>a due code</i>, ed è quello che usa il nostro strumento.</p>
+
+<h4>Il risultato e come si legge</h4>
+<div class="eq">
+<div><b>p = 6 / 64 ≈ 0.094</b><br>6 combinazioni su 64 sono sbilanciate come la nostra o di più.</div>
+<div class="sym">→</div>
+<div><b>Circa 9 volte su 100</b><br>Una modifica inutile produrrebbe per caso uno sbilanciamento così.</div>
+</div>
+<p><b>La soglia.</b> Per convenzione, si riconosce un effetto se p è sotto <b>0.05</b> (5 volte su 100): Demšar la usa (α = 0.05) e Berg-Kirkpatrick scrive «traditionally […] &lt; 0.05». È una convenzione, non una legge: il livello è scelto da chi fa l'analisi.</p>
+<p><b>Il verdetto.</b> 0.094 è sopra 0.05: la sola fortuna basta a spiegare il risultato, quindi il test dice «<b>non basta per riconoscere l'effetto</b>».</p>
+
+<div class="box"><b>Cosa il valore p non è.</b>
+<ul>
+<li>Non è la probabilità che la modifica sia inutile. È la probabilità di vedere uno squilibrio così <i>supponendo</i> che sia inutile.</li>
+<li>Un p alto non dimostra che la modifica non funziona: dice solo che con questi pochi sistemi non si riesce a distinguere dal caso. Qui lo squilibrio c'è (19 contro 2), ma con soli 6 sistemi anche il caso ne produce spesso di simili.</li>
+</ul></div>
+
+<h4>Il legame con la tabella di Demšar</h4>
+<p>Nell'articolo, Demšar non calcola p a mano: usa la «table of exact critical values» (tabella dei valori critici esatti). <b>È lo stesso conteggio</b>, già fatto per ogni numero di data set.</p>
+<table>
+<tr><th>Caso</th><th>Combinazioni totali</th><th>Con T ≤ soglia</th><th>Quota</th><th>Letto come</th></tr>
+<tr><td>Giocattolo, 6 sistemi, T ≤ 2</td><td class="num">64</td><td class="num">6</td><td class="num">0.094</td><td>sopra 0.05: non basta</td></tr>
+<tr><td>Giocattolo, 6 sistemi, T ≤ 0</td><td class="num">64</td><td class="num">2</td><td class="num">0.031</td><td>sotto 0.05: basterebbe, ma solo se tutti e 6 vanno nello stesso verso</td></tr>
+<tr><td>5 sistemi, T ≤ 0 (il caso migliore)</td><td class="num">32</td><td class="num">2</td><td class="num">0.0625</td><td>sopra 0.05 anche col massimo sbilanciamento: il test non può mai dare «effetto»</td></tr>
+<tr><td>Demšar, 14 data set, T ≤ 21</td><td class="num">16 384</td><td class="num">810</td><td class="num">0.0494</td><td>sotto 0.05: da qui il «valore critico 21» dell'articolo</td></tr>
+<tr><td>Demšar, 14 data set, T ≤ 22</td><td class="num">16 384</td><td class="num">950</td><td class="num">0.058</td><td>sopra 0.05</td></tr>
+<tr><td>Caso reale del progetto (sezione 3), 12 sistemi, T = 10</td><td class="num">4 096</td><td class="num">86</td><td class="num">0.021</td><td>sotto 0.05: riconosciuto</td></tr>
+</table>
+<p class="read"><b>Come leggerla.</b> Ogni riga: quante sono tutte le combinazioni dei segni e quante hanno un T piccolo come quello indicato (o meno).<br>
+<b>Cosa significa.</b> «T ≤ 21 con 14 data set», nell'articolo, vuol dire «meno del 5% delle combinazioni è sbilanciato così». La tabella dei valori critici e il valore p sono la stessa cosa vista da due lati.<br>
+<b>Esempio di lettura.</b> Riga di Demšar: su 16 384 combinazioni, 810 hanno T ≤ 21, cioè il 4.94%, appena sotto il 5%. Con T ≤ 22 si salirebbe al 5.8%, sopra la soglia: per questo il valore critico è 21.</p>
+
+<h4>Riassunto: i cinque termini</h4>
+<table>
+<tr><th>Termine</th><th>Cos'è</th><th>Nel giocattolo</th></tr>
+<tr><td><b>Rango</b></td><td>Posizione del sistema nella classifica delle differenze (senza segno). Il suo «peso».</td><td>1…6</td></tr>
+<tr><td><b>R<sup>+</sup>, R<sup>−</sup></b></td><td>Somma dei ranghi dei sistemi che migliorano / peggiorano.</td><td>19 e 2</td></tr>
+<tr><td><b>T</b></td><td>Il più piccolo dei due. Misura lo sbilanciamento: più è piccolo, più i sistemi vanno nello stesso verso.</td><td>2</td></tr>
+<tr><td><b>La domanda su T</b></td><td>«Senza effetto, quanto spesso il caso darebbe un T piccolo come questo o meno?»</td><td>6 combinazioni su 64</td></tr>
+<tr><td><b>Valore p</b></td><td>La risposta a quella domanda, come frazione. Sotto 0.05 si riconosce l'effetto.</td><td>0.094 → non basta</td></tr>
+</table>
+
+
+<h3>1.3 Come lo usiamo noi</h3>
+<ul>
+<li><b>Ruolo: lettura accanto, non verdetto.</b> Si calcola sulle differenze per sistema, con le tre repliche già mediate, e si riporta accanto all'intervallo. Non cambia la conclusione.</li>
+<li><b>Cosa aggiunge:</b> dice se il miglioramento è <i>diffuso</i> (molti sistemi nello stesso verso) o <i>concentrato</i> (pochi sistemi lo trascinano).</li>
+<li><b>Quando non si calcola:</b> con 5 sistemi o meno con differenza non nulla (in pratica sempre sui 4 sistemi di sviluppo, e quando molti sistemi restano identici).</li>
+<li><b>Perché non decide:</b> abbiamo provato le regole su esperimenti simulati dove si sa la risposta giusta. Il test dei ranghi diceva «effetto» quando non c'era fino a 4.8 volte su 100 (l'intervallo: 2.1), e non riconosceva l'effetto quando migliorava solo metà dei sistemi, nemmeno con +0.10.</li>
+</ul>
+
+<!-- ===================== INTERVALLO ===================== -->
+<h2>2. L'intervallo di confidenza con bootstrap</h2>
+<span class="part">Nome vero: bootstrap percentile confidence interval, appaiato, al 95%</span>
+
+<h3>2.1 Cosa dicono gli articoli</h3>
+<p>Il nostro «intervallo» ha due ingredienti, ciascuno preso da un articolo diverso.</p>
+
+<p><b>Ingrediente 1: l'intervallo di confidenza sulle differenze appaiate.</b> Fonte: E. Miller, «Adding Error Bars to Evals», arXiv:2411.00640, 2024, §4.2.</p>
+<div class="quote">
+<div class="en">«The naive comparison above misses an opportunity to reduce the standard error when two models evaluate the same set of questions. Let s<sub>A−B,i</sub> represent the difference between scores on question i […]»</div>
+<div>In italiano: se due modelli rispondono alle <i>stesse</i> domande, conviene calcolare la differenza <b>domanda per domanda</b> e lavorare su quelle: l'incertezza risulta più piccola che confrontando le due medie separate. Poi si costruisce l'intervallo attorno alla differenza media: media ± 1,96 × errore standard (95%).</div>
+<div class="src">Miller (2024), §4.2 e §4.1 (eq. 5)</div>
+</div>
+<p><b>Come lo usa l'articolo:</b> per decidere se un modello batte davvero un altro «in a statistically significant way, or if the difference between two models is indistinguishable from noise», cioè se la differenza è reale o indistinguibile dal rumore. L'intervallo che contiene lo zero vuol dire «non distinguibile».</p>
+
+<p><b>Ingrediente 2: il bootstrap.</b> Fonte: T. Berg-Kirkpatrick, D. Burkett, D. Klein, «An Empirical Investigation of Statistical Significance in NLP», EMNLP-CoNLL 2012, §2.2.</p>
+<div class="quote">
+<div class="en">«We lack the ability to actually draw new test sets from the underlying population because all we have is our data x. The bootstrap therefore draws each x<sup>(i)</sup> from x itself, sampling n items from x with replacement; these new test sets are called bootstrap samples.»</div>
+<div>In italiano: non possiamo estrarre nuovi insiemi di prova dalla popolazione, abbiamo solo i nostri dati. Il bootstrap allora <b>ripesca a caso dai dati che abbiamo, con rimpiazzo</b> (lo stesso elemento può uscire più volte), formando tanti insiemi di prova simulati.</div>
+<div class="src">Berg-Kirkpatrick et al. (2012), §2.2</div>
+</div>
+<p><b>Come lo usa l'articolo:</b> confronta due sistemi di NLP sullo stesso insieme di prova e usa i ripescaggi per stimare quanto spesso un vantaggio osservato capita per puro caso (un <i>p-value</i>), per capire quanto deve essere grande un guadagno di metrica per essere significativo.</p>
+
+<div class="box"><b>Onestà sulle fonti.</b> Berg-Kirkpatrick usa il bootstrap per un p-value, non per un intervallo; Miller dà l'intervallo con una formula (errore standard), e scrive che il bootstrap è superfluo quando le domande sono molte. La nostra versione (ripescare i sistemi e poi le repliche, e prendere il 2,5° e il 97,5° percentile delle medie ricalcolate) è una <b>scelta del progetto</b> che combina le due idee: nessuno dei due articoli la descrive così. Il bootstrap percentile come tecnica generale è di Efron, non letto qui. Usiamo il bootstrap, e non la formula di Miller, perché con 12 sistemi non siamo nel caso «molte domande» (lettura mia, non scritta nel piano).</div>
+
+<h3>2.2 Come funziona, sul giocattolo</h3>
+<p>Idea: la media +0.045 dipende da <i>questi</i> sei sistemi. Con altri sei sistemi sarebbe venuta diversa. Non ne abbiamo altri, quindi li <b>simuliamo</b> ripescando da quelli che abbiamo.</p>
+<div class="step"><div class="n">1</div><div><b>Ripesca 6 sistemi con rimpiazzo dai 6.</b> Qualcuno esce due volte, qualcuno mai.</div></div>
+<div class="step"><div class="n">2</div><div><b>Calcola la media delle loro differenze.</b> Un numero per ogni ripescaggio.</div></div>
+<table>
+<tr><th></th><th>Sistemi ripescati</th><th>Loro differenze</th><th>Media</th></tr>
+<tr><td>Ripescaggio 1</td><td>F D E F D E</td><td>+0.08 +0.06 +0.01 +0.08 +0.06 +0.01</td><td class="num"><b>+0.050</b></td></tr><tr><td>Ripescaggio 2</td><td>F B A B B F</td><td>+0.08 +0.04 +0.10 +0.04 +0.04 +0.08</td><td class="num"><b>+0.063</b></td></tr><tr><td>Ripescaggio 3</td><td>F A C E A E</td><td>+0.08 +0.10 -0.02 +0.01 +0.10 +0.01</td><td class="num"><b>+0.047</b></td></tr>
+</table>
+<p class="read"><b>Come leggerla.</b> Ogni riga è un insieme di sei sistemi simulati.<br>
+<b>Cosa significa.</b> La media si muove (0.047, 0.050, 0.063) a seconda di chi capita: è proprio questa oscillazione che misura l'incertezza.<br>
+<b>Esempio di lettura.</b> Ripescaggio 1: escono F, D, E, F, D, E; la media delle loro differenze è +0.050.</p>
+<div class="step"><div class="n">3</div><div><b>Ripeti 10 000 volte.</b> Si ottengono 10 000 medie.</div></div>
+<div class="step"><div class="n">4</div><div><b>Ordinale e taglia il 2,5% in basso e il 2,5% in alto.</b> Quello che resta è l'intervallo al 95%: la fascia in cui cadono 95 medie ricalcolate su 100.</div></div>
+<svg viewBox="0 0 640 210" role="img"><rect class="out" x="36.0" y="176.0" width="17.6" height="0.0"/><rect class="out" x="54.6" y="176.0" width="17.6" height="0.0"/><rect class="out" x="73.1" y="176.0" width="17.6" height="0.0"/><rect class="out" x="91.7" y="176.0" width="17.6" height="0.0"/><rect class="out" x="110.2" y="175.9" width="17.6" height="0.1"/><rect class="out" x="128.8" y="176.0" width="17.6" height="0.0"/><rect class="out" x="147.4" y="174.1" width="17.6" height="1.9"/><rect class="out" x="165.9" y="175.1" width="17.6" height="0.9"/><rect class="out" x="184.5" y="171.5" width="17.6" height="4.5"/><rect class="out" x="203.1" y="158.4" width="17.6" height="17.6"/><rect class="in" x="221.6" y="159.9" width="17.6" height="16.1"/><rect class="in" x="240.2" y="144.2" width="17.6" height="31.8"/><rect class="in" x="258.8" y="111.1" width="17.6" height="64.9"/><rect class="in" x="277.3" y="88.6" width="17.6" height="87.4"/><rect class="in" x="295.9" y="106.5" width="17.6" height="69.5"/><rect class="in" x="314.4" y="60.3" width="17.6" height="115.7"/><rect class="in" x="333.0" y="42.4" width="17.6" height="133.6"/><rect class="in" x="351.6" y="45.1" width="17.6" height="130.9"/><rect class="in" x="370.1" y="40.0" width="17.6" height="136.0"/><rect class="in" x="388.7" y="56.0" width="17.6" height="120.0"/><rect class="in" x="407.2" y="109.8" width="17.6" height="66.2"/><rect class="in" x="425.8" y="106.7" width="17.6" height="69.3"/><rect class="in" x="444.4" y="136.3" width="17.6" height="39.7"/><rect class="out" x="462.9" y="159.3" width="17.6" height="16.7"/><rect class="out" x="481.5" y="161.1" width="17.6" height="14.9"/><rect class="out" x="500.1" y="172.9" width="17.6" height="3.1"/><rect class="out" x="518.6" y="174.2" width="17.6" height="1.8"/><rect class="out" x="537.2" y="175.5" width="17.6" height="0.5"/><rect class="out" x="555.8" y="176.0" width="17.6" height="0.0"/><rect class="out" x="574.3" y="176.0" width="17.6" height="0.0"/><rect class="out" x="592.9" y="176.0" width="17.6" height="0.0"/><rect class="out" x="611.4" y="176.0" width="17.6" height="0.0"/><line x1="36" y1="176" x2="630" y2="176" class="ax"/><line x1="184.5" y1="14" x2="184.5" y2="176" class="zero"/><text x="179.5" y="24" text-anchor="end" class="tk">zero</text><line x1="227.8" y1="34" x2="227.8" y2="176" class="cut"/><text x="231.8" y="46" text-anchor="start" class="tk">+0.012</text><line x1="469.1" y1="34" x2="469.1" y2="176" class="cut"/><text x="473.1" y="46" text-anchor="start" class="tk">+0.077</text><text x="36.0" y="192" text-anchor="middle" class="tk">-0.04</text><text x="110.2" y="192" text-anchor="middle" class="tk">-0.02</text><text x="184.5" y="192" text-anchor="middle" class="tk">+0.00</text><text x="258.8" y="192" text-anchor="middle" class="tk">+0.02</text><text x="333.0" y="192" text-anchor="middle" class="tk">+0.04</text><text x="407.2" y="192" text-anchor="middle" class="tk">+0.06</text><text x="481.5" y="192" text-anchor="middle" class="tk">+0.08</text><text x="555.8" y="192" text-anchor="middle" class="tk">+0.10</text></svg>
+<p class="read"><b>Come leggerla.</b> Ogni barra conta quante delle 10 000 medie sono cadute in quella fascia. Blu = dentro l'intervallo, grigio = fuori. Linea arancione = zero («nessun effetto»); le tratteggiate sono gli estremi.<br>
+<b>Cosa significa.</b> L'intervallo va da +0.012 a +0.077. Lo zero è fuori: la differenza è <b>riconosciuta</b>. L'intervallo è largo, perché con 6 sistemi l'incertezza è grande.</p>
+
+<div class="box"><b>Sul giocattolo i due strumenti non concordano:</b> l'intervallo dice «riconosciuto» (zero fuori), il test dei ranghi dice «non basta» (p = 0.094). Succede perché il test, con 6 sistemi, può passare solo se vanno tutti nello stesso verso. Per questo da noi decide l'intervallo e il test dei ranghi si legge accanto.</div>
+
+<h3>Dove sta la parte delle repliche</h3>
+<p>Nel giocattolo c'è un solo numero per sistema. Nei dati veri ogni sistema ha 3 repliche, a modifica spenta e accesa. Dopo aver ripescato i sistemi, <b>dentro ogni sistema ripescato si ripescano anche le 3 repliche</b>, e se ne fa la media. Così nell'intervallo entra anche la variazione fra un lancio e l'altro. Miller dà il motivo: con più risposte per domanda si fa prima la media per domanda, perché trattare tutte le risposte come indipendenti darebbe un errore standard incoerente.</p>
+
+<h3>2.3 Come lo usiamo noi</h3>
+<ul>
+<li><b>Ruolo: è il verdetto.</b> Se l'intervallo al 95% non contiene lo zero, la differenza è «riconosciuta»; se lo contiene, è «non distinguibile dal rumore». Non vuol dire «nessun effetto»: vuol dire che i dati non bastano per vederlo.</li>
+<li><b>Parametri fissati prima di vedere i dati:</b> livello 95%, 10 000 ricalcoli, seme casuale fisso (stessi dati, stesso risultato).</li>
+<li><b>Perché è lui a decidere:</b> sugli esperimenti simulati sbagliava poco (falsi allarmi fino a 2.1 su 100), riconosceva un effetto di +0.05 sui 12 sistemi (+0.10 su 8 e su 4) almeno 80 volte su 100, e non si lasciava ingannare da un miglioramento concentrato in un solo sistema.</li>
+<li><b>Dà anche la grandezza:</b> non solo «c'è/non c'è» ma «di circa quanto», con i due estremi.</li>
+<li><b>Con pochi sistemi si allarga</b> (come nel giocattolo): sui 4 sistemi di sviluppo vede solo effetti grandi, di circa 0.10.</li>
+</ul>
+
+<!-- ===================== CASO REALE ===================== -->
+<h2>3. Il caso reale, con tutto insieme</h2>
+<p><b>Domanda:</b> sui goal di basso livello (LLG), accendere il critico fa salire l'F1? <b>Dati:</b> i 12 sistemi, F1 medio su tre repliche e tre modalità di prompt (zero, uno, pochi esempi). Stessa tabella del giocattolo, con 12 righe.</p>
+<table>
+<tr><th>Sistema (in ordine di differenza)</th><th>F1 critico spento</th><th>F1 critico acceso</th><th>Differenza</th><th>Rango</th></tr>
+<tr><td>London Ambulance Service</td><td class="num">0.192</td><td class="num">0.203</td><td class="num">+0.010</td><td class="num">1</td></tr><tr><td>La Reine Marlene</td><td class="num">0.672</td><td class="num">0.659</td><td class="num">-0.013</td><td class="num">2</td></tr><tr><td>Gestao Hospital</td><td class="num">0.568</td><td class="num">0.546</td><td class="num">-0.023</td><td class="num">3</td></tr><tr><td>Fitness Tracker</td><td class="num">0.619</td><td class="num">0.644</td><td class="num">+0.024</td><td class="num">4</td></tr><tr><td>Ethical Purchasing Group</td><td class="num">0.403</td><td class="num">0.375</td><td class="num">-0.028</td><td class="num">5</td></tr><tr><td>Assegno Unico Universale</td><td class="num">0.415</td><td class="num">0.445</td><td class="num">+0.030</td><td class="num">6</td></tr><tr><td>Calculator</td><td class="num">0.484</td><td class="num">0.519</td><td class="num">+0.034</td><td class="num">7</td></tr><tr><td>Genome Nexus</td><td class="num">0.373</td><td class="num">0.409</td><td class="num">+0.036</td><td class="num">8</td></tr><tr><td>Event Organization Portal</td><td class="num">0.531</td><td class="num">0.571</td><td class="num">+0.040</td><td class="num">9</td></tr><tr><td>SIA Project 25 26</td><td class="num">0.606</td><td class="num">0.713</td><td class="num">+0.107</td><td class="num">10</td></tr><tr><td>Recycling</td><td class="num">0.548</td><td class="num">0.701</td><td class="num">+0.153</td><td class="num">11</td></tr><tr><td>Planning Poker</td><td class="num">0.420</td><td class="num">0.611</td><td class="num">+0.190</td><td class="num">12</td></tr>
+</table>
+<svg viewBox="0 0 640 230" role="img"><line x1="50" y1="121.0" x2="632" y2="121.0" class="ax"/><rect class="up" x="60.0" y="116.9" width="39.5" height="4.1"/><text x="79.8" y="111.9" text-anchor="middle" class="tk">+0.01</text><text x="79.8" y="212" text-anchor="middle" class="tk">1</text><rect class="down" x="107.5" y="121.0" width="39.5" height="5.3"/><text x="127.2" y="138.3" text-anchor="middle" class="tk">-0.01</text><text x="127.2" y="212" text-anchor="middle" class="tk">2</text><rect class="down" x="155.0" y="121.0" width="39.5" height="9.0"/><text x="174.8" y="142.0" text-anchor="middle" class="tk">-0.02</text><text x="174.8" y="212" text-anchor="middle" class="tk">3</text><rect class="up" x="202.5" y="111.2" width="39.5" height="9.8"/><text x="222.2" y="106.2" text-anchor="middle" class="tk">+0.02</text><text x="222.2" y="212" text-anchor="middle" class="tk">4</text><rect class="down" x="250.0" y="121.0" width="39.5" height="11.0"/><text x="269.8" y="144.0" text-anchor="middle" class="tk">-0.03</text><text x="269.8" y="212" text-anchor="middle" class="tk">5</text><rect class="up" x="297.5" y="109.2" width="39.5" height="11.8"/><text x="317.2" y="104.2" text-anchor="middle" class="tk">+0.03</text><text x="317.2" y="212" text-anchor="middle" class="tk">6</text><rect class="up" x="345.0" y="107.2" width="39.5" height="13.8"/><text x="364.8" y="102.2" text-anchor="middle" class="tk">+0.03</text><text x="364.8" y="212" text-anchor="middle" class="tk">7</text><rect class="up" x="392.5" y="106.7" width="39.5" height="14.3"/><text x="412.2" y="101.7" text-anchor="middle" class="tk">+0.04</text><text x="412.2" y="212" text-anchor="middle" class="tk">8</text><rect class="up" x="440.0" y="105.1" width="39.5" height="15.9"/><text x="459.8" y="100.1" text-anchor="middle" class="tk">+0.04</text><text x="459.8" y="212" text-anchor="middle" class="tk">9</text><rect class="up" x="487.5" y="78.2" width="39.5" height="42.8"/><text x="507.2" y="73.2" text-anchor="middle" class="tk">+0.11</text><text x="507.2" y="212" text-anchor="middle" class="tk">10</text><rect class="up" x="535.0" y="59.8" width="39.5" height="61.2"/><text x="554.8" y="54.8" text-anchor="middle" class="tk">+0.15</text><text x="554.8" y="212" text-anchor="middle" class="tk">11</text><rect class="up" x="582.5" y="44.8" width="39.5" height="76.2"/><text x="602.2" y="39.8" text-anchor="middle" class="tk">+0.19</text><text x="602.2" y="212" text-anchor="middle" class="tk">12</text></svg>
+<p class="read"><b>Come leggerla.</b> Come per il giocattolo: barre in ordine di rango (sotto, il numero di rango; la tabella sopra dice quale sistema è), blu = il critico migliora, arancione = peggiora.<br>
+<b>Cosa significa.</b> 9 sistemi migliorano, 3 peggiorano (con differenze piccole). La media è <b>+0.047</b>.</p>
+
+<table>
+<tr><th>Strumento</th><th>Risultato</th><th>Lettura</th></tr>
+<tr><td><b>Test dei ranghi</b></td><td>R<sup>+</sup> = 68, R<sup>−</sup> = 10, p = <b>0.021</b></td><td>Sotto 0.05: i miglioramenti sono diffusi, non dovuti a pochi sistemi.</td></tr>
+<tr><td><b>Intervallo (verdetto)</b></td><td>da <b>+0.009</b> a <b>+0.088</b></td><td>Zero fuori: differenza <b>riconosciuta</b>. Il limite inferiore è vicino a zero: effetto piccolo e poco sicuro nella parte bassa.</td></tr>
+</table>
+<svg viewBox="0 0 640 210" role="img"><rect class="out" x="36.0" y="176.0" width="17.6" height="0.0"/><rect class="out" x="54.6" y="176.0" width="17.6" height="0.0"/><rect class="out" x="73.1" y="176.0" width="17.6" height="0.0"/><rect class="out" x="91.7" y="175.4" width="17.6" height="0.6"/><rect class="out" x="110.2" y="174.7" width="17.6" height="1.3"/><rect class="out" x="128.8" y="170.7" width="17.6" height="5.3"/><rect class="out" x="147.4" y="164.1" width="17.6" height="11.9"/><rect class="out" x="165.9" y="152.6" width="17.6" height="23.4"/><rect class="in" x="184.5" y="136.4" width="17.6" height="39.6"/><rect class="in" x="203.1" y="115.4" width="17.6" height="60.6"/><rect class="in" x="221.6" y="96.0" width="17.6" height="80.0"/><rect class="in" x="240.2" y="76.0" width="17.6" height="100.0"/><rect class="in" x="258.8" y="57.7" width="17.6" height="118.3"/><rect class="in" x="277.3" y="45.2" width="17.6" height="130.8"/><rect class="in" x="295.9" y="41.3" width="17.6" height="134.7"/><rect class="in" x="314.4" y="40.0" width="17.6" height="136.0"/><rect class="in" x="333.0" y="44.6" width="17.6" height="131.4"/><rect class="in" x="351.6" y="62.1" width="17.6" height="113.9"/><rect class="in" x="370.1" y="68.4" width="17.6" height="107.6"/><rect class="in" x="388.7" y="95.0" width="17.6" height="81.0"/><rect class="in" x="407.2" y="113.7" width="17.6" height="62.3"/><rect class="in" x="425.8" y="129.0" width="17.6" height="47.0"/><rect class="in" x="444.4" y="144.2" width="17.6" height="31.8"/><rect class="in" x="462.9" y="153.3" width="17.6" height="22.7"/><rect class="out" x="481.5" y="162.3" width="17.6" height="13.7"/><rect class="out" x="500.1" y="167.0" width="17.6" height="9.0"/><rect class="out" x="518.6" y="170.8" width="17.6" height="5.2"/><rect class="out" x="537.2" y="173.5" width="17.6" height="2.5"/><rect class="out" x="555.8" y="174.5" width="17.6" height="1.5"/><rect class="out" x="574.3" y="175.4" width="17.6" height="0.6"/><rect class="out" x="592.9" y="175.4" width="17.6" height="0.6"/><rect class="out" x="611.4" y="176.0" width="17.6" height="0.0"/><line x1="36" y1="176" x2="630" y2="176" class="ax"/><line x1="147.4" y1="14" x2="147.4" y2="176" class="zero"/><text x="142.4" y="24" text-anchor="end" class="tk">zero</text><line x1="181.3" y1="34" x2="181.3" y2="176" class="cut"/><text x="185.3" y="46" text-anchor="start" class="tk">+0.009</text><line x1="475.8" y1="34" x2="475.8" y2="176" class="cut"/><text x="479.8" y="46" text-anchor="start" class="tk">+0.088</text><text x="73.1" y="192" text-anchor="middle" class="tk">-0.02</text><text x="147.4" y="192" text-anchor="middle" class="tk">+0.00</text><text x="221.6" y="192" text-anchor="middle" class="tk">+0.02</text><text x="295.9" y="192" text-anchor="middle" class="tk">+0.04</text><text x="370.1" y="192" text-anchor="middle" class="tk">+0.06</text><text x="444.4" y="192" text-anchor="middle" class="tk">+0.08</text><text x="518.6" y="192" text-anchor="middle" class="tk">+0.10</text><text x="592.9" y="192" text-anchor="middle" class="tk">+0.12</text></svg>
+<p class="read"><b>Come leggerla.</b> Come per il giocattolo, con 12 sistemi: le 10 000 medie ricalcolate e l'intervallo al 95%.<br>
+<b>Cosa significa.</b> Solo 0.5 ricalcoli su 100 danno una media ≤ 0.<br>
+<b>Esempio di lettura.</b> «+0.047, intervallo da +0.009 a +0.088»: la media osservata è +0.047, e con altri sistemi o altre repliche ci aspettiamo di vederla fra circa +0.01 e +0.09.</p>
+
+<h3>Lo stesso confronto su tre gruppi di sistemi</h3>
+<p>Nel progetto i 12 sistemi si dividono in <b>4 di sviluppo</b> (dove si mettono a punto le modifiche) e <b>8 di conferma</b> (dove si controlla).</p>
+<table>
+<tr><th>Gruppo</th><th>Sistemi</th><th>Media</th><th>Intervallo 95%</th><th>Su / giù</th><th>Ranghi (p)</th><th>Verdetto</th></tr>
+<tr><td>Tutti</td><td class="num">12</td><td class="num">+0.047</td><td>+0.009, +0.088</td><td class="num">9 / 3</td><td class="num">0.021</td><td><b>riconosciuto</b></td></tr>
+<tr><td>Conferma</td><td class="num">8</td><td class="num">+0.054</td><td>+0.005, +0.110</td><td class="num">6 / 2</td><td class="num">0.055</td><td><b>riconosciuto</b></td></tr>
+<tr><td>Sviluppo</td><td class="num">4</td><td class="num">+0.033</td><td>−0.017, +0.090</td><td class="num">3 / 1</td><td class="num">non calcolato</td><td>non distinguibile</td></tr>
+</table>
+<p class="read"><b>Come leggerla.</b> «Su / giù» = sistemi che migliorano / peggiorano.<br>
+<b>Cosa significa.</b> Sugli 8 il test dei ranghi sta appena sopra la soglia (0.055) mentre l'intervallo esclude lo zero: è il caso in cui <i>decide l'intervallo</i> e il test si legge accanto. Sui 4 non si può né calcolare il test né riconoscere l'effetto: la direzione c'è (+0.033), ma con 4 sistemi non si distingue dal rumore.</p>
+
+<h2>4. In una tabella</h2>
+<table>
+<tr><th></th><th>Test dei ranghi (Wilcoxon)</th><th>Intervallo (bootstrap)</th></tr>
+<tr><td><b>Domanda</b></td><td>La differenza va nello stesso verso in abbastanza sistemi?</td><td>Quanto è incerta la differenza media?</td></tr>
+<tr><td><b>Cosa usa</b></td><td>Il posto in classifica di ogni sistema</td><td>I valori veri delle differenze</td></tr>
+<tr><td><b>Cosa dà</b></td><td>Un p-value</td><td>Una fascia di valori (media e due estremi)</td></tr>
+<tr><td><b>Punto debole</b></td><td>Con ≤ 5 sistemi non può dare «effetto»; non dice di quanto</td><td>Con pochi sistemi è largo; si regola su scelte nostre (95%, ricalcoli, seme)</td></tr>
+<tr><td><b>Da noi</b></td><td>Lettura accanto</td><td>Verdetto</td></tr>
+</table>
+
+<h2>5. Cosa è verificato e cosa no</h2>
+<ul>
+<li><b>Letto nel testo, nei passaggi che servono:</b> Demšar (2006) §3.1.3; Berg-Kirkpatrick et al. (2012) §2.1–2.2 (anche per la definizione di valore p); Miller (2024) §2–4.</li>
+<li><b>Non letti:</b> Wilcoxon (1945) ed Efron sono citati tramite gli altri articoli.</li>
+<li><b>Conteggi del test di Wilcoxon:</b> tutte le combinazioni dei segni sono state enumerate con un programma (64, 32, 4 096 e 16 384 combinazioni). Il risultato per 14 data set coincide con il valore critico 21 di Demšar; quello per 12 sistemi con il p = 0.021 di <code>compare.py</code> (che usa <code>scipy.stats.wilcoxon</code>).</li>
+<li><b>Numeri del giocattolo:</b> inventati, calcolati qui. <b>Numeri del caso reale:</b> ricalcolati da <code>cells.csv</code> con le funzioni di <code>compare.py</code>; coincidono con <code>analisi-fase-4.md</code>. I «falsi allarmi» e gli «effetti riconosciuti» vengono dalle prove della Fase 2 (<code>analisi-fase-2.md</code>), fatte con la metrica precedente.</li>
+<li><b>Lettura mia, non nel piano:</b> perché usiamo il bootstrap e non la formula di Miller con 12 sistemi.</li>
+</ul>
+
+<h3>Riferimenti</h3>
+<p class="read">[1] J. Demšar, «Statistical Comparisons of Classifiers over Multiple Data Sets», <i>J. Mach. Learn. Res.</i>, vol. 7, pp. 1–30, 2006.<br>
+[2] E. Miller, «Adding Error Bars to Evals: A Statistical Approach to Language Model Evaluations», arXiv:2411.00640, 2024.<br>
+[3] T. Berg-Kirkpatrick, D. Burkett, D. Klein, «An Empirical Investigation of Statistical Significance in NLP», in <i>Proc. EMNLP-CoNLL</i>, 2012, pp. 995–1005.<br>
+[4] F. Wilcoxon, «Individual comparisons by ranking methods», 1945 (citato in [1]; non letto).</p>
+<script>
+(function(){
+  var NAMES={1:'E',2:'C',3:'B',4:'D',5:'F',6:'A'}, DIFF={1:'+0.01',2:'−0.02',3:'+0.04',4:'+0.06',5:'+0.08',6:'+0.10'};
+  var N=6, TOT=21, OURS=[1,-1,1,1,1,1];
+  var signs=OURS.slice();
+  var cum=new Array(TOT+1).fill(0);
+  for(var m=0;m<(1<<N);m++){var rm=0;for(var r=1;r<=N;r++){if(m>>(r-1)&1)rm+=r;}var T=Math.min(rm,TOT-rm);for(var t=T;t<=TOT;t++)cum[t]++;}
+  var box=document.getElementById('coins');
+  function render(){
+    box.innerHTML='';
+    var rp=0;
+    for(var r=1;r<=N;r++){
+      var b=document.createElement('button');
+      b.className='coin '+(signs[r-1]>0?'pos':'neg');
+      b.innerHTML='<b>rango '+r+'</b><small>sistema '+NAMES[r]+' ('+DIFF[r]+')</small>'+(signs[r-1]>0?'+ migliora':'− peggiora');
+      (function(i){b.onclick=function(){signs[i]*=-1;render();};})(r-1);
+      box.appendChild(b);
+      if(signs[r-1]>0)rp+=r;
+    }
+    var rm2=TOT-rp, T=Math.min(rp,rm2), k=cum[T], p=k/64;
+    document.getElementById('rp').textContent=rp;
+    document.getElementById('rm').textContent=rm2;
+    document.getElementById('tt').textContent=T;
+    document.getElementById('cnt').textContent=k+' su 64';
+    document.getElementById('pp').textContent=p.toFixed(3);
+    document.getElementById('verdict').textContent=p<0.05
+      ? 'p = '+p.toFixed(3)+' è sotto 0.05: uno squilibrio così sarebbe raro per caso, quindi il test riconosce l\'effetto.'
+      : 'p = '+p.toFixed(3)+' è sopra 0.05: il caso da solo produce spesso uno squilibrio così, quindi il test non riconosce l\'effetto.';
+  }
+  document.getElementById('reset').onclick=function(){signs=OURS.slice();render();};
+  render();
+})();
+</script>
+</html>

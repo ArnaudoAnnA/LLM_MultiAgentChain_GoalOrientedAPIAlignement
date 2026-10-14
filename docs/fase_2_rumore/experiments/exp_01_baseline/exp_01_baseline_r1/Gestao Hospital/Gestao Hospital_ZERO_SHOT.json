@@ -1,0 +1,88 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T17:46:42",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Hospital Administrator",
+        "Medical Professional",
+        "SUS Administrator",
+        "Logistics Coordinator",
+        "Blood Bank Manager"
+    ],
+    "highLevelGoals": [
+        "The Hospital Administrator aims to efficiently manage and track all hospital resources, including product stock, blood bank inventory, and bed availability, to ensure operational efficiency and patient care readiness.",
+        "The Hospital Administrator seeks to effectively manage patient check-in and check-out processes and ensure patients are directed to appropriate and available beds within their hospital.",
+        "The Medical Professional aims to quickly and accurately identify the closest hospital with available beds for a patient to ensure timely and appropriate care.",
+        "The Medical Professional seeks to efficiently facilitate the transfer of patients and necessary products (like blood) between hospitals when required, ensuring continuity of care.",
+        "The SUS Administrator aims to register and manage all participating hospitals within the public health network, ensuring the system accurately reflects the available infrastructure.",
+        "The SUS Administrator seeks to utilize the API to monitor and optimize resource allocation across the entire public health system, minimizing waste and maximizing patient benefit.",
+        "The Logistics Coordinator aims to facilitate and track the transfer of products, such as blood, between hospitals to address shortages and optimize resource distribution.",
+        "The Logistics Coordinator seeks to ensure that product inventory information is accurate and up-to-date across all hospitals to enable effective resource allocation and transfer decisions.",
+        "The Blood Bank Manager aims to accurately track and manage the inventory of blood products within their hospital's blood bank.",
+        "The Blood Bank Manager seeks to efficiently facilitate the transfer of blood products to or from other hospitals when there is a need or surplus."
+    ],
+    "lowLevelGoals": [
+        "The Hospital Administrator wants to view the current quantity of a specific product in the hospital's inventory.",
+        "The Hospital Administrator wants to modify the quantity of a specific product in the hospital's inventory.",
+        "The Hospital Administrator wants to view the current inventory levels of all blood products in the hospital's blood bank.",
+        "The Hospital Administrator wants to modify the quantity of a specific blood product in the hospital's blood bank inventory.",
+        "The Hospital Administrator wants to view the number of available beds for a specific bed type (e.g., ICU, general ward).",
+        "The Hospital Administrator wants to change the status of a specific bed (e.g., occupied, available, maintenance).",
+        "The Hospital Administrator wants to record the arrival of a new patient into the system.",
+        "The Hospital Administrator wants to mark a patient as discharged from the hospital.",
+        "The Hospital Administrator wants to allocate a specific patient to an available bed of a certain type.",
+        "The Medical Professional wants to query the system for available beds of a certain type within a particular hospital.",
+        "The Medical Professional wants to identify the nearest hospital that has available beds matching specific criteria (e.g., bed type, specialty).",
+        "The Medical Professional wants to send a request to transfer a patient to another hospital.",
+        "The Medical Professional wants to approve an incoming patient transfer request from another hospital.",
+        "The Medical Professional wants to request a specific product (e.g., blood type) from another hospital.",
+        "The SUS Administrator wants to add a new hospital's details to the public health network.",
+        "The SUS Administrator wants to modify the details of an existing registered hospital.",
+        "The SUS Administrator wants to remove a hospital from the active public health network.",
+        "The SUS Administrator wants to view aggregated data on resource availability (e.g., total beds, total blood units) across all registered hospitals.",
+        "The SUS Administrator wants to find hospitals that have an excess of specific resources (e.g., blood type, bed type).",
+        "The SUS Administrator wants to find hospitals that are experiencing a shortage of specific resources.",
+        "The Logistics Coordinator wants to create a new request for transferring a specific product from one hospital to another.",
+        "The Logistics Coordinator wants to view the current status (e.g., pending, in transit, delivered) of an ongoing product transfer.",
+        "The Logistics Coordinator wants to mark a product transfer as successfully received by the destination hospital.",
+        "The Logistics Coordinator wants to view the current stock levels of all products in a particular hospital.",
+        "The Logistics Coordinator wants to adjust the product inventory of both the sending and receiving hospitals after a transfer is completed.",
+        "The Logistics Coordinator wants to create a report detailing the current product inventory of a specific hospital.",
+        "The Blood Bank Manager wants to view the current stock levels of all blood products in their hospital's blood bank.",
+        "The Blood Bank Manager wants to record the addition of new blood product units (e.g., from donations) to the blood bank inventory.",
+        "The Blood Bank Manager wants to record the removal of blood product units (e.g., for transfusions, expiry) from the blood bank inventory.",
+        "The Blood Bank Manager wants to send a request to another hospital to receive specific blood products.",
+        "The Blood Bank Manager wants to approve a request from another hospital to receive blood products from their blood bank.",
+        "The Blood Bank Manager wants to adjust the blood product inventory to reflect units sent to or received from another hospital."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            7.0,
+            6.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            9.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

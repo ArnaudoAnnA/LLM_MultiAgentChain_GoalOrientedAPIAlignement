@@ -1,0 +1,83 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T17:54:44",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Hospital Staff",
+        "Patient",
+        "SUS System (Public Health Authority)"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to ensure efficient distribution and utilization of hospital resources, such as products, blood, and beds, to minimize waste and meet patient needs effectively.",
+        "The Public Health System Administrator seeks to have a centralized and reliable system for managing hospital details, including their stock levels, blood bank inventories, and bed availability, to support informed decision-making.",
+        "The Public Health System Administrator desires the ability to efficiently coordinate the transfer of critical resources, like blood, between nearby hospitals to address shortages and optimize patient care.",
+        "Hospital Staff aim to accurately track and update the stock of products and blood bank inventories within their hospital to ensure adequate supplies for patient care.",
+        "Hospital Staff seek to efficiently manage patient admissions and discharges, ensuring accurate record-keeping and timely updates on bed availability.",
+        "Hospital Staff need to quickly access and update information on available beds to facilitate patient placement and transfers.",
+        "Patients aim to quickly and accurately identify the closest hospital with available beds that can meet their immediate needs.",
+        "The SUS System aims to leverage the API to implement policies and strategies that optimize resource allocation across all public health facilities, ensuring fair access for all citizens.",
+        "The SUS System seeks to utilize the API to gather comprehensive data on hospital resources, patient flow, and transfers to inform strategic planning and policy adjustments."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator needs to fetch a list of all hospitals to assess overall resource distribution.",
+        "The Public Health System Administrator needs to adjust resource distribution based on demand and availability.",
+        "The Public Health System Administrator needs to analyze resource consumption patterns to identify inefficiencies.",
+        "The Public Health System Administrator needs to register new healthcare facilities.",
+        "The Public Health System Administrator needs to keep hospital administrative data current.",
+        "The Public Health System Administrator needs to view detailed inventory information for individual hospitals.",
+        "The Public Health System Administrator needs to coordinate resource movement between facilities, adhering to the business rule that a hospital with four or fewer items or liters of a product is considered to have only enough for its own use.",
+        "The Public Health System Administrator needs to manage and authorize resource transfers.",
+        "The Public Health System Administrator needs visibility into the progress of resource movements.",
+        "The Public Health System Administrator needs to find suitable source hospitals for resource transfers based on the defined surplus threshold.",
+        "Hospital Staff need to reflect changes in product stock due to usage or replenishment.",
+        "Hospital Staff need to accurately log new blood donations or supplies.",
+        "Hospital Staff need to quickly check available supplies.",
+        "Hospital Staff need to process new patient arrivals and assign beds.",
+        "Hospital Staff need to process patient departures and update bed status.",
+        "Hospital Staff need to view current patient occupancy.",
+        "Hospital Staff need to quickly ascertain bed capacity.",
+        "Hospital Staff need to reflect the real-time status of individual beds.",
+        "Hospital Staff need to be proactively informed of low bed availability.",
+        "Patients need to find suitable hospitals quickly based on their location and medical needs.",
+        "Patients need to know if a hospital's bed availability changes while they are en route or deciding.",
+        "Patients need comprehensive information to make an informed decision about which hospital to go to.",
+        "The SUS System needs to obtain strategic guidance for resource allocation, factoring in the minimum self-use threshold for hospitals.",
+        "The SUS System needs to enforce new policies that affect how resources are distributed.",
+        "The SUS System needs to be proactively informed of imbalances in resource distribution, with a clear definition of what constitutes a shortage.",
+        "The SUS System needs to collect system-wide data for comprehensive analysis.",
+        "The SUS System needs to analyze trends in patient flow and resource movement over time.",
+        "The SUS System needs flexible reporting capabilities to support diverse analytical needs."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            6.0,
+            7.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            7.0,
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 2
+    }
+}

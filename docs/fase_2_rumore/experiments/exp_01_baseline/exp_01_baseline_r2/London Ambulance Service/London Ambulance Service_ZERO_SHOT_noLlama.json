@@ -1,0 +1,62 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T19:57:49",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "CAD System"
+    ],
+    "highLevelGoals": [
+        "Ambulance Staff aim to reach incident scenes within the 11-minute target to provide prompt medical assistance.",
+        "Ambulance Staff need to accurately communicate their departure, destination, and current location to facilitate effective tracking and dispatch.",
+        "Radio Operators aim to provide accurate and up-to-date ambulance information to the CAD system to support efficient allocation.",
+        "Radio Operators need to accurately record and monitor the exact location of moving ambulances to ensure operational awareness.",
+        "The CAD System's primary goal is to analyze incident forms and assign the most suitable available ambulance to each call.",
+        "The CAD System aims to allocate ambulances that can reach the scene within 11 minutes for every emergency call.",
+        "The CAD System must ensure the entire dispatch process, from incident analysis to vehicle assignment, does not exceed a predefined maximum time limit."
+    ],
+    "lowLevelGoals": [
+        "Ambulance Staff will update their status to 'En Route' upon departing for an incident scene.",
+        "Ambulance Staff will update their status to 'Arrived' upon reaching an incident scene.",
+        "Ambulance Staff will transmit their current GPS coordinates to the system at regular intervals.",
+        "Ambulance Staff will input their destination (incident scene or hospital) into the system.",
+        "Radio Operators will query the system to get the current status of a specific ambulance.",
+        "Radio Operators will query the system to get the current GPS location of a specific ambulance.",
+        "Radio Operators will view the real-time location of all active ambulances on a geographical map interface.",
+        "The system will record and store the historical movement data for each ambulance.",
+        "The CAD System will receive a new incident form containing details of an emergency.",
+        "The CAD System will extract and geocode the incident location from the received form.",
+        "The CAD System will retrieve a list of all currently available ambulances and their last known locations and statuses.",
+        "The CAD System will calculate the estimated travel time for each available ambulance to the incident location.",
+        "The CAD System will filter the list of available ambulances to include only those capable of reaching the incident within the 11-minute target.",
+        "The CAD System will select the ambulance with the shortest estimated arrival time from the filtered list.",
+        "The CAD System will formally assign the selected ambulance to the incident, updating its status.",
+        "The CAD System will log the exact time when an incident form is received and processing begins.",
+        "The CAD System will log the exact time when an ambulance is successfully assigned to an incident.",
+        "The CAD System will calculate the total time taken for the dispatch process (from start to completion).",
+        "The CAD System will generate an alert if the dispatch duration exceeds the predefined maximum time limit."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

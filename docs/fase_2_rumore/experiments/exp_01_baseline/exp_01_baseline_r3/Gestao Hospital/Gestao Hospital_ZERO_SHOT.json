@@ -1,0 +1,81 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T20:27:08",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Hospital Administrator",
+        "Medical Professional",
+        "SUS Coordinator"
+    ],
+    "highLevelGoals": [
+        "The Hospital Administrator needs to efficiently manage the hospital's stock of products, blood banks, and available beds to ensure optimal resource utilization and avoid waste.",
+        "The Hospital Administrator aims to streamline patient check-in and check-out processes and effectively manage available beds to improve patient care and operational efficiency.",
+        "The Hospital Administrator needs to facilitate the transfer of products, such as blood, between nearby hospitals when their hospital is in need or can provide assistance, ensuring critical resources are available where required.",
+        "The Medical Professional needs to quickly identify the closest hospital with available beds for a patient to ensure timely and appropriate care.",
+        "The Medical Professional aims to effectively coordinate patient transfers to appropriate facilities based on resource availability and patient needs.",
+        "The Medical Professional needs to ensure the availability of critical medical supplies, including blood, by being able to identify hospitals that can provide or receive such products.",
+        "The SUS Coordinator needs to optimize the allocation of resources across the entire public health system to avoid waste and ensure equitable distribution based on patient needs.",
+        "The SUS Coordinator aims to monitor and manage the transfer of products and patients between hospitals at a macro level to ensure efficient operation of the Unified Health System.",
+        "The SUS Coordinator needs to gain comprehensive insights into system-wide statistics, including hospital stock levels, blood bank inventories, and bed availability, to make informed strategic decisions."
+    ],
+    "lowLevelGoals": [
+        "The Hospital Administrator updates the quantity of a specific product in the hospital's inventory.",
+        "The Hospital Administrator views the current stock levels of all products in the hospital.",
+        "The Hospital Administrator updates the quantity of a specific blood type in the hospital's blood bank.",
+        "The Hospital Administrator views the current inventory levels of all blood types in the hospital's blood bank.",
+        "The Hospital Administrator updates the number of available beds for a specific ward or type.",
+        "The Hospital Administrator views the current availability of beds across different wards or types in the hospital.",
+        "The Hospital Administrator registers a patient's check-in, assigning them to an available bed.",
+        "The Hospital Administrator registers a patient's check-out, freeing up their assigned bed.",
+        "The Hospital Administrator allocates a specific available bed to a patient.",
+        "The Hospital Administrator initiates a request for a product transfer from another hospital.",
+        "The Hospital Administrator approves an incoming request for a product transfer to another hospital.",
+        "The Hospital Administrator declines an incoming request for a product transfer to another hospital.",
+        "The Medical Professional searches for available beds in hospitals within a specified geographical area.",
+        "The Medical Professional filters available beds by a specific medical specialty or ward type.",
+        "The Medical Professional initiates a request to transfer a patient to another hospital with available resources.",
+        "The Medical Professional views the current status of a patient transfer request.",
+        "The Medical Professional searches for hospitals that can provide a specific medical product, considering the threshold of more than four items/liters for transferability.",
+        "The Medical Professional searches for hospitals that are in need of a specific medical product.",
+        "The SUS Coordinator registers a new hospital into the system, providing its details and initial resource capacities.",
+        "The SUS Coordinator views a high-level overview of resource allocation across all hospitals in the system.",
+        "The SUS Coordinator adjusts resource distribution parameters or policies at a system-wide level.",
+        "The SUS Coordinator monitors all product transfer requests and their statuses across the entire system.",
+        "The SUS Coordinator monitors all patient transfer requests and their statuses across the entire system.",
+        "The SUS Coordinator generates a report on system performance, including resource utilization and transfer efficiency.",
+        "The SUS Coordinator views aggregated stock levels of products across all hospitals in the system.",
+        "The SUS Coordinator views aggregated blood bank inventories across all hospitals in the system.",
+        "The SUS Coordinator views aggregated bed availability across all hospitals in the system."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            7.0,
+            6.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            7.0,
+            10.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 2
+    }
+}

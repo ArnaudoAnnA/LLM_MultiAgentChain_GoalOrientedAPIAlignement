@@ -1,0 +1,78 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T20:03:57",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Hospital Administrator",
+        "Healthcare Professional",
+        "Patient",
+        "SUS Administrator/Public Health Authority"
+    ],
+    "highLevelGoals": [
+        "The Hospital Administrator needs to efficiently manage the hospital's stock of products, blood banks, and available beds to ensure optimal resource allocation and avoid waste.",
+        "The Hospital Administrator needs to streamline patient check-in and check-out processes and accurately track available beds to improve operational efficiency.",
+        "The Hospital Administrator needs to facilitate the transfer of products, such as blood, between nearby hospitals to address shortages and optimize resource distribution.",
+        "The Healthcare Professional needs to quickly identify the closest hospital with available beds for a patient to ensure timely and appropriate care.",
+        "The Healthcare Professional needs to efficiently manage patient check-in and check-out processes to maintain accurate patient records and bed availability.",
+        "The Patient needs to receive timely and accurate recommendations for the closest hospital with available beds to ensure prompt access to care.",
+        "The Patient needs to be assured that necessary medical products, such as blood, are available or can be transferred to their treating hospital.",
+        "The SUS Administrator/Public Health Authority needs to optimize the allocation of hospital resources, including beds, products, and blood, across the entire public health network to avoid waste and improve efficiency.",
+        "The SUS Administrator/Public Health Authority needs to monitor and manage product and blood bank inventories within hospitals to identify potential shortages and facilitate resource transfers.",
+        "The SUS Administrator/Public Health Authority needs to improve the overall efficiency and responsiveness of the public health system by leveraging data-driven insights for hospital recommendations and resource management."
+    ],
+    "lowLevelGoals": [
+        "The Hospital Administrator or SUS Administrator needs to register a new hospital entity within the system, providing its details and initial resource capacities.",
+        "The Hospital Administrator needs to update the quantity of a specific product in the hospital's inventory.",
+        "The Hospital Administrator needs to update the quantity of a specific blood type in the hospital's blood bank.",
+        "The Hospital Administrator needs to update the number of available beds in a specific ward or unit.",
+        "The Hospital Administrator needs to register a patient's check-in, assigning them to an available bed.",
+        "The Hospital Administrator needs to register a patient's check-out, freeing up their assigned bed.",
+        "The Hospital Administrator needs to initiate a request for a specific product or blood type from another hospital, ensuring the donor hospital has more than four units/liters of the requested resource.",
+        "The Hospital Administrator needs to approve an incoming request for a specific product or blood type from another hospital, ensuring the hospital has more than four units/liters of the requested resource before approval.",
+        "The Healthcare Professional needs to search for hospitals with available beds based on a patient's location and specific needs.",
+        "The Healthcare Professional needs to view detailed information about a recommended hospital, including its services and current resource status.",
+        "The Healthcare Professional needs to initiate the admission process for a patient, assigning them to a bed in a selected hospital.",
+        "The Healthcare Professional needs to confirm a patient's discharge, updating their status and freeing up the bed.",
+        "The Patient needs to receive a recommendation for the closest hospital with available beds based on their current location.",
+        "The Patient needs to check the availability of specific medical products or blood types at their treating hospital.",
+        "The SUS Administrator/Public Health Authority needs to view a consolidated overview of bed, product, and blood bank availability across all hospitals in the public health network.",
+        "The SUS Administrator/Public Health Authority needs to generate reports on resource utilization and allocation trends across the public health system.",
+        "The SUS Administrator/Public Health Authority needs to monitor the current stock levels of products in individual hospitals.",
+        "The SUS Administrator/Public Health Authority needs to monitor the current stock levels of blood in individual hospital blood banks.",
+        "The SUS Administrator/Public Health Authority needs to identify hospitals with critical shortages of specific products or blood types.",
+        "The SUS Administrator/Public Health Authority needs to initiate a resource transfer between hospitals to address system-wide shortages, ensuring the donor hospital has more than four units/liters of the requested resource.",
+        "The SUS Administrator/Public Health Authority needs to access key performance indicators related to hospital recommendations, resource utilization, and patient flow.",
+        "The SUS Administrator/Public Health Authority needs to configure system parameters related to hospital recommendation algorithms and resource allocation rules."
+    ],
+    "cove_scores": {
+        "actors": [
+            4.0,
+            7.0,
+            7.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            7.0,
+            9.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 2
+    }
+}

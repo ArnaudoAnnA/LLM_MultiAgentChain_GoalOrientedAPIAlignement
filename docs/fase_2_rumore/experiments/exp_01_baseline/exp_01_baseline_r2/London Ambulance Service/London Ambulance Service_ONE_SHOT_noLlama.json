@@ -1,0 +1,66 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T19:59:09",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Dispatcher"
+    ],
+    "highLevelGoals": [
+        "Ambulance Staff aim to reach emergency scenes within the critical 11-minute target to provide immediate medical assistance.",
+        "Ambulance Staff need to accurately communicate their departure, destination, and current location to ensure the CAD system and Radio Operators have real-time information.",
+        "Ambulance Staff must follow standard routes and communication protocols to facilitate efficient dispatch and tracking.",
+        "Radio Operators aim to precisely record all departure, destination, and location updates provided by Ambulance Staff to maintain an accurate operational log.",
+        "Radio Operators need to ensure that the information they record is consistent and accurately reflected in the Computer Aided Despatch (CAD) system.",
+        "Radio Operators seek to have clear and effective communication channels with Ambulance Staff to receive timely updates and relay instructions.",
+        "The Dispatcher aims to assign an available ambulance to every emergency call, ensuring the entire dispatch process does not exceed the set maximum time limit.",
+        "The Dispatcher's primary goal is to allocate ambulances in a way that guarantees their arrival at the incident scene within 11 minutes.",
+        "The Dispatcher needs the CAD system to effectively analyze incident forms and provide optimal suggestions for ambulance assignments.",
+        "The Dispatcher requires accurate and real-time tracking of moving ambulances to make informed dispatch decisions."
+    ],
+    "lowLevelGoals": [
+        "Ambulance Staff will use the system to update their status to 'En Route' upon departing for an emergency scene.",
+        "Ambulance Staff will use the system to confirm their arrival at the emergency scene.",
+        "Ambulance Staff will transmit their current GPS coordinates to the system at regular intervals.",
+        "Ambulance Staff will input and update their destination address or incident location in the system.",
+        "Ambulance Staff will select a pre-defined standard route from the system for navigation to the incident.",
+        "Ambulance Staff will acknowledge receipt of dispatch instructions via the system.",
+        "Radio Operators will input the exact departure time of an ambulance from its station into the system.",
+        "Radio Operators will record the destination address or incident location provided by Ambulance Staff into the system.",
+        "Radio Operators will update the ambulance's current location in the system based on information received from Ambulance Staff.",
+        "Radio Operators will initiate a data synchronization process to ensure recorded information is consistent with the CAD system.",
+        "Radio Operators will verify that the CAD system accurately reflects the ambulance status and location updates they have entered.",
+        "Radio Operators will use the communication system to send dispatch instructions to specific Ambulance Staff.",
+        "Radio Operators will receive and display real-time status updates from Ambulance Staff through the communication system.",
+        "The Dispatcher will select an available ambulance from the CAD system and assign it to an active incident.",
+        "The Dispatcher will monitor the elapsed time from incident creation to ambulance assignment within the CAD system.",
+        "The Dispatcher will view the estimated arrival time of an assigned ambulance at the incident scene within the CAD system.",
+        "The Dispatcher will filter available ambulances in the CAD system based on their proximity to an incident location.",
+        "The Dispatcher will review detailed incident forms within the CAD system to inform ambulance allocation decisions.",
+        "The Dispatcher will view the real-time locations of all active ambulances displayed on a map within the CAD system.",
+        "The Dispatcher will access the historical movement data of an ambulance within the CAD system to review its route."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

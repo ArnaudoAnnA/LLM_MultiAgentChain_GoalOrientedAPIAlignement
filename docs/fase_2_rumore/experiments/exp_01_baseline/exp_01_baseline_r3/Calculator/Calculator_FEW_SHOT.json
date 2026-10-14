@@ -1,0 +1,54 @@
+{
+    "name": "Calculator",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "adf607777623d0b29fe7cc9c294364df6babd856a2a5cb8f01f92e0a450e4c1c",
+    "timestamp": "2026-10-10T20:33:55",
+    "description": "This project develops a smartphone app for a simple calculator. In its initial version, it allows the user to do basic calculations. More complex calculations will be considered in subsequent versions that are added iteratively.\",\n  \n  \"epics\": [\n    {\n      \"title\": \"Basic Calculation Functionality\",\n      \"description\": \"Implement basic arithmetic operations such as addition, subtraction, multiplication, and division. This feature is essential for users to perform simple calculations conveniently on their smartphones.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Perform Addition\",\n          \"story\": \"As a user, I want to add two numbers so that I can quickly calculate their sum.\",\n          \"acceptance_criteria\": [\n            \"The calculator allows the user to input two numbers.\",\n            \"The result of the addition is displayed correctly.\"\n          ]\n        },\n        {\n          \"title\": \"Perform Subtraction\",\n          \"story\": \"As a user, I want to subtract one number from another so that I can find the difference.\",\n          \"acceptance_criteria\": [\n            \"The calculator allows the user to input two numbers.\",\n            \"The result of the subtraction is displayed correctly.\"\n          ]\n        },\n        {\n          \"title\": \"Perform Multiplication\",\n          \"story\": \"As a user, I want to multiply two numbers so that I can obtain their product.\",\n          \"acceptance_criteria\": [\n            \"The calculator allows the user to input two numbers.\",\n            \"The result of the multiplication is displayed correctly.\"\n          ]\n        },\n        {\n          \"title\": \"Perform Division\",\n          \"story\": \"As a user, I want to divide one number by another so that I can calculate the quotient.\",\n          \"acceptance_criteria\": [\n            \"The calculator allows the user to input two numbers.\",\n            \"The result of the division is displayed correctly, and division by zero is handled appropriately.\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"User Interface Design\",\n      \"description\": \"Create a simple and intuitive user interface that allows users to easily input numbers and select operations. A user-friendly interface is vital for ensuring a positive user experience.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Input Numbers\",\n          \"story\": \"As a user, I want to easily input numbers so that I can perform calculations without frustration.\",\n          \"acceptance_criteria\": [\n            \"The app includes a numeric keypad for input.\",\n            \"The numeric keypad is responsive and allows for easy number entry.\"\n          ]\n        },\n        {\n          \"title\": \"Select Operations\",\n          \"story\": \"As a user, I want to select basic arithmetic operations so that I can perform calculations effortlessly.\",\n          \"acceptance_criteria\": [\n            \"The app displays clearly labeled buttons for each arithmetic operation.\",\n            \"Users can tap the operation button after entering the numbers to perform the calculation.\"\n          ]\n        },\n        {\n          \"title\": \"Display Results\",\n          \"story\": \"As a user, I want to see the calculation results clearly so that I can verify my answers.\",\n          \"acceptance_criteria\": [\n            \"The result of the calculation is displayed prominently on the screen.\",\n            \"The display updates immediately after the user performs a calculation.\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+    "actors": [
+        "User"
+    ],
+    "highLevelGoals": [
+        "The user aims to perform fundamental mathematical calculations such as addition, subtraction, multiplication, and division accurately and efficiently using the smartphone app.",
+        "The user desires a simple and clear interface that allows for easy input of numbers and selection of operations, ensuring a smooth and frustration-free calculation experience.",
+        "The user expects the calculation results to be displayed prominently and updated instantly after each operation, enabling quick verification of answers."
+    ],
+    "lowLevelGoals": [
+        "The user can input a single digit (0-9) into the calculator's display.",
+        "The user can input a decimal point to perform calculations with non-integer numbers.",
+        "The user can select the addition operator to prepare for an addition calculation.",
+        "The user can select the subtraction operator to prepare for a subtraction calculation.",
+        "The user can select the multiplication operator to prepare for a multiplication calculation.",
+        "The user can select the division operator to prepare for a division calculation.",
+        "The user can press the equals button to execute the pending arithmetic operation and display the result.",
+        "The user can press a 'Clear' or 'AC' button to reset the calculator display and any pending operations.",
+        "The system should display the numbers and operators entered by the user in real-time.",
+        "The system should display the calculated result prominently after an operation is executed.",
+        "The calculator display should update instantly as digits or operators are pressed, providing immediate feedback."
+    ],
+    "cove_scores": {
+        "actors": [
+            10.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

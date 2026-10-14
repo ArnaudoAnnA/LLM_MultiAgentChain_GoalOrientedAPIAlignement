@@ -1,0 +1,70 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T20:12:24",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Hospital Staff",
+        "Patient"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to ensure efficient distribution and utilization of hospital resources, including products, blood, and beds, to minimize waste and meet patient needs effectively.",
+        "The Public Health System Administrator seeks to have real-time visibility into hospital stock levels (products, blood banks) and bed availability to make informed decisions.",
+        "The Public Health System Administrator desires access to aggregated data and insights to identify trends, anticipate needs, and develop effective public health strategies.",
+        "Hospital Staff aims to accurately track and update product stock, blood bank levels, and patient check-in/check-out status to ensure smooth hospital operations.",
+        "Hospital Staff seeks a mechanism to quickly identify and request product transfers from nearby hospitals when their own stock is low, especially for critical items like blood.",
+        "Hospital Staff aims to efficiently manage patient admissions and discharges, ensuring bed availability information is current and accurate.",
+        "The Patient aims to quickly find the closest hospital that can accommodate them, reducing wait times and improving access to care."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator can query the system to get an overview of resource distribution across all hospitals.",
+        "The Public Health System Administrator can add a new hospital's details to the system.",
+        "The Public Health System Administrator can query the system to get the current stock count for any product in any hospital.",
+        "The Public Health System Administrator can query the system to see how many beds are available in each department of a specific hospital.",
+        "The Public Health System Administrator can retrieve historical data on how resources have been consumed across the system.",
+        "Hospital Staff can modify the stock count for any product in their hospital's inventory.",
+        "Hospital Staff can modify the stock count for any blood type in their hospital's blood bank inventory.",
+        "Hospital Staff can register a new patient's arrival and allocate a bed to them, updating bed availability.",
+        "Hospital Staff can mark a patient as discharged, making their bed available for new admissions.",
+        "Hospital Staff can query the system to find other hospitals that have a needed product in stock and are able to transfer it.",
+        "Hospital Staff can query the system to find other hospitals that have a needed blood type in stock and are able to transfer it.",
+        "Hospital Staff can send a formal request to another hospital to transfer a specific product.",
+        "Hospital Staff can acknowledge the successful delivery of products requested from another hospital, updating their inventory.",
+        "Hospital Staff can input all necessary details for a new patient upon their arrival.",
+        "Hospital Staff can change a patient's assigned bed within the hospital, updating bed availability accordingly.",
+        "The Patient can use the system to find nearby hospitals that have open beds.",
+        "The Patient can access comprehensive information about a hospital that has been recommended to them."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            7.0,
+            9.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            4.0,
+            2.0,
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 3
+    }
+}

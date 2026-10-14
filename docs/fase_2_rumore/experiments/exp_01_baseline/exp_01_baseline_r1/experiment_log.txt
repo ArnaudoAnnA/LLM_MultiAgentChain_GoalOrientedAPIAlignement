@@ -1,0 +1,368 @@
+Log strutturato -> ../artifacts/results/exp_01_baseline_r1/experiment_log.txt
+Output pipeline  -> ../artifacts/results/exp_01_baseline_r1/verbose_log.txt
+════════════════════════════════════════════════════════════════════════════════════════════════════
+  SUITE SPERIMENTALE  —  exp_01_baseline_r1
+  Avvio 2026-10-10 19:51:08
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  Generatore             : gemini-2.5-flash
+  Critico                : qwen/qwen3.8-27b
+  Soglia accettazione    : 8.5/10   |   max 3 iterazioni   |   temperature 0
+  Ground truth           : notebook/groundtruth.py (final)
+  Dataset                : SIA Project 25 26, Assegno Unico Universale - SIA Project 24 25, La Reine Marlene - SIA Project 23 24, Ethical Purchasing Group - SIA Project 22 23, Event Organization Portal - SIA Project 21 22, Genome Nexus, Gestao Hospital, London Ambulance Service, Calculator, Fitness Tracker, Planning Poker, Recycling
+  Shot modes             : ZERO_SHOT, ONE_SHOT, FEW_SHOT
+  Ablation (critico OFF) : [True, False]
+  Parallelismo           : 4
+  Output                 : ../artifacts/results/exp_01_baseline_r1/
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 1/6  |  shot=ZERO_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> SIA Project 25 26_ZERO_SHOT_noLlama.json
+  ▶ Assegno Unico Universale - SIA Project 24 25 | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> Assegno Unico Universale - SIA Project 24 25_ZERO_SHOT_noLlama.json
+  ▶ La Reine Marlene - SIA Project 23 24 | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> La Reine Marlene - SIA Project 23 24_ZERO_SHOT_noLlama.json
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> Ethical Purchasing Group - SIA Project 22 23_ZERO_SHOT_noLlama.json
+  ▶ Event Organization Portal - SIA Project 21 22 | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 10 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 43 goal
+      salvato -> Event Organization Portal - SIA Project 21 22_ZERO_SHOT_noLlama.json  (29.4s)
+  ▶ Genome Nexus | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> Genome Nexus_ZERO_SHOT_noLlama.json
+  ▶ Gestao Hospital | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> Gestao Hospital_ZERO_SHOT_noLlama.json
+  ▶ London Ambulance Service | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> London Ambulance Service_ZERO_SHOT_noLlama.json
+  ▶ Calculator | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> Calculator_ZERO_SHOT_noLlama.json
+  ▶ Fitness Tracker | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> Fitness Tracker_ZERO_SHOT_noLlama.json
+  ▶ Planning Poker | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> Planning Poker_ZERO_SHOT_noLlama.json
+  ▶ Recycling | ZERO_SHOT | critico=OFF
+      gia presente, saltato -> Recycling_ZERO_SHOT_noLlama.json
+
+ Riepilogo BATCH 1/6:
+     [SKIP]  SIA Project 25 26           SIA Project 25 26_ZERO_SHOT_noLlama.json
+     [SKIP]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_ZERO_SHOT_noLlama.json
+     [SKIP]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_ZERO_SHOT_noLlama.json
+     [SKIP]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_ZERO_SHOT_noLlama.json
+     [ OK ]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_ZERO_SHOT_noLlama.json
+     [SKIP]  Genome Nexus                Genome Nexus_ZERO_SHOT_noLlama.json
+     [SKIP]  Gestao Hospital             Gestao Hospital_ZERO_SHOT_noLlama.json
+     [SKIP]  London Ambulance Service    London Ambulance Service_ZERO_SHOT_noLlama.json
+     [SKIP]  Calculator                  Calculator_ZERO_SHOT_noLlama.json
+     [SKIP]  Fitness Tracker             Fitness Tracker_ZERO_SHOT_noLlama.json
+     [SKIP]  Planning Poker              Planning Poker_ZERO_SHOT_noLlama.json
+     [SKIP]  Recycling                   Recycling_ZERO_SHOT_noLlama.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 2/6  |  shot=ONE_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | ONE_SHOT | critico=OFF
+      gia presente, saltato -> SIA Project 25 26_ONE_SHOT_noLlama.json
+  ▶ Assegno Unico Universale - SIA Project 24 25 | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Assegno Unico Universale - SIA Project 24 25_ONE_SHOT_noLlama.json
+  ▶ La Reine Marlene - SIA Project 23 24 | ONE_SHOT | critico=OFF
+      gia presente, saltato -> La Reine Marlene - SIA Project 23 24_ONE_SHOT_noLlama.json
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Ethical Purchasing Group - SIA Project 22 23_ONE_SHOT_noLlama.json
+  ▶ Event Organization Portal - SIA Project 21 22 | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Event Organization Portal - SIA Project 21 22_ONE_SHOT_noLlama.json
+  ▶ Genome Nexus | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Genome Nexus_ONE_SHOT_noLlama.json
+  ▶ Gestao Hospital | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Gestao Hospital_ONE_SHOT_noLlama.json
+  ▶ London Ambulance Service | ONE_SHOT | critico=OFF
+      gia presente, saltato -> London Ambulance Service_ONE_SHOT_noLlama.json
+  ▶ Calculator | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Calculator_ONE_SHOT_noLlama.json
+  ▶ Fitness Tracker | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Fitness Tracker_ONE_SHOT_noLlama.json
+  ▶ Planning Poker | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Planning Poker_ONE_SHOT_noLlama.json
+  ▶ Recycling | ONE_SHOT | critico=OFF
+      gia presente, saltato -> Recycling_ONE_SHOT_noLlama.json
+
+ Riepilogo BATCH 2/6:
+     [SKIP]  SIA Project 25 26           SIA Project 25 26_ONE_SHOT_noLlama.json
+     [SKIP]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_ONE_SHOT_noLlama.json
+     [SKIP]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_ONE_SHOT_noLlama.json
+     [SKIP]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_ONE_SHOT_noLlama.json
+     [SKIP]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_ONE_SHOT_noLlama.json
+     [SKIP]  Genome Nexus                Genome Nexus_ONE_SHOT_noLlama.json
+     [SKIP]  Gestao Hospital             Gestao Hospital_ONE_SHOT_noLlama.json
+     [SKIP]  London Ambulance Service    London Ambulance Service_ONE_SHOT_noLlama.json
+     [SKIP]  Calculator                  Calculator_ONE_SHOT_noLlama.json
+     [SKIP]  Fitness Tracker             Fitness Tracker_ONE_SHOT_noLlama.json
+     [SKIP]  Planning Poker              Planning Poker_ONE_SHOT_noLlama.json
+     [SKIP]  Recycling                   Recycling_ONE_SHOT_noLlama.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 3/6  |  shot=FEW_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | FEW_SHOT | critico=OFF
+      gia presente, saltato -> SIA Project 25 26_FEW_SHOT_noLlama.json
+  ▶ Assegno Unico Universale - SIA Project 24 25 | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Assegno Unico Universale - SIA Project 24 25_FEW_SHOT_noLlama.json
+  ▶ La Reine Marlene - SIA Project 23 24 | FEW_SHOT | critico=OFF
+      gia presente, saltato -> La Reine Marlene - SIA Project 23 24_FEW_SHOT_noLlama.json
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Ethical Purchasing Group - SIA Project 22 23_FEW_SHOT_noLlama.json
+  ▶ Event Organization Portal - SIA Project 21 22 | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Event Organization Portal - SIA Project 21 22_FEW_SHOT_noLlama.json
+  ▶ Genome Nexus | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Genome Nexus_FEW_SHOT_noLlama.json
+  ▶ Gestao Hospital | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Gestao Hospital_FEW_SHOT_noLlama.json
+  ▶ London Ambulance Service | FEW_SHOT | critico=OFF
+      gia presente, saltato -> London Ambulance Service_FEW_SHOT_noLlama.json
+  ▶ Calculator | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Calculator_FEW_SHOT_noLlama.json
+  ▶ Fitness Tracker | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Fitness Tracker_FEW_SHOT_noLlama.json
+  ▶ Planning Poker | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Planning Poker_FEW_SHOT_noLlama.json
+  ▶ Recycling | FEW_SHOT | critico=OFF
+      gia presente, saltato -> Recycling_FEW_SHOT_noLlama.json
+
+ Riepilogo BATCH 3/6:
+     [SKIP]  SIA Project 25 26           SIA Project 25 26_FEW_SHOT_noLlama.json
+     [SKIP]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_FEW_SHOT_noLlama.json
+     [SKIP]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_FEW_SHOT_noLlama.json
+     [SKIP]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_FEW_SHOT_noLlama.json
+     [SKIP]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_FEW_SHOT_noLlama.json
+     [SKIP]  Genome Nexus                Genome Nexus_FEW_SHOT_noLlama.json
+     [SKIP]  Gestao Hospital             Gestao Hospital_FEW_SHOT_noLlama.json
+     [SKIP]  London Ambulance Service    London Ambulance Service_FEW_SHOT_noLlama.json
+     [SKIP]  Calculator                  Calculator_FEW_SHOT_noLlama.json
+     [SKIP]  Fitness Tracker             Fitness Tracker_FEW_SHOT_noLlama.json
+     [SKIP]  Planning Poker              Planning Poker_FEW_SHOT_noLlama.json
+     [SKIP]  Recycling                   Recycling_FEW_SHOT_noLlama.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 4/6  |  shot=ZERO_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | ZERO_SHOT | critico=ON
+      gia presente, saltato -> SIA Project 25 26_ZERO_SHOT.json
+  ▶ Assegno Unico Universale - SIA Project 24 25 | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Assegno Unico Universale - SIA Project 24 25_ZERO_SHOT.json
+  ▶ La Reine Marlene - SIA Project 23 24 | ZERO_SHOT | critico=ON
+      gia presente, saltato -> La Reine Marlene - SIA Project 23 24_ZERO_SHOT.json
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Ethical Purchasing Group - SIA Project 22 23_ZERO_SHOT.json
+  ▶ Event Organization Portal - SIA Project 21 22 | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Event Organization Portal - SIA Project 21 22_ZERO_SHOT.json
+  ▶ Genome Nexus | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Genome Nexus_ZERO_SHOT.json
+  ▶ Gestao Hospital | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Gestao Hospital_ZERO_SHOT.json
+  ▶ London Ambulance Service | ZERO_SHOT | critico=ON
+      gia presente, saltato -> London Ambulance Service_ZERO_SHOT.json
+  ▶ Calculator | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Calculator_ZERO_SHOT.json
+  ▶ Fitness Tracker | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Fitness Tracker_ZERO_SHOT.json
+  ▶ Planning Poker | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Planning Poker_ZERO_SHOT.json
+  ▶ Recycling | ZERO_SHOT | critico=ON
+      gia presente, saltato -> Recycling_ZERO_SHOT.json
+
+ Riepilogo BATCH 4/6:
+     [SKIP]  SIA Project 25 26           SIA Project 25 26_ZERO_SHOT.json
+     [SKIP]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_ZERO_SHOT.json
+     [SKIP]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_ZERO_SHOT.json
+     [SKIP]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_ZERO_SHOT.json
+     [SKIP]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_ZERO_SHOT.json
+     [SKIP]  Genome Nexus                Genome Nexus_ZERO_SHOT.json
+     [SKIP]  Gestao Hospital             Gestao Hospital_ZERO_SHOT.json
+     [SKIP]  London Ambulance Service    London Ambulance Service_ZERO_SHOT.json
+     [SKIP]  Calculator                  Calculator_ZERO_SHOT.json
+     [SKIP]  Fitness Tracker             Fitness Tracker_ZERO_SHOT.json
+     [SKIP]  Planning Poker              Planning Poker_ZERO_SHOT.json
+     [SKIP]  Recycling                   Recycling_ZERO_SHOT.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 5/6  |  shot=ONE_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | ONE_SHOT | critico=ON
+      gia presente, saltato -> SIA Project 25 26_ONE_SHOT.json
+  ▶ Assegno Unico Universale - SIA Project 24 25 | ONE_SHOT | critico=ON
+      gia presente, saltato -> Assegno Unico Universale - SIA Project 24 25_ONE_SHOT.json
+  ▶ La Reine Marlene - SIA Project 23 24 | ONE_SHOT | critico=ON
+      gia presente, saltato -> La Reine Marlene - SIA Project 23 24_ONE_SHOT.json
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | ONE_SHOT | critico=ON
+      gia presente, saltato -> Ethical Purchasing Group - SIA Project 22 23_ONE_SHOT.json
+  ▶ Event Organization Portal - SIA Project 21 22 | ONE_SHOT | critico=ON
+      gia presente, saltato -> Event Organization Portal - SIA Project 21 22_ONE_SHOT.json
+  ▶ Genome Nexus | ONE_SHOT | critico=ON
+      gia presente, saltato -> Genome Nexus_ONE_SHOT.json
+  ▶ Gestao Hospital | ONE_SHOT | critico=ON
+      gia presente, saltato -> Gestao Hospital_ONE_SHOT.json
+  ▶ London Ambulance Service | ONE_SHOT | critico=ON
+      gia presente, saltato -> London Ambulance Service_ONE_SHOT.json
+  ▶ Calculator | ONE_SHOT | critico=ON
+      gia presente, saltato -> Calculator_ONE_SHOT.json
+  ▶ Fitness Tracker | ONE_SHOT | critico=ON
+      gia presente, saltato -> Fitness Tracker_ONE_SHOT.json
+  ▶ Planning Poker | ONE_SHOT | critico=ON
+      gia presente, saltato -> Planning Poker_ONE_SHOT.json
+  ▶ Recycling | ONE_SHOT | critico=ON
+      gia presente, saltato -> Recycling_ONE_SHOT.json
+
+ Riepilogo BATCH 5/6:
+     [SKIP]  SIA Project 25 26           SIA Project 25 26_ONE_SHOT.json
+     [SKIP]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_ONE_SHOT.json
+     [SKIP]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_ONE_SHOT.json
+     [SKIP]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_ONE_SHOT.json
+     [SKIP]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_ONE_SHOT.json
+     [SKIP]  Genome Nexus                Genome Nexus_ONE_SHOT.json
+     [SKIP]  Gestao Hospital             Gestao Hospital_ONE_SHOT.json
+     [SKIP]  London Ambulance Service    London Ambulance Service_ONE_SHOT.json
+     [SKIP]  Calculator                  Calculator_ONE_SHOT.json
+     [SKIP]  Fitness Tracker             Fitness Tracker_ONE_SHOT.json
+     [SKIP]  Planning Poker              Planning Poker_ONE_SHOT.json
+     [SKIP]  Recycling                   Recycling_ONE_SHOT.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 6/6  |  shot=FEW_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | FEW_SHOT | critico=ON
+      gia presente, saltato -> SIA Project 25 26_FEW_SHOT.json
+  ▶ Assegno Unico Universale - SIA Project 24 25 | FEW_SHOT | critico=ON
+      gia presente, saltato -> Assegno Unico Universale - SIA Project 24 25_FEW_SHOT.json
+  ▶ La Reine Marlene - SIA Project 23 24 | FEW_SHOT | critico=ON
+      gia presente, saltato -> La Reine Marlene - SIA Project 23 24_FEW_SHOT.json
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | FEW_SHOT | critico=ON
+      gia presente, saltato -> Ethical Purchasing Group - SIA Project 22 23_FEW_SHOT.json
+  ▶ Event Organization Portal - SIA Project 21 22 | FEW_SHOT | critico=ON
+      gia presente, saltato -> Event Organization Portal - SIA Project 21 22_FEW_SHOT.json
+  ▶ Genome Nexus | FEW_SHOT | critico=ON
+      gia presente, saltato -> Genome Nexus_FEW_SHOT.json
+  ▶ Gestao Hospital | FEW_SHOT | critico=ON
+      gia presente, saltato -> Gestao Hospital_FEW_SHOT.json
+  ▶ London Ambulance Service | FEW_SHOT | critico=ON
+      gia presente, saltato -> London Ambulance Service_FEW_SHOT.json
+  ▶ Calculator | FEW_SHOT | critico=ON
+      gia presente, saltato -> Calculator_FEW_SHOT.json
+  ▶ Fitness Tracker | FEW_SHOT | critico=ON
+      gia presente, saltato -> Fitness Tracker_FEW_SHOT.json
+  ▶ Planning Poker | FEW_SHOT | critico=ON
+      gia presente, saltato -> Planning Poker_FEW_SHOT.json
+  ▶ Recycling | FEW_SHOT | critico=ON
+      gia presente, saltato -> Recycling_FEW_SHOT.json
+
+ Riepilogo BATCH 6/6:
+     [SKIP]  SIA Project 25 26           SIA Project 25 26_FEW_SHOT.json
+     [SKIP]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_FEW_SHOT.json
+     [SKIP]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_FEW_SHOT.json
+     [SKIP]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_FEW_SHOT.json
+     [SKIP]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_FEW_SHOT.json
+     [SKIP]  Genome Nexus                Genome Nexus_FEW_SHOT.json
+     [SKIP]  Gestao Hospital             Gestao Hospital_FEW_SHOT.json
+     [SKIP]  London Ambulance Service    London Ambulance Service_FEW_SHOT.json
+     [SKIP]  Calculator                  Calculator_FEW_SHOT.json
+     [SKIP]  Fitness Tracker             Fitness Tracker_FEW_SHOT.json
+     [SKIP]  Planning Poker              Planning Poker_FEW_SHOT.json
+     [SKIP]  Recycling                   Recycling_FEW_SHOT.json
+
+════════════════════════════════════════════════════════════════════════════════════════════════════
+  SUITE COMPLETATA  —  OK 1  |  SKIP 71  |  ERRORE 0   |   durata 0:00:29
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════════════════════════════════════════
+  VALUTAZIONE  —  exp_01_baseline_r1   (preprocessing HL/LL = ON)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=ZERO_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.8089     0.8416     0.8249
+   High-Level Goals       0.3871     0.7106     0.5012
+   Low-Level Goals        0.5485     0.6692     0.6029
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=ONE_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.8002     0.8627     0.8303
+   High-Level Goals       0.3389     0.7097     0.4588
+   Low-Level Goals        0.5173     0.6898     0.5912
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=FEW_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.8284     0.8360     0.8322
+   High-Level Goals       0.3482     0.7072     0.4666
+   Low-Level Goals        0.4815     0.7372     0.5825
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=ZERO_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.7838     0.8858     0.8317
+   High-Level Goals       0.3725     0.7189     0.4907
+   Low-Level Goals        0.4451     0.7522     0.5592
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=ONE_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.8244     0.8771     0.8500
+   High-Level Goals       0.3476     0.7063     0.4659
+   Low-Level Goals        0.4649     0.7029     0.5596
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=FEW_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.7677     0.9165     0.8355
+   High-Level Goals       0.3382     0.7107     0.4583
+   Low-Level Goals        0.4585     0.7337     0.5643
+                                    Precision  Recall     F1
+Goal Type        Shot Mode Critico                          
+Actors           FEW_SHOT  OFF         0.8284  0.8360 0.8322
+                           ON          0.7677  0.9165 0.8355
+                 ONE_SHOT  OFF         0.8002  0.8627 0.8303
+                           ON          0.8244  0.8771 0.8500
+                 ZERO_SHOT OFF         0.8089  0.8416 0.8249
+                           ON          0.7838  0.8858 0.8317
+High-Level Goals FEW_SHOT  OFF         0.3482  0.7072 0.4666
+                           ON          0.3382  0.7107 0.4583
+                 ONE_SHOT  OFF         0.3389  0.7097 0.4588
+                           ON          0.3476  0.7063 0.4659
+                 ZERO_SHOT OFF         0.3871  0.7106 0.5012
+                           ON          0.3725  0.7189 0.4907
+Low-Level Goals  FEW_SHOT  OFF         0.4815  0.7372 0.5825
+                           ON          0.4585  0.7337 0.5643
+                 ONE_SHOT  OFF         0.5173  0.6898 0.5912
+                           ON          0.4649  0.7029 0.5596
+                 ZERO_SHOT OFF         0.5485  0.6692 0.6029
+                           ON          0.4451  0.7522 0.5592
+Registrate 18 righe per run_label='exp_01_baseline_r1' -> ../artifacts/results/exp_01_baseline_r1/exp_01_baseline_r1_registry.csv
+                                   precision  recall     f1
+goal_type        shot_mode critic                          
+Actors           ZERO_SHOT OFF        0.8089  0.8416 0.8249
+                           ON         0.7838  0.8858 0.8317
+                 ONE_SHOT  OFF        0.8002  0.8627 0.8303
+                           ON         0.8244  0.8771 0.8500
+                 FEW_SHOT  OFF        0.8284  0.8360 0.8322
+                           ON         0.7677  0.9165 0.8355
+High-Level Goals ZERO_SHOT OFF        0.3871  0.7106 0.5012
+                           ON         0.3725  0.7189 0.4907
+                 ONE_SHOT  OFF        0.3389  0.7097 0.4588
+                           ON         0.3476  0.7063 0.4659
+                 FEW_SHOT  OFF        0.3482  0.7072 0.4666
+                           ON         0.3382  0.7107 0.4583
+Low-Level Goals  ZERO_SHOT OFF        0.5485  0.6692 0.6029
+                           ON         0.4451  0.7522 0.5592
+                 ONE_SHOT  OFF        0.5173  0.6898 0.5912
+                           ON         0.4649  0.7029 0.5596
+                 FEW_SHOT  OFF        0.4815  0.7372 0.5825
+                           ON         0.4585  0.7337 0.5643

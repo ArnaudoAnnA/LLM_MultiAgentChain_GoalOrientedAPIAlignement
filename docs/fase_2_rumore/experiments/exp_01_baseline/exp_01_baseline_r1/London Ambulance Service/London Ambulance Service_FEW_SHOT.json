@@ -1,0 +1,69 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T17:54:52",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Dispatcher"
+    ],
+    "highLevelGoals": [
+        "Ambulance staff must effectively communicate their departure and destination details to facilitate accurate tracking and dispatch decisions.",
+        "Radio operators aim to accurately record all departure and destination information communicated by ambulance staff to support efficient dispatch and tracking.",
+        "The dispatcher's primary goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes.",
+        "The dispatcher must ensure that the entire dispatch process, from incident analysis to ambulance assignment, does not exceed a set maximum time limit."
+    ],
+    "lowLevelGoals": [
+        "Ambulance staff will interact with the system to signal their departure from the station, including a timestamp.",
+        "Ambulance staff will provide the specific destination address or coordinates to the system upon departure.",
+        "Ambulance staff will use the system to mark their arrival at the specified destination, including a timestamp.",
+        "Ambulance staff will confirm through the system that they are following the standard route to their destination, enabling accurate real-time tracking.",
+        "Radio operators will use the system to record the exact time and location an ambulance departs, as communicated by ambulance staff.",
+        "Radio operators will input the communicated destination details of an ambulance into the system.",
+        "Radio operators will record the time an ambulance arrives at its destination and update its status accordingly within the system.",
+        "The dispatcher will query the system to view all currently available ambulances and their geographical positions.",
+        "The dispatcher will enter the specifics of an emergency incident, including its precise location, into the Computer Aided Despatch system.",
+        "The dispatcher will initiate the Computer Aided Despatch system to automatically process submitted incident forms to determine incident priority, required resources, and validate data.",
+        "The dispatcher will use the system to identify the ambulance that can reach the incident scene within the 11-minute target.",
+        "The dispatcher will confirm the assignment of a specific ambulance to an incident within the Computer Aided Despatch system.",
+        "The Computer Aided Despatch system will continuously monitor and track the ambulance's geographical position in relation to its assigned standard route.",
+        "The Computer Aided Despatch system will automatically select and assign the closest available ambulance to an incident based on predefined criteria.",
+        "The dispatcher will mark an incident as 'in dispatch process' within the system, starting a timer for the overall dispatch duration.",
+        "The system will notify the dispatcher when the elapsed time for an incident's dispatch process is nearing the predefined maximum limit.",
+        "The dispatcher will confirm the successful assignment of an ambulance, which will stop the timer tracking the dispatch process duration."
+    ],
+    "cove_scores": {
+        "actors": [
+            4.0,
+            6.0,
+            7.0
+        ],
+        "highLevelGoals": [
+            2.0,
+            2.0,
+            2.0
+        ],
+        "lowLevelGoals": [
+            7.0,
+            6.0,
+            2.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 3,
+        "lowLevelGoals": 3
+    }
+}

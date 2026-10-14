@@ -1,0 +1,581 @@
+Log strutturato -> ../artifacts/results/exp_01_baseline_r3/experiment_log.txt
+Output pipeline  -> ../artifacts/results/exp_01_baseline_r3/verbose_log.txt
+════════════════════════════════════════════════════════════════════════════════════════════════════
+  SUITE SPERIMENTALE  —  exp_01_baseline_r3
+  Avvio 2026-10-10 20:20:41
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  Generatore             : gemini-2.5-flash
+  Critico                : qwen/qwen3.8-27b
+  Soglia accettazione    : 8.5/10   |   max 3 iterazioni   |   temperature 0
+  Ground truth           : notebook/groundtruth.py (final)
+  Dataset                : SIA Project 25 26, Assegno Unico Universale - SIA Project 24 25, La Reine Marlene - SIA Project 23 24, Ethical Purchasing Group - SIA Project 22 23, Event Organization Portal - SIA Project 21 22, Genome Nexus, Gestao Hospital, London Ambulance Service, Calculator, Fitness Tracker, Planning Poker, Recycling
+  Shot modes             : ZERO_SHOT, ONE_SHOT, FEW_SHOT
+  Ablation (critico OFF) : [True, False]
+  Parallelismo           : 4
+  Output                 : ../artifacts/results/exp_01_baseline_r3/
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 1/6  |  shot=ZERO_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  6 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 16 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 38 goal
+      salvato -> SIA Project 25 26_ZERO_SHOT_noLlama.json  (27.7s)
+  ▶ Assegno Unico Universale - SIA Project 24 25 | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  5 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 21 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 72 goal
+      salvato -> Assegno Unico Universale - SIA Project 24 25_ZERO_SHOT_noLlama.json  (39.2s)
+  ▶ La Reine Marlene - SIA Project 23 24 | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  6 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 19 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 46 goal
+      salvato -> La Reine Marlene - SIA Project 23 24_ZERO_SHOT_noLlama.json  (34.0s)
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 12 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 37 goal
+      salvato -> Ethical Purchasing Group - SIA Project 22 23_ZERO_SHOT_noLlama.json  (26.2s)
+  ▶ Event Organization Portal - SIA Project 21 22 | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 10 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 41 goal
+      salvato -> Event Organization Portal - SIA Project 21 22_ZERO_SHOT_noLlama.json  (26.8s)
+  ▶ Genome Nexus | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  6 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 20 goal
+      salvato -> Genome Nexus_ZERO_SHOT_noLlama.json  (13.8s)
+  ▶ Gestao Hospital | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  4 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  8 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 28 goal
+      salvato -> Gestao Hospital_ZERO_SHOT_noLlama.json  (19.0s)
+  ▶ London Ambulance Service | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  7 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 19 goal
+      salvato -> London Ambulance Service_ZERO_SHOT_noLlama.json  (15.1s)
+  ▶ Calculator | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  1 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  3 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 10 goal
+      salvato -> Calculator_ZERO_SHOT_noLlama.json  (6.7s)
+  ▶ Fitness Tracker | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  4 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 14 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 56 goal
+      salvato -> Fitness Tracker_ZERO_SHOT_noLlama.json  (42.2s)
+  ▶ Planning Poker | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  5 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  7 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 30 goal
+      salvato -> Planning Poker_ZERO_SHOT_noLlama.json  (21.2s)
+  ▶ Recycling | ZERO_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 10 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 25 goal
+      salvato -> Recycling_ZERO_SHOT_noLlama.json  (16.6s)
+
+ Riepilogo BATCH 1/6:
+     [ OK ]  SIA Project 25 26           SIA Project 25 26_ZERO_SHOT_noLlama.json
+     [ OK ]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_ZERO_SHOT_noLlama.json
+     [ OK ]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_ZERO_SHOT_noLlama.json
+     [ OK ]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_ZERO_SHOT_noLlama.json
+     [ OK ]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_ZERO_SHOT_noLlama.json
+     [ OK ]  Genome Nexus                Genome Nexus_ZERO_SHOT_noLlama.json
+     [ OK ]  Gestao Hospital             Gestao Hospital_ZERO_SHOT_noLlama.json
+     [ OK ]  London Ambulance Service    London Ambulance Service_ZERO_SHOT_noLlama.json
+     [ OK ]  Calculator                  Calculator_ZERO_SHOT_noLlama.json
+     [ OK ]  Fitness Tracker             Fitness Tracker_ZERO_SHOT_noLlama.json
+     [ OK ]  Planning Poker              Planning Poker_ZERO_SHOT_noLlama.json
+     [ OK ]  Recycling                   Recycling_ZERO_SHOT_noLlama.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 2/6  |  shot=ONE_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  6 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 16 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 42 goal
+      salvato -> SIA Project 25 26_ONE_SHOT_noLlama.json  (35.5s)
+  ▶ Assegno Unico Universale - SIA Project 24 25 | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  6 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 24 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 82 goal
+      salvato -> Assegno Unico Universale - SIA Project 24 25_ONE_SHOT_noLlama.json  (56.6s)
+  ▶ La Reine Marlene - SIA Project 23 24 | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  6 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 20 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 70 goal
+      salvato -> La Reine Marlene - SIA Project 23 24_ONE_SHOT_noLlama.json  (44.5s)
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 12 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 46 goal
+      salvato -> Ethical Purchasing Group - SIA Project 22 23_ONE_SHOT_noLlama.json  (31.9s)
+  ▶ Event Organization Portal - SIA Project 21 22 | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  9 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 44 goal
+      salvato -> Event Organization Portal - SIA Project 21 22_ONE_SHOT_noLlama.json  (26.9s)
+  ▶ Genome Nexus | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  6 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 18 goal
+      salvato -> Genome Nexus_ONE_SHOT_noLlama.json  (12.4s)
+  ▶ Gestao Hospital | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  4 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  7 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 24 goal
+      salvato -> Gestao Hospital_ONE_SHOT_noLlama.json  (16.7s)
+  ▶ London Ambulance Service | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  9 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 26 goal
+      salvato -> London Ambulance Service_ONE_SHOT_noLlama.json  (15.8s)
+  ▶ Calculator | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  1 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  4 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 12 goal
+      salvato -> Calculator_ONE_SHOT_noLlama.json  (10.3s)
+  ▶ Fitness Tracker | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  4 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 10 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 30 goal
+      salvato -> Fitness Tracker_ONE_SHOT_noLlama.json  (25.8s)
+  ▶ Planning Poker | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  5 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 15 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 40 goal
+      salvato -> Planning Poker_ONE_SHOT_noLlama.json  (32.1s)
+  ▶ Recycling | ONE_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  4 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 13 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 34 goal
+      salvato -> Recycling_ONE_SHOT_noLlama.json  (25.3s)
+
+ Riepilogo BATCH 2/6:
+     [ OK ]  SIA Project 25 26           SIA Project 25 26_ONE_SHOT_noLlama.json
+     [ OK ]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_ONE_SHOT_noLlama.json
+     [ OK ]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_ONE_SHOT_noLlama.json
+     [ OK ]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_ONE_SHOT_noLlama.json
+     [ OK ]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_ONE_SHOT_noLlama.json
+     [ OK ]  Genome Nexus                Genome Nexus_ONE_SHOT_noLlama.json
+     [ OK ]  Gestao Hospital             Gestao Hospital_ONE_SHOT_noLlama.json
+     [ OK ]  London Ambulance Service    London Ambulance Service_ONE_SHOT_noLlama.json
+     [ OK ]  Calculator                  Calculator_ONE_SHOT_noLlama.json
+     [ OK ]  Fitness Tracker             Fitness Tracker_ONE_SHOT_noLlama.json
+     [ OK ]  Planning Poker              Planning Poker_ONE_SHOT_noLlama.json
+     [ OK ]  Recycling                   Recycling_ONE_SHOT_noLlama.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 3/6  |  shot=FEW_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  6 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 12 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 29 goal
+      salvato -> SIA Project 25 26_FEW_SHOT_noLlama.json  (24.1s)
+  ▶ Assegno Unico Universale - SIA Project 24 25 | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  5 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 22 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 67 goal
+      salvato -> Assegno Unico Universale - SIA Project 24 25_FEW_SHOT_noLlama.json  (51.8s)
+  ▶ La Reine Marlene - SIA Project 23 24 | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  6 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 24 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 46 goal
+      salvato -> La Reine Marlene - SIA Project 23 24_FEW_SHOT_noLlama.json  (33.6s)
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 12 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 41 goal
+      salvato -> Ethical Purchasing Group - SIA Project 22 23_FEW_SHOT_noLlama.json  (24.7s)
+  ▶ Event Organization Portal - SIA Project 21 22 | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  8 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 36 goal
+      salvato -> Event Organization Portal - SIA Project 21 22_FEW_SHOT_noLlama.json  (26.4s)
+  ▶ Genome Nexus | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  2 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  7 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 21 goal
+      salvato -> Genome Nexus_FEW_SHOT_noLlama.json  (15.5s)
+  ▶ Gestao Hospital | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  7 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 34 goal
+      salvato -> Gestao Hospital_FEW_SHOT_noLlama.json  (22.2s)
+  ▶ London Ambulance Service | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  7 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 14 goal
+      salvato -> London Ambulance Service_FEW_SHOT_noLlama.json  (10.5s)
+  ▶ Calculator | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  1 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  3 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 12 goal
+      salvato -> Calculator_FEW_SHOT_noLlama.json  (9.3s)
+  ▶ Fitness Tracker | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  1 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │  6 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 18 goal
+      salvato -> Fitness Tracker_FEW_SHOT_noLlama.json  (13.0s)
+  ▶ Planning Poker | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  6 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 13 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 42 goal
+      salvato -> Planning Poker_FEW_SHOT_noLlama.json  (30.7s)
+  ▶ Recycling | FEW_SHOT | critico=OFF
+      Actors            1 tentativo  │ critico OFF             —              │  3 attori
+      High-Level Goals  1 tentativo  │ critico OFF             —              │ 12 goal
+      Low-Level Goals   1 tentativo  │ critico OFF             —              │ 36 goal
+      salvato -> Recycling_FEW_SHOT_noLlama.json  (22.4s)
+
+ Riepilogo BATCH 3/6:
+     [ OK ]  SIA Project 25 26           SIA Project 25 26_FEW_SHOT_noLlama.json
+     [ OK ]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_FEW_SHOT_noLlama.json
+     [ OK ]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_FEW_SHOT_noLlama.json
+     [ OK ]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_FEW_SHOT_noLlama.json
+     [ OK ]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_FEW_SHOT_noLlama.json
+     [ OK ]  Genome Nexus                Genome Nexus_FEW_SHOT_noLlama.json
+     [ OK ]  Gestao Hospital             Gestao Hospital_FEW_SHOT_noLlama.json
+     [ OK ]  London Ambulance Service    London Ambulance Service_FEW_SHOT_noLlama.json
+     [ OK ]  Calculator                  Calculator_FEW_SHOT_noLlama.json
+     [ OK ]  Fitness Tracker             Fitness Tracker_FEW_SHOT_noLlama.json
+     [ OK ]  Planning Poker              Planning Poker_FEW_SHOT_noLlama.json
+     [ OK ]  Recycling                   Recycling_FEW_SHOT_noLlama.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 4/6  |  shot=ZERO_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | ZERO_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  6 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 16 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │ 46 goal
+      salvato -> SIA Project 25 26_ZERO_SHOT.json  (69.2s)
+  ▶ Assegno Unico Universale - SIA Project 24 25 | ZERO_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  5 attori
+      High-Level Goals  3 tentativi  │ 4.0 → 6.0 → 7.0/10      SOTTO SOGLIA   │ 26 goal
+      Low-Level Goals   3 tentativi  │ 2.0 → 3.0 → 3.0/10      SOTTO SOGLIA   │ 53 goal
+      salvato -> Assegno Unico Universale - SIA Project 24 25_ZERO_SHOT.json  (133.8s)
+  ▶ La Reine Marlene - SIA Project 23 24 | ZERO_SHOT | critico=ON
+      Actors            2 tentativi  │ 8.0 → 8.5/10            ACCETTATO      │  7 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 17 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 7.0 → 7.5/10      SOTTO SOGLIA   │ 52 goal
+      salvato -> La Reine Marlene - SIA Project 23 24_ZERO_SHOT.json  (84.2s)
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | ZERO_SHOT | critico=ON
+      Actors            3 tentativi  │ 7.0 → 7.0 → 7.0/10      SOTTO SOGLIA   │  3 attori
+      High-Level Goals  1 tentativo  │ 8.5/10                  ACCETTATO      │ 12 goal
+      Low-Level Goals   3 tentativi  │ 2.0 → 2.0 → 10.0/10     ACCETTATO      │ 45 goal
+      salvato -> Ethical Purchasing Group - SIA Project 22 23_ZERO_SHOT.json  (68.8s)
+  ▶ Event Organization Portal - SIA Project 21 22 | ZERO_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  3 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 10 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 4.0 → 10.0/10     ACCETTATO      │ 37 goal
+      salvato -> Event Organization Portal - SIA Project 21 22_ZERO_SHOT.json  (54.4s)
+  ▶ Genome Nexus | ZERO_SHOT | critico=ON
+      Actors            2 tentativi  │ 6.0 → 9.5/10            ACCETTATO      │  4 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 10 goal
+      Low-Level Goals   1 tentativo  │ 8.5/10                  ACCETTATO      │ 32 goal
+      salvato -> Genome Nexus_ZERO_SHOT.json  (26.0s)
+  ▶ Gestao Hospital | ZERO_SHOT | critico=ON
+      Actors            3 tentativi  │ 6.0 → 7.0 → 6.0/10      SOTTO SOGLIA   │  3 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │  9 goal
+      Low-Level Goals   2 tentativi  │ 7.0 → 10.0/10           ACCETTATO      │ 27 goal
+      salvato -> Gestao Hospital_ZERO_SHOT.json  (36.7s)
+  ▶ London Ambulance Service | ZERO_SHOT | critico=ON
+      Actors            2 tentativi  │ 6.0 → 10.0/10           ACCETTATO      │  4 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │  8 goal
+      Low-Level Goals   2 tentativi  │ 4.0 → 9.5/10            ACCETTATO      │ 21 goal
+      salvato -> London Ambulance Service_ZERO_SHOT.json  (28.6s)
+  ▶ Calculator | ZERO_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  1 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │  3 goal
+      Low-Level Goals   2 tentativi  │ 7.0 → 8.5/10            ACCETTATO      │ 11 goal
+      salvato -> Calculator_ZERO_SHOT.json  (14.3s)
+  ▶ Fitness Tracker | ZERO_SHOT | critico=ON
+      Actors            2 tentativi  │ 3.0 → 10.0/10           ACCETTATO      │  2 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │  7 goal
+      Low-Level Goals   1 tentativo  │ 8.5/10                  ACCETTATO      │ 25 goal
+      salvato -> Fitness Tracker_ZERO_SHOT.json  (21.9s)
+  ▶ Planning Poker | ZERO_SHOT | critico=ON
+      Actors            3 tentativi  │ 4.0 → 7.0 → 6.0/10      SOTTO SOGLIA   │  3 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 10 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 4.0 → 10.0/10     ACCETTATO      │ 42 goal
+      salvato -> Planning Poker_ZERO_SHOT.json  (63.1s)
+  ▶ Recycling | ZERO_SHOT | critico=ON
+      Actors            3 tentativi  │ 6.0 → 8.0 → 7.0/10      SOTTO SOGLIA   │  4 attori
+      High-Level Goals  2 tentativi  │ 4.0 → 9.0/10            ACCETTATO      │ 11 goal
+      Low-Level Goals   2 tentativi  │ 2.0 → 9.0/10            ACCETTATO      │ 41 goal
+      salvato -> Recycling_ZERO_SHOT.json  (55.5s)
+
+ Riepilogo BATCH 4/6:
+     [ OK ]  SIA Project 25 26           SIA Project 25 26_ZERO_SHOT.json
+     [ OK ]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_ZERO_SHOT.json
+     [ OK ]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_ZERO_SHOT.json
+     [ OK ]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_ZERO_SHOT.json
+     [ OK ]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_ZERO_SHOT.json
+     [ OK ]  Genome Nexus                Genome Nexus_ZERO_SHOT.json
+     [ OK ]  Gestao Hospital             Gestao Hospital_ZERO_SHOT.json
+     [ OK ]  London Ambulance Service    London Ambulance Service_ZERO_SHOT.json
+     [ OK ]  Calculator                  Calculator_ZERO_SHOT.json
+     [ OK ]  Fitness Tracker             Fitness Tracker_ZERO_SHOT.json
+     [ OK ]  Planning Poker              Planning Poker_ZERO_SHOT.json
+     [ OK ]  Recycling                   Recycling_ZERO_SHOT.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 5/6  |  shot=ONE_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | ONE_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  6 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 16 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 6.0 → 4.0/10      SOTTO SOGLIA   │ 54 goal
+      salvato -> SIA Project 25 26_ONE_SHOT.json  (88.7s)
+  ▶ Assegno Unico Universale - SIA Project 24 25 | ONE_SHOT | critico=ON
+      Actors            3 tentativi  │ 4.0 → 4.0 → 10.0/10     ACCETTATO      │  3 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 14 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │ 76 goal
+      salvato -> Assegno Unico Universale - SIA Project 24 25_ONE_SHOT.json  (137.9s)
+  ▶ La Reine Marlene - SIA Project 23 24 | ONE_SHOT | critico=ON
+      Actors            3 tentativi  │ 8.0 → 8.0 → 10.0/10     ACCETTATO      │  8 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 28 goal
+      Low-Level Goals   2 tentativi  │ 7.0 → 9.5/10            ACCETTATO      │ 55 goal
+      salvato -> La Reine Marlene - SIA Project 23 24_ONE_SHOT.json  (69.5s)
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | ONE_SHOT | critico=ON
+      Actors            3 tentativi  │ 7.0 → 6.0 → 7.0/10      SOTTO SOGLIA   │  3 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 10 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │ 46 goal
+      salvato -> Ethical Purchasing Group - SIA Project 22 23_ONE_SHOT.json  (72.7s)
+  ▶ Event Organization Portal - SIA Project 21 22 | ONE_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  3 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 10 goal
+      Low-Level Goals   3 tentativi  │ 2.0 → 4.0 → 10.0/10     ACCETTATO      │ 52 goal
+      salvato -> Event Organization Portal - SIA Project 21 22_ONE_SHOT.json  (92.6s)
+  ▶ Genome Nexus | ONE_SHOT | critico=ON
+      Actors            3 tentativi  │ 7.0 → 6.0 → 5.0/10      SOTTO SOGLIA   │  5 attori
+      High-Level Goals  2 tentativi  │ 4.0 → 9.5/10            ACCETTATO      │  7 goal
+      Low-Level Goals   1 tentativo  │ 8.5/10                  ACCETTATO      │ 21 goal
+      salvato -> Genome Nexus_ONE_SHOT.json  (26.8s)
+  ▶ Gestao Hospital | ONE_SHOT | critico=ON
+      Actors            3 tentativi  │ 7.0 → 6.0 → 6.0/10      SOTTO SOGLIA   │  5 attori
+      High-Level Goals  1 tentativo  │ 9.5/10                  ACCETTATO      │  7 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 7.0 → 8.5/10      ACCETTATO      │ 26 goal
+      salvato -> Gestao Hospital_ONE_SHOT.json  (54.3s)
+  ▶ London Ambulance Service | ONE_SHOT | critico=ON
+      Actors            2 tentativi  │ 6.0 → 10.0/10           ACCETTATO      │  4 attori
+      High-Level Goals  3 tentativi  │ 2.0 → 5.0 → 9.5/10      ACCETTATO      │  6 goal
+      Low-Level Goals   3 tentativi  │ 2.0 → 4.0 → 9.5/10      ACCETTATO      │ 15 goal
+      salvato -> London Ambulance Service_ONE_SHOT.json  (41.5s)
+  ▶ Calculator | ONE_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  1 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │  4 goal
+      Low-Level Goals   2 tentativi  │ 7.0 → 10.0/10           ACCETTATO      │ 16 goal
+      salvato -> Calculator_ONE_SHOT.json  (20.8s)
+  ▶ Fitness Tracker | ONE_SHOT | critico=ON
+      Actors            3 tentativi  │ 4.0 → 7.0 → 10.0/10     ACCETTATO      │  3 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 10 goal
+      Low-Level Goals   2 tentativi  │ 7.0 → 9.5/10            ACCETTATO      │ 31 goal
+      salvato -> Fitness Tracker_ONE_SHOT.json  (50.8s)
+  ▶ Planning Poker | ONE_SHOT | critico=ON
+      Actors            3 tentativi  │ 4.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │  3 attori
+      High-Level Goals  1 tentativo  │ 9.5/10                  ACCETTATO      │ 15 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 7.0 → 4.0/10      SOTTO SOGLIA   │ 39 goal
+      salvato -> Planning Poker_ONE_SHOT.json  (72.1s)
+  ▶ Recycling | ONE_SHOT | critico=ON
+      Actors            3 tentativi  │ 7.0 → 8.0 → 7.0/10      SOTTO SOGLIA   │  4 attori
+      High-Level Goals  2 tentativi  │ 4.0 → 9.5/10            ACCETTATO      │ 13 goal
+      Low-Level Goals   3 tentativi  │ 3.0 → 7.0 → 6.0/10      SOTTO SOGLIA   │ 34 goal
+      salvato -> Recycling_ONE_SHOT.json  (59.9s)
+
+ Riepilogo BATCH 5/6:
+     [ OK ]  SIA Project 25 26           SIA Project 25 26_ONE_SHOT.json
+     [ OK ]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_ONE_SHOT.json
+     [ OK ]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_ONE_SHOT.json
+     [ OK ]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_ONE_SHOT.json
+     [ OK ]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_ONE_SHOT.json
+     [ OK ]  Genome Nexus                Genome Nexus_ONE_SHOT.json
+     [ OK ]  Gestao Hospital             Gestao Hospital_ONE_SHOT.json
+     [ OK ]  London Ambulance Service    London Ambulance Service_ONE_SHOT.json
+     [ OK ]  Calculator                  Calculator_ONE_SHOT.json
+     [ OK ]  Fitness Tracker             Fitness Tracker_ONE_SHOT.json
+     [ OK ]  Planning Poker              Planning Poker_ONE_SHOT.json
+     [ OK ]  Recycling                   Recycling_ONE_SHOT.json
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ BATCH 6/6  |  shot=FEW_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+  ▶ SIA Project 25 26 | FEW_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  6 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 12 goal
+      Low-Level Goals   3 tentativi  │ 2.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │ 35 goal
+      salvato -> SIA Project 25 26_FEW_SHOT.json  (54.0s)
+  ▶ Assegno Unico Universale - SIA Project 24 25 | FEW_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  5 attori
+      High-Level Goals  2 tentativi  │ 6.0 → 10.0/10           ACCETTATO      │ 35 goal
+      Low-Level Goals   2 tentativi  │ 4.0 → 9.5/10            ACCETTATO      │ 111 goal
+      salvato -> Assegno Unico Universale - SIA Project 24 25_FEW_SHOT.json  (143.3s)
+  ▶ La Reine Marlene - SIA Project 23 24 | FEW_SHOT | critico=ON
+      Actors            2 tentativi  │ 7.0 → 10.0/10           ACCETTATO      │  8 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 30 goal
+      Low-Level Goals   1 tentativo  │ 9.5/10                  ACCETTATO      │ 72 goal
+      salvato -> La Reine Marlene - SIA Project 23 24_FEW_SHOT.json  (64.0s)
+  ▶ Ethical Purchasing Group - SIA Project 22 23 | FEW_SHOT | critico=ON
+      Actors            3 tentativi  │ 7.0 → 4.0 → 7.0/10      SOTTO SOGLIA   │  3 attori
+      High-Level Goals  3 tentativi  │ 7.0 → 2.0 → 4.0/10      SOTTO SOGLIA   │ 12 goal
+      Low-Level Goals   3 tentativi  │ 2.0 → 4.0 → 2.0/10      SOTTO SOGLIA   │ 37 goal
+      salvato -> Ethical Purchasing Group - SIA Project 22 23_FEW_SHOT.json  (104.4s)
+  ▶ Event Organization Portal - SIA Project 21 22 | FEW_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  3 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │ 11 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 8.0 → 10.0/10     ACCETTATO      │ 35 goal
+      salvato -> Event Organization Portal - SIA Project 21 22_FEW_SHOT.json  (54.2s)
+  ▶ Genome Nexus | FEW_SHOT | critico=ON
+      Actors            3 tentativi  │ 6.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │  4 attori
+      High-Level Goals  3 tentativi  │ 2.0 → 4.0 → 10.0/10     ACCETTATO      │  8 goal
+      Low-Level Goals   2 tentativi  │ 7.0 → 8.5/10            ACCETTATO      │ 26 goal
+      salvato -> Genome Nexus_FEW_SHOT.json  (42.8s)
+  ▶ Gestao Hospital | FEW_SHOT | critico=ON
+      Actors            1 tentativo  │ 8.5/10                  ACCETTATO      │  3 attori
+      High-Level Goals  1 tentativo  │ 9.5/10                  ACCETTATO      │  8 goal
+      Low-Level Goals   3 tentativi  │ 4.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │ 40 goal
+      salvato -> Gestao Hospital_FEW_SHOT.json  (68.2s)
+  ▶ London Ambulance Service | FEW_SHOT | critico=ON
+      Actors            3 tentativi  │ 4.0 → 6.0 → 7.0/10      SOTTO SOGLIA   │  3 attori
+      High-Level Goals  3 tentativi  │ 2.0 → 2.0 → 10.0/10     ACCETTATO      │  5 goal
+      Low-Level Goals   3 tentativi  │ 3.0 → 4.0 → 8.5/10      ACCETTATO      │ 19 goal
+      salvato -> London Ambulance Service_FEW_SHOT.json  (49.1s)
+  ▶ Calculator | FEW_SHOT | critico=ON
+      Actors            1 tentativo  │ 10.0/10                 ACCETTATO      │  1 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │  3 goal
+      Low-Level Goals   1 tentativo  │ 8.5/10                  ACCETTATO      │ 11 goal
+      salvato -> Calculator_FEW_SHOT.json  (11.7s)
+  ▶ Fitness Tracker | FEW_SHOT | critico=ON
+      Actors            2 tentativi  │ 7.0 → 10.0/10           ACCETTATO      │  2 attori
+      High-Level Goals  1 tentativo  │ 10.0/10                 ACCETTATO      │  8 goal
+      Low-Level Goals   2 tentativi  │ 7.0 → 9.5/10            ACCETTATO      │ 29 goal
+      salvato -> Fitness Tracker_FEW_SHOT.json  (38.8s)
+  ▶ Planning Poker | FEW_SHOT | critico=ON
+      Actors            1 tentativo  │ 9.0/10                  ACCETTATO      │  6 attori
+      High-Level Goals  3 tentativi  │ 4.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │ 17 goal
+      Low-Level Goals   3 tentativi  │ 2.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │ 44 goal
+      salvato -> Planning Poker_FEW_SHOT.json  (96.0s)
+  ▶ Recycling | FEW_SHOT | critico=ON
+      Actors            3 tentativi  │ 7.0 → 7.0 → 4.0/10      SOTTO SOGLIA   │  5 attori
+      High-Level Goals  3 tentativi  │ 6.0 → 4.0 → 6.0/10      SOTTO SOGLIA   │ 14 goal
+      Low-Level Goals   3 tentativi  │ 3.0 → 4.0 → 4.0/10      SOTTO SOGLIA   │ 46 goal
+      salvato -> Recycling_FEW_SHOT.json  (95.4s)
+
+ Riepilogo BATCH 6/6:
+     [ OK ]  SIA Project 25 26           SIA Project 25 26_FEW_SHOT.json
+     [ OK ]  Assegno Unico Universale - SIA Project 24 25Assegno Unico Universale - SIA Project 24 25_FEW_SHOT.json
+     [ OK ]  La Reine Marlene - SIA Project 23 24La Reine Marlene - SIA Project 23 24_FEW_SHOT.json
+     [ OK ]  Ethical Purchasing Group - SIA Project 22 23Ethical Purchasing Group - SIA Project 22 23_FEW_SHOT.json
+     [ OK ]  Event Organization Portal - SIA Project 21 22Event Organization Portal - SIA Project 21 22_FEW_SHOT.json
+     [ OK ]  Genome Nexus                Genome Nexus_FEW_SHOT.json
+     [ OK ]  Gestao Hospital             Gestao Hospital_FEW_SHOT.json
+     [ OK ]  London Ambulance Service    London Ambulance Service_FEW_SHOT.json
+     [ OK ]  Calculator                  Calculator_FEW_SHOT.json
+     [ OK ]  Fitness Tracker             Fitness Tracker_FEW_SHOT.json
+     [ OK ]  Planning Poker              Planning Poker_FEW_SHOT.json
+     [ OK ]  Recycling                   Recycling_FEW_SHOT.json
+
+════════════════════════════════════════════════════════════════════════════════════════════════════
+  SUITE COMPLETATA  —  OK 72  |  SKIP 0  |  ERRORE 0   |   durata 0:15:25
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+════════════════════════════════════════════════════════════════════════════════════════════════════
+  VALUTAZIONE  —  exp_01_baseline_r3   (preprocessing HL/LL = ON)
+════════════════════════════════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=ZERO_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.7937     0.8428     0.8175
+   High-Level Goals       0.3513     0.7130     0.4706
+   Low-Level Goals        0.5383     0.6999     0.6086
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=ONE_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.7877     0.8669     0.8254
+   High-Level Goals       0.3262     0.7074     0.4465
+   Low-Level Goals        0.4749     0.7043     0.5673
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=FEW_SHOT  |  critico=OFF
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.8342     0.8418     0.8380
+   High-Level Goals       0.3824     0.7112     0.4974
+   Low-Level Goals        0.5334     0.7068     0.6080
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=ZERO_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.8111     0.8887     0.8482
+   High-Level Goals       0.3615     0.7148     0.4802
+   Low-Level Goals        0.5000     0.7541     0.6013
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=ONE_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.8086     0.9241     0.8625
+   High-Level Goals       0.3187     0.7089     0.4397
+   Low-Level Goals        0.4703     0.7202     0.5690
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ shot=FEW_SHOT  |  critico=ON
+────────────────────────────────────────────────────────────────────────────────────────────────────
+                       Precision     Recall         F1
+   Actors                 0.7723     0.9107     0.8358
+   High-Level Goals       0.3343     0.7126     0.4551
+   Low-Level Goals        0.4654     0.7367     0.5705
+                                    Precision  Recall     F1
+Goal Type        Shot Mode Critico                          
+Actors           FEW_SHOT  OFF         0.8342  0.8418 0.8380
+                           ON          0.7723  0.9107 0.8358
+                 ONE_SHOT  OFF         0.7877  0.8669 0.8254
+                           ON          0.8086  0.9241 0.8625
+                 ZERO_SHOT OFF         0.7937  0.8428 0.8175
+                           ON          0.8111  0.8887 0.8482
+High-Level Goals FEW_SHOT  OFF         0.3824  0.7112 0.4974
+                           ON          0.3343  0.7126 0.4551
+                 ONE_SHOT  OFF         0.3262  0.7074 0.4465
+                           ON          0.3187  0.7089 0.4397
+                 ZERO_SHOT OFF         0.3513  0.7130 0.4706
+                           ON          0.3615  0.7148 0.4802
+Low-Level Goals  FEW_SHOT  OFF         0.5334  0.7068 0.6080
+                           ON          0.4654  0.7367 0.5705
+                 ONE_SHOT  OFF         0.4749  0.7043 0.5673
+                           ON          0.4703  0.7202 0.5690
+                 ZERO_SHOT OFF         0.5383  0.6999 0.6086
+                           ON          0.5000  0.7541 0.6013
+Registrate 18 righe per run_label='exp_01_baseline_r3' -> ../artifacts/results/exp_01_baseline_r3/exp_01_baseline_r3_registry.csv
+                                   precision  recall     f1
+goal_type        shot_mode critic                          
+Actors           ZERO_SHOT OFF        0.7937  0.8428 0.8175
+                           ON         0.8111  0.8887 0.8482
+                 ONE_SHOT  OFF        0.7877  0.8669 0.8254
+                           ON         0.8086  0.9241 0.8625
+                 FEW_SHOT  OFF        0.8342  0.8418 0.8380
+                           ON         0.7723  0.9107 0.8358
+High-Level Goals ZERO_SHOT OFF        0.3513  0.7130 0.4706
+                           ON         0.3615  0.7148 0.4802
+                 ONE_SHOT  OFF        0.3262  0.7074 0.4465
+                           ON         0.3187  0.7089 0.4397
+                 FEW_SHOT  OFF        0.3824  0.7112 0.4974
+                           ON         0.3343  0.7126 0.4551
+Low-Level Goals  ZERO_SHOT OFF        0.5383  0.6999 0.6086
+                           ON         0.5000  0.7541 0.6013
+                 ONE_SHOT  OFF        0.4749  0.7043 0.5673
+                           ON         0.4703  0.7202 0.5690
+                 FEW_SHOT  OFF        0.5334  0.7068 0.6080
+                           ON         0.4654  0.7367 0.5705

@@ -1,0 +1,28 @@
+grouping,group,n_pairs,abs_f1_shift_median,abs_f1_shift_mean,abs_f1_shift_p90,abs_f1_shift_max
+node,actors,216,0.0,0.0205,0.0787,0.3
+node,highLevelGoals,216,0.0227,0.0391,0.0961,0.2907
+node,lowLevelGoals,216,0.0329,0.0507,0.1248,0.3082
+node+set,actors | dev,72,0.0,0.0258,0.1031,0.2506
+node+set,actors | holdout,144,0.0,0.0179,0.0734,0.3
+node+set,highLevelGoals | dev,72,0.0311,0.0416,0.076,0.1976
+node+set,highLevelGoals | holdout,144,0.0191,0.0379,0.0961,0.2907
+node+set,lowLevelGoals | dev,72,0.0304,0.0488,0.1043,0.2531
+node+set,lowLevelGoals | holdout,144,0.0334,0.0517,0.1314,0.3082
+node+critic,actors | ON,108,0.0,0.0334,0.1333,0.3
+node+critic,highLevelGoals | ON,108,0.0218,0.0403,0.1089,0.1992
+node+critic,lowLevelGoals | ON,108,0.0362,0.0549,0.1248,0.298
+node+critic,actors | OFF,108,0.0,0.0077,0.0,0.1592
+node+critic,highLevelGoals | OFF,108,0.0235,0.0379,0.0831,0.2907
+node+critic,lowLevelGoals | OFF,108,0.032,0.0466,0.1194,0.3082
+node+critic+set,actors | ON | dev,36,0.0,0.0417,0.1325,0.2506
+node+critic+set,actors | ON | holdout,72,0.0,0.0293,0.0889,0.3
+node+critic+set,highLevelGoals | ON | dev,36,0.0425,0.0518,0.1239,0.1976
+node+critic+set,highLevelGoals | ON | holdout,72,0.0147,0.0346,0.0961,0.1992
+node+critic+set,lowLevelGoals | ON | dev,36,0.0511,0.0616,0.1248,0.2531
+node+critic+set,lowLevelGoals | ON | holdout,72,0.0341,0.0515,0.1079,0.298
+node+critic+set,actors | OFF | dev,36,0.0,0.0098,0.0,0.1031
+node+critic+set,actors | OFF | holdout,72,0.0,0.0066,0.0,0.1592
+node+critic+set,highLevelGoals | OFF | dev,36,0.0257,0.0314,0.0667,0.1156
+node+critic+set,highLevelGoals | OFF | holdout,72,0.0222,0.0411,0.0898,0.2907
+node+critic+set,lowLevelGoals | OFF | dev,36,0.0261,0.036,0.0913,0.1043
+node+critic+set,lowLevelGoals | OFF | holdout,72,0.0329,0.0519,0.1319,0.3082

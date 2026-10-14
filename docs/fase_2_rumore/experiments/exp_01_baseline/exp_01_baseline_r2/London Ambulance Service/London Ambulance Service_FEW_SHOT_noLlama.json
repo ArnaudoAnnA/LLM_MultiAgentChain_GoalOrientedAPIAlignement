@@ -1,0 +1,58 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T20:00:37",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Emergency Callers"
+    ],
+    "highLevelGoals": [
+        "Ambulance Staff aim to reach emergency scenes within the critical 11-minute timeframe to provide immediate medical assistance.",
+        "Ambulance Staff need to accurately communicate their current location, departure, and destination information to facilitate effective dispatch and tracking.",
+        "Ambulance Staff must follow standard routes and communication protocols to ensure consistency and reliability in dispatch operations.",
+        "Radio Operators aim to precisely record the departure and destination information communicated by ambulance staff to maintain an accurate dispatch system.",
+        "Radio Operators need to ensure that the exact location of moving ambulances is continuously tracked and updated within the Computer Aided Despatch (CAD) system.",
+        "Emergency Callers expect an ambulance to be dispatched quickly and efficiently after reporting an emergency.",
+        "Emergency Callers require an ambulance to reach the scene within the critical 11-minute target to address their emergency effectively."
+    ],
+    "lowLevelGoals": [
+        "Ambulance Staff will receive turn-by-turn navigation instructions to optimize their route to emergency scenes.",
+        "Ambulance Staff will interact with the system to mark their arrival at the emergency scene, triggering a timestamp.",
+        "Ambulance Staff will transmit their current GPS coordinates to the central dispatch system at regular intervals.",
+        "Ambulance Staff will send a status update indicating they have departed from the emergency scene.",
+        "Ambulance Staff will send a status update indicating they are en route to a specific hospital, including the hospital's identifier.",
+        "Ambulance Staff will be able to retrieve and follow pre-configured standard routes for frequent destinations like hospitals.",
+        "Ambulance Staff will transmit a 'status available' message to the dispatch system when they are ready to receive new assignments.",
+        "Radio Operators will input the departure time and destination provided by ambulance staff into the CAD system.",
+        "Radio Operators will change the status of a dispatched ambulance to 'en route to scene' in the CAD system.",
+        "Radio Operators will access a map interface displaying the current GPS location of all ambulances in service.",
+        "Radio Operators will receive system-generated notifications if an ambulance deviates significantly from its planned route.",
+        "Emergency Callers will use a specific application or phone number to report an emergency.",
+        "Emergency Callers will receive a notification confirming that an ambulance has been dispatched to their location.",
+        "Emergency Callers will be able to see the calculated ETA for the ambulance en route to their location.",
+        "Emergency Callers will be able to track the ambulance's progress on a map interface."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

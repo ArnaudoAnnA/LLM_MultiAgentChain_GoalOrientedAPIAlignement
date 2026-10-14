@@ -1,0 +1,19 @@
+timestamp,run_label,shot_mode,critic,goal_type,generator,critic_model,precision,recall,f1
+2026-10-10 19:51,exp_01_baseline_r1,ZERO_SHOT,OFF,Actors,gemini-2.5-flash,,0.8089,0.8416,0.8249
+2026-10-10 19:51,exp_01_baseline_r1,ZERO_SHOT,ON,Actors,gemini-2.5-flash,qwen/qwen3.8-27b,0.7838,0.8858,0.8317
+2026-10-10 19:51,exp_01_baseline_r1,ONE_SHOT,OFF,Actors,gemini-2.5-flash,,0.8002,0.8627,0.8303
+2026-10-10 19:51,exp_01_baseline_r1,ONE_SHOT,ON,Actors,gemini-2.5-flash,qwen/qwen3.8-27b,0.8244,0.8771,0.85
+2026-10-10 19:51,exp_01_baseline_r1,FEW_SHOT,OFF,Actors,gemini-2.5-flash,,0.8284,0.836,0.8322
+2026-10-10 19:51,exp_01_baseline_r1,FEW_SHOT,ON,Actors,gemini-2.5-flash,qwen/qwen3.8-27b,0.7677,0.9165,0.8355
+2026-10-10 19:51,exp_01_baseline_r1,ZERO_SHOT,OFF,High-Level Goals,gemini-2.5-flash,,0.3871,0.7106,0.5012
+2026-10-10 19:51,exp_01_baseline_r1,ZERO_SHOT,ON,High-Level Goals,gemini-2.5-flash,qwen/qwen3.8-27b,0.3725,0.7189,0.4907
+2026-10-10 19:51,exp_01_baseline_r1,ONE_SHOT,OFF,High-Level Goals,gemini-2.5-flash,,0.3389,0.7097,0.4588
+2026-10-10 19:51,exp_01_baseline_r1,ONE_SHOT,ON,High-Level Goals,gemini-2.5-flash,qwen/qwen3.8-27b,0.3476,0.7063,0.4659
+2026-10-10 19:51,exp_01_baseline_r1,FEW_SHOT,OFF,High-Level Goals,gemini-2.5-flash,,0.3482,0.7072,0.4666
+2026-10-10 19:51,exp_01_baseline_r1,FEW_SHOT,ON,High-Level Goals,gemini-2.5-flash,qwen/qwen3.8-27b,0.3382,0.7107,0.4583
+2026-10-10 19:51,exp_01_baseline_r1,ZERO_SHOT,OFF,Low-Level Goals,gemini-2.5-flash,,0.5485,0.6692,0.6029
+2026-10-10 19:51,exp_01_baseline_r1,ZERO_SHOT,ON,Low-Level Goals,gemini-2.5-flash,qwen/qwen3.8-27b,0.4451,0.7522,0.5592
+2026-10-10 19:51,exp_01_baseline_r1,ONE_SHOT,OFF,Low-Level Goals,gemini-2.5-flash,,0.5173,0.6898,0.5912
+2026-10-10 19:51,exp_01_baseline_r1,ONE_SHOT,ON,Low-Level Goals,gemini-2.5-flash,qwen/qwen3.8-27b,0.4649,0.7029,0.5596
+2026-10-10 19:51,exp_01_baseline_r1,FEW_SHOT,OFF,Low-Level Goals,gemini-2.5-flash,,0.4815,0.7372,0.5825
+2026-10-10 19:51,exp_01_baseline_r1,FEW_SHOT,ON,Low-Level Goals,gemini-2.5-flash,qwen/qwen3.8-27b,0.4585,0.7337,0.5643

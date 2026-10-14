@@ -1,0 +1,377 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fase 2 — Il rumore e la regola di confronto: cosa abbiamo fatto</title>
+<style>
+:root{--bg:#fff;--fg:#17202a;--mut:#5b6876;--line:#dfe5ec;--card:#f6f8fa;--accent:#1f5fa8;--ok:#2e7d32;--warn:#b45309;--bad:#b3261e;
+ --okbg:#e8f3e9;--warnbg:#fdf1e0;--badbg:#fbe9e7;--hl:#eaf1fa;--w:#b45309;--b:#0369a1;--dev:#1f5fa8;--conf:#8aa4c2}
+@media (prefers-color-scheme:dark){:root{--bg:#10151a;--fg:#e9eef3;--mut:#9aa8b6;--line:#27323c;--card:#171e25;--accent:#7fb2ee;--ok:#7cc884;--warn:#f0b057;--bad:#f1887f;
+ --okbg:#18301c;--warnbg:#3a2a10;--badbg:#3b1a17;--hl:#182838;--w:#fbbf24;--b:#38bdf8;--dev:#7fb2ee;--conf:#5b7896}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+main{max-width:920px;margin:0 auto;padding:44px 28px 90px}
+h1{font-size:30px;line-height:1.2;margin:0 0 8px}
+h2{font-size:22px;margin:52px 0 10px;padding-top:18px;border-top:1px solid var(--line)}
+h3{font-size:17px;margin:24px 0 8px}
+p{margin:0 0 12px}
+.meta{color:var(--mut);font-size:14px;margin:0 0 20px}
+.lede{font-size:18px;max-width:72ch}
+.mut{color:var(--mut)} .small{font-size:14px}
+code{font:13px ui-monospace,Menlo,Consolas,monospace;background:var(--card);padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+.key{border-left:4px solid var(--accent);background:var(--hl);border-radius:0 10px 10px 0;padding:14px 18px;margin:16px 0}
+.key ol{margin:6px 0 0;padding-left:22px} .key li{margin-bottom:6px}
+.box{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:14px 18px;margin:14px 0}
+.box h3{margin:0 0 6px}
+.how{border-left:4px solid var(--line);padding:2px 0 2px 16px;margin:12px 0}
+.how b{color:var(--fg)} .how p{color:var(--mut);margin:0 0 6px}
+.grid2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.grid3{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.big{font-size:28px;font-weight:700;display:block;line-height:1.2}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0 14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--mut);font-size:13px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.rt th{text-align:center} .rt td.n{text-align:center}
+.c-ok{background:var(--okbg);color:var(--ok);font-weight:700} .c-ko{color:var(--mut)}
+.tag{display:inline-block;font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.t-ok{background:var(--okbg);color:var(--ok)} .t-ko{background:var(--badbg);color:var(--bad)} .t-mid{background:var(--warnbg);color:var(--warn)} .t-no{background:var(--card);color:var(--mut);border:1px solid var(--line)}
+.steps{display:grid;gap:10px;margin:14px 0}
+.stp{display:grid;grid-template-columns:42px 1fr;gap:14px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--card)}
+.stp .no{font-size:20px;font-weight:700;color:var(--accent);text-align:center}
+.stp > div > b{display:block} .stp p{margin:2px 0 0}
+svg{width:100%;height:auto;display:block;margin:6px 0}
+svg text{font:12.5px ui-sans-serif,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;fill:var(--fg)}
+svg .lab{fill:var(--fg);font-size:13px} svg .tick{fill:var(--mut);font-size:12px} svg .in{fill:#fff;font-weight:700;font-size:12px}
+svg .ax{stroke:var(--mut);stroke-width:1} svg .grid{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+svg .span{stroke:var(--mut);stroke-width:2;opacity:.5}
+svg .dot-a{fill:var(--accent)} svg .dot-w{fill:var(--w)} svg .dot-m{fill:none;stroke:var(--mut);stroke-width:2}
+.s-ok{fill:#2e7d32} .s-mid{fill:#b8860b} .s-bad{fill:#b3261e}
+@media (prefers-color-scheme:dark){.s-ok{fill:#3f9a45}.s-mid{fill:#c99a1d}.s-bad{fill:#d2584d}}
+svg .s-dev{fill:var(--dev)} svg .s-conf{fill:var(--conf)}
+svg .bw{fill:var(--w)} svg .bb{fill:var(--b)}
+svg .h-in{fill:var(--accent);opacity:.85} svg .h-out{fill:var(--mut);opacity:.35}
+svg .thr{stroke:var(--warn);stroke-width:2;stroke-dasharray:5 4} svg .thrl{fill:var(--warn);font-weight:700;font-size:13px}
+svg .iv{stroke:var(--accent);stroke-width:3}
+svg .node{fill:var(--card);stroke:var(--line);stroke-width:1.5} svg .node.dash{stroke-dasharray:5 4;stroke:var(--accent)}
+svg .bt{font-weight:700;font-size:14px} svg .bs{fill:var(--mut);font-size:12px}
+svg .arr{stroke:var(--mut);stroke-width:2;fill:none;marker-end:url(#ah)} svg .arr.loop{stroke:var(--accent)}
+.leg{font-size:14px;color:var(--mut)}
+.sw{display:inline-block;width:12px;height:12px;border-radius:3px;vertical-align:-1px}
+.sw.ok{background:#2e7d32}.sw.mid{background:#b8860b}.sw.bad{background:#b3261e}.sw.dev{background:var(--dev)}.sw.conf{background:var(--conf)}
+.sw.w{background:var(--w)}.sw.b{background:var(--b)}
+.eq{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0}
+.eq .cell{border:1px solid var(--line);border-radius:8px;background:var(--card);padding:6px 10px;text-align:center;font-size:15px}
+.eq .op{font-size:20px;color:var(--mut)}
+.bars{display:grid;grid-template-columns:90px 1fr 56px;gap:6px 10px;align-items:center;font-size:14px;margin:8px 0}
+.bars .track{background:var(--bg);border:1px solid var(--line);border-radius:5px;height:16px;overflow:hidden}
+.bars .fill{height:100%;background:var(--accent)} .bars .fill.f{background:var(--warn)}
+.bars .v{text-align:right;font-variant-numeric:tabular-nums}
+.rep{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:12px 14px}
+.rep h4{margin:0 0 6px;font-size:14px;color:var(--mut)}
+.gl{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14.5px;margin:6px 0}
+.gl dt{font-weight:700;margin:0} .gl dd{margin:0;color:var(--mut)}
+.ex{border:1px dashed var(--line);border-radius:10px;padding:12px 16px;margin:14px 0;background:var(--bg)}
+.ex .tagx{font-size:12.5px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
+</style>
+</head>
+<body><main>
+<svg width="0" height="0" style="position:absolute"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#5b6876"/></marker></defs></svg>
+
+<h1>Fase 2 — Quanto cambiano i risultati se non cambiamo niente, e come decidiamo se un miglioramento è vero</h1>
+<p class="meta">Data: 13 ottobre 2026 &nbsp;·&nbsp; Tesi magistrale, campagna 2 &nbsp;·&nbsp; Riepilogo per il relatore</p>
+<p class="lede">Prima di provare qualunque miglioria al sistema di estrazione dei goal dobbiamo sapere di quanto i risultati
+cambiano da soli. Senza questo, nessuna differenza fra due esperimenti si può interpretare. Qui spieghiamo cosa abbiamo misurato,
+perché lo abbiamo fatto così, cosa è uscito e cosa ne abbiamo deciso.</p>
+
+<div class="key"><b>In breve</b>
+<ol>
+<li><b>Il sistema non è ripetibile.</b> Stesso input, stesse impostazioni, temperatura 0 e seed fisso: le tre liste di goal non sono quasi mai tutte uguali
+(per i goal di basso livello, 1 caso su 72). La variazione nasce già nel generatore.</li>
+<li><b>Il punteggio F1 oscilla da solo di circa 0,02–0,03</b>, con scarti di 0,10 o più una volta su dieci, e l'oscillazione è molto diversa
+da sistema a sistema (da 0,02 a 0,13 sui goal di basso livello).</li>
+<li><b>Gli effetti del critico e degli esempi nel prompt sono, quasi sempre, grandi quanto questo rumore.</b> Su 27 confronti solo 4 lo superano
+in modo costante, e nessuno dei 4 è solido.</li>
+<li><b>Serve una regola di confronto scelta con prove, non a intuito.</b> Su sei candidate, la prova su esperimenti simulati indica l'intervallo
+bootstrap (una fascia di valori plausibili per la differenza, ricavata ricampionando i dati). Con 12 sistemi riconosce effetti da 0,05 in su; con 8 o con 4, da 0,10.</li>
+</ol></div>
+
+<h2>1. Il punto di partenza</h2>
+<p>Nell'ingegneria dei requisiti con approccio a obiettivi (<b>GORE</b>, <i>Goal-Oriented Requirements Engineering</i>) un sistema software si descrive
+dicendo <i>chi</i> lo usa e <i>quali obiettivi</i> deve raggiungere, dai più generali ai più concreti. Il nostro sistema legge la descrizione di un
+software e ne ricava tre liste: <b>attori</b>, <b>HLG</b> (High-Level Goal, i goal generali) e <b>LLG</b> (Low-Level Goal, i goal di dettaglio).
+La tesi studia se interventi sul modo in cui si istruisce il modello migliorano questa estrazione.</p>
+<div class="ex"><span class="tagx">Esempio inventato, non è uno dei 12 sistemi</span>
+<dl class="gl">
+<dt>Description</dt><dd>«Un'app per noleggiare biciclette in città: l'utente sceglie una bici e la sblocca col telefono; l'operatore ritira quelle da riparare.»
+È il testo in ingresso, scritto in prosa.</dd>
+<dt>Attori</dt><dd>Utente, Operatore: le figure che interagiscono con il sistema.</dd>
+<dt>HLG</dt><dd>«Permettere agli utenti di spostarsi in città senza possedere una bici»: <i>cosa</i> il sistema vuole ottenere, in generale.</dd>
+<dt>LLG</dt><dd>«Sbloccare la bici quando l'utente inquadra il codice QR»; «Segnalare all'operatore le bici da riparare»: <i>come</i> ci si arriva, un passo concreto alla volta.</dd>
+<dt>Ground truth</dt><dd>La lista di riferimento, scritta a mano e concordata, con gli attori e i goal giusti di ciascun sistema. È il «compito corretto» contro cui si corregge il sistema.</dd>
+</dl></div>
+<svg viewBox="0 0 810 186" role="img"><rect x="10" y="40" width="130" height="80" rx="10" class="node"/><text x="75.0" y="68" class="bt" text-anchor="middle">Description</text><text x="75.0" y="87" class="bs" text-anchor="middle">testo che descrive</text><text x="75.0" y="102" class="bs" text-anchor="middle">un sistema software</text><rect x="160" y="40" width="150" height="80" rx="10" class="node"/><text x="235.0" y="68" class="bt" text-anchor="middle">Generatore</text><text x="235.0" y="87" class="bs" text-anchor="middle">produce attori,</text><text x="235.0" y="102" class="bs" text-anchor="middle">HLG e LLG</text><rect x="330" y="40" width="150" height="80" rx="10" class="node dash"/><text x="405.0" y="68" class="bt" text-anchor="middle">Critico</text><text x="405.0" y="87" class="bs" text-anchor="middle">voto da 0 a 10</text><text x="405.0" y="102" class="bs" text-anchor="middle">acceso o spento</text><rect x="500" y="40" width="140" height="80" rx="10" class="node"/><text x="570.0" y="68" class="bt" text-anchor="middle">Liste generate</text><text x="570.0" y="87" class="bs" text-anchor="middle">attori · HLG · LLG</text><text x="570.0" y="102" class="bs" text-anchor="middle"></text><rect x="660" y="40" width="150" height="80" rx="10" class="node"/><text x="735.0" y="68" class="bt" text-anchor="middle">Valutazione</text><text x="735.0" y="87" class="bs" text-anchor="middle">confronto con la lista</text><text x="735.0" y="102" class="bs" text-anchor="middle">di riferimento → F1</text><line x1="142" y1="80" x2="156" y2="80" class="arr"/><line x1="312" y1="80" x2="326" y2="80" class="arr"/><line x1="482" y1="80" x2="496" y2="80" class="arr"/><line x1="642" y1="80" x2="656" y2="80" class="arr"/><path d="M405.0 122 L405.0 160 L235.0 160 L235.0 124" class="arr loop"/><text x="320.0" y="180" class="bs" text-anchor="middle">voto sotto 8,5 → riscrivi (al massimo 3 tentativi)</text></svg>
+<div class="grid2" style="grid-template-columns:repeat(auto-fit,minmax(380px,1fr))">
+<div class="box"><h3>Generatore</h3><p class="small mut">Il modello che produce le liste (<code>gemini-2.5-flash</code>), guidato da un <b>prompt</b>: il testo di istruzioni che gli si dà.
+Lo usiamo con <b>temperatura 0</b> e <b>seed fisso</b>. La temperatura è quanta casualità il modello ammette nello scegliere le parole: a 0 sceglie sempre la più probabile.
+Il seed è il numero di partenza del generatore casuale: fissarlo serve a ripetere la stessa sequenza. Con queste due impostazioni ci si aspetta la stessa risposta a ogni richiesta uguale.</p></div>
+<div class="box"><h3>Critico</h3><p class="small mut">Un secondo modello (<code>qwen3.8-27b</code>) che legge le liste prodotte e dà un voto da 0 a 10, per far correggere gli errori prima di consegnarle.
+Sotto 8,5 il generatore deve riscriverle, al massimo 3 volte. Può essere <b>acceso o spento</b>: è una delle due cose che confronteremo.</p></div>
+<div class="box"><h3>Shot mode</h3><p class="small mut">Quanti <b>esempi svolti</b> (una descrizione già accompagnata dalle sue liste corrette) il prompt contiene, come modello da imitare:
+nessuno (<b>zero-shot</b>), uno (<b>one-shot</b>) o più (<b>few-shot</b>). È l'altra cosa che confronteremo.</p></div>
+<div class="box"><h3>Esecuzione, configurazione, replica</h3>
+<p class="small mut"><b>Esecuzione</b>: una chiamata completa del sistema su una descrizione, con certe impostazioni. <b>Configurazione</b>: una combinazione di shot mode e critico (3 × 2 = 6).
+<b>Replica</b>: l'insieme completo delle esecuzioni, rifatto da capo senza cambiare niente. Una replica serve a vedere se, rifacendo tutto uguale, si ottiene lo stesso.</p></div>
+</div>
+<div class="box"><h3>Il punteggio: precision, recall, F1</h3>
+<p class="small mut"><b>Abbinamento.</b> Lo stesso goal può essere scritto con parole diverse, quindi non si cerca il testo identico: ogni goal viene trasformato in un vettore di numeri
+che ne rappresenta il significato, e la somiglianza fra due goal è quanto i vettori sono vicini (0 = non c'entrano, 1 = dicono la stessa cosa). Ogni goal generato viene abbinato
+a un solo goal di riferimento, scegliendo l'insieme di abbinamenti con somiglianza totale più alta. Ogni coppia vale per la sua somiglianza, non «sì/no»: per questo si parla di <i>soft</i> F1.</p>
+<p class="small mut"><b>Precision</b>: quanta parte di ciò che il sistema ha prodotto è giusta. <b>Recall</b>: quanta parte di ciò che era atteso è stato trovato.
+<b>F1</b>: la media armonica delle due, da 0 a 1. A differenza della media semplice, punisce gli squilibri: con precision 1,0 e recall 0,2 la media semplice è 0,60, l'F1 è 0,33.</p>
+<p class="small mut"><b>Esempio (numeri inventati).</b> Il riferimento ha 10 goal; il sistema ne produce 20, di cui 8 abbinati bene. Precision = 8/20 = 0,40; recall = 8/10 = 0,80;
+F1 = 2·0,40·0,80 / (0,40+0,80) = 0,53. Aggiungere goal superflui non fa perdere ciò che si è trovato (recall ferma) ma abbassa la precision.</p>
+<p class="small mut">Tutti i numeri di questa pagina sono calcolati con la metrica del lavoro di partenza, la cui validità è oggetto della fase successiva.</p></div>
+
+<h3>Cosa si esegue, e quante volte</h3>
+<div class="eq">
+<div class="cell"><b>12</b> sistemi<br><span class="mut small">4 sviluppo + 8 conferma</span></div><span class="op">×</span>
+<div class="cell"><b>6</b> configurazioni<br><span class="mut small">3 shot × critico sì/no</span></div><span class="op">=</span>
+<div class="cell"><b>72</b> esecuzioni<br><span class="mut small">una replica</span></div><span class="op">×</span>
+<div class="cell"><b>3</b> repliche<br><span class="mut small">rifatte da capo, identiche</span></div><span class="op">=</span>
+<div class="cell"><b>216</b> esecuzioni<br><span class="mut small">in tutto</span></div>
+</div>
+<p class="small mut">Un «<b>sistema</b>» è una delle 12 descrizioni di software del corpus, con la sua lista di riferimento.
+<b>Sviluppo</b>: Genome Nexus, Gestao Hospital, London Ambulance Service, SIA Project 25/26. Servono a mettere a punto i miglioramenti: ci si può guardare dentro e correggere.
+<b>Conferma</b>: gli altri 8. Servono a verificare una volta sola, senza iterarci sopra, come in un esame: se ci si allenasse sopra, il risultato non direbbe niente su sistemi nuovi.
+Ogni esecuzione produce tre liste (attori, HLG, LLG), quindi per ogni tipo di lista ci sono 72 «casi» (sistema × configurazione), ciascuno con tre punteggi, uno per replica.</p>
+
+<h2>2. La domanda, e perché serve</h2>
+<p><b>Se rilancio lo stesso esperimento identico, di quanto si spostano i punteggi?</b></p>
+<p>Chiamiamo <b>rumore</b> la variazione dei punteggi che compare senza che abbiamo cambiato niente. Con temperatura 0 e seed fisso ci aspettavamo
+che fosse zero: è la prima cosa che abbiamo verificato. Gli interventi di prompting hanno effetti piccoli: se i punteggi oscillano da soli della stessa quantità,
+promuovere o scartare un intervento equivale a tirare una moneta.</p>
+<div class="how"><p><b>Esempio (numeri inventati).</b> La replica 1 dà F1 = 0,50 su una configurazione. La replica 2, identica, dà 0,54.
+Allora una miglioria che porta quella configurazione da 0,50 a 0,54 non dimostra niente: lo stesso salto è già avvenuto senza cambiare nulla.</p></div>
+<p>Lo misuriamo <b>per sistema e su tutti e 12</b>, perché le prime prove avevano mostrato che l'oscillazione non è uguale ovunque, e perché anche
+la conferma sugli 8 sistemi ha bisogno della propria soglia di rumore.</p>
+
+<h2>3. Cosa abbiamo fatto, e perché</h2>
+<div class="steps">
+<div class="stp"><div class="no">1</div><div><b>Congelare ciò che non si può cambiare dopo</b>
+<p class="mut small">Le tre description in italiano sono state tradotte in inglese (e una quarta ripulita nel formato); le 24 esecuzioni già fatte su quei quattro sistemi sono state rifatte.
+London Ambulance è rimasto fra i sistemi di sviluppo. Abbiamo messo nero su bianco, prima di leggere i punteggi, quali misure avremmo calcolato.<br>
+<b>Perché:</b> «congelare» vuol dire fissare input e misure in modo che non cambino più. Gli output uscivano in italiano contro una lista di riferimento in inglese,
+e un confronto così non si sa leggere. Cambiare l'input dopo avrebbe reso i numeri raccolti prima non confrontabili con quelli dopo. Scrivere le misure prima evita di sceglierle in base ai numeri.</p></div></div>
+<div class="stp"><div class="no">2</div><div><b>Ripetere l'esperimento identico due volte</b>
+<p class="mut small">Alla replica 1 abbiamo aggiunto le repliche 2 e 3: altre 144 esecuzioni.<br>
+<b>Perché:</b> con una sola replica non si vede nessuna oscillazione; con tre se ne ha una prima stima.</p></div></div>
+<div class="stp"><div class="no">3</div><div><b>Misurare l'oscillazione</b>
+<p class="mut small">Le tre liste sono uguali? Di quanto cambia l'F1, per tipo di lista, configurazione e sistema?<br>
+<b>Perché:</b> il rumore non è uniforme, va visto pezzo per pezzo.</p></div></div>
+<div class="stp"><div class="no">4</div><div><b>Costruire il rumore di riferimento (null empirico)</b>
+<p class="mut small">Mettiamo a confronto repliche della stessa configurazione e misuriamo di quanto si spostano quando <i>non è cambiato niente</i>.<br>
+«Null» è l'ipotesi «non è cambiato niente»; «empirico» vuol dire misurato dai dati e non calcolato da una formula.<br>
+<b>Perché:</b> è la soglia contro cui leggere ogni effetto futuro: una differenza ha senso solo se è più grande di ciò che succede da sola.</p></div></div>
+<div class="stp"><div class="no">5</div><div><b>Scrivere la regola di confronto prima dei prossimi esperimenti</b>
+<p class="mut small">Sei regole candidate, due prove su esperimenti simulati, una scelta.<br>
+<b>Perché:</b> lo stesso dato dà conclusioni opposte a seconda della regola (sezione 7): va scelta prima, non guardando quale risultato piace di più.</p></div></div>
+<div class="stp"><div class="no">6</div><div><b>Fissare le regole di procedura</b>
+<p class="mut small">Come si ripeteranno gli esperimenti futuri: quante repliche, se serve il critico acceso e spento, se London Ambulance resta fra i sistemi di sviluppo (sezione 10).</p></div></div>
+</div>
+
+<h2>4. Risultato A — Il sistema non è ripetibile</h2>
+<div class="key">Con input e impostazioni identici, le tre liste di goal non sono quasi mai tutte uguali. La variazione nasce già a critico spento,
+quindi viene dal generatore; il critico ne aggiunge altra sugli attori: una riscrittura chiesta dal critico è un'altra chiamata al modello, quindi un'altra occasione di variare.</div>
+<svg viewBox="0 0 640 230" role="img"><text x="182" y="21.0" class="lab" text-anchor="end">Attori · critico spento</text><rect x="190.0" y="6" width="342.2" height="22" class="s-ok"/><text x="361.1" y="21.0" class="in" text-anchor="middle">28</text><rect x="532.2" y="6" width="97.8" height="22" class="s-mid"/><text x="581.1" y="21.0" class="in" text-anchor="middle">8</text><text x="182" y="53.0" class="lab" text-anchor="end">Attori · critico acceso</text><rect x="190.0" y="38" width="220.0" height="22" class="s-ok"/><text x="300.0" y="53.0" class="in" text-anchor="middle">18</text><rect x="410.0" y="38" width="158.9" height="22" class="s-mid"/><text x="489.4" y="53.0" class="in" text-anchor="middle">13</text><rect x="568.9" y="38" width="61.1" height="22" class="s-bad"/><text x="599.4" y="53.0" class="in" text-anchor="middle">5</text><text x="182" y="99.0" class="lab" text-anchor="end">HLG · critico spento</text><rect x="190.0" y="84" width="12.2" height="22" class="s-ok"/><rect x="202.2" y="84" width="256.7" height="22" class="s-mid"/><text x="330.6" y="99.0" class="in" text-anchor="middle">21</text><rect x="458.9" y="84" width="171.1" height="22" class="s-bad"/><text x="544.4" y="99.0" class="in" text-anchor="middle">14</text><text x="182" y="131.0" class="lab" text-anchor="end">HLG · critico acceso</text><rect x="190.0" y="116" width="12.2" height="22" class="s-ok"/><rect x="202.2" y="116" width="207.8" height="22" class="s-mid"/><text x="306.1" y="131.0" class="in" text-anchor="middle">17</text><rect x="410.0" y="116" width="220.0" height="22" class="s-bad"/><text x="520.0" y="131.0" class="in" text-anchor="middle">18</text><text x="182" y="177.0" class="lab" text-anchor="end">LLG · critico spento</text><rect x="190.0" y="162" width="12.2" height="22" class="s-ok"/><rect x="202.2" y="162" width="97.8" height="22" class="s-mid"/><text x="251.1" y="177.0" class="in" text-anchor="middle">8</text><rect x="300.0" y="162" width="330.0" height="22" class="s-bad"/><text x="465.0" y="177.0" class="in" text-anchor="middle">27</text><text x="182" y="209.0" class="lab" text-anchor="end">LLG · critico acceso</text><rect x="190.0" y="194" width="24.4" height="22" class="s-mid"/><text x="202.2" y="209.0" class="in" text-anchor="middle">2</text><rect x="214.4" y="194" width="415.6" height="22" class="s-bad"/><text x="422.2" y="209.0" class="in" text-anchor="middle">34</text></svg>
+<p class="leg"><span class="sw ok"></span> le tre repliche danno la stessa lista &nbsp; <span class="sw mid"></span> due uguali, una diversa &nbsp; <span class="sw bad"></span> tutte e tre diverse</p>
+<div class="how">
+<p><b>Come leggerla.</b> Ogni barra raccoglie 36 casi (12 sistemi × 3 shot mode, a critico acceso o spento). Di ciascuno si confrontano le tre liste prodotte nelle tre repliche, come insiemi di voci,
+ignorando l'ordine. «Uguali» vuol dire identiche parola per parola: basta un termine diverso in un goal perché la lista conti come diversa. È un criterio severo; per questo,
+nella sezione 5, guardiamo anche di quanto cambia il punteggio.</p>
+<p><b>Cosa significa.</b> Gli attori sono stabili in due casi su tre. I goal cambiano praticamente sempre: HLG uguali in 2 casi su 72, LLG in 1 su 72.
+Già a critico spento (cioè con il solo generatore) le liste di goal variano quasi sempre, anche a temperatura 0 e con seed fisso.</p>
+<p><b>Esempio di lettura.</b> Riga «Attori · critico acceso»: in 18 casi su 36 le tre repliche danno gli stessi attori, contro 28 su 36 a critico spento.</p></div>
+
+<h2>5. Risultato B — L'F1 oscilla di 0,02–0,03, e non allo stesso modo ovunque</h2>
+<div class="key">Fra due repliche identiche l'F1 dello stesso caso differisce di solito di 0,00 (attori), 0,02 (HLG) e 0,03 (LLG);
+una volta su dieci di 0,08–0,12 o più. Si muove la precision, non la recall.</div>
+<svg viewBox="0 0 640 190" role="img"><text x="140" y="38" class="lab" text-anchor="end">Attori</text><line x1="150" y1="34" x2="610" y2="34" class="grid"/><line x1="150.0" y1="34" x2="263.1" y2="34" class="span"/><circle cx="150.0" cy="34" r="7" class="dot-a"/><circle cx="263.1" cy="34" r="7" class="dot-w"/><circle cx="581.2" cy="34" r="6" class="dot-m"/><text x="150.0" y="22" class="tick" text-anchor="middle">0,00</text><text x="263.1" y="22" class="tick" text-anchor="middle">0,08</text><text x="581.2" y="22" class="tick" text-anchor="middle">0,30</text><text x="140" y="82" class="lab" text-anchor="end">HLG</text><line x1="150" y1="78" x2="610" y2="78" class="grid"/><line x1="182.6" y1="78" x2="288.1" y2="78" class="span"/><circle cx="182.6" cy="78" r="7" class="dot-a"/><circle cx="288.1" cy="78" r="7" class="dot-w"/><circle cx="567.9" cy="78" r="6" class="dot-m"/><text x="182.6" y="66" class="tick" text-anchor="middle">0,02</text><text x="288.1" y="66" class="tick" text-anchor="middle">0,10</text><text x="567.9" y="66" class="tick" text-anchor="middle">0,29</text><text x="140" y="126" class="lab" text-anchor="end">LLG</text><line x1="150" y1="122" x2="610" y2="122" class="grid"/><line x1="197.3" y1="122" x2="329.4" y2="122" class="span"/><circle cx="197.3" cy="122" r="7" class="dot-a"/><circle cx="329.4" cy="122" r="7" class="dot-w"/><circle cx="593.0" cy="122" r="6" class="dot-m"/><text x="197.3" y="110" class="tick" text-anchor="middle">0,03</text><text x="329.4" y="110" class="tick" text-anchor="middle">0,12</text><text x="593.0" y="110" class="tick" text-anchor="middle">0,31</text><line x1="150" y1="148" x2="610" y2="148" class="ax"/><line x1="150.0" y1="144" x2="150.0" y2="152" class="ax"/><text x="150.0" y="166" class="tick" text-anchor="middle">0,00</text><line x1="221.9" y1="144" x2="221.9" y2="152" class="ax"/><text x="221.9" y="166" class="tick" text-anchor="middle">0,05</text><line x1="293.8" y1="144" x2="293.8" y2="152" class="ax"/><text x="293.8" y="166" class="tick" text-anchor="middle">0,10</text><line x1="365.6" y1="144" x2="365.6" y2="152" class="ax"/><text x="365.6" y="166" class="tick" text-anchor="middle">0,15</text><line x1="437.5" y1="144" x2="437.5" y2="152" class="ax"/><text x="437.5" y="166" class="tick" text-anchor="middle">0,20</text><line x1="509.4" y1="144" x2="509.4" y2="152" class="ax"/><text x="509.4" y="166" class="tick" text-anchor="middle">0,25</text><line x1="581.2" y1="144" x2="581.2" y2="152" class="ax"/><text x="581.2" y="166" class="tick" text-anchor="middle">0,30</text></svg>
+<p class="leg"><span class="sw" style="background:var(--accent)"></span> valore tipico (mediana) &nbsp; <span class="sw" style="background:var(--w)"></span> una volta su dieci &nbsp; ○ caso peggiore osservato</p>
+<div class="how">
+<p><b>Come leggerla.</b> Per ogni caso (sistema × configurazione) si prendono le tre repliche a due a due (1-2, 1-3, 2-3) e si calcola di quanto differiscono i due F1, senza segno:
+72 casi × 3 coppie = 216 differenze per tipo di lista. Il <b>valore tipico</b> (mediana) è quello che sta a metà: metà delle differenze è più piccola. <b>Una volta su dieci</b> vuol dire il 90° percentile:
+solo una differenza su dieci lo supera. Il <b>caso peggiore</b> è la differenza più grande vista in assoluto. Per gli attori il valore tipico è 0,00 perché le liste sono spesso identiche (sezione 4).</p>
+<p><b>Cosa significa.</b> Una differenza di 0,02–0,03 fra due esperimenti compare anche senza cambiare niente, e ogni tanto il rumore da solo arriva a 0,10–0,12.
+Un esperimento si legge poi sulla <i>media</i> dei 12 sistemi, che attenua il rumore ma non lo elimina: anche così arriva fino a 0,04.</p></div>
+
+<h3>Perché oscilla: un caso reale</h3>
+<p>Gli LLG di <i>Assegno Unico Universale</i>, zero-shot, critico acceso, nelle tre repliche identiche:</p>
+<div class="grid3"><div class="rep"><h4>Replica 1</h4><span class="big">115</span><span class="mut small">goal diversi prodotti</span><div class="bars"><span>Recall</span><span class="track"><span class="fill " style="display:block;width:82%"></span></span><span class="v">0,82</span><span>Precision</span><span class="track"><span class="fill " style="display:block;width:19%"></span></span><span class="v">0,19</span><span>F1</span><span class="track"><span class="fill f" style="display:block;width:31%"></span></span><span class="v">0,31</span></div></div><div class="rep"><h4>Replica 2</h4><span class="big">93</span><span class="mut small">goal diversi prodotti</span><div class="bars"><span>Recall</span><span class="track"><span class="fill " style="display:block;width:81%"></span></span><span class="v">0,81</span><span>Precision</span><span class="track"><span class="fill " style="display:block;width:15%"></span></span><span class="v">0,15</span><span>F1</span><span class="track"><span class="fill f" style="display:block;width:26%"></span></span><span class="v">0,26</span></div></div><div class="rep"><h4>Replica 3</h4><span class="big">53</span><span class="mut small">goal diversi prodotti</span><div class="bars"><span>Recall</span><span class="track"><span class="fill " style="display:block;width:80%"></span></span><span class="v">0,80</span><span>Precision</span><span class="track"><span class="fill " style="display:block;width:42%"></span></span><span class="v">0,42</span><span>F1</span><span class="track"><span class="fill f" style="display:block;width:55%"></span></span><span class="v">0,55</span></div></div></div>
+<div class="how"><p><b>Cosa significa.</b> Il sistema trova sempre le stesse cose giuste (recall ferma a circa 0,80), ma ogni volta ne aggiunge un numero diverso di superflue.
+Con 115 goal invece di 53 la precision si dimezza, e l'F1 con lei. In generale oscilla la precision, non la recall: quando il sistema scrive più goal del solito,
+quelli in più sono quasi sempre fuori bersaglio e abbassano la precision, senza togliere quelli giusti.</p></div>
+
+<h3>Non tutti i sistemi oscillano allo stesso modo</h3>
+<svg viewBox="0 0 640 308" role="img"><text x="162" y="19" class="lab" text-anchor="end">Assegno Unico</text><rect x="170" y="6" width="384.0" height="18" rx="2" class="s-conf"/><text x="560.0" y="19" class="tick">0,13</text><text x="162" y="44" class="lab" text-anchor="end">Gestao Hospital</text><rect x="170" y="31" width="297.7" height="18" rx="2" class="s-dev"/><text x="473.7" y="44" class="tick">0,10</text><text x="162" y="69" class="lab" text-anchor="end">La Reine Marlene</text><rect x="170" y="56" width="261.7" height="18" rx="2" class="s-conf"/><text x="437.7" y="69" class="tick">0,09</text><text x="162" y="94" class="lab" text-anchor="end">Genome Nexus</text><rect x="170" y="81" width="206.6" height="18" rx="2" class="s-dev"/><text x="382.6" y="94" class="tick">0,07</text><text x="162" y="119" class="lab" text-anchor="end">SIA 25/26</text><rect x="170" y="106" width="200.9" height="18" rx="2" class="s-dev"/><text x="376.9" y="119" class="tick">0,07</text><text x="162" y="144" class="lab" text-anchor="end">Calculator</text><rect x="170" y="131" width="194.9" height="18" rx="2" class="s-conf"/><text x="370.9" y="144" class="tick">0,07</text><text x="162" y="169" class="lab" text-anchor="end">Fitness Tracker</text><rect x="170" y="156" width="170.3" height="18" rx="2" class="s-conf"/><text x="346.3" y="169" class="tick">0,06</text><text x="162" y="194" class="lab" text-anchor="end">Recycling</text><rect x="170" y="181" width="132.0" height="18" rx="2" class="s-conf"/><text x="308.0" y="194" class="tick">0,05</text><text x="162" y="219" class="lab" text-anchor="end">Ethical Purchasing</text><rect x="170" y="206" width="129.1" height="18" rx="2" class="s-conf"/><text x="305.1" y="219" class="tick">0,05</text><text x="162" y="244" class="lab" text-anchor="end">Event Portal</text><rect x="170" y="231" width="76.6" height="18" rx="2" class="s-conf"/><text x="252.6" y="244" class="tick">0,03</text><text x="162" y="269" class="lab" text-anchor="end">Planning Poker</text><rect x="170" y="256" width="72.3" height="18" rx="2" class="s-conf"/><text x="248.3" y="269" class="tick">0,03</text><text x="162" y="294" class="lab" text-anchor="end">London Ambulance</text><rect x="170" y="281" width="62.0" height="18" rx="2" class="s-dev"/><text x="238.0" y="294" class="tick">0,02</text></svg>
+<p class="leg"><span class="sw dev"></span> sistema di sviluppo &nbsp; <span class="sw conf"></span> sistema di conferma</p>
+<div class="how"><p><b>Come leggerla.</b> Per ogni sistema, distanza fra l'F1 più alto e il più basso delle tre repliche, sui goal di basso livello; il numero è il valore tipico sulle sue 6 configurazioni.</p>
+<p><b>Cosa significa.</b> Il sistema più instabile oscilla sei volte più del più stabile. Per questo la soglia di rumore va misurata per sistema e non fissata come un numero unico.</p></div>
+
+<h2>6. Risultato C — Gli effetti di critico ed esempi, davanti al rumore</h2>
+<div class="key">Abbiamo confrontato configurazioni diverse (critico acceso contro spento; zero contro uno contro più esempi) con la media sui 12 sistemi, e
+abbiamo chiesto se la differenza supera il rumore in tutte e tre le repliche. Su 27 confronti: 4 sì, 13 solo in una o due repliche, 10 mai.</div>
+<svg viewBox="0 0 640 106" role="img"><text x="182" y="21.0" class="lab" text-anchor="end">Attori</text><rect x="190.0" y="6" width="146.7" height="22" class="s-ok"/><text x="263.3" y="21.0" class="in" text-anchor="middle">3</text><rect x="336.7" y="6" width="146.7" height="22" class="s-mid"/><text x="410.0" y="21.0" class="in" text-anchor="middle">3</text><rect x="483.3" y="6" width="146.7" height="22" class="s-bad"/><text x="556.7" y="21.0" class="in" text-anchor="middle">3</text><text x="182" y="53.0" class="lab" text-anchor="end">HLG</text><rect x="190.0" y="38" width="195.6" height="22" class="s-mid"/><text x="287.8" y="53.0" class="in" text-anchor="middle">4</text><rect x="385.6" y="38" width="244.4" height="22" class="s-bad"/><text x="507.8" y="53.0" class="in" text-anchor="middle">5</text><text x="182" y="85.0" class="lab" text-anchor="end">LLG</text><rect x="190.0" y="70" width="48.9" height="22" class="s-ok"/><text x="214.4" y="85.0" class="in" text-anchor="middle">1</text><rect x="238.9" y="70" width="293.3" height="22" class="s-mid"/><text x="385.6" y="85.0" class="in" text-anchor="middle">6</text><rect x="532.2" y="70" width="97.8" height="22" class="s-bad"/><text x="581.1" y="85.0" class="in" text-anchor="middle">2</text></svg>
+<p class="leg"><span class="sw ok"></span> supera il rumore in tutte e tre le repliche &nbsp; <span class="sw mid"></span> solo in una o due &nbsp; <span class="sw bad"></span> mai</p>
+<div class="how">
+<p><b>Come leggerla.</b> Un <b>confronto</b> è la differenza fra le medie sui 12 sistemi di due configurazioni, calcolata replica per replica (quindi tre valori).
+Per ogni tipo di lista ce ne sono 9: critico acceso − spento a ciascuno dei 3 shot mode (3), e passare da zero a uno, da uno a più, da zero a più esempi, ciascuno a critico spento e acceso (6).
+Il rumore di un confronto è lo spostamento massimo che la media subisce rilanciando una delle due configurazioni (cioè confrontandone fra loro le tre repliche).
+«Supera il rumore» vuol dire che, in una replica, la differenza è più grande di questa soglia; «in tutte e tre» che lo è in ognuna.</p>
+<p><b>Cosa significa.</b> Sugli HLG nessuna configurazione è riconoscibilmente migliore di un'altra. I 4 confronti che passano non sono solidi:
+due dipendono da un solo sistema (<i>Fitness Tracker</i>, uno dei 12, che con più esempi sale da 0,29 a 1,00; senza di lui la differenza scende sotto 0,01),
+uno cambia segno fra sistemi di sviluppo e di conferma, uno supera il rumore per un soffio (0,026 contro 0,025).</p>
+<p><b>Una cautela.</b> Questa regola («più del massimo spostamento osservato») è stata scritta dopo aver visto i numeri: vale come prima lettura, non come regola.</p></div>
+
+<h2>7. Il problema: la regola cambia la conclusione</h2>
+<p>Prendiamo un caso solo, che useremo da qui in poi: <b>sui goal di basso livello, con più esempi nel prompt, accendere il critico cambia l'F1?</b></p>
+<p>Nelle tre repliche, in media sui 12 sistemi, il critico abbassa l'F1 di 0,026, 0,032 e 0,040.
+Sembra chiaro. Ma applicando sei regole plausibili agli stessi identici dati si ottengono conclusioni opposte. Prima due termini che compaiono in tabella:</p>
+<dl class="gl">
+<dt>Test dei ranghi (Wilcoxon)</dt><dd>Per ogni sistema si prende la differenza di F1 fra le due configurazioni, si ordinano le differenze per grandezza e si guarda se quelle dello stesso segno pesano
+più di quanto capiterebbe a caso. Restituisce un <b>valore p</b>: la probabilità di vedere uno squilibrio così per puro caso, se in realtà non ci fosse nessuna differenza. Sotto 0,05 si considera «non è caso».</dd>
+<dt>Bootstrap</dt><dd>Non potendo rifare l'esperimento, lo si imita pescando a caso fra i dati già raccolti e ricalcolando la differenza molte volte. La fascia in cui cadono quasi tutti i ricalcoli
+è l'<b>intervallo</b>. Il dettaglio è nella sezione 9.</dd>
+</dl>
+<table>
+<tr><th>Regola</th><th>In una frase</th><th>Conclusione sul critico</th><th class="n">Confronti che passano, su 27 (sezione 6)</th></tr>
+<tr><td><b>Permissiva</b></td><td>Il rumore è lo spostamento massimo osservato rilanciando le due configurazioni confrontate; basta superarlo in due repliche su tre, nello stesso verso</td><td><span class="tag t-mid">peggiora gli LLG</span></td><td class="n">6</td></tr>
+<tr><td><b>Intermedia</b></td><td>Come sopra, ma va superato in tutte e tre le repliche</td><td><span class="tag t-mid">peggiora gli LLG</span></td><td class="n">4</td></tr>
+<tr><td><b>Severa</b></td><td>Il rumore è il massimo spostamento osservato fra tutte le configurazioni di quel tipo di lista (decide la più rumorosa); va superato in tutte e tre</td><td><span class="tag t-no">non distinguibile dal caso</span></td><td class="n">3</td></tr>
+<tr><td><b>Severa con verso</b></td><td>Come la severa, e in più il numero di sistemi dalla parte giusta deve superare quello che capita per caso</td><td><span class="tag t-no">non distinguibile dal caso</span></td><td class="n">0</td></tr>
+<tr><td><b>Test dei ranghi</b> (Wilcoxon)</td><td>Fa la media delle repliche e chiede se i sistemi vanno dalla stessa parte più di quanto farebbe il caso</td><td><span class="tag t-no">non distinguibile dal caso</span></td><td class="n">1</td></tr>
+<tr><td><b>Intervallo</b> (bootstrap)</td><td>Ricampiona sistemi e repliche migliaia di volte e guarda se lo zero resta fuori dall'intervallo al 95%</td><td><span class="tag t-no">non distinguibile dal caso</span></td><td class="n">1</td></tr>
+</table>
+<p><b>Il punto:</b> lo stesso dato dà conclusioni opposte a seconda della regola. Quindi la regola si sceglie prima, e con una prova, non guardando quale risultato ci piace.</p>
+
+<h2>8. Come abbiamo scelto la regola</h2>
+<p>Una regola può sbagliare in due modi, come un allarme antifumo: suonare quando non c'è fumo (<b>falso allarme</b>: dice «effetto» ma non è cambiato niente)
+oppure non suonare quando c'è (<b>effetto perso</b>: il miglioramento c'è, ma la regola dice «non distinguibile»). Cerchiamo la regola che sbaglia poco in entrambi i modi.</p>
+<p><b>Il problema pratico:</b> per provare una regola bisogna conoscere la risposta giusta, e con gli esperimenti veri non la conosciamo. Quindi abbiamo costruito
+<b>esperimenti finti con i numeri veri</b>: per ogni caso (sistema, configurazione, tipo di lista) prendiamo l'F1 medio delle tre repliche e aggiungiamo un'oscillazione
+casuale della stessa ampiezza osservata in quel caso. Un caso che nella realtà non oscilla resta fermo anche nella finzione.</p>
+<div class="how"><p><b>Esempio (numeri inventati).</b> Un caso ha F1 medio 0,40 e nelle tre repliche vere ha oscillato di circa ±0,03. In un esperimento finto le sue tre repliche potrebbero
+uscire 0,41, 0,38, 0,40; in un altro 0,37, 0,43, 0,39. Rifacendolo 1000 volte si ottiene una frequenza stabile: quante volte su 100 la regola dice «effetto».</p></div>
+<div class="grid2">
+<div class="box"><h3>Prova 1 — falsi allarmi</h3><p class="small mut">Due copie finte della <i>stessa</i> configurazione. La risposta giusta è «nessun effetto». Si ripete 1000 volte per ciascuna delle 6 configurazioni e 3 tipi di lista, e si conta quante volte su 100 la regola dice «effetto».</p></div>
+<div class="box"><h3>Prova 2 — effetti persi</h3><p class="small mut">Alla seconda copia si aggiunge a mano un miglioramento noto (+0,03, +0,05, +0,10 di F1). La risposta giusta è «effetto». Si conta quante volte su 100 la regola lo riconosce. Due forme: <b>uguale per tutti</b> (ogni sistema sale di +0,05), oppure <b>solo metà</b> dei sistemi (la metà sale di +0,10 e l'altra metà resta ferma, così la media è la stessa).</p></div>
+</div>
+<div class="box"><h3>Caso a parte — la trappola</h3><p class="small mut">Un solo sistema su 12 fa un salto enorme, gli altri undici restano fermi, con la stessa media di prima. Dire «effetto» è un errore, perché non è un miglioramento del sistema ma di un caso solo:
+è ciò che è successo con <i>Fitness Tracker</i> sugli attori. Non entra nel criterio di scelta, ma dice quali regole si lasciano ingannare.</p></div>
+<div class="box"><h3>Il criterio, scritto prima di vedere i risultati</h3>
+<p class="small"><b>1.</b> Si scartano le regole con più di 5 falsi allarmi su 100. <b>2.</b> Fra le rimaste vince quella che riconosce l'effetto più piccolo almeno 80 volte su 100. <b>3.</b> A parità, la più semplice da spiegare.<br>
+<span class="mut">5 su 100 e 80 su 100 sono le soglie convenzionali della statistica, non numeri presi dai nostri risultati.</span></p></div>
+
+<h3>Prova 1 — Falsi allarmi (nel tipo di lista in cui la regola va peggio)</h3>
+<svg viewBox="0 0 640 204" role="img"><text x="142" y="20" class="lab" text-anchor="end">Permissiva</text><rect x="150" y="6" width="337.6" height="20" rx="2" class="bw"/><text x="493.6" y="20" class="tick">6,4</text><text x="142" y="49" class="lab" text-anchor="end">Intermedia</text><rect x="150" y="35" width="80.3" height="20" rx="2" class="bb"/><text x="236.3" y="49" class="tick">1,5</text><text x="142" y="78" class="lab" text-anchor="end">Severa</text><rect x="150" y="64" width="1.5" height="20" rx="2" class="bb"/><text x="157.1" y="78" class="tick">0,0</text><text x="142" y="107" class="lab" text-anchor="end">Severa con verso</text><rect x="150" y="93" width="1.5" height="20" rx="2" class="bb"/><text x="156.0" y="107" class="tick">0,0</text><text x="142" y="136" class="lab" text-anchor="end">Test dei ranghi</text><rect x="150" y="122" width="254.6" height="20" rx="2" class="bb"/><text x="420.5" y="136" class="tick">4,9</text><text x="142" y="165" class="lab" text-anchor="end">Intervallo</text><rect x="150" y="151" width="109.2" height="20" rx="2" class="bb"/><text x="265.2" y="165" class="tick">2,1</text><line x1="412.5" y1="0" x2="412.5" y2="180" class="thr"/><text x="418.5" y="194" class="thrl">limite: 5 su 100</text></svg>
+<div class="how"><p><b>Cosa significa.</b> La permissiva supera il limite e viene scartata. Il test dei ranghi resta sotto per poco (4,85). Le due severe non danno mai falsi allarmi:
+è un pregio solo se poi vedono gli effetti veri, cosa che la Prova 2 smentisce.</p></div>
+
+<h3>Prova 2 — Quante volte su 100 la regola riconosce l'effetto aggiunto (nel tipo di lista in cui va peggio)</h3>
+<table class="rt"><tr><th rowspan="2">Regola</th><th colspan="3">Migliorano tutti i sistemi dello stesso valore</th><th colspan="2">Migliora solo metà dei sistemi</th><th rowspan="2">Un solo sistema salta<br><span class="mut">(è un errore dire «effetto»)</span></th></tr><tr><th class="n">+0,03</th><th class="n">+0,05</th><th class="n">+0,10</th><th class="n">+0,05</th><th class="n">+0,10</th></tr><tr><td><b>Permissiva</b> <span class=mut>(scartata)</span></td><td class="n c-ko">46</td><td class="n c-ok">81</td><td class="n c-ok">100</td><td class="n c-ok">81</td><td class="n c-ok">100</td><td class="n c-ko">100</td></tr><tr><td><b>Intermedia</b></td><td class="n c-ko">20</td><td class="n c-ko">52</td><td class="n c-ok">96</td><td class="n c-ko">51</td><td class="n c-ok">97</td><td class="n c-ko">98</td></tr><tr><td><b>Severa</b></td><td class="n c-ko">2</td><td class="n c-ko">33</td><td class="n c-ok">99</td><td class="n c-ko">34</td><td class="n c-ok">99</td><td class="n c-ko">100</td></tr><tr><td><b>Severa con verso</b></td><td class="n c-ko">0</td><td class="n c-ko">3</td><td class="n c-ko">26</td><td class="n c-ko">0</td><td class="n c-ko">0</td><td class="n c-ok">0</td></tr><tr><td><b>Test dei ranghi</b></td><td class="n c-ko">74</td><td class="n c-ok">95</td><td class="n c-ok">100</td><td class="n c-ko">59</td><td class="n c-ko">71</td><td class="n c-ok">5</td></tr><tr><td><b>Intervallo</b></td><td class="n c-ko">57</td><td class="n c-ok">88</td><td class="n c-ok">100</td><td class="n c-ko">75</td><td class="n c-ok">98</td><td class="n c-ko">5</td></tr></table>
+<p class="leg"><span class="sw ok"></span> verde = almeno 80 su 100 (per l'ultima colonna: al massimo 5 su 100). Si legge: «se il miglioramento fosse davvero +0,05 in tutti i sistemi, la regola lo riconoscerebbe in X esperimenti su 100».</p>
+<div class="how"><p><b>Cosa significa.</b> Test dei ranghi e intervallo vedono +0,05 quasi sempre; intermedia e severa hanno bisogno del doppio; la severa con verso non vede nemmeno +0,10 sugli HLG.
+Se il miglioramento tocca solo metà dei sistemi, il test dei ranghi perde molto (71 su 100 anche a +0,10), l'intervallo regge. Nella trappola ci cascano le regole che guardano solo la media
+(permissiva, intermedia, severa); non ci cascano test dei ranghi, intervallo e severa con verso.</p></div>
+
+<h3>Un difetto scoperto strada facendo: l'abbinamento delle repliche</h3>
+<p>Le prime quattro regole confrontano la «replica 1 di A» con la «replica 1 di B», e così via. Ma «prima replica» non ha alcun significato: sono chiamate separate al modello, lanciate nello stesso giro.
+Rimescolando a caso l'abbinamento nei 27 confronti veri, con la permissiva l'esito cambia in <b>18 confronti su 27</b>, con l'intermedia in <b>17 su 27</b>, con la severa in 1.
+Test dei ranghi e intervallo fanno prima la media delle repliche e non hanno questo problema. Conta perché, se l'esito dipende da come si accoppiano le repliche, dipende dalla sorte e non dai dati.</p>
+
+<h3>Il riassunto</h3>
+<table>
+<tr><th>Regola</th><th class="n">Pochi falsi allarmi</th><th class="n">Vede +0,05</th><th class="n">Evita la trappola</th><th class="n">Non dipende dall'abbinamento</th></tr>
+<tr><td>Permissiva</td><td class="n">no</td><td class="n">sì</td><td class="n">no</td><td class="n">no</td></tr>
+<tr><td>Intermedia</td><td class="n">sì</td><td class="n">no</td><td class="n">no</td><td class="n">no</td></tr>
+<tr><td>Severa</td><td class="n">sì</td><td class="n">no</td><td class="n">no</td><td class="n">sì</td></tr>
+<tr><td>Severa con verso</td><td class="n">sì</td><td class="n">no</td><td class="n">sì</td><td class="n">sì</td></tr>
+<tr><td>Test dei ranghi</td><td class="n">sì</td><td class="n">sì</td><td class="n">sì</td><td class="n">sì</td></tr>
+<tr><td><b>Intervallo</b></td><td class="n">sì</td><td class="n">sì</td><td class="n">sì</td><td class="n">sì</td></tr>
+</table>
+<p class="small mut">«Pochi falsi allarmi»: al massimo 5 su 100 (Prova 1). «Vede +0,05»: almeno 80 su 100 con il miglioramento uguale in tutti i sistemi (Prova 2). «Evita la trappola»: non dice «effetto» quando salta un solo sistema.</p>
+<p>Il criterio scritto prima indica l'<b>intervallo</b>, sia sui 12 sistemi sia sui 4 di sviluppo. Il test dei ranghi è un po' più sensibile quando tutti i sistemi migliorano di poco (+0,03: 74 contro 57),
+ma perde gli effetti concentrati in metà dei sistemi e con 4 sistemi non può mai dire «effetto»: il valore p più piccolo che si può ottenere con 4 sistemi è 0,125, sopra la soglia di 0,05.</p>
+
+<h2>9. La regola scelta, e come si legge</h2>
+<div class="key"><b>L'intervallo decide, il test dei ranghi accompagna.</b> Il verdetto su una differenza è quello dell'intervallo bootstrap al 95%: riconosciuta se lo zero resta fuori.
+Accanto si riportano sempre il conteggio dei sistemi che migliorano e peggiorano e il test dei ranghi, come lettura che non cambia il verdetto: dice se la differenza è diffusa o concentrata in pochi sistemi.
+La misura principale è l'F1; precision e recall si riportano accanto.</div>
+
+<h3>Come arriva al verdetto, sul nostro caso</h3>
+<p>Il bootstrap si chiede: <i>se avessi avuto altri 12 sistemi simili e avessi rilanciato, la differenza media sarebbe rimasta dallo stesso lato dello zero?</i>
+Non potendo rifare l'esperimento, lo imita: pesca a caso (con ripetizione: lo stesso sistema può uscire più volte, un altro nessuna) 12 sistemi fra i 12 e, per ciascuno, 3 repliche fra le 3, sia a critico acceso sia a spento;
+ricalcola la differenza media; ripete 10.000 volte. Si ricampionano anche le repliche perché pure la loro scelta è fortuita.</p>
+<p><b>Dati di partenza:</b> la differenza di F1 «critico acceso − spento» per ognuno dei 12 sistemi, a repliche mediate.</p>
+<svg viewBox="0 0 640 284" role="img"><text x="162" y="18" class="lab" text-anchor="end">Fitness Tracker</text><rect x="215.5" y="6" width="282.5" height="17" rx="2" class="bw"/><text x="209.5" y="18" class="tick" text-anchor="end">−0,172</text><text x="162" y="41" class="lab" text-anchor="end">Ethical Purchasing</text><rect x="341.5" y="29" width="156.5" height="17" rx="2" class="bw"/><text x="335.5" y="41" class="tick" text-anchor="end">−0,095</text><text x="162" y="64" class="lab" text-anchor="end">Recycling</text><rect x="343.4" y="52" width="154.6" height="17" rx="2" class="bw"/><text x="337.4" y="64" class="tick" text-anchor="end">−0,094</text><text x="162" y="87" class="lab" text-anchor="end">SIA 25/26</text><rect x="390.7" y="75" width="107.3" height="17" rx="2" class="bw"/><text x="384.7" y="87" class="tick" text-anchor="end">−0,065</text><text x="162" y="110" class="lab" text-anchor="end">La Reine Marlene</text><rect x="433.5" y="98" width="64.5" height="17" rx="2" class="bw"/><text x="427.5" y="110" class="tick" text-anchor="end">−0,039</text><text x="162" y="133" class="lab" text-anchor="end">Assegno Unico</text><rect x="440.5" y="121" width="57.5" height="17" rx="2" class="bw"/><text x="434.5" y="133" class="tick" text-anchor="end">−0,035</text><text x="162" y="156" class="lab" text-anchor="end">London Ambulance</text><rect x="443.5" y="144" width="54.5" height="17" rx="2" class="bw"/><text x="437.5" y="156" class="tick" text-anchor="end">−0,033</text><text x="162" y="179" class="lab" text-anchor="end">Event Portal</text><rect x="498.0" y="167" width="26.0" height="17" rx="2" class="bb"/><text x="530.0" y="179" class="tick" text-anchor="start">+0,016</text><text x="162" y="202" class="lab" text-anchor="end">Genome Nexus</text><rect x="498.0" y="190" width="38.8" height="17" rx="2" class="bb"/><text x="542.8" y="202" class="tick" text-anchor="start">+0,024</text><text x="162" y="225" class="lab" text-anchor="end">Planning Poker</text><rect x="498.0" y="213" width="38.8" height="17" rx="2" class="bb"/><text x="542.8" y="225" class="tick" text-anchor="start">+0,024</text><text x="162" y="248" class="lab" text-anchor="end">Gestao Hospital</text><rect x="498.0" y="236" width="65.8" height="17" rx="2" class="bb"/><text x="569.8" y="248" class="tick" text-anchor="start">+0,040</text><text x="162" y="271" class="lab" text-anchor="end">Calculator</text><rect x="498.0" y="259" width="69.0" height="17" rx="2" class="bb"/><text x="573.0" y="271" class="tick" text-anchor="start">+0,042</text><line x1="498.0" y1="0" x2="498.0" y2="282" class="ax"/></svg>
+<p class="leg"><span class="sw w"></span> con il critico va peggio (7 sistemi) &nbsp; <span class="sw b"></span> va meglio (5 sistemi)</p>
+<p>La media è <b>−0,032</b>, ma i sistemi sono divisi quasi a metà, e <i>Fitness Tracker</i> da solo pesa più di tutti quelli a destra messi insieme. È quel −0,03 un fatto, o dipende da quali sistemi abbiamo e da come sono uscite le repliche?</p>
+<p><b>Le 10.000 differenze medie ricalcolate:</b></p>
+<svg viewBox="0 0 640 300" role="img"><rect x="30.5" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="43.9" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="57.3" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="70.7" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="84.1" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="97.5" y="189.8" width="12.4" height="0.2" class="h-out"/><rect x="111.0" y="189.5" width="12.4" height="0.5" class="h-out"/><rect x="124.4" y="189.4" width="12.4" height="0.6" class="h-out"/><rect x="137.8" y="188.2" width="12.4" height="1.8" class="h-out"/><rect x="151.2" y="187.1" width="12.4" height="2.9" class="h-out"/><rect x="164.6" y="183.1" width="12.4" height="6.9" class="h-out"/><rect x="178.0" y="180.6" width="12.4" height="9.4" class="h-out"/><rect x="191.4" y="172.8" width="12.4" height="17.2" class="h-out"/><rect x="204.8" y="164.7" width="12.4" height="25.3" class="h-out"/><rect x="218.2" y="152.7" width="12.4" height="37.3" class="h-in"/><rect x="231.6" y="133.7" width="12.4" height="56.3" class="h-in"/><rect x="245.0" y="113.5" width="12.4" height="76.5" class="h-in"/><rect x="258.5" y="96.3" width="12.4" height="93.7" class="h-in"/><rect x="271.9" y="78.6" width="12.4" height="111.4" class="h-in"/><rect x="285.3" y="64.5" width="12.4" height="125.5" class="h-in"/><rect x="298.7" y="42.1" width="12.4" height="147.9" class="h-in"/><rect x="312.1" y="40.0" width="12.4" height="150.0" class="h-in"/><rect x="325.5" y="40.6" width="12.4" height="149.4" class="h-in"/><rect x="338.9" y="58.0" width="12.4" height="132.0" class="h-in"/><rect x="352.3" y="69.5" width="12.4" height="120.5" class="h-in"/><rect x="365.7" y="86.4" width="12.4" height="103.6" class="h-in"/><rect x="379.1" y="118.7" width="12.4" height="71.3" class="h-in"/><rect x="392.5" y="129.3" width="12.4" height="60.7" class="h-in"/><rect x="406.0" y="148.2" width="12.4" height="41.8" class="h-in"/><rect x="419.4" y="166.9" width="12.4" height="23.1" class="h-out"/><rect x="432.8" y="175.3" width="12.4" height="14.7" class="h-out"/><rect x="446.2" y="183.0" width="12.4" height="7.0" class="h-out"/><rect x="459.6" y="187.3" width="12.4" height="2.7" class="h-out"/><rect x="473.0" y="187.6" width="12.4" height="2.4" class="h-out"/><rect x="486.4" y="188.9" width="12.4" height="1.1" class="h-out"/><rect x="499.8" y="189.7" width="12.4" height="0.3" class="h-out"/><rect x="513.2" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="526.6" y="189.8" width="12.4" height="0.2" class="h-out"/><rect x="540.0" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="553.5" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="566.9" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="580.3" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="593.7" y="190.0" width="12.4" height="0.0" class="h-out"/><rect x="607.1" y="190.0" width="12.4" height="0.0" class="h-out"/><line x1="30" y1="190" x2="620" y2="190" class="ax"/><line x1="30.0" y1="190" x2="30.0" y2="195" class="ax"/><text x="30.0" y="210" class="tick" text-anchor="middle">−0,14</text><line x1="137.3" y1="190" x2="137.3" y2="195" class="ax"/><text x="137.3" y="210" class="tick" text-anchor="middle">−0,10</text><line x1="271.4" y1="190" x2="271.4" y2="195" class="ax"/><text x="271.4" y="210" class="tick" text-anchor="middle">−0,05</text><line x1="405.5" y1="190" x2="405.5" y2="195" class="ax"/><text x="405.5" y="210" class="tick" text-anchor="middle">0</text><line x1="539.5" y1="190" x2="539.5" y2="195" class="ax"/><text x="539.5" y="210" class="tick" text-anchor="middle">+0,05</text><line x1="405.5" y1="14" x2="405.5" y2="190" class="thr"/><text x="411.5" y="26" class="thrl">zero = nessuna differenza</text><line x1="204.6" y1="248" x2="425.5" y2="248" class="iv"/><line x1="204.6" y1="242" x2="204.6" y2="254" class="iv"/><line x1="425.5" y1="242" x2="425.5" y2="254" class="iv"/><text x="204.6" y="270" class="tick" text-anchor="middle">−0,075</text><text x="425.5" y="270" class="tick" text-anchor="middle">+0,007</text><text x="315.1" y="238" class="tick" text-anchor="middle">intervallo al 95%</text></svg>
+<div class="how"><p><b>Come leggerla.</b> Ogni barretta conta quanti ricalcoli hanno dato quella differenza media. Si tagliano via i 2,5 ricalcoli su 100 più bassi e i 2,5 più alti: quello che resta
+(barre blu) è l'intervallo al 95%, da −0,075 a +0,007.</p>
+<p><b>Verdetto:</b> <span class="tag t-no">non riconosciuta</span> — lo zero cade dentro l'intervallo. 94 ricalcoli su 100 sono negativi, ma la regola ne chiede almeno 97,5.
+Non possiamo affermare che il critico peggiori gli LLG: il −0,03 è compatibile con «nessuna differenza». Il test dei ranghi, accanto, dà lo stesso esito: 7 sistemi peggiorano e 5 migliorano, p = 0,18
+(uno squilibrio così esce per caso circa 18 volte su 100; la convenzione ne ammette meno di 5).</p></div>
+
+<h3>Come si legge ogni riga di risultato</h3>
+<table>
+<tr><th>Casella</th><th>Domanda</th><th>Come si legge</th></tr>
+<tr><td><b>Differenza</b></td><td>In che verso e di quanto, in media?</td><td>Negativa: la seconda configurazione va peggio. Positiva: va meglio.</td></tr>
+<tr><td><b>Intervallo</b></td><td>Quali valori può avere la differenza vera?</td><td>Si guarda se lo zero è dentro o fuori, poi quanto è larga la fascia: stretta = sappiamo bene quanto vale; larga = sappiamo poco.</td></tr>
+<tr><td><b>Verdetto</b></td><td>Possiamo affermare che c'è una differenza?</td><td>Zero fuori: sì. Zero dentro: no. È l'unica casella che decide.</td></tr>
+<tr><td><b>Sistemi</b></td><td>Quanti migliorano, peggiorano, restano uguali?</td><td>Dice se la differenza è di tutti o di pochi.</td></tr>
+<tr><td><b>Ranghi</b></td><td>I sistemi sono d'accordo più di quanto farebbe il caso?</td><td>Sotto 0,05: sì. Un trattino: troppi pochi sistemi cambiano per dirlo.</td></tr>
+</table>
+<p class="small mut">Quando i due metodi non sono d'accordo, il disaccordo dice qualcosa: intervallo sì e ranghi no significa che la media si sposta ma la spinta viene da una parte dei sistemi;
+ranghi sì e intervallo no, che quasi tutti vanno dalla stessa parte ma di poco.</p>
+
+<h2>10. Cosa possiamo vedere, e cosa abbiamo deciso</h2>
+<h3>Quale effetto riconosciamo in modo affidabile (almeno 80 volte su 100)</h3>
+<p class="small mut">«In modo affidabile» è la convenzione dell'80%: se il miglioramento fosse davvero di quella grandezza, la regola lo riconoscerebbe in almeno 80 esperimenti su 100.
+Meno sistemi vuol dire media più instabile, quindi serve un effetto più grande.</p>
+<table>
+<tr><th>Su quali sistemi</th><th>Effetto più piccolo riconosciuto, uguale per tutti i sistemi</th><th>Se migliora solo metà dei sistemi</th></tr>
+<tr><td>12 sistemi</td><td >0,05</td><td>0,10</td></tr>
+<tr><td>8 di conferma</td><td >0,10</td><td>0,10</td></tr>
+<tr><td>4 di sviluppo</td><td >0,10</td><td>nessuno dei valori provati: a 0,10 lo vede 33–43 volte su 100</td></tr>
+</table>
+<div class="how"><p><b>Cosa significa.</b> Gli interventi con effetto sotto circa 0,05 non sono verificabili con tre repliche e questo corpus. Sui 4 sistemi di sviluppo un risultato è un'indicazione, non un verdetto:
+è il motivo per cui la conferma sugli 8 si fa una volta sola.</p></div>
+
+<h3>Le decisioni prese</h3>
+<table>
+<tr><th>Decisione</th><th>Perché</th></tr>
+<tr><td><b>Regola di confronto:</b> intervallo bootstrap al 95% che decide, test dei ranghi e conteggio accanto.</td><td>È quella indicata dal criterio scritto prima: pochi falsi allarmi, vede +0,05 sui 12 sistemi, non cade nella trappola, non dipende dall'abbinamento. Affiancare i ranghi senza farli concorrere al verdetto non cambia i tassi di errore misurati.</td></tr>
+<tr><td><b>Il livello 95% non si cambia</b> dopo aver visto i confronti.</td><td>È un parametro nostro, non una proprietà del metodo; i tassi di errore misurati valgono solo per questo livello.</td></tr>
+<tr><td><b>Misura principale: F1.</b> Precision e recall accanto.</td><td>Possono muoversi in versi opposti. Dichiarare prima la misura principale evita di raccontare, fra i tanti verdetti, quello che è passato.</td></tr>
+<tr><td><b>Il rumore non si fissa come numero:</b> ogni esperimento si esegue in più repliche.</td><td>Un numero fisso invecchia: un intervento può cambiare la stabilità del sistema.</td></tr>
+<tr><td><b>Tre repliche per esperimento</b>, rivedibile.</td><td>È il numero con cui sono stati misurati il rumore e i tassi di errore: quei risultati valgono senza altre prove.</td></tr>
+<tr><td><b>Critico acceso, spento o entrambi:</b> si decide per ogni esperimento e si scrive prima di lanciarlo.</td><td>Dipende da cosa l'esperimento vuole misurare; una regola unica costerebbe il doppio dove non serve.</td></tr>
+<tr><td><b>Su quali sistemi leggere un confronto:</b> si decide esperimento per esperimento.</td><td>Dipende da tipo di esperimento, costo e cosa si vuole verificare.</td></tr>
+<tr><td><b>London Ambulance resta fra i sistemi di sviluppo</b>, per adesso.</td><td>Il dubbio era che fosse rumoroso; le repliche dicono il contrario: oscilla 0,02 sugli LLG contro 0,07–0,10 degli altri tre. Toglierlo, dopo aver visto che ha il punteggio più basso, renderebbe i sistemi di sviluppo più facili del corpus a risultati visti. Il suo F1 sugli LLG è molto basso (0,14 contro 0,35 del secondo più basso): causa non ancora verificata.</td></tr>
+</table>
+
+<h2>11. Limiti</h2>
+<ul>
+<li><b>Tre repliche sono poche.</b> L'ampiezza dell'oscillazione di ogni caso è stimata su tre valori: è affidabile nell'insieme, non caso per caso. Non abbiamo misurato quanto si guadagnerebbe con più repliche né quanto si perderebbe con due.</li>
+<li><b>Gli esperimenti finti sono più regolari di quelli veri.</b> Nella realtà una volta su dieci c'è un salto grande. Per i falsi allarmi abbiamo ripetuto la prova ripescando a caso fra i tre valori veri di ogni caso invece di generarne di finti: la classifica delle regole non cambia. Per gli effetti persi il controllo non è stato fatto.</li>
+<li><b>I punteggi finti possono superare 1.</b> Il miglioramento aggiunto non è tagliato: serve a provare la regola, non a descrivere il sistema. Sugli attori, già vicini a 1, un miglioramento reale di quella grandezza non sarebbe possibile.</li>
+<li><b>Il caso peggiore sui 4 sistemi di sviluppo.</b> L'intervallo arriva a 6 falsi allarmi su 100 nella configurazione peggiore, oltre il 5 che ci eravamo dati; la media sulle sei configurazioni resta sotto.</li>
+<li><b>La metrica è quella attuale, non ancora validata.</b> Tutto il lavoro va rifatto con lo stesso metodo dopo la fase sulla metrica.</li>
+<li><b>La lettura dei 27 confronti è una prima lettura</b>, fatta con una regola scritta a dati visti.</li>
+<li><b>Le esecuzioni della replica 1 sono state prodotte con limiti di output dei modelli più bassi di quelli delle repliche 2 e 3.</b> Il limite di output è il numero massimo di parole (token) che un modello può scrivere in una risposta:
+oltre, la risposta viene troncata e l'esecuzione fallisce. Quelle della replica 1 che lo avevano raggiunto sono state rifatte con i limiti nuovi.</li>
+</ul>
+</main></body></html>

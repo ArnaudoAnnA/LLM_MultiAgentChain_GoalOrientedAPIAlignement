@@ -1,0 +1,69 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T20:12:03",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Dispatch Operator"
+    ],
+    "highLevelGoals": [
+        "Ambulance staff aim to contribute to reaching emergency scenes within the 11-minute target to provide critical care and ensure patient safety.",
+        "Ambulance staff need to provide timely and accurate location and status updates to support efficient dispatch and resource allocation.",
+        "Radio operators aim to accurately record ambulance movement data to ensure a reliable historical log of dispatches and responses.",
+        "Radio operators need to ensure that recorded data is consistent and accurately reflected in the Computer Aided Despatch (CAD) system to provide up-to-date information for dispatch decisions.",
+        "The Dispatch Operator aims to efficiently allocate an available ambulance for every call to meet the 11-minute response time target and maximize operational effectiveness.",
+        "The Dispatch Operator seeks to ensure the entire dispatch process does not exceed the set maximum time limit to facilitate rapid emergency response.",
+        "The Dispatch Operator needs to utilize accurate analysis of incident forms from the CAD system to facilitate correct and timely vehicle assignments.",
+        "The Dispatch Operator requires real-time and accurate visibility of ambulance locations to make informed dispatch decisions and manage ongoing incidents effectively."
+    ],
+    "lowLevelGoals": [
+        "Ambulance staff need to update their current status to reflect their operational state, contributing to rapid response.",
+        "Ambulance staff need to transmit their current location to facilitate efficient ambulance deployment.",
+        "Ambulance staff need to confirm receipt of dispatch assignments to ensure timely response.",
+        "Radio operators need to accurately record ambulance departure times to maintain accurate operational records.",
+        "Radio operators need to accurately record ambulance arrival times at incident scenes to maintain accurate operational records.",
+        "Radio operators need to accurately record ambulance destinations to maintain accurate operational records.",
+        "Radio operators need to verify data consistency to support real-time operational awareness.",
+        "Radio operators need to update ambulance status in the CAD system to support real-time operational awareness.",
+        "The Dispatch Operator needs to view available ambulances to optimize resource allocation.",
+        "The Dispatch Operator needs to assign an ambulance to optimize resource allocation.",
+        "The Dispatch Operator needs to initiate dispatch to ensure timely emergency dispatch.",
+        "The Dispatch Operator needs to monitor dispatch time to ensure timely emergency dispatch.",
+        "The Dispatch Operator needs to access incident forms to enable informed dispatch decisions.",
+        "The Dispatch Operator needs to analyze incident details to enable informed dispatch decisions.",
+        "The Dispatch Operator needs real-time location visibility to maintain comprehensive situational awareness.",
+        "The Dispatch Operator needs to view ambulance status to maintain comprehensive situational awareness."
+    ],
+    "cove_scores": {
+        "actors": [
+            4.0,
+            4.0,
+            6.0
+        ],
+        "highLevelGoals": [
+            3.0,
+            10.0
+        ],
+        "lowLevelGoals": [
+            10.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 2,
+        "lowLevelGoals": 1
+    }
+}

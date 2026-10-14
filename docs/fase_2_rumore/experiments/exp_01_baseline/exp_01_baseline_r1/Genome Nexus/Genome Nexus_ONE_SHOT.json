@@ -1,0 +1,69 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T17:50:25",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Researcher",
+        "Bioinformatician",
+        "Oncologist",
+        "DNA-to-protein Converter Database",
+        "Mutation Frequency Database",
+        "Variant Effect Database",
+        "Clinical Actionability Database"
+    ],
+    "highLevelGoals": [
+        "The Researcher aims to accelerate cancer research by quickly identifying and understanding the implications of clinically relevant genetic variants.",
+        "The Researcher seeks a comprehensive understanding of genetic variants to drive novel discoveries and therapeutic strategies in cancer.",
+        "The Bioinformatician aims to streamline the analysis of genetic variants by having a centralized system that integrates diverse data sources efficiently.",
+        "The Bioinformatician requires the ability to efficiently process and interpret large datasets of genetic variants to support high-throughput studies.",
+        "The Oncologist aims to obtain reliable and actionable clinical insights from genetic variant data to inform personalized treatment decisions for cancer patients."
+    ],
+    "lowLevelGoals": [
+        "The Researcher can submit a specific genetic variant (e.g., a VCF file or a single variant identifier) to the system for annotation.",
+        "The Researcher can retrieve the detailed annotations for a submitted genetic variant, including clinical relevance, associated diseases, and drug responses.",
+        "The Researcher can filter the annotated variants based on their clinical significance (e.g., pathogenic, likely pathogenic, VUS) to prioritize relevant findings.",
+        "The Researcher can access integrated information for a genetic variant from various public and proprietary databases (e.g., ClinVar, COSMIC, gnomAD) through a single interface.",
+        "The Researcher can view a list of scientific publications and clinical trials associated with a specific genetic variant.",
+        "The Researcher can visualize the predicted impact of a genetic variant on protein structure and function using integrated visualization tools.",
+        "The Bioinformatician can configure and manage the integration of various external data sources (e.g., VCF files, public databases, internal datasets) into the system.",
+        "The Bioinformatician can define and save custom annotation pipelines by selecting specific annotation tools and databases to be used for variant analysis.",
+        "The Bioinformatician can set up automated tasks for processing new variant datasets upon upload, applying predefined annotation pipelines.",
+        "The Bioinformatician can upload large Variant Call Format (VCF) files containing thousands of genetic variants for batch annotation and analysis.",
+        "The Bioinformatician can monitor the real-time status and progress of large-scale variant processing jobs, including completion rates and any errors.",
+        "The Bioinformatician can export processed and annotated variant data in various formats (e.g., TSV, CSV, JSON) for further downstream analysis.",
+        "The Oncologist can generate a comprehensive clinical report for a specific patient, summarizing all relevant genetic variants and their therapeutic implications.",
+        "The Oncologist can identify potential actionable therapeutic targets and associated drugs based on the patient's genetic variant profile.",
+        "The Oncologist can review a list of relevant clinical trials for which a patient might be eligible based on their specific genetic variants."
+    ],
+    "cove_scores": {
+        "actors": [
+            8.0,
+            6.0,
+            2.0
+        ],
+        "highLevelGoals": [
+            2.0,
+            10.0
+        ],
+        "lowLevelGoals": [
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 2,
+        "lowLevelGoals": 1
+    }
+}

@@ -1,6 +1,7 @@
 """Noise tables from identical replicas of the same experiment matrix.
 
-Reads the per-system score CSVs and the output JSONs of each replica and writes:
+Reads the per-system score CSVs and the output JSONs of each replica (the score CSVs from
+--scores, one directory per replica, when the lists were re-scored elsewhere) and writes:
   cells.csv        one row per (system, shot, critic, node) with the three replica scores,
                    their range and whether the generated lists are identical
   oscillation.csv  median and max range of the cells, grouped along several axes
@@ -63,7 +64,12 @@ def main():
     parser.add_argument("--runs", nargs="+", required=True, help="replica output directories")
     parser.add_argument("--out", required=True)
     parser.add_argument("--notebook-dir", default="notebook")
+    parser.add_argument("--scores", nargs="+", default=None,
+                        help="directories with the score CSVs, one per replica (default: the replica directories)")
     args = parser.parse_args()
+    score_dirs = args.scores or args.runs
+    if len(score_dirs) != len(args.runs):
+        parser.error("--scores needs one directory per replica")
 
     sys.path.insert(0, args.notebook_dir)
     from system_sets import SYSTEM_SETS
@@ -76,7 +82,7 @@ def main():
     # score[(system, shot, critic, node)][metric] -> list of values, one per replica
     score, cells = {}, []
     for shot, (critic, suffix), (node, prefix) in itertools.product(SHOTS, CRITIC.items(), NODES.items()):
-        per_run = [read_scores(run, prefix, shot, suffix) for run in args.runs]
+        per_run = [read_scores(run, prefix, shot, suffix) for run in score_dirs]
         for system in systems:
             key = (system, shot, critic, node)
             score[key] = {m: [r[system][m] for r in per_run] for m in METRICS}

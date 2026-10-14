@@ -1,0 +1,82 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T17:54:36",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Researcher",
+        "Bioinformatician",
+        "Clinician",
+        "External Genetic Databases"
+    ],
+    "highLevelGoals": [
+        "The researcher aims to quickly annotate genetic variants in cancer samples to accelerate research and clinical insights.",
+        "The researcher seeks to obtain a thorough interpretation of genetic variants, integrating all relevant information for a complete understanding.",
+        "The researcher desires an automated process for variant annotation and interpretation to reduce manual effort and increase efficiency.",
+        "The researcher needs the system to handle a large volume of genetic variants efficiently and quickly.",
+        "The bioinformatician aims to seamlessly integrate information from various external genetic databases into a centralized system.",
+        "The clinician aims to accurately interpret genetic variants to inform diagnosis, prognosis, and treatment decisions for cancer patients.",
+        "The clinician seeks to quickly identify genetic variants that have direct implications for clinical actionability and therapeutic strategies.",
+        "The clinician requires access to integrated data on variant effects and clinical actionability to guide patient management."
+    ],
+    "lowLevelGoals": [
+        "The researcher uploads a VCF (Variant Call Format) file containing genetic variants to initiate the annotation process.",
+        "The researcher is notified when the system has finished annotating the submitted genetic variants.",
+        "The researcher accesses a high-level overview of the annotated genetic variants, including basic statistics and key findings.",
+        "The researcher queries the system to get in-depth information for a particular genetic variant, including its genomic location, gene context, and predicted functional impact.",
+        "The researcher clicks on provided links to external genetic databases (e.g., ClinVar, dbSNP) to gather additional context for a variant.",
+        "The researcher applies filters to display only variants with specific pathogenicity scores (e.g., 'pathogenic', 'likely pathogenic') to prioritize analysis.",
+        "The researcher examines the specific DNA change and its corresponding impact on the protein sequence (e.g., amino acid substitution, protein domain alteration).",
+        "The researcher sets up parameters and rules for how genetic variants should be automatically annotated by the system.",
+        "The researcher defines a schedule for the system to automatically process new batches of genetic variants at specified intervals.",
+        "The researcher receives system-generated reports that summarize the interpretation of automatically processed variants.",
+        "The researcher submits multiple VCF files simultaneously to the system for high-volume variant processing.",
+        "The researcher checks the status and progress of large-scale variant annotation tasks within the system.",
+        "The researcher downloads all annotated genetic variant data in a structured format (e.g., CSV, TSV) for further offline analysis.",
+        "The bioinformatician sets up the system to connect to a new external genetic database by providing API keys or connection strings.",
+        "The bioinformatician triggers a process to pull the latest data from configured external genetic databases into the system.",
+        "The bioinformatician defines how data fields from external genetic databases correspond to the system's internal data structure.",
+        "The system shall fetch and parse variant effect predictions from configured external genetic database APIs upon synchronization.",
+        "The system shall store the fetched and parsed data from external genetic databases into its internal data model, ensuring data consistency and accessibility.",
+        "The clinician queries the system to find genetic variants that are known to be relevant to a particular type of cancer.",
+        "The clinician accesses information detailing the clinical impact of a genetic variant and potential treatment strategies.",
+        "The clinician creates a customized report summarizing the interpretation of genetic variants for an individual patient, suitable for clinical use.",
+        "The clinician applies filters to identify genetic variants that are linked to specific drug sensitivities or resistances.",
+        "The clinician sorts or filters variants to display those with the highest levels of clinical actionability first.",
+        "The clinician retrieves evidence-based guidelines or recommendations for treatment options associated with specific genetic variants.",
+        "The clinician checks for potential drug-gene interactions based on the patient's genetic profile.",
+        "The clinician searches and reviews information from specialized databases that contain expert-reviewed interpretations of genetic variants."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            4.0,
+            4.0
+        ],
+        "highLevelGoals": [
+            6.0,
+            10.0
+        ],
+        "lowLevelGoals": [
+            8.0,
+            7.0,
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 2,
+        "lowLevelGoals": 3
+    }
+}

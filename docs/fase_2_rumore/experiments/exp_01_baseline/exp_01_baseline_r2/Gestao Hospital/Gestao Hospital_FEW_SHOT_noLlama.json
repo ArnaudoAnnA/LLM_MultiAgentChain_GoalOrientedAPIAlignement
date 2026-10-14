@@ -1,0 +1,67 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T20:00:40",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Hospital Staff",
+        "Patient"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to minimize waste and maximize the efficient use of resources (beds, products, blood) across all managed hospitals.",
+        "The Public Health System Administrator needs to ensure that all hospital data, including stock levels, blood bank status, and bed availability, is current and reliable for effective decision-making.",
+        "The Public Health System Administrator seeks to enable the seamless transfer of essential products, such as blood, between hospitals to address shortages and prevent critical situations.",
+        "Hospital Staff aims to efficiently manage and track the stock of products and blood bank inventories within their hospital to ensure availability and prevent shortages.",
+        "Hospital Staff seeks to efficiently manage patient admissions and discharges, ensuring accurate record-keeping and timely updates on bed availability.",
+        "Hospital Staff needs to quickly and accurately determine the number of available beds to manage patient flow and facilitate transfers.",
+        "The Patient aims to quickly and easily find a suitable hospital with available beds based on their current location and needs."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator needs to query the system to get a real-time, aggregated view of all available beds, product stock levels, and blood bank inventories across the entire public health system.",
+        "The Public Health System Administrator needs to generate reports that show historical trends in resource utilization (beds, products, blood) to identify patterns and inform future allocation strategies.",
+        "The Public Health System Administrator needs to configure system-wide thresholds for critical resource levels (e.g., minimum blood units, maximum bed occupancy) to trigger alerts and proactive measures.",
+        "The Public Health System Administrator needs to receive automated notifications when any hospital's resource levels (beds, products, blood) fall below or exceed predefined critical thresholds.",
+        "The Public Health System Administrator needs to view a dashboard that provides up-to-the-minute information on each hospital's stock levels, blood bank status, and bed availability.",
+        "The Public Health System Administrator needs to be able to see the timestamp of the last update for each hospital's data to confirm its recency and reliability.",
+        "The Public Health System Administrator needs to generate reports that highlight any inconsistencies or potential inaccuracies in the hospital data to ensure its reliability.",
+        "The Public Health System Administrator needs to be able to create and submit a formal request for the transfer of specific products (e.g., blood units) from one hospital to another.",
+        "The Public Health System Administrator needs to review incoming resource transfer requests and either approve them for execution or reject them with a reason.",
+        "The Public Health System Administrator needs to monitor the progress of initiated resource transfers, from approval to successful delivery, to ensure timely completion.",
+        "Hospital Staff needs to be able to query the system to see a comprehensive list of all inventory items and their current quantities within their hospital.",
+        "Hospital Staff needs to be able to modify the recorded quantity of any product in the inventory system, for example, after receiving a new shipment or using an item.",
+        "Hospital Staff needs to be able to input details of newly acquired blood units (e.g., type, donation date, expiry) into the blood bank inventory system.",
+        "Hospital Staff needs to be able to update the blood bank inventory when blood units are used for patients or disposed of due to expiry or other reasons.",
+        "Hospital Staff needs to be able to input all necessary patient information (e.g., name, ID, admission date, assigned bed) into the system upon check-in.",
+        "Hospital Staff needs to be able to mark a patient as discharged in the system, updating their status and freeing up the occupied bed.",
+        "Hospital Staff needs to be able to change a patient's assigned bed in the system, for example, during a transfer within the hospital.",
+        "Hospital Staff needs to be able to quickly see the current number of unoccupied beds, broken down by different wards or units within their hospital.",
+        "Hospital Staff needs to be able to refine their search for available beds based on criteria such as the bed's specialty (e.g., ICU, general) or type (e.g., pediatric, adult).",
+        "Hospital Staff needs to be able to temporarily change the status of a bed to 'unavailable' to reflect it being out of service for cleaning or maintenance, preventing it from being assigned.",
+        "The Patient needs to be able to allow the system to access their current geographical location to facilitate proximity-based hospital recommendations.",
+        "The Patient needs to be able to input their specific medical needs or preferred bed type (e.g., 'ICU bed', 'pediatric bed') to narrow down hospital recommendations.",
+        "The Patient needs to be presented with a list of hospitals that meet their criteria and have available beds, ordered from closest to furthest from their current location.",
+        "The Patient needs to be able to select a recommended hospital and view more details, such as its address, contact information, and specific services offered."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

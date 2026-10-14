@@ -1,0 +1,50 @@
+{
+    "name": "Calculator",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "adf607777623d0b29fe7cc9c294364df6babd856a2a5cb8f01f92e0a450e4c1c",
+    "timestamp": "2026-10-10T20:03:53",
+    "description": "This project develops a smartphone app for a simple calculator. In its initial version, it allows the user to do basic calculations. More complex calculations will be considered in subsequent versions that are added iteratively.\",\n  \n  \"epics\": [\n    {\n      \"title\": \"Basic Calculation Functionality\",\n      \"description\": \"Implement basic arithmetic operations such as addition, subtraction, multiplication, and division. This feature is essential for users to perform simple calculations conveniently on their smartphones.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Perform Addition\",\n          \"story\": \"As a user, I want to add two numbers so that I can quickly calculate their sum.\",\n          \"acceptance_criteria\": [\n            \"The calculator allows the user to input two numbers.\",\n            \"The result of the addition is displayed correctly.\"\n          ]\n        },\n        {\n          \"title\": \"Perform Subtraction\",\n          \"story\": \"As a user, I want to subtract one number from another so that I can find the difference.\",\n          \"acceptance_criteria\": [\n            \"The calculator allows the user to input two numbers.\",\n            \"The result of the subtraction is displayed correctly.\"\n          ]\n        },\n        {\n          \"title\": \"Perform Multiplication\",\n          \"story\": \"As a user, I want to multiply two numbers so that I can obtain their product.\",\n          \"acceptance_criteria\": [\n            \"The calculator allows the user to input two numbers.\",\n            \"The result of the multiplication is displayed correctly.\"\n          ]\n        },\n        {\n          \"title\": \"Perform Division\",\n          \"story\": \"As a user, I want to divide one number by another so that I can calculate the quotient.\",\n          \"acceptance_criteria\": [\n            \"The calculator allows the user to input two numbers.\",\n            \"The result of the division is displayed correctly, and division by zero is handled appropriately.\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"User Interface Design\",\n      \"description\": \"Create a simple and intuitive user interface that allows users to easily input numbers and select operations. A user-friendly interface is vital for ensuring a positive user experience.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Input Numbers\",\n          \"story\": \"As a user, I want to easily input numbers so that I can perform calculations without frustration.\",\n          \"acceptance_criteria\": [\n            \"The app includes a numeric keypad for input.\",\n            \"The numeric keypad is responsive and allows for easy number entry.\"\n          ]\n        },\n        {\n          \"title\": \"Select Operations\",\n          \"story\": \"As a user, I want to select basic arithmetic operations so that I can perform calculations effortlessly.\",\n          \"acceptance_criteria\": [\n            \"The app displays clearly labeled buttons for each arithmetic operation.\",\n            \"Users can tap the operation button after entering the numbers to perform the calculation.\"\n          ]\n        },\n        {\n          \"title\": \"Display Results\",\n          \"story\": \"As a user, I want to see the calculation results clearly so that I can verify my answers.\",\n          \"acceptance_criteria\": [\n            \"The result of the calculation is displayed prominently on the screen.\",\n            \"The display updates immediately after the user performs a calculation.\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+    "actors": [
+        "User"
+    ],
+    "highLevelGoals": [
+        "The user wants to perform fundamental mathematical operations (addition, subtraction, multiplication, division) accurately and efficiently using the calculator app.",
+        "The user aims to easily input numbers and select operations through a clear and responsive interface, ensuring a smooth and frustration-free calculation experience.",
+        "The user desires to view the results of their calculations prominently and instantly, allowing for quick verification and understanding."
+    ],
+    "lowLevelGoals": [
+        "The user presses a digit button (0-9) on the calculator interface.",
+        "The user presses an operator button (+, -, *, /) on the calculator interface.",
+        "The user presses the equals button (=) on the calculator interface.",
+        "The user clears the current input and result from the display by tapping the 'C' or 'AC' button.",
+        "The user presses the decimal point button (.) to input a fractional number.",
+        "The user views an error message displayed on the calculator interface, for example, when attempting to divide by zero."
+    ],
+    "cove_scores": {
+        "actors": [
+            10.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            4.0,
+            9.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 2
+    }
+}

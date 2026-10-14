@@ -1,0 +1,72 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T20:34:31",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Dispatcher"
+    ],
+    "highLevelGoals": [
+        "Ambulance staff must ensure their location data is accurately and continuously updated to facilitate efficient dispatch and response.",
+        "Radio operators aim to ensure all departure and destination information communicated by ambulance staff is accurately and promptly recorded to support dispatch operations.",
+        "The dispatcher aims to allocate an available ambulance to an incident efficiently, ensuring it can reach the scene within the critical 11-minute timeframe.",
+        "The dispatcher needs to ensure the entire dispatch process, from incident analysis to ambulance allocation, does not exceed the maximum set time limit.",
+        "The dispatcher needs to analyze incident forms to identify and assign the most appropriate resources for an emergency."
+    ],
+    "lowLevelGoals": [
+        "Ambulance staff must report current location and route adherence to the system to ensure their location data is accurately and continuously updated.",
+        "Ambulance staff must receive alerts for any disruption in location tracking to ensure their location data is accurately and continuously updated.",
+        "Ambulance staff must communicate departure time to the radio operator to ensure all departure and destination information is accurately and promptly recorded.",
+        "Ambulance staff must communicate destination information to the radio operator to ensure all departure and destination information is accurately and promptly recorded.",
+        "Radio operators must input ambulance departure times into the system to ensure all departure and destination information communicated by ambulance staff is accurately and promptly recorded.",
+        "Radio operators must input ambulance destination information into the system to ensure all departure and destination information communicated by ambulance staff is accurately and promptly recorded.",
+        "Radio operators must verify the accuracy of recorded ambulance movement data to ensure all departure and destination information communicated by ambulance staff is accurately and promptly recorded.",
+        "The dispatcher must view available ambulances and their current locations on a map interface to efficiently allocate an available ambulance to an incident.",
+        "The dispatcher must select the closest available ambulance to an incident location to efficiently allocate an available ambulance to an incident.",
+        "The dispatcher must assign the selected ambulance to the incident to efficiently allocate an available ambulance to an incident.",
+        "The system shall calculate estimated arrival times for selected ambulances to ensure the 11-minute response time constraint is met.",
+        "The system shall verify if the allocated ambulance can reach the incident within 11 minutes to ensure the critical response time is met.",
+        "The dispatcher must initiate the dispatch process for an incident to ensure the entire dispatch process does not exceed the maximum set time limit.",
+        "The system shall record the start time of the dispatch process to track and minimize overall dispatch process time.",
+        "The system shall record the end time of the dispatch process upon ambulance allocation to track and minimize overall dispatch process time.",
+        "The system shall alert the dispatcher if the dispatch process exceeds the maximum time limit to ensure timely emergency response.",
+        "The dispatcher must access and review incident forms for emergency details to identify and assign the most appropriate resources for an emergency.",
+        "The system shall analyze incident form data to suggest resource requirements to identify and assign the most appropriate resources for an emergency.",
+        "The dispatcher must assign specific ambulance types or specialized teams based on incident requirements to identify and assign the most appropriate resources for an emergency."
+    ],
+    "cove_scores": {
+        "actors": [
+            4.0,
+            6.0,
+            7.0
+        ],
+        "highLevelGoals": [
+            2.0,
+            2.0,
+            10.0
+        ],
+        "lowLevelGoals": [
+            3.0,
+            4.0,
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 3,
+        "lowLevelGoals": 3
+    }
+}

@@ -1,0 +1,80 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T17:50:55",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Medical Professional",
+        "Hospital Staff",
+        "Patient"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to ensure efficient distribution and utilization of hospital resources, including products, blood, and beds, to minimize waste and meet patient needs effectively.",
+        "The Public Health System Administrator seeks to leverage the API to gain comprehensive insights into hospital capacities and resource availability, enabling strategic planning and rapid response to public health demands.",
+        "The Medical Professional aims to quickly identify and recommend the most suitable hospital for a patient based on proximity and bed availability, ensuring prompt access to care.",
+        "The Medical Professional seeks to efficiently facilitate the transfer of critical products, such as blood, between hospitals to address immediate patient needs and prevent shortages.",
+        "The Hospital Staff aims to accurately record and update patient check-in/check-out, bed availability, and inventory levels for products and blood banks to ensure the system reflects current hospital status.",
+        "The Hospital Staff seeks to efficiently manage and monitor the stock of medical products and blood within their hospital, ensuring adequate supplies and facilitating requests for transfers when necessary.",
+        "The Patient aims to quickly find the closest hospital with available beds or necessary medical supplies, reducing wait times and improving access to care.",
+        "The Patient expects that if a specific medical supply is needed, the system will facilitate its transfer from a nearby hospital to meet their treatment requirements without undue delay."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator can call an API to add a new hospital, including its initial resource capacities and contact information, to the system.",
+        "The Public Health System Administrator can call an API to get a comprehensive list of all hospitals, including their current stock of products, blood, and available beds, to assess overall resource distribution.",
+        "The Public Health System Administrator can use an API to filter resource data, allowing them to quickly identify hospitals with surpluses or deficits of particular products, blood types, or bed categories.",
+        "The Public Health System Administrator can configure an API to send notifications when resource levels (e.g., blood supply, bed occupancy) cross predefined thresholds, enabling proactive intervention.",
+        "The Public Health System Administrator can interact with an API to retrieve data for a dashboard that provides an immediate overview of bed occupancy, product inventory, and blood bank levels across all hospitals.",
+        "The Public Health System Administrator can use an API to search for hospitals based on detailed criteria, such as the availability of specialized beds or specific medical products, to support strategic planning.",
+        "The Public Health System Administrator can query an API to retrieve historical records of patient transfers and resource movements, providing data for post-event analysis and system improvement.",
+        "The Medical Professional can call an API, providing patient location, to receive a ranked list of the closest hospitals that currently have available beds suitable for the patient's needs.",
+        "The Medical Professional can refine API requests to specify required bed types, ensuring that recommended hospitals can accommodate the patient's particular medical needs.",
+        "The Medical Professional can use an API to formally request a patient transfer to a selected hospital, including patient details and medical requirements.",
+        "The Medical Professional will receive an API response indicating whether the requested patient transfer has been approved or denied by the receiving hospital, along with any relevant reasons.",
+        "The Medical Professional can query an API to locate hospitals within a specified radius that have the required medical products or blood types in stock and available for transfer (quantity > 4).",
+        "The Medical Professional can use an API to send a formal request for the transfer of a specific quantity of products or blood from an identified source hospital to their current location, ensuring the source hospital has sufficient quantity (> 4).",
+        "The Medical Professional can query an API to monitor the real-time status of a transfer request, from initiation to delivery, including acceptance, dispatch, and estimated arrival.",
+        "Upon receiving the transferred items, the Medical Professional can use an API to confirm their receipt, updating the inventory of both the sending and receiving hospitals.",
+        "The Hospital Staff can use an API to register a new patient, assigning them to an available bed and updating the hospital's bed occupancy status and patient records.",
+        "The Hospital Staff can use an API to process a patient's discharge, marking their assigned bed as available and updating their status in the hospital's records.",
+        "The Hospital Staff can use an API to adjust the stock level of any medical product, reflecting new deliveries, usage, or disposals.",
+        "The Hospital Staff can use an API to modify the inventory of blood types in the blood bank, accounting for donations, transfusions, or expiration.",
+        "The Hospital Staff can call an API to get an up-to-date list of all medical products and their current quantities in the hospital's stock.",
+        "The Hospital Staff can use an API to view the current stock of each blood type available in the hospital's blood bank.",
+        "The Hospital Staff can use an API to send a request to another hospital for specific medical products or blood types that are needed, considering the 'available for transfer' rule (quantity > 4).",
+        "The Patient can use an API to input their current location and receive a list of nearby hospitals with available beds, ordered by proximity.",
+        "The Patient can query an API, specifying a needed medical supply, to find the nearest hospitals that currently have that item in their inventory and available for transfer (quantity > 4).",
+        "The Patient can subscribe to an API to receive updates on the progress of a medical supply transfer initiated on their behalf, including dispatch and estimated arrival.",
+        "Upon receiving the medical supply, the Patient (or their representative) can use an API to confirm its successful delivery, closing the transfer request."
+    ],
+    "cove_scores": {
+        "actors": [
+            7.0,
+            6.0,
+            7.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            2.0,
+            10.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 2
+    }
+}

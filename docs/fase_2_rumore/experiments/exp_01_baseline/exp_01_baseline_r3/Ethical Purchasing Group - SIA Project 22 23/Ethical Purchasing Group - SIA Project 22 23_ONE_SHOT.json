@@ -1,0 +1,102 @@
+{
+    "name": "Ethical Purchasing Group - SIA Project 22 23",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "ed8f757176a1619a254ba1ed1fe1c03d266a52b68e8855e66179b595a7689724",
+    "timestamp": "2026-10-10T20:29:29",
+    "description": "Information Systems – 2022/2023\nCourse Project\nConsider the following scenario:\n\nA km-zero fruit and vegetable store wants to develop a management system for am Ethical Purchasing Group (EPS; in Italian, Gruppo di Acquisti Solidale, or GAS) that connects a number of customers (family groups or generally groups of people) and some farmers. The basic philosophy is a conscious approach to purchasing, involving knowledge of the origin, quality, and different types of products.\n\nThe supporting information system should provide service to customers, farmers, and store employees.\n\nThe operating cycle of the EPS is weekly:\n- Starting at 12 noon on Friday and by 9 a.m. on Saturday morning, farmers provide an estimate of available products, in terms of types, prices, and quantities,\n- Customer orders are accepted until 11 p.m. on Sunday,\n- By 9 a.m. on Monday morning the farmers confirm the availability of products,\n- At this point the system automatically performs payments from customers' virtual wallets,\n- After payment has been made, customers can schedule times to pick up produce,\n- By Tuesday evening, farmers deliver their products to the store,\n- Pickups can take place from Wednesday morning to Friday evening.\n\nThe information system has a catalog of products that describes the characteristics, contains photos, and indicates the unit of measurement with which they are sold (for example: €/kg). In addition, a minimum and a maximum quantity that can be ordered is indicated.\n\nThe availabilities entered by farmers refer to a product in the catalog, specify the total quantity available and a price (with the same unit of measure indicated in the catalog). It is also possible to indicate crop characteristics, e.g., small size, excellent quality, very ripe, etc.\n\nCustomers can choose from all the offerings of the various farmers by specifying the quantity and completing an order. The order can be placed directly by customers via the web or by store employees at the customers' request. Once the customer confirms the product entry, the system verifies that the minimum quantities are met: if not, the customer must modify the order before it can be finally confirmed. Once the order is completed, a summary email is sent to the customer.\n\nPlease note that the customer is a representative of a buying group, typically family groups or more generally groups of people. Therefore, only the group representative can enter group orders into the system.\n\nCustomer orders are in the \"entered\" state until the farmers confirm available quantities. If the available quantities are sufficient to cover the orders, the orders move to the \"confirmed\" status. If there is no availability for all orders of a certain product, according to the system's precedence rules, unavailable quantities are removed from lower precedence orders. Modified orders go into the \"modified\" status and must be viewed and accepted by customers. If all products in an order are unavailable, then the order is cancelled. Upon delivery of the farmers' products, the clerk confirms receipt of the products in the specified quantity. If by 4 p.m. on Tuesday the goods have still not been delivered the system sends a reminder via SMS. If at the end of the day (8 p.m.) the goods have not been delivered, the system changes the orders related to delivery, re-credits the amount of goods not present with a bonus of 20% and reports the inconvenience to customers.\n\nPayment of orders is made after confirmation of quantities by farmers, for the quantities actually in the order. Payment is made from a personal wallet that users can top up at any time through the store.\n\nAfter order placement, if the customer's wallet balance is insufficient, a warning is sent via email but the order is still accepted.\n\nIf the balance is insufficient at the time of payment, a message (SMS) is sent to the customer who has until Monday evening to top up their wallet. If the balance is not sufficient on Monday evening, the order is cancelled.\n\nAs soon as the payment is made (automatically by the system) customers can book an appointment to pick up their products at the store.\n\nStore employees at the beginning of their shift view the pickup schedule and prepare packages for customers, when they arrive they register the pickup of products.\n\nIn case of failure to pick up on time, the system sends an SMS alert to the customer.\n\nIf the customer has not picked up their order by Friday, it is marked as \"forfeited\" and the customer's fair play score is updated as detailed in the following.\n\nThe system has a mean of evaluation the “fair play” of customers registered in the system. The customer’s fair play score is a measure of how correctly the users behave regarding their orders. This score is maintained in the system and is used as a mean of precedence in case of limited availability of produce. The “fair play” score is computed based on four different indicators: O) number of computed orders; R) number of reminders received; F) number of forfeited pickups; M) number of modified orders. When there is not enough availability of produce for all orders, the customers with higher score are given precedence over those with lower score.",
+    "actors": [
+        "Customer",
+        "Farmer",
+        "Store Employee"
+    ],
+    "highLevelGoals": [
+        "The Customer aims to easily browse available products, specify quantities, and submit orders for their group, with clear feedback on order status and any necessary modifications.",
+        "The Customer seeks a reliable mechanism to top up their virtual wallet and ensure funds are available for automatic payment of confirmed orders, with clear notifications regarding balance status.",
+        "The Customer desires the ability to book suitable time slots for picking up their ordered produce and receive timely reminders to avoid forfeiture.",
+        "The Customer aims to understand and manage their behavior within the system to ensure a high fair play score, which grants precedence in cases of limited product availability.",
+        "The Farmer aims to efficiently input estimates of available product types, quantities, and prices, and subsequently confirm final availability to fulfill customer orders.",
+        "The Farmer seeks a system that facilitates the delivery process and provides clear communication regarding delivery deadlines and any potential issues.",
+        "The Store Employee aims to easily add, modify, and manage product details, including characteristics, photos, units of measurement, and quantity limits, within the system's catalog.",
+        "The Store Employee seeks a system that allows them to place orders on behalf of customers, monitor order statuses, and ensure automatic payment processing from customer virtual wallets.",
+        "The Store Employee aims to confirm the receipt of farmer deliveries, view and manage the pickup schedule, prepare customer packages, and register successful product pickups.",
+        "The Store Employee desires a system that alerts them to issues such as insufficient customer balances, delayed farmer deliveries, or forfeited pickups, and facilitates communication with customers regarding these events."
+    ],
+    "lowLevelGoals": [
+        "The Customer can view a list of all currently available products, including their names, descriptions, and prices.",
+        "The Customer can input the desired quantity for each selected product before adding it to their order.",
+        "The Customer can add selected products with specified quantities to a new order.",
+        "The Customer can finalize and submit their compiled order for processing.",
+        "The Customer can check the current status of their submitted orders (e.g., pending, confirmed, ready for pickup).",
+        "The Customer can make changes to an order (e.g., adjust quantities, remove items) before it is confirmed.",
+        "The Customer can view and accept changes made by the system to their order due to product availability issues.",
+        "The Customer receives an automated email summarizing their order details after confirmation.",
+        "The Customer can initiate a transaction to add funds to their virtual wallet.",
+        "The Customer can check their current virtual wallet balance at any time.",
+        "The Customer receives an automated notification when their virtual wallet balance falls below a predefined threshold after order placement.",
+        "The Customer receives an automated SMS alert if their virtual wallet balance is insufficient at the payment deadline (Monday evening).",
+        "The Customer receives an automated notification upon successful automatic payment of a confirmed order.",
+        "The Customer can see a calendar or list of available time slots for product pickup.",
+        "The Customer can select and reserve an available time slot for picking up their order.",
+        "The Customer receives an automated reminder notification before their scheduled pickup time.",
+        "The Customer receives an automated SMS reminder at 4 PM Tuesday if their ordered goods have not yet been delivered.",
+        "The Customer can access and view their current fair play score within the system.",
+        "The Customer can access information explaining how the fair play score is calculated and what actions impact it.",
+        "The Customer receives an automatic re-credit to their virtual wallet, including a 20% bonus, if goods are not delivered by 8 p.m. Tuesday.",
+        "The Customer receives an automatic report of inconvenience if goods are not delivered by 8 p.m. Tuesday.",
+        "The Farmer can enter estimates for product types, quantities, and prices for an upcoming period.",
+        "The Farmer can confirm the exact quantities of products available for customer orders after harvest.",
+        "The Farmer can view their scheduled delivery times and deadlines to the store.",
+        "The Farmer physically delivers the confirmed products to the store according to the schedule.",
+        "The Store Employee can create a new product entry in the system's catalog, including name, description, and initial characteristics.",
+        "The Store Employee can edit the name, description, characteristics, and other details of an existing product in the catalog.",
+        "The Store Employee can upload images associated with a product in the catalog.",
+        "The Store Employee can define the units of measurement (e.g., kg, piece, bundle) for each product.",
+        "The Store Employee can set minimum and maximum quantity limits for customer orders of specific products.",
+        "The Store Employee can create and submit an order for a specific customer, selecting products and quantities.",
+        "The Store Employee can view the current status of all customer orders (e.g., pending, confirmed, paid).",
+        "The Store Employee can verify that payments for confirmed orders have been automatically deducted from customer virtual wallets.",
+        "The Store Employee can mark a farmer's product delivery as received in the system.",
+        "The Store Employee can access a consolidated view of all scheduled customer pickups.",
+        "The Store Employee can generate a packing list or view order details to prepare individual customer packages.",
+        "The Store Employee can mark a customer's order as successfully picked up in the system.",
+        "The Store Employee receives an automated alert when a customer's virtual wallet has insufficient funds for an order.",
+        "The Store Employee receives an automated alert when a farmer's delivery is reported as delayed or overdue.",
+        "The Store Employee receives an automated alert when a customer fails to pick up their order within the scheduled time.",
+        "The Store Employee can send pre-defined or custom messages to customers regarding order issues, balance problems, or pickup reminders.",
+        "The system automatically deducts the order amount from the customer's virtual wallet upon order confirmation.",
+        "The system automatically cancels an order if the customer's virtual wallet balance is insufficient by Monday evening.",
+        "The system automatically marks an order as 'forfeited' if it is not picked up by Friday.",
+        "The system automatically calculates and updates the customer's Fair Play Score based on their actions.",
+        "The system automatically adjusts quantities in customer orders based on fair play scores when product availability is limited."
+    ],
+    "cove_scores": {
+        "actors": [
+            7.0,
+            6.0,
+            7.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            4.0,
+            4.0,
+            4.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 3
+    }
+}

@@ -1,0 +1,68 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T17:42:53",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Hospital Staff",
+        "Patient"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to optimize the allocation of hospital resources, including products, blood, and beds, across the entire public health system to minimize waste and ensure efficient use.",
+        "The Public Health System Administrator seeks to facilitate the efficient transfer of critical products, such as blood, between hospitals to address shortages and meet patient needs promptly.",
+        "The Public Health System Administrator requires accurate and up-to-date information on hospital status, including bed availability, product stock, and blood bank levels, to make informed decisions.",
+        "Hospital Staff aims to efficiently manage and track product and blood bank inventories within their hospital to prevent stockouts and ensure necessary supplies are always available.",
+        "Hospital Staff seeks to streamline the patient check-in and check-out processes to reduce administrative burden and improve patient flow within the hospital.",
+        "Hospital Staff needs to accurately update and monitor available beds to ensure proper patient placement and avoid overcrowding.",
+        "The Patient aims to receive prompt and accurate recommendations for the closest hospital with available beds, minimizing travel time and ensuring access to care.",
+        "The Patient seeks to easily identify and access hospitals that can provide the necessary care based on their immediate needs and location."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator can view a dashboard displaying the current allocation of products, blood, and beds for all hospitals in the system.",
+        "The Public Health System Administrator can modify the allocated quantities of products, blood, or beds for a selected hospital.",
+        "The Public Health System Administrator can generate reports detailing resource utilization trends and efficiency metrics across the public health system.",
+        "The Public Health System Administrator can create a request to transfer a specific product (e.g., blood) from one hospital to another.",
+        "The Public Health System Administrator can review and either approve or reject pending transfer requests for products between hospitals.",
+        "The Public Health System Administrator can monitor the real-time status and location of products currently being transferred between hospitals.",
+        "The Public Health System Administrator can query the system to get the current number of available beds for any given hospital.",
+        "The Public Health System Administrator can view a consolidated list of product stock levels across all hospitals in the system.",
+        "The Public Health System Administrator can check the current inventory levels of all blood types in blood banks across the public health system.",
+        "Hospital Staff can modify the quantity of a specific product in their hospital's inventory.",
+        "Hospital Staff can add new blood units to the hospital's blood bank inventory, specifying blood type and other relevant details.",
+        "Hospital Staff can configure the system to generate alerts when product or blood bank levels fall below a predefined threshold.",
+        "Hospital Staff can input and save new patient demographic and admission information into the system.",
+        "Hospital Staff can mark a patient as discharged, updating their status and freeing up the assigned bed.",
+        "Hospital Staff can access a patient's past admission and discharge records.",
+        "Hospital Staff can change the status of a specific bed from available to occupied, or vice versa.",
+        "Hospital Staff can see a visual representation or list of all beds in their hospital, indicating their current status.",
+        "Hospital Staff can select an available bed and assign it to a newly admitted or transferred patient.",
+        "The Patient can input their current location and receive a list of nearby hospitals that have available beds.",
+        "The Patient can refine the list of recommended hospitals by setting a maximum acceptable travel distance.",
+        "The Patient can see the estimated travel time to each recommended hospital from their current location.",
+        "The Patient can input a required medical service (e.g., cardiology, emergency care) and find hospitals that provide it.",
+        "The Patient can access a hospital's profile, including its address, contact information, and list of services.",
+        "The Patient can request navigation directions to a selected hospital from their current location."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

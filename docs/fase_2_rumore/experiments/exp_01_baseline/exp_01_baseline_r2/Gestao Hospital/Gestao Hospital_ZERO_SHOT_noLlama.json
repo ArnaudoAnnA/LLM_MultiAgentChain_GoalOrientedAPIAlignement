@@ -1,0 +1,67 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T19:57:47",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Hospital Administrator",
+        "Medical Professional",
+        "Patient",
+        "System Administrator"
+    ],
+    "highLevelGoals": [
+        "The Hospital Administrator aims to efficiently manage hospital resources, including product stock, blood banks, and available beds, to avoid waste and ensure optimal utilization.",
+        "The Hospital Administrator seeks to streamline patient check-in and check-out processes and facilitate patient transfers to appropriate hospitals based on bed availability.",
+        "The Hospital Administrator's goal is to maintain sufficient inventory levels of products and blood within the hospital and facilitate transfers from other hospitals when needed.",
+        "The Medical Professional aims to quickly identify hospitals with available beds and necessary products or blood for patient care.",
+        "The Medical Professional seeks to facilitate the smooth and timely transfer of patients to the most suitable hospital based on their needs and resource availability.",
+        "The Patient's goal is to be directed to the closest hospital with available beds and necessary resources in a timely manner.",
+        "The Patient aims to receive efficient and effective healthcare services due to optimized resource allocation within the public health system.",
+        "The System Administrator aims to ensure the API operates reliably, securely, and efficiently to support the public health system's operations.",
+        "The System Administrator's goal is to effectively manage hospital registrations, system parameters, and overall data integrity within the API."
+    ],
+    "lowLevelGoals": [
+        "The Hospital Administrator updates the quantity of a specific product in the hospital's inventory.",
+        "The Hospital Administrator updates the quantity of a specific blood type in the hospital's blood bank.",
+        "The Hospital Administrator updates the number of available beds for a specific department or type in the hospital.",
+        "The Hospital Administrator registers a new patient check-in event in the system.",
+        "The Hospital Administrator registers a patient check-out event in the system.",
+        "The Hospital Administrator initiates a patient transfer request to another hospital, specifying patient details and target hospital.",
+        "The Hospital Administrator accepts an incoming patient transfer request from another hospital.",
+        "The Hospital Administrator requests a transfer of a specific product from another hospital.",
+        "The Hospital Administrator requests a transfer of a specific blood type from another hospital.",
+        "The Medical Professional queries the system to find hospitals with available beds based on specified criteria (e.g., location, specialty).",
+        "The Medical Professional queries the system to find hospitals with available stock of a specific product.",
+        "The Medical Professional queries the system to find hospitals with available stock of a specific blood type.",
+        "The Medical Professional submits a request to transfer a patient to a specific hospital, including patient details and required resources.",
+        "The Patient's system receives a recommendation for the closest hospital with available beds and necessary resources.",
+        "The Patient accesses healthcare services at a recommended hospital, benefiting from the optimized resource allocation.",
+        "The System Administrator monitors the uptime and responsiveness of the API endpoints.",
+        "The System Administrator reviews security logs for any unauthorized access attempts or suspicious activities.",
+        "The System Administrator tracks API performance metrics such as response times and error rates.",
+        "The System Administrator registers a new hospital in the system, providing its details and initial configurations.",
+        "The System Administrator updates global system parameters or configurations.",
+        "The System Administrator initiates a backup of the system's database and configurations."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

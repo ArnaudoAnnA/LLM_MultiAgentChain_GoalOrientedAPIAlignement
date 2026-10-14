@@ -1,0 +1,68 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T20:23:12",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Patient",
+        "Hospital Staff",
+        "Logistics Coordinator"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to optimize the allocation of hospital resources, including beds, products, and blood, across the entire public health system to minimize waste and ensure availability where needed.",
+        "The Public Health System Administrator seeks to efficiently manage and monitor hospital information, including their current stock levels of products, blood bank inventories, and real-time available bed counts.",
+        "The Patient aims to quickly and accurately receive recommendations for the closest hospital with available beds that can meet their specific needs.",
+        "The Hospital Staff aims to efficiently manage patient check-in and check-out processes, ensuring accurate record-keeping and bed allocation.",
+        "The Hospital Staff seeks to maintain accurate and up-to-date inventories of products and blood banks within their hospital to ensure adequate supplies for patient care.",
+        "The Logistics Coordinator aims to efficiently facilitate the transfer of essential products, such as blood, between nearby hospitals to address critical shortages and prevent waste.",
+        "The Logistics Coordinator seeks to ensure that hospitals in need receive necessary products and blood in a timely manner, minimizing delays in patient treatment."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator can access a dashboard to see current bed, product, and blood allocation.",
+        "The Public Health System Administrator can generate reports to analyze historical resource usage patterns.",
+        "The Public Health System Administrator can configure alerts for low stock or bed availability across the system.",
+        "The Public Health System Administrator can see a list of all hospitals under their management.",
+        "The Public Health System Administrator can query the current inventory of a particular product at a specific hospital.",
+        "The Public Health System Administrator can view the real-time status of blood banks across all hospitals.",
+        "The Public Health System Administrator can see the current bed availability broken down by medical area for any hospital.",
+        "The Patient can provide their geographical coordinates to locate hospitals in their vicinity.",
+        "The Patient can select their specific medical condition or required department to refine hospital search results.",
+        "The Patient will get a list of hospitals ordered by distance and suitability for their medical requirements.",
+        "The Hospital Staff can start a new patient admission by inputting personal details.",
+        "The Hospital Staff can allocate an unoccupied bed to a patient during admission.",
+        "The Hospital Staff can complete a patient's discharge, marking them as departed and making their bed available.",
+        "The Hospital Staff can change the current state of a bed in the system.",
+        "The Hospital Staff can log incoming supplies of products to update stock levels.",
+        "The Hospital Staff can decrease the quantity of a product in stock after it has been utilized.",
+        "The Hospital Staff can add new blood units to the blood bank records.",
+        "The Hospital Staff can remove blood units from the inventory when they are used or expire.",
+        "The Logistics Coordinator can create a request to move specific products from one hospital to another.",
+        "The Logistics Coordinator can accept or decline requests for product transfers.",
+        "The Logistics Coordinator can monitor the movement of products being transferred.",
+        "The Logistics Coordinator will get notifications when a hospital is running low on essential supplies.",
+        "The Logistics Coordinator can see all pending requests for resource transfers.",
+        "The Logistics Coordinator can reorder transfer requests based on their urgency and importance."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

@@ -1,0 +1,81 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T20:30:39",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Hospital Staff",
+        "Healthcare Professional",
+        "Logistics Coordinator",
+        "Patient"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to minimize waste and maximize the efficient use of resources (beds, products, blood) across all managed hospitals.",
+        "The Public Health System Administrator seeks to maintain a comprehensive and current database of all registered hospitals, their capacities, and inventory levels.",
+        "The Hospital Staff aims to streamline the process of patient check-in and check-out, ensuring accurate tracking of bed availability.",
+        "The Hospital Staff seeks to accurately manage and update the stock levels of medical products and blood banks within their respective hospitals.",
+        "The Healthcare Professional aims to rapidly find the closest hospital with available beds that can accommodate a patient's needs.",
+        "The Logistics Coordinator aims to efficiently arrange and execute the transfer of essential products, such as blood, between hospitals to address shortages.",
+        "The Patient aims to be directed to the most suitable healthcare facility with available resources to meet their medical needs."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator can call an API to get a list of all hospitals under their management, allowing for a high-level overview of resource distribution.",
+        "The Public Health System Administrator can make an API call to check the real-time bed availability for a chosen hospital, helping to pinpoint areas for better allocation.",
+        "The Public Health System Administrator can use an API to retrieve the stock levels of particular medical products across all hospitals, enabling them to identify where resources are abundant or scarce.",
+        "The Public Health System Administrator can query an API to see the current blood bank levels across all managed hospitals, aiding in the strategic distribution of blood.",
+        "The Public Health System Administrator can use an API to modify the total bed capacity for a given hospital, ensuring the system reflects current infrastructure.",
+        "The Public Health System Administrator can call an API to register a new hospital, providing its essential details like bed capacity and contact information.",
+        "The Public Health System Administrator can use an API to update the contact or administrative information for any registered hospital.",
+        "The Public Health System Administrator can query an API to get a complete list of all medical products and their current stock levels for a chosen hospital.",
+        "The Hospital Staff can use an API to record a new patient's arrival and automatically assign them to an available bed.",
+        "The Hospital Staff can call an API to update a patient's status to 'checked out', making their bed available for other patients.",
+        "The Hospital Staff can use an API to check the current number of free beds in their hospital at any given moment.",
+        "The Hospital Staff can use an API to reassign a patient to a different bed within the hospital, ensuring bed occupancy records are accurate.",
+        "The Hospital Staff can call an API to adjust the quantity of a particular medical product in their hospital's inventory.",
+        "The Hospital Staff can use an API to log new blood donations or deliveries, increasing the blood bank's reported stock.",
+        "The Hospital Staff can call an API to reduce the quantity of a particular blood type in the blood bank following its use.",
+        "The Hospital Staff can query an API to get an up-to-date list of all medical products and their quantities within their hospital.",
+        "The Healthcare Professional can use an API to search for hospitals that have open beds and are located within a defined distance from a given point.",
+        "The Healthcare Professional can refine their hospital search using an API to only show facilities that provide particular medical specialties or services relevant to the patient's needs.",
+        "The Healthcare Professional can call an API to get comprehensive details about a chosen hospital, such as its available services and real-time bed occupancy.",
+        "The Logistics Coordinator can use an API to formally request the movement of a particular medical product from a source hospital to a destination hospital, ensuring the quantity requested does not deplete the source hospital below its reserved 4 units.",
+        "The Logistics Coordinator can query an API to monitor the progress and current location of a medical product being transferred between facilities.",
+        "The Logistics Coordinator can use an API to acknowledge and confirm that a transferred medical product has arrived at its intended destination.",
+        "The Logistics Coordinator can use an API to locate hospitals in proximity that have an excess of a particular blood type (i.e., more than 4 units), facilitating efficient transfers.",
+        "The Public Health System Administrator can query an API to identify hospitals that have more than 4 units of a particular medical product, indicating a surplus available for transfer.",
+        "The Public Health System Administrator can call an API to determine the quantity of a medical product that can be transferred from a hospital, which is its total stock minus the reserved 4 units.",
+        "The Logistics Coordinator can request an API endpoint to receive recommendations for the nearest hospital with a surplus (>4 units) of a requested medical product."
+    ],
+    "cove_scores": {
+        "actors": [
+            7.0,
+            6.0,
+            6.0
+        ],
+        "highLevelGoals": [
+            9.5
+        ],
+        "lowLevelGoals": [
+            4.0,
+            7.0,
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 3
+    }
+}

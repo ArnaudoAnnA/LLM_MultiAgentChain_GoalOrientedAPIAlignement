@@ -1,0 +1,64 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T19:59:00",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Researcher",
+        "Bioinformatician",
+        "Oncologist"
+    ],
+    "highLevelGoals": [
+        "The Researcher aims to rapidly annotate genetic variants in cancer to accelerate their research and clinical investigations.",
+        "The Researcher seeks a comprehensive interpretation of genetic variants, integrating diverse information to understand their significance in cancer.",
+        "The Bioinformatician aims for automated integration of genetic variant data from various existing resources to streamline analysis workflows.",
+        "The Bioinformatician requires high-throughput processing capabilities to efficiently handle large volumes of genetic variant data.",
+        "The Bioinformatician needs access to predictions of functional effects of protein mutations to inform their computational analyses.",
+        "The Oncologist aims to gain insights into the clinical actionability of genetic variants to guide treatment decisions for cancer patients.",
+        "The Oncologist requires reliable and accurate information about variant effects and mutation frequencies to make informed clinical judgments."
+    ],
+    "lowLevelGoals": [
+        "The Researcher can upload a VCF (Variant Call Format) file containing genetic variants for rapid annotation.",
+        "The Researcher can start a process to annotate a large set of genetic variants simultaneously.",
+        "The Researcher can download the results of the annotation process, including relevant genomic and clinical information, in a machine-readable format.",
+        "The Researcher can send a request to external databases (e.g., ClinVar, COSMIC) to retrieve additional details about a specific genetic variant.",
+        "The Researcher can display genetic variant information alongside relevant genomic features (e.g., genes, transcripts, regulatory regions) in a graphical interface.",
+        "The Researcher can apply filters to narrow down variant interpretations based on predicted pathogenicity or clinical significance scores.",
+        "The Bioinformatician can set up and manage connections to various external data sources (e.g., public variant databases, internal repositories) for automatic data retrieval.",
+        "The Bioinformatician can define a schedule for the system to automatically update and synchronize genetic variant data from configured external sources.",
+        "The Bioinformatician can get alerts indicating the status of automated data integration tasks, including any errors or successful updates.",
+        "The Bioinformatician can upload and initiate the processing of very large files containing genetic variant data, leveraging parallel computing resources.",
+        "The Bioinformatician can view the real-time status and progress of ongoing large-scale data processing tasks.",
+        "The Bioinformatician can download the output files and reports generated from high-throughput processing of genetic variant data.",
+        "The Bioinformatician can send a query to the system to obtain predicted functional impacts of a given protein mutation.",
+        "The Bioinformatician can configure the system to connect and utilize external tools or databases that provide functional effect predictions through an API.",
+        "The Bioinformatician can view and compare the predicted functional effects of a mutation as determined by different computational algorithms.",
+        "The Oncologist can input patient-specific or variant-specific criteria to find genetic variants with known clinical actionability for cancer treatment.",
+        "The Oncologist can access evidence-based treatment guidelines or recommendations linked to identified clinically actionable genetic variants.",
+        "The Oncologist can refine the list of actionable variants by filtering for those associated with specific drug responses, sensitivities, or resistances.",
+        "The Oncologist can retrieve and review curated scientific and clinical literature supporting the reported effects of genetic variants.",
+        "The Oncologist can cross-reference genetic variant details with data from several reputable clinical and genomic databases to confirm accuracy.",
+        "The Oncologist can access data on how frequently a specific genetic variant occurs in different populations to assess its rarity or commonality."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

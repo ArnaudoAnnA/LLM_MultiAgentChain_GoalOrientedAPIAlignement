@@ -1,0 +1,90 @@
+{
+    "name": "Event Organization Portal - SIA Project 21 22",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "091907f0826fa9c6c8b66749e9f9ca775e4a3665b407b9818e81164fe16ef367",
+    "timestamp": "2026-10-10T20:33:43",
+    "description": "Information Systems - academic year 21/22\nCourse Project\nVersion 1.0.1 - 20/12/2021\nConsider the following scenario:\n\nA startup intends to develop a web portal that can help people who intend to organize an event, bringing together in a single website the information concerning the guests and the various services necessary for the event itself to take place.\n\nThe platform to be developed envisages the presence of providers and guests, in addition to the organizer.\n\nAt registration, providers supply, in addition to their credentials, their personal data and the data of the company they manage (VAT number, company address, accepted payment methods).\n\nThe provider, once registered, will be able to enter the services offered by their company, each belonging to a category (catering, hairdresser, florist etc.), each of which will be associated with a virtual showcase in which the provider can upload demonstration photos, together with the corresponding prices and the hours corresponding to the particular service shown by the showcase (e.g. Hairdresser's blow-dry service has as hours 10:00-12:00 from Tuesday to Thursday, Haircut + shampoo service with hours 8:00-12:00 + 15:00-18:00 from Tuesday to Saturday).\n\nThe event organizer, identified by their tax code, at registration, in addition to choosing their credentials, will provide their personal data, residence data and their IBAN for the possible payment of the services.\n\nThe organizer, through the portal, will be able to create the event, choosing the type of event (wedding, graduation, concert…) to organize, the date, the place where it will be held and the budget planned for the organization of the event. When creating the event the organizer will be able to choose from a pre-existing list the types of service for which they are interested in receiving help (for example catering, flowers, taxi service etc.).\n\nThe organizer will also be able to add the guests to the portal, entering the corresponding data, specifying, in addition to the personal data, the email with which the guest will be identified (and which they will use to log in) and the category to which the guest belongs (relative, friend, colleague etc.).\n\nFor each guest added, the system will generate an invitation code that will be sent by email to the specified address; this code will be used by the guest as a password to access the portal.\n\nThe organizer will also have available a blog associated with their event in which the organizer or the guests can write information about the event, post photos or videos and leave their thoughts by creating new posts or commenting on the existing ones.\n\nThe organizer, once the event has been created, will be able to view, for each service chosen when creating the event, the showcases of the providers that supply the chosen type of service and to arrange an appointment compatible with the hours observed by that service, specifying the details and any special requests. The provider, through their interface, will be able to view the various appointment requests and will have to approve them. The approved requests are displayed directly in a calendar on the site associated with the event, where the organizer will be able to consult the appointments for the agreed services.\n\nAfter the meeting between the provider and the organizer (in which they agree on the details of the service), the provider calculates the quotation and proceeds to upload the amount on the portal, associating it with the completed appointment.\n\nOnce the upload has taken place the organizer can choose whether to accept or reject the quotation; if it is accepted, the total amount is subtracted from the remaining budget. By accepting the amount, the organizer chooses the payment mode (instalments, deposit + balance or full amount) and the payment method (online or on site). If the payment takes place on site the provider will proceed to confirm the amount paid through the portal (in the case of payment in several instalments the provider confirms the amount of each instalment received).\n\nAt any time the organizer will be able to consult the history of the contracts (with the related status and cost) and the budget balance for the entire event.",
+    "actors": [
+        "Event Organizer",
+        "Provider",
+        "Guest"
+    ],
+    "highLevelGoals": [
+        "The Event Organizer aims to have a streamlined process for setting up new events, including defining event type, date, location, and budget.",
+        "The Event Organizer seeks to easily browse, compare, and book services from various providers that align with their event's needs and budget.",
+        "The Event Organizer desires a system to add guests, generate invitation codes, and manage guest categories for their events.",
+        "The Event Organizer wants a blog or similar feature to share information, photos, and videos with guests, and allow for interactive discussions.",
+        "The Event Organizer needs to monitor the event budget, track service costs, and manage payment processes for accepted quotations.",
+        "The Provider aims to easily register on the platform, providing all necessary company and personal details to offer their services.",
+        "The Provider wants to create and manage virtual showcases for their services, including demonstration photos, prices, and availability hours.",
+        "The Provider needs a system to view, approve, and manage appointment requests from event organizers, ensuring smooth scheduling.",
+        "The Provider seeks a straightforward process to upload quotations for services and confirm receipt of payments from organizers.",
+        "The Guest aims to log in using their invitation code to view event details, participate in the event blog, and stay informed.",
+        "The Guest desires to interact with the event's blog by creating posts, commenting, and sharing thoughts and media."
+    ],
+    "lowLevelGoals": [
+        "The Event Organizer can create a new user profile by providing personal data, residence data, and their IBAN.",
+        "The Event Organizer can initiate the creation of a new event record in the system.",
+        "The Event Organizer can choose from a pre-existing list of service types when setting up a new event.",
+        "The Event Organizer can define and modify the financial allocation for an event.",
+        "The Event Organizer can view a list of all registered service providers on the platform.",
+        "The Event Organizer can select a specific time slot for an appointment with a provider, considering the provider's availability.",
+        "The Event Organizer can initiate a request for pricing details from a provider.",
+        "The Event Organizer can formally agree to the terms and price of a service quotation.",
+        "The Event Organizer can see all confirmed service appointments displayed in a calendar format.",
+        "The Event Organizer can manually input guest details into the system.",
+        "The system will automatically create distinct access codes for invited attendees upon their addition to the guest list.",
+        "The Event Organizer can assign labels or groups to guests for organizational purposes.",
+        "The Event Organizer can publish new content on the event's communication platform.",
+        "The Event Organizer can enrich blog content with multimedia.",
+        "The Event Organizer can moderate and interact with guest discussions.",
+        "The Event Organizer can view a summary of how much of the allocated budget has been spent.",
+        "The Event Organizer can see individual expenses related to booked services.",
+        "The Event Organizer can choose how and when to pay for a confirmed service.",
+        "The Event Organizer can trigger the payment process for a confirmed service.",
+        "The Provider can create a new user profile to offer their services.",
+        "The Provider can provide essential business details, including financial and contact information, when signing up.",
+        "The Provider can add a new listing for a service they offer.",
+        "The Provider can add visual media to their service listings.",
+        "The Provider can define the cost and operational times for their offerings.",
+        "The Provider can modify information about their listed services.",
+        "The Provider can see all pending requests for their services.",
+        "The Provider can accept or reject a booking request.",
+        "The Provider can submit a formal price proposal to an event organizer.",
+        "The Provider can acknowledge that payment has been successfully received from an event organizer.",
+        "The Guest can gain access to event-specific content by entering their provided code.",
+        "The Guest can access all relevant information about the event they are attending.",
+        "The Guest can view all published content on the event's communication platform.",
+        "The Guest can contribute their own content to the event's communication platform.",
+        "The Guest can provide feedback or engage in discussions on published content.",
+        "The Guest can share multimedia content within the event blog."
+    ],
+    "cove_scores": {
+        "actors": [
+            10.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            4.0,
+            8.0,
+            10.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 3
+    }
+}

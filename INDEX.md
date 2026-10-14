@@ -82,3 +82,19 @@ experiment_log.txt   verbose_log.txt
 - A `temperature=0` il generatore non è deterministico su tutti i sistemi: per questo si fanno più repliche.
 - `GENERATOR_SEED` è un'indicazione al provider, non una garanzia di riproducibilità.
 - Alcuni commenti nel codice citano file e cartelle del progetto di origine (log, piani, snapshot) che non sono in questo repository: non servono per l'esecuzione.
+
+## 4. Struttura del repository per i risultati
+
+Il codice sta in `src/` e `notebook/`. Ogni fase di lavoro ha una cartella in `docs/`, con lo stesso schema:
+
+```
+docs/fase_<N>_<nome>/
+├── FASE_<N>.md          indice: cosa contiene, a cosa serve ogni script, come rifare i numeri
+├── REPORT_FASE_<N>.md   report: perché, a quale domanda rispondeva ogni esperimento, risposta
+├── *.html               riepiloghi e spiegazioni illustrate
+└── experiments/<esperimento>/<run>/   dati e tabelle prodotti
+```
+
+| Fase | Cartella | Contenuto |
+|---|---|---|
+| 2 — Il rumore | [`docs/fase_2_rumore/`](docs/fase_2_rumore/FASE_2.md) | Tre repliche della baseline, misura del rumore, scelta della regola di confronto. Report: [`REPORT_FASE_2.md`](docs/fase_2_rumore/REPORT_FASE_2.md) |

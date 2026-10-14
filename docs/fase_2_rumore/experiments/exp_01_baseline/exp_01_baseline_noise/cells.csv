@@ -1,0 +1,217 @@
+system,set,shot,critic,node,identity,n_items_r1,n_items_r2,n_items_r3,precision_r1,precision_r2,precision_r3,precision_range,recall_r1,recall_r2,recall_r3,recall_range,f1_r1,f1_r2,f1_r3,f1_range
+SIA Project 25 26,dev,ZERO_SHOT,ON,actors,all_equal,6,6,6,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0
+Assegno Unico Universale - SIA Project 24 25,holdout,ZERO_SHOT,ON,actors,all_equal,5,5,5,0.536,0.536,0.536,0.0,0.8934,0.8934,0.8934,0.0,0.6701,0.6701,0.6701,0.0
+La Reine Marlene - SIA Project 23 24,holdout,ZERO_SHOT,ON,actors,two_equal,7,9,7,0.9291,0.8124,0.9291,0.1167,0.813,0.914,0.813,0.101,0.8672,0.8602,0.8672,0.007
+Ethical Purchasing Group - SIA Project 22 23,holdout,ZERO_SHOT,ON,actors,all_equal,3,3,3,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Event Organization Portal - SIA Project 21 22,holdout,ZERO_SHOT,ON,actors,all_equal,3,3,3,0.9503,0.9503,0.9503,0.0,0.9503,0.9503,0.9503,0.0,0.9503,0.9503,0.9503,0.0
+Genome Nexus,dev,ZERO_SHOT,ON,actors,two_equal,4,5,4,0.3357,0.3332,0.3357,0.0026,0.6715,0.8329,0.6715,0.1614,0.4476,0.4759,0.4476,0.0283
+Gestao Hospital,dev,ZERO_SHOT,ON,actors,all_different,5,4,3,0.5231,0.6384,0.8304,0.3073,0.8719,0.8513,0.8304,0.0415,0.6539,0.7297,0.8304,0.1765
+London Ambulance Service,dev,ZERO_SHOT,ON,actors,all_equal,4,4,4,0.4838,0.4838,0.4838,0.0,0.9677,0.9677,0.9677,0.0,0.6451,0.6451,0.6451,0.0
+Calculator,holdout,ZERO_SHOT,ON,actors,all_equal,1,1,1,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Fitness Tracker,holdout,ZERO_SHOT,ON,actors,all_different,2,3,2,0.3831,0.3333,0.5,0.1667,0.7661,1.0,1.0,0.2339,0.5108,0.5,0.6667,0.1667
+Planning Poker,holdout,ZERO_SHOT,ON,actors,all_equal,3,3,3,0.6667,0.6667,0.6667,0.0,1.0,1.0,1.0,0.0,0.8,0.8,0.8,0.0
+Recycling,holdout,ZERO_SHOT,ON,actors,all_equal,4,4,4,0.8856,0.8856,0.8856,0.0,0.8856,0.8856,0.8856,0.0,0.8856,0.8856,0.8856,0.0
+SIA Project 25 26,dev,ZERO_SHOT,ON,highLevelGoals,two_equal,15,16,16,0.4562,0.4343,0.4343,0.0219,0.6842,0.6949,0.6949,0.0106,0.5474,0.5345,0.5345,0.0129
+Assegno Unico Universale - SIA Project 24 25,holdout,ZERO_SHOT,ON,highLevelGoals,all_different,13,12,12,0.1152,0.1061,0.1191,0.013,0.7777,0.7696,0.7743,0.0081,0.2007,0.1866,0.2065,0.0199
+La Reine Marlene - SIA Project 23 24,holdout,ZERO_SHOT,ON,highLevelGoals,all_different,15,23,17,0.4544,0.3081,0.4057,0.1463,0.6817,0.7086,0.6897,0.027,0.5453,0.4295,0.5109,0.1159
+Ethical Purchasing Group - SIA Project 22 23,holdout,ZERO_SHOT,ON,highLevelGoals,two_equal,12,13,12,0.2346,0.2156,0.2346,0.019,0.7037,0.7006,0.7037,0.0031,0.3519,0.3297,0.3519,0.0222
+Event Organization Portal - SIA Project 21 22,holdout,ZERO_SHOT,ON,highLevelGoals,two_equal,10,10,10,0.2545,0.2628,0.2628,0.0083,0.6363,0.6571,0.6571,0.0208,0.3636,0.3755,0.3755,0.0119
+Genome Nexus,dev,ZERO_SHOT,ON,highLevelGoals,all_different,9,11,10,0.2668,0.2067,0.2228,0.0601,0.8003,0.7579,0.7426,0.0577,0.4001,0.3248,0.3427,0.0753
+Gestao Hospital,dev,ZERO_SHOT,ON,highLevelGoals,all_different,10,10,9,0.3089,0.2965,0.3352,0.0387,0.7723,0.7411,0.7542,0.0311,0.4413,0.4235,0.4641,0.0406
+London Ambulance Service,dev,ZERO_SHOT,ON,highLevelGoals,all_equal,8,8,8,0.2029,0.2029,0.2029,0.0,0.8117,0.8117,0.8117,0.0,0.3247,0.3247,0.3247,0.0
+Calculator,holdout,ZERO_SHOT,ON,highLevelGoals,two_equal,3,3,3,0.5005,0.5005,0.5047,0.0043,0.7507,0.7507,0.7571,0.0064,0.6006,0.6006,0.6057,0.0051
+Fitness Tracker,holdout,ZERO_SHOT,ON,highLevelGoals,all_different,7,6,7,0.6044,0.6871,0.604,0.0831,0.7051,0.6871,0.7046,0.018,0.6509,0.6871,0.6504,0.0367
+Planning Poker,holdout,ZERO_SHOT,ON,highLevelGoals,two_equal,10,10,10,0.3391,0.3341,0.3341,0.005,0.6782,0.6682,0.6682,0.01,0.4522,0.4455,0.4455,0.0067
+Recycling,holdout,ZERO_SHOT,ON,highLevelGoals,two_equal,12,11,11,0.3374,0.3487,0.3487,0.0113,0.8098,0.7672,0.7672,0.0425,0.4763,0.4795,0.4795,0.0032
+SIA Project 25 26,dev,ZERO_SHOT,ON,lowLevelGoals,all_different,44,52,46,0.5399,0.4525,0.5178,0.0874,0.7663,0.759,0.7683,0.0094,0.6335,0.5669,0.6187,0.0665
+Assegno Unico Universale - SIA Project 24 25,holdout,ZERO_SHOT,ON,lowLevelGoals,all_different,115,93,53,0.1936,0.1527,0.4239,0.2713,0.8159,0.8069,0.8024,0.0135,0.313,0.2567,0.5548,0.298
+La Reine Marlene - SIA Project 23 24,holdout,ZERO_SHOT,ON,lowLevelGoals,all_different,60,68,52,0.3966,0.3591,0.4594,0.1003,0.7436,0.763,0.7465,0.0194,0.5173,0.4883,0.5688,0.0805
+Ethical Purchasing Group - SIA Project 22 23,holdout,ZERO_SHOT,ON,lowLevelGoals,all_different,50,42,45,0.1944,0.2324,0.2164,0.0381,0.6941,0.6973,0.6957,0.0031,0.3037,0.3486,0.3302,0.045
+Event Organization Portal - SIA Project 21 22,holdout,ZERO_SHOT,ON,lowLevelGoals,all_different,37,39,37,0.5063,0.4794,0.5041,0.027,0.6939,0.6924,0.6908,0.0031,0.5854,0.5665,0.5828,0.0189
+Genome Nexus,dev,ZERO_SHOT,ON,lowLevelGoals,all_different,38,35,32,0.6327,0.6833,0.7457,0.113,0.8015,0.7971,0.7954,0.006,0.7072,0.7358,0.7698,0.0626
+Gestao Hospital,dev,ZERO_SHOT,ON,lowLevelGoals,all_different,32,22,27,0.4104,0.591,0.4924,0.1806,0.7297,0.7224,0.7387,0.0163,0.5254,0.6502,0.5909,0.1248
+London Ambulance Service,dev,ZERO_SHOT,ON,lowLevelGoals,all_different,23,26,21,0.0696,0.0602,0.0764,0.0163,0.8008,0.7822,0.8026,0.0204,0.1281,0.1117,0.1396,0.0278
+Calculator,holdout,ZERO_SHOT,ON,lowLevelGoals,all_different,7,6,11,0.6828,0.6843,0.4834,0.2009,0.6828,0.5866,0.7596,0.1731,0.6828,0.6317,0.5908,0.092
+Fitness Tracker,holdout,ZERO_SHOT,ON,lowLevelGoals,all_different,27,28,25,0.362,0.3481,0.387,0.0389,0.7519,0.7497,0.7442,0.0077,0.4887,0.4754,0.5092,0.0338
+Planning Poker,holdout,ZERO_SHOT,ON,lowLevelGoals,all_different,46,41,42,0.5207,0.5863,0.5758,0.0656,0.7259,0.7285,0.7329,0.007,0.6064,0.6497,0.6449,0.0433
+Recycling,holdout,ZERO_SHOT,ON,lowLevelGoals,all_different,43,44,41,0.452,0.4462,0.4768,0.0306,0.7775,0.7853,0.7819,0.0078,0.5717,0.569,0.5924,0.0233
+SIA Project 25 26,dev,ZERO_SHOT,OFF,actors,all_equal,6,6,6,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0
+Assegno Unico Universale - SIA Project 24 25,holdout,ZERO_SHOT,OFF,actors,all_equal,5,5,5,0.536,0.536,0.536,0.0,0.8934,0.8934,0.8934,0.0,0.6701,0.6701,0.6701,0.0
+La Reine Marlene - SIA Project 23 24,holdout,ZERO_SHOT,OFF,actors,all_equal,6,6,6,0.9572,0.9572,0.9572,0.0,0.7179,0.7179,0.7179,0.0,0.8205,0.8205,0.8205,0.0
+Ethical Purchasing Group - SIA Project 22 23,holdout,ZERO_SHOT,OFF,actors,all_equal,3,3,3,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Event Organization Portal - SIA Project 21 22,holdout,ZERO_SHOT,OFF,actors,all_equal,3,3,3,0.9503,0.9503,0.9503,0.0,0.9503,0.9503,0.9503,0.0,0.9503,0.9503,0.9503,0.0
+Genome Nexus,dev,ZERO_SHOT,OFF,actors,all_equal,3,3,3,0.5446,0.5446,0.5446,0.0,0.8168,0.8168,0.8168,0.0,0.6535,0.6535,0.6535,0.0
+Gestao Hospital,dev,ZERO_SHOT,OFF,actors,two_equal,3,4,4,0.8148,0.6228,0.6228,0.192,0.8148,0.8303,0.8303,0.0156,0.8148,0.7117,0.7117,0.1031
+London Ambulance Service,dev,ZERO_SHOT,OFF,actors,two_equal,3,3,3,0.6451,0.6451,0.6451,0.0,0.9677,0.9677,0.9677,0.0,0.7741,0.7741,0.7741,0.0
+Calculator,holdout,ZERO_SHOT,OFF,actors,all_equal,1,1,1,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Fitness Tracker,holdout,ZERO_SHOT,OFF,actors,all_equal,4,4,4,0.1815,0.1815,0.1815,0.0,0.726,0.726,0.726,0.0,0.2904,0.2904,0.2904,0.0
+Planning Poker,holdout,ZERO_SHOT,OFF,actors,all_equal,5,5,5,0.4,0.4,0.4,0.0,1.0,1.0,1.0,0.0,0.5714,0.5714,0.5714,0.0
+Recycling,holdout,ZERO_SHOT,OFF,actors,two_equal,3,4,3,0.8474,0.8856,0.8474,0.0381,0.6356,0.8856,0.6356,0.25,0.7264,0.8856,0.7264,0.1592
+SIA Project 25 26,dev,ZERO_SHOT,OFF,highLevelGoals,two_equal,14,14,16,0.4986,0.4986,0.4343,0.0643,0.698,0.698,0.6949,0.0032,0.5817,0.5817,0.5345,0.0472
+Assegno Unico Universale - SIA Project 24 25,holdout,ZERO_SHOT,OFF,highLevelGoals,all_different,9,8,11,0.1811,0.1917,0.1472,0.0445,0.7696,0.7668,0.7728,0.006,0.2932,0.3067,0.2473,0.0594
+La Reine Marlene - SIA Project 23 24,holdout,ZERO_SHOT,OFF,highLevelGoals,all_different,18,18,19,0.3822,0.3817,0.363,0.0192,0.688,0.687,0.6898,0.0027,0.4914,0.4907,0.4757,0.0157
+Ethical Purchasing Group - SIA Project 22 23,holdout,ZERO_SHOT,OFF,highLevelGoals,all_equal,12,12,12,0.2346,0.2346,0.2346,0.0,0.7037,0.7037,0.7037,0.0,0.3519,0.3519,0.3519,0.0
+Event Organization Portal - SIA Project 21 22,holdout,ZERO_SHOT,OFF,highLevelGoals,two_equal,10,9,10,0.2545,0.2796,0.2545,0.025,0.6363,0.629,0.6363,0.0073,0.3636,0.3871,0.3636,0.0235
+Genome Nexus,dev,ZERO_SHOT,OFF,highLevelGoals,two_equal,6,6,6,0.3545,0.3738,0.3545,0.0193,0.709,0.7475,0.709,0.0386,0.4726,0.4984,0.4726,0.0257
+Gestao Hospital,dev,ZERO_SHOT,OFF,highLevelGoals,all_different,9,9,8,0.3288,0.3341,0.3703,0.0414,0.7399,0.7517,0.7405,0.0118,0.4553,0.4626,0.4937,0.0384
+London Ambulance Service,dev,ZERO_SHOT,OFF,highLevelGoals,two_equal,7,7,7,0.2288,0.2256,0.2288,0.0032,0.8007,0.7895,0.8007,0.0112,0.3559,0.3509,0.3559,0.005
+Calculator,holdout,ZERO_SHOT,OFF,highLevelGoals,two_equal,3,3,3,0.5047,0.5005,0.5047,0.0043,0.7571,0.7507,0.7571,0.0064,0.6057,0.6006,0.6057,0.0051
+Fitness Tracker,holdout,ZERO_SHOT,OFF,highLevelGoals,two_equal,11,11,14,0.3962,0.3962,0.3021,0.0941,0.7264,0.7264,0.7049,0.0215,0.5128,0.5128,0.4229,0.0898
+Planning Poker,holdout,ZERO_SHOT,OFF,highLevelGoals,all_different,12,15,7,0.277,0.2294,0.4763,0.2469,0.6648,0.6882,0.6669,0.0235,0.391,0.3441,0.5557,0.2116
+Recycling,holdout,ZERO_SHOT,OFF,highLevelGoals,all_different,5,12,10,0.7482,0.324,0.4001,0.4241,0.7482,0.7777,0.8001,0.052,0.7482,0.4575,0.5334,0.2907
+SIA Project 25 26,dev,ZERO_SHOT,OFF,lowLevelGoals,all_different,24,26,38,0.7589,0.7447,0.6009,0.158,0.5875,0.6246,0.7366,0.1491,0.6623,0.6794,0.6619,0.0175
+Assegno Unico Universale - SIA Project 24 25,holdout,ZERO_SHOT,OFF,lowLevelGoals,all_different,80,72,72,0.2798,0.3114,0.3127,0.0329,0.7994,0.8007,0.804,0.0046,0.4145,0.4484,0.4502,0.0357
+La Reine Marlene - SIA Project 23 24,holdout,ZERO_SHOT,OFF,lowLevelGoals,all_different,58,43,46,0.4219,0.5595,0.5133,0.1376,0.7647,0.7518,0.7379,0.0268,0.5438,0.6415,0.6054,0.0977
+Ethical Purchasing Group - SIA Project 22 23,holdout,ZERO_SHOT,OFF,lowLevelGoals,all_equal,37,37,37,0.2558,0.2558,0.2558,0.0,0.6759,0.6759,0.6759,0.0,0.3711,0.3711,0.3711,0.0
+Event Organization Portal - SIA Project 21 22,holdout,ZERO_SHOT,OFF,lowLevelGoals,all_different,43,42,41,0.4366,0.4511,0.4627,0.0261,0.6954,0.7017,0.7026,0.0073,0.5364,0.5492,0.558,0.0216
+Genome Nexus,dev,ZERO_SHOT,OFF,lowLevelGoals,two_equal,20,18,20,0.8098,0.8157,0.8098,0.0059,0.5399,0.4894,0.5399,0.0504,0.6478,0.6118,0.6478,0.0361
+Gestao Hospital,dev,ZERO_SHOT,OFF,lowLevelGoals,all_different,24,21,28,0.5522,0.6228,0.4653,0.1575,0.7363,0.7266,0.7237,0.0126,0.6311,0.6707,0.5664,0.1043
+London Ambulance Service,dev,ZERO_SHOT,OFF,lowLevelGoals,two_equal,19,19,19,0.0741,0.0715,0.0741,0.0026,0.7038,0.6795,0.7038,0.0244,0.1341,0.1294,0.1341,0.0046
+Calculator,holdout,ZERO_SHOT,OFF,lowLevelGoals,all_different,10,9,10,0.5216,0.5396,0.4839,0.0557,0.7452,0.6937,0.6913,0.0539,0.6137,0.607,0.5693,0.0444
+Fitness Tracker,holdout,ZERO_SHOT,OFF,lowLevelGoals,all_different,33,33,56,0.2851,0.2843,0.1707,0.1143,0.7236,0.7217,0.7354,0.0137,0.409,0.4079,0.2771,0.1319
+Planning Poker,holdout,ZERO_SHOT,OFF,lowLevelGoals,all_different,37,35,30,0.63,0.6147,0.6998,0.0851,0.7064,0.652,0.6362,0.0702,0.666,0.6328,0.6665,0.0337
+Recycling,holdout,ZERO_SHOT,OFF,lowLevelGoals,all_different,15,38,25,0.7936,0.498,0.7423,0.2956,0.4762,0.757,0.7423,0.2808,0.5952,0.6008,0.7423,0.147
+SIA Project 25 26,dev,ONE_SHOT,ON,actors,two_equal,6,6,6,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0
+Assegno Unico Universale - SIA Project 24 25,holdout,ONE_SHOT,ON,actors,all_equal,3,3,3,0.9595,0.9595,0.9595,0.0,0.9595,0.9595,0.9595,0.0,0.9595,0.9595,0.9595,0.0
+La Reine Marlene - SIA Project 23 24,holdout,ONE_SHOT,ON,actors,all_different,6,7,8,0.9572,0.9336,0.9094,0.0479,0.7179,0.8169,0.9094,0.1914,0.8205,0.8714,0.9094,0.0889
+Ethical Purchasing Group - SIA Project 22 23,holdout,ONE_SHOT,ON,actors,all_equal,3,3,3,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Event Organization Portal - SIA Project 21 22,holdout,ONE_SHOT,ON,actors,all_equal,3,3,3,0.9032,0.9032,0.9032,0.0,0.9032,0.9032,0.9032,0.0,0.9032,0.9032,0.9032,0.0
+Genome Nexus,dev,ONE_SHOT,ON,actors,all_different,7,4,5,0.2334,0.4602,0.3469,0.2269,0.8168,0.9205,0.8672,0.1037,0.363,0.6137,0.4956,0.2506
+Gestao Hospital,dev,ONE_SHOT,ON,actors,all_different,4,4,5,0.6158,0.6158,0.5229,0.0929,0.8211,0.8211,0.8714,0.0504,0.7038,0.7038,0.6536,0.0502
+London Ambulance Service,dev,ONE_SHOT,ON,actors,all_equal,4,4,4,0.4838,0.4838,0.4838,0.0,0.9677,0.9677,0.9677,0.0,0.6451,0.6451,0.6451,0.0
+Calculator,holdout,ONE_SHOT,ON,actors,all_equal,1,1,1,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Fitness Tracker,holdout,ONE_SHOT,ON,actors,two_equal,2,2,3,0.5,0.5,0.3333,0.1667,1.0,1.0,1.0,0.0,0.6667,0.6667,0.5,0.1667
+Planning Poker,holdout,ONE_SHOT,ON,actors,two_equal,3,3,3,0.6667,0.6667,0.6667,0.0,1.0,1.0,1.0,0.0,0.8,0.8,0.8,0.0
+Recycling,holdout,ONE_SHOT,ON,actors,two_equal,4,6,4,0.8856,0.6049,0.8856,0.2807,0.8856,0.9074,0.8856,0.0218,0.8856,0.7259,0.8856,0.1597
+SIA Project 25 26,dev,ONE_SHOT,ON,highLevelGoals,two_equal,16,14,16,0.4155,0.4781,0.4155,0.0626,0.6648,0.6693,0.6648,0.0046,0.5114,0.5578,0.5114,0.0464
+Assegno Unico Universale - SIA Project 24 25,holdout,ONE_SHOT,ON,highLevelGoals,all_different,12,15,14,0.2623,0.2125,0.2214,0.0498,0.787,0.7969,0.7748,0.0221,0.3935,0.3355,0.3443,0.058
+La Reine Marlene - SIA Project 23 24,holdout,ONE_SHOT,ON,highLevelGoals,all_different,25,27,28,0.2748,0.2512,0.2466,0.0281,0.687,0.6782,0.6906,0.0124,0.3925,0.3666,0.3635,0.0291
+Ethical Purchasing Group - SIA Project 22 23,holdout,ONE_SHOT,ON,highLevelGoals,two_equal,12,12,10,0.2308,0.2308,0.2723,0.0415,0.6923,0.6923,0.6807,0.0116,0.3461,0.3461,0.389,0.0428
+Event Organization Portal - SIA Project 21 22,holdout,ONE_SHOT,ON,highLevelGoals,all_different,10,9,10,0.2504,0.2771,0.2508,0.0266,0.6261,0.6234,0.627,0.0036,0.3578,0.3836,0.3583,0.0259
+Genome Nexus,dev,ONE_SHOT,ON,highLevelGoals,all_different,5,7,7,0.4424,0.3181,0.3082,0.1342,0.7373,0.7423,0.7191,0.0232,0.553,0.4454,0.4314,0.1216
+Gestao Hospital,dev,ONE_SHOT,ON,highLevelGoals,all_different,8,10,7,0.3693,0.3007,0.4349,0.1342,0.7385,0.7518,0.7611,0.0226,0.4923,0.4296,0.5535,0.1239
+London Ambulance Service,dev,ONE_SHOT,ON,highLevelGoals,two_equal,10,10,6,0.1593,0.1593,0.272,0.1127,0.7963,0.7963,0.816,0.0197,0.2654,0.2654,0.408,0.1426
+Calculator,holdout,ONE_SHOT,ON,highLevelGoals,two_equal,3,4,4,0.494,0.3725,0.3725,0.1215,0.741,0.745,0.745,0.0041,0.5928,0.4967,0.4967,0.0961
+Fitness Tracker,holdout,ONE_SHOT,ON,highLevelGoals,two_equal,8,8,10,0.5467,0.5467,0.4436,0.1031,0.7289,0.7289,0.7393,0.0104,0.6248,0.6248,0.5545,0.0703
+Planning Poker,holdout,ONE_SHOT,ON,highLevelGoals,all_different,10,14,15,0.3312,0.2404,0.226,0.1052,0.6624,0.6732,0.678,0.0156,0.4416,0.3543,0.339,0.1026
+Recycling,holdout,ONE_SHOT,ON,highLevelGoals,all_different,12,18,13,0.3174,0.2166,0.2915,0.1007,0.7617,0.7799,0.7578,0.0221,0.448,0.3391,0.421,0.1089
+SIA Project 25 26,dev,ONE_SHOT,ON,lowLevelGoals,all_different,57,35,54,0.3944,0.6403,0.4172,0.2459,0.7252,0.7229,0.7267,0.0038,0.511,0.6791,0.5301,0.1682
+Assegno Unico Universale - SIA Project 24 25,holdout,ONE_SHOT,ON,lowLevelGoals,all_different,54,58,76,0.4109,0.3873,0.2965,0.1144,0.7925,0.8022,0.8047,0.0122,0.5412,0.5224,0.4333,0.1079
+La Reine Marlene - SIA Project 23 24,holdout,ONE_SHOT,ON,lowLevelGoals,all_different,59,70,55,0.4125,0.3491,0.4371,0.088,0.7605,0.7636,0.7512,0.0124,0.5348,0.4791,0.5526,0.0735
+Ethical Purchasing Group - SIA Project 22 23,holdout,ONE_SHOT,ON,lowLevelGoals,all_different,53,60,46,0.1846,0.1675,0.2068,0.0393,0.6988,0.718,0.6796,0.0384,0.2921,0.2717,0.3171,0.0455
+Event Organization Portal - SIA Project 21 22,holdout,ONE_SHOT,ON,lowLevelGoals,all_different,56,44,52,0.3372,0.4237,0.3609,0.0866,0.6993,0.6905,0.695,0.0088,0.4549,0.5252,0.4751,0.0702
+Genome Nexus,dev,ONE_SHOT,ON,lowLevelGoals,all_different,15,21,21,0.8376,0.8102,0.8115,0.0274,0.4188,0.5671,0.5681,0.1493,0.5584,0.6672,0.6683,0.1099
+Gestao Hospital,dev,ONE_SHOT,ON,lowLevelGoals,all_different,26,36,26,0.4911,0.3776,0.5029,0.1253,0.7094,0.7551,0.7264,0.0458,0.5804,0.5034,0.5943,0.0909
+London Ambulance Service,dev,ONE_SHOT,ON,lowLevelGoals,all_different,24,20,15,0.0578,0.0723,0.103,0.0452,0.694,0.7226,0.7727,0.0786,0.1068,0.1314,0.1818,0.075
+Calculator,holdout,ONE_SHOT,ON,lowLevelGoals,all_different,9,12,16,0.5525,0.4221,0.3396,0.2129,0.7104,0.7236,0.7763,0.0659,0.6216,0.5332,0.4725,0.149
+Fitness Tracker,holdout,ONE_SHOT,ON,lowLevelGoals,all_different,28,34,31,0.3515,0.2864,0.3048,0.0651,0.7571,0.7492,0.7268,0.0303,0.4801,0.4144,0.4295,0.0657
+Planning Poker,holdout,ONE_SHOT,ON,lowLevelGoals,all_different,43,43,39,0.5533,0.5499,0.6061,0.0562,0.7209,0.7165,0.7163,0.0046,0.6261,0.6222,0.6566,0.0344
+Recycling,holdout,ONE_SHOT,ON,lowLevelGoals,all_different,43,52,34,0.4592,0.374,0.5788,0.2048,0.7899,0.778,0.7872,0.0119,0.5808,0.5052,0.6671,0.1619
+SIA Project 25 26,dev,ONE_SHOT,OFF,actors,two_equal,6,6,6,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0
+Assegno Unico Universale - SIA Project 24 25,holdout,ONE_SHOT,OFF,actors,two_equal,6,6,6,0.4525,0.4525,0.4561,0.0036,0.9051,0.9051,0.9123,0.0072,0.6034,0.6034,0.6082,0.0048
+La Reine Marlene - SIA Project 23 24,holdout,ONE_SHOT,OFF,actors,all_equal,6,6,6,0.9572,0.9572,0.9572,0.0,0.7179,0.7179,0.7179,0.0,0.8205,0.8205,0.8205,0.0
+Ethical Purchasing Group - SIA Project 22 23,holdout,ONE_SHOT,OFF,actors,all_equal,3,3,3,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Event Organization Portal - SIA Project 21 22,holdout,ONE_SHOT,OFF,actors,all_equal,3,3,3,0.9032,0.9032,0.9032,0.0,0.9032,0.9032,0.9032,0.0,0.9032,0.9032,0.9032,0.0
+Genome Nexus,dev,ONE_SHOT,OFF,actors,all_equal,3,3,3,0.5446,0.5446,0.5446,0.0,0.8168,0.8168,0.8168,0.0,0.6535,0.6535,0.6535,0.0
+Gestao Hospital,dev,ONE_SHOT,OFF,actors,two_equal,3,4,4,0.7857,0.6233,0.6233,0.1624,0.7857,0.8311,0.8311,0.0454,0.7857,0.7123,0.7123,0.0733
+London Ambulance Service,dev,ONE_SHOT,OFF,actors,all_equal,3,3,3,0.6451,0.6451,0.6451,0.0,0.9677,0.9677,0.9677,0.0,0.7741,0.7741,0.7741,0.0
+Calculator,holdout,ONE_SHOT,OFF,actors,all_equal,1,1,1,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Fitness Tracker,holdout,ONE_SHOT,OFF,actors,all_equal,4,4,4,0.1804,0.1804,0.1804,0.0,0.7216,0.7216,0.7216,0.0,0.2886,0.2886,0.2886,0.0
+Planning Poker,holdout,ONE_SHOT,OFF,actors,two_equal,5,5,5,0.4,0.4,0.4,0.0,1.0,1.0,1.0,0.0,0.5714,0.5714,0.5714,0.0
+Recycling,holdout,ONE_SHOT,OFF,actors,all_equal,4,4,4,0.8856,0.8856,0.8856,0.0,0.8856,0.8856,0.8856,0.0,0.8856,0.8856,0.8856,0.0
+SIA Project 25 26,dev,ONE_SHOT,OFF,highLevelGoals,all_different,14,17,16,0.4781,0.3899,0.4155,0.0882,0.6693,0.6629,0.6648,0.0064,0.5578,0.491,0.5114,0.0667
+Assegno Unico Universale - SIA Project 24 25,holdout,ONE_SHOT,OFF,highLevelGoals,all_different,22,23,24,0.1467,0.1358,0.1317,0.015,0.8071,0.7807,0.7903,0.0264,0.2483,0.2313,0.2258,0.0225
+La Reine Marlene - SIA Project 23 24,holdout,ONE_SHOT,OFF,highLevelGoals,two_equal,20,25,20,0.3438,0.2748,0.3438,0.0691,0.6877,0.687,0.6877,0.0007,0.4585,0.3925,0.4585,0.0659
+Ethical Purchasing Group - SIA Project 22 23,holdout,ONE_SHOT,OFF,highLevelGoals,all_different,10,14,12,0.2762,0.2002,0.2308,0.076,0.6904,0.7007,0.6923,0.0103,0.3945,0.3114,0.3461,0.0831
+Event Organization Portal - SIA Project 21 22,holdout,ONE_SHOT,OFF,highLevelGoals,all_different,10,10,9,0.2508,0.2504,0.2771,0.0266,0.627,0.6261,0.6234,0.0036,0.3583,0.3578,0.3836,0.0259
+Genome Nexus,dev,ONE_SHOT,OFF,highLevelGoals,two_equal,6,7,6,0.3746,0.3241,0.3746,0.0505,0.7492,0.7562,0.7492,0.007,0.4995,0.4537,0.4995,0.0458
+Gestao Hospital,dev,ONE_SHOT,OFF,highLevelGoals,all_different,8,10,7,0.3722,0.3007,0.4284,0.1277,0.7445,0.7518,0.7497,0.0073,0.4963,0.4296,0.5452,0.1156
+London Ambulance Service,dev,ONE_SHOT,OFF,highLevelGoals,two_equal,9,10,9,0.1806,0.1632,0.1806,0.0174,0.8127,0.816,0.8127,0.0034,0.2955,0.272,0.2955,0.0235
+Calculator,holdout,ONE_SHOT,OFF,highLevelGoals,two_equal,4,3,4,0.3725,0.494,0.3725,0.1215,0.745,0.741,0.745,0.0041,0.4967,0.5928,0.4967,0.0961
+Fitness Tracker,holdout,ONE_SHOT,OFF,highLevelGoals,two_equal,10,12,10,0.4291,0.3659,0.4291,0.0633,0.7152,0.7318,0.7152,0.0165,0.5364,0.4878,0.5364,0.0486
+Planning Poker,holdout,ONE_SHOT,OFF,highLevelGoals,two_equal,14,15,15,0.2412,0.2205,0.2205,0.0207,0.6753,0.6614,0.6614,0.0139,0.3554,0.3307,0.3307,0.0247
+Recycling,holdout,ONE_SHOT,OFF,highLevelGoals,two_equal,12,13,13,0.3164,0.2944,0.2944,0.0221,0.7595,0.7654,0.7654,0.0059,0.4468,0.4252,0.4252,0.0215
+SIA Project 25 26,dev,ONE_SHOT,OFF,lowLevelGoals,all_different,25,46,42,0.7361,0.488,0.5308,0.248,0.5936,0.7242,0.7191,0.1306,0.6572,0.5831,0.6107,0.0741
+Assegno Unico Universale - SIA Project 24 25,holdout,ONE_SHOT,OFF,lowLevelGoals,all_different,55,32,82,0.4048,0.6676,0.2709,0.3967,0.7951,0.763,0.7935,0.0322,0.5365,0.7121,0.404,0.3082
+La Reine Marlene - SIA Project 23 24,holdout,ONE_SHOT,OFF,lowLevelGoals,all_different,60,54,70,0.4047,0.4504,0.3498,0.1006,0.7588,0.7601,0.7652,0.0064,0.5278,0.5657,0.4801,0.0856
+Ethical Purchasing Group - SIA Project 22 23,holdout,ONE_SHOT,OFF,lowLevelGoals,all_different,33,41,46,0.2932,0.2396,0.2118,0.0814,0.6912,0.7018,0.6959,0.0106,0.4118,0.3573,0.3248,0.087
+Event Organization Portal - SIA Project 21 22,holdout,ONE_SHOT,OFF,lowLevelGoals,all_different,44,44,44,0.4173,0.4245,0.4219,0.0072,0.68,0.6917,0.6876,0.0117,0.5172,0.5261,0.5229,0.0089
+Genome Nexus,dev,ONE_SHOT,OFF,lowLevelGoals,two_equal,18,21,18,0.7805,0.8277,0.7805,0.0473,0.4683,0.5794,0.4683,0.1111,0.5853,0.6816,0.5853,0.0963
+Gestao Hospital,dev,ONE_SHOT,OFF,lowLevelGoals,all_different,24,21,24,0.5504,0.6343,0.5534,0.0838,0.7339,0.74,0.7378,0.0061,0.6291,0.6831,0.6324,0.054
+London Ambulance Service,dev,ONE_SHOT,OFF,lowLevelGoals,all_different,27,20,26,0.0526,0.0716,0.0575,0.019,0.7107,0.7162,0.7471,0.0363,0.098,0.1302,0.1067,0.0322
+Calculator,holdout,ONE_SHOT,OFF,lowLevelGoals,two_equal,12,11,12,0.4221,0.4521,0.4221,0.03,0.7236,0.7104,0.7236,0.0132,0.5332,0.5525,0.5332,0.0193
+Fitness Tracker,holdout,ONE_SHOT,OFF,lowLevelGoals,all_different,30,36,30,0.3168,0.2644,0.3157,0.0524,0.7311,0.7322,0.7285,0.0037,0.4421,0.3885,0.4405,0.0536
+Planning Poker,holdout,ONE_SHOT,OFF,lowLevelGoals,two_equal,41,40,40,0.5782,0.5895,0.5895,0.0113,0.7184,0.7146,0.7146,0.0038,0.6407,0.6461,0.6461,0.0053
+Recycling,holdout,ONE_SHOT,OFF,lowLevelGoals,all_different,39,43,34,0.4974,0.4541,0.5555,0.1014,0.776,0.781,0.7555,0.0256,0.6063,0.5743,0.6402,0.0659
+SIA Project 25 26,dev,FEW_SHOT,ON,actors,all_equal,6,6,6,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0
+Assegno Unico Universale - SIA Project 24 25,holdout,FEW_SHOT,ON,actors,all_equal,5,5,5,0.536,0.536,0.536,0.0,0.8934,0.8934,0.8934,0.0,0.6701,0.6701,0.6701,0.0
+La Reine Marlene - SIA Project 23 24,holdout,FEW_SHOT,ON,actors,two_equal,8,8,8,0.8971,0.9094,0.8971,0.0123,0.8971,0.9094,0.8971,0.0123,0.8971,0.9094,0.8971,0.0123
+Ethical Purchasing Group - SIA Project 22 23,holdout,FEW_SHOT,ON,actors,two_equal,3,3,3,1.0,0.9266,0.9266,0.0734,1.0,0.9266,0.9266,0.0734,1.0,0.9266,0.9266,0.0734
+Event Organization Portal - SIA Project 21 22,holdout,FEW_SHOT,ON,actors,all_equal,3,3,3,0.9032,0.9032,0.9032,0.0,0.9032,0.9032,0.9032,0.0,0.9032,0.9032,0.9032,0.0
+Genome Nexus,dev,FEW_SHOT,ON,actors,two_equal,4,3,4,0.5,0.6667,0.5,0.1667,1.0,1.0,1.0,0.0,0.6667,0.8,0.6667,0.1333
+Gestao Hospital,dev,FEW_SHOT,ON,actors,two_equal,4,3,3,0.5893,0.7857,0.7857,0.1964,0.7857,0.7857,0.7857,0.0,0.6734,0.7857,0.7857,0.1122
+London Ambulance Service,dev,FEW_SHOT,ON,actors,two_equal,3,3,3,0.6451,0.6451,0.6451,0.0,0.9677,0.9677,0.9677,0.0,0.7741,0.7741,0.7741,0.0
+Calculator,holdout,FEW_SHOT,ON,actors,all_equal,1,1,1,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Fitness Tracker,holdout,FEW_SHOT,ON,actors,all_equal,2,2,2,0.5,0.5,0.5,0.0,1.0,1.0,1.0,0.0,0.6667,0.6667,0.6667,0.0
+Planning Poker,holdout,FEW_SHOT,ON,actors,two_equal,3,3,6,0.6667,0.6667,0.3333,0.3333,1.0,1.0,1.0,0.0,0.8,0.8,0.5,0.3
+Recycling,holdout,FEW_SHOT,ON,actors,two_equal,6,5,5,0.5904,0.7085,0.7085,0.1181,0.8856,0.8856,0.8856,0.0,0.7085,0.7872,0.7872,0.0787
+SIA Project 25 26,dev,FEW_SHOT,ON,highLevelGoals,two_equal,14,12,12,0.4705,0.5637,0.5637,0.0932,0.6587,0.6765,0.6765,0.0178,0.5489,0.615,0.615,0.066
+Assegno Unico Universale - SIA Project 24 25,holdout,FEW_SHOT,ON,highLevelGoals,all_different,29,34,35,0.1097,0.0942,0.091,0.0187,0.7956,0.8011,0.7966,0.0055,0.1929,0.1687,0.1634,0.0295
+La Reine Marlene - SIA Project 23 24,holdout,FEW_SHOT,ON,highLevelGoals,two_equal,30,15,30,0.2357,0.4585,0.2357,0.2228,0.7072,0.6878,0.7072,0.0195,0.3536,0.5502,0.3536,0.1966
+Ethical Purchasing Group - SIA Project 22 23,holdout,FEW_SHOT,ON,highLevelGoals,all_different,12,11,12,0.2371,0.2592,0.2312,0.028,0.7112,0.7127,0.6936,0.0191,0.3556,0.3801,0.3468,0.0333
+Event Organization Portal - SIA Project 21 22,holdout,FEW_SHOT,ON,highLevelGoals,two_equal,10,11,11,0.2495,0.2306,0.2306,0.0189,0.6238,0.6342,0.6342,0.0104,0.3564,0.3382,0.3382,0.0182
+Genome Nexus,dev,FEW_SHOT,ON,highLevelGoals,all_different,8,9,8,0.2733,0.2507,0.2789,0.0282,0.7288,0.7521,0.7438,0.0233,0.3975,0.376,0.4057,0.0297
+Gestao Hospital,dev,FEW_SHOT,ON,highLevelGoals,all_different,9,7,8,0.3401,0.4295,0.3766,0.0894,0.7652,0.7516,0.7532,0.0137,0.4709,0.5466,0.5021,0.0757
+London Ambulance Service,dev,FEW_SHOT,ON,highLevelGoals,all_different,4,8,5,0.3814,0.1944,0.3071,0.1871,0.7629,0.7774,0.7679,0.0146,0.5086,0.311,0.4388,0.1976
+Calculator,holdout,FEW_SHOT,ON,highLevelGoals,two_equal,3,3,3,0.495,0.4918,0.495,0.0031,0.7425,0.7377,0.7425,0.0047,0.594,0.5902,0.594,0.0038
+Fitness Tracker,holdout,FEW_SHOT,ON,highLevelGoals,two_equal,8,8,8,0.5361,0.5361,0.5392,0.0031,0.7148,0.7148,0.719,0.0042,0.6127,0.6127,0.6163,0.0036
+Planning Poker,holdout,FEW_SHOT,ON,highLevelGoals,two_equal,8,8,17,0.4082,0.4082,0.1962,0.212,0.6532,0.6532,0.6671,0.0139,0.5024,0.5024,0.3032,0.1992
+Recycling,holdout,FEW_SHOT,ON,highLevelGoals,all_different,15,14,14,0.2625,0.2693,0.2711,0.0086,0.7876,0.7541,0.7591,0.0335,0.3938,0.3969,0.3996,0.0057
+SIA Project 25 26,dev,FEW_SHOT,ON,lowLevelGoals,all_different,46,38,35,0.4877,0.5982,0.6463,0.1587,0.7236,0.7333,0.7297,0.0097,0.5827,0.6589,0.6855,0.1028
+Assegno Unico Universale - SIA Project 24 25,holdout,FEW_SHOT,ON,lowLevelGoals,all_different,68,114,109,0.3244,0.1876,0.2055,0.1368,0.7879,0.8107,0.8147,0.0268,0.4596,0.3047,0.3282,0.1549
+La Reine Marlene - SIA Project 23 24,holdout,FEW_SHOT,ON,lowLevelGoals,all_different,81,46,72,0.3039,0.506,0.3422,0.2021,0.7693,0.7274,0.77,0.0426,0.4357,0.5968,0.4738,0.1611
+Ethical Purchasing Group - SIA Project 22 23,holdout,FEW_SHOT,ON,lowLevelGoals,all_different,45,42,12,0.209,0.2175,0.2299,0.0209,0.6718,0.6526,0.6076,0.0642,0.3188,0.3263,0.3336,0.0148
+Event Organization Portal - SIA Project 21 22,holdout,FEW_SHOT,ON,lowLevelGoals,two_equal,42,35,35,0.4402,0.5182,0.5182,0.078,0.6848,0.6718,0.6718,0.013,0.5359,0.5851,0.5851,0.0492
+Genome Nexus,dev,FEW_SHOT,ON,lowLevelGoals,all_different,26,27,26,0.8112,0.8169,0.8122,0.0057,0.703,0.7352,0.7039,0.0322,0.7533,0.7739,0.7542,0.0207
+Gestao Hospital,dev,FEW_SHOT,ON,lowLevelGoals,all_different,28,17,40,0.476,0.7349,0.3341,0.4008,0.7404,0.6941,0.7424,0.0483,0.5794,0.7139,0.4608,0.2531
+London Ambulance Service,dev,FEW_SHOT,ON,lowLevelGoals,all_different,17,16,19,0.0922,0.0903,0.0878,0.0044,0.7833,0.7225,0.834,0.1114,0.1649,0.1606,0.1589,0.006
+Calculator,holdout,FEW_SHOT,ON,lowLevelGoals,two_equal,11,10,11,0.4614,0.503,0.4614,0.0416,0.725,0.7186,0.725,0.0064,0.5639,0.5918,0.5639,0.0279
+Fitness Tracker,holdout,FEW_SHOT,ON,lowLevelGoals,all_different,28,34,29,0.3338,0.2698,0.3322,0.0639,0.7189,0.7058,0.7411,0.0353,0.4559,0.3904,0.4588,0.0683
+Planning Poker,holdout,FEW_SHOT,ON,lowLevelGoals,all_different,41,42,44,0.5834,0.5732,0.5568,0.0266,0.7249,0.7295,0.7425,0.0176,0.6465,0.642,0.6364,0.0101
+Recycling,holdout,FEW_SHOT,ON,lowLevelGoals,all_different,46,50,46,0.4222,0.3916,0.4233,0.0318,0.7769,0.7831,0.7789,0.0062,0.5471,0.5221,0.5485,0.0264
+SIA Project 25 26,dev,FEW_SHOT,OFF,actors,all_equal,6,6,6,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0,0.9041,0.9041,0.9041,0.0
+Assegno Unico Universale - SIA Project 24 25,holdout,FEW_SHOT,OFF,actors,all_equal,5,5,5,0.536,0.536,0.536,0.0,0.8934,0.8934,0.8934,0.0,0.6701,0.6701,0.6701,0.0
+La Reine Marlene - SIA Project 23 24,holdout,FEW_SHOT,OFF,actors,all_equal,6,6,6,0.9572,0.9572,0.9572,0.0,0.7179,0.7179,0.7179,0.0,0.8205,0.8205,0.8205,0.0
+Ethical Purchasing Group - SIA Project 22 23,holdout,FEW_SHOT,OFF,actors,two_equal,3,3,3,0.9266,0.9266,1.0,0.0734,0.9266,0.9266,1.0,0.0734,0.9266,0.9266,1.0,0.0734
+Event Organization Portal - SIA Project 21 22,holdout,FEW_SHOT,OFF,actors,all_equal,3,3,3,0.9032,0.9032,0.9032,0.0,0.9032,0.9032,0.9032,0.0,0.9032,0.9032,0.9032,0.0
+Genome Nexus,dev,FEW_SHOT,OFF,actors,all_equal,2,2,2,0.7983,0.7983,0.7983,0.0,0.7983,0.7983,0.7983,0.0,0.7983,0.7983,0.7983,0.0
+Gestao Hospital,dev,FEW_SHOT,OFF,actors,all_equal,3,3,3,0.7857,0.7857,0.7857,0.0,0.7857,0.7857,0.7857,0.0,0.7857,0.7857,0.7857,0.0
+London Ambulance Service,dev,FEW_SHOT,OFF,actors,all_equal,3,3,3,0.6451,0.6451,0.6451,0.0,0.9677,0.9677,0.9677,0.0,0.7741,0.7741,0.7741,0.0
+Calculator,holdout,FEW_SHOT,OFF,actors,all_equal,1,1,1,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Fitness Tracker,holdout,FEW_SHOT,OFF,actors,all_equal,1,1,1,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0,1.0,1.0,1.0,0.0
+Planning Poker,holdout,FEW_SHOT,OFF,actors,all_equal,6,6,6,0.3333,0.3333,0.3333,0.0,1.0,1.0,1.0,0.0,0.5,0.5,0.5,0.0
+Recycling,holdout,FEW_SHOT,OFF,actors,all_equal,3,3,3,0.8474,0.8474,0.8474,0.0,0.6356,0.6356,0.6356,0.0,0.7264,0.7264,0.7264,0.0
+SIA Project 25 26,dev,FEW_SHOT,OFF,highLevelGoals,all_different,14,12,12,0.4705,0.5637,0.5549,0.0932,0.6587,0.6765,0.6658,0.0178,0.5489,0.615,0.6053,0.066
+Assegno Unico Universale - SIA Project 24 25,holdout,FEW_SHOT,OFF,highLevelGoals,two_equal,32,32,22,0.1005,0.1005,0.1421,0.0416,0.8041,0.8041,0.7817,0.0224,0.1787,0.1787,0.2405,0.0618
+La Reine Marlene - SIA Project 23 24,holdout,FEW_SHOT,OFF,highLevelGoals,two_equal,25,24,24,0.2752,0.2867,0.2867,0.0115,0.688,0.688,0.688,0.0,0.3931,0.4047,0.4047,0.0116
+Ethical Purchasing Group - SIA Project 22 23,holdout,FEW_SHOT,OFF,highLevelGoals,all_different,11,10,12,0.2606,0.2828,0.2336,0.0492,0.7167,0.7071,0.7008,0.016,0.3823,0.4041,0.3504,0.0537
+Event Organization Portal - SIA Project 21 22,holdout,FEW_SHOT,OFF,highLevelGoals,all_different,10,10,8,0.2495,0.2497,0.319,0.0695,0.6238,0.6242,0.638,0.0142,0.3564,0.3567,0.4253,0.0689
+Genome Nexus,dev,FEW_SHOT,OFF,highLevelGoals,two_equal,8,8,7,0.2755,0.2755,0.3246,0.0491,0.7345,0.7345,0.7573,0.0228,0.4007,0.4007,0.4544,0.0537
+Gestao Hospital,dev,FEW_SHOT,OFF,highLevelGoals,two_equal,8,7,7,0.3692,0.4464,0.4464,0.0773,0.7383,0.7813,0.7813,0.0429,0.4922,0.5682,0.5682,0.076
+London Ambulance Service,dev,FEW_SHOT,OFF,highLevelGoals,two_equal,7,7,7,0.2338,0.2343,0.2338,0.0005,0.8184,0.82,0.8184,0.0016,0.3638,0.3645,0.3638,0.0007
+Calculator,holdout,FEW_SHOT,OFF,highLevelGoals,two_equal,3,3,3,0.4918,0.4918,0.495,0.0031,0.7377,0.7377,0.7425,0.0047,0.5902,0.5902,0.594,0.0038
+Fitness Tracker,holdout,FEW_SHOT,OFF,highLevelGoals,two_equal,6,6,6,0.7079,0.7079,0.7139,0.006,0.7079,0.7079,0.7139,0.006,0.7079,0.7079,0.7139,0.006
+Planning Poker,holdout,FEW_SHOT,OFF,highLevelGoals,two_equal,16,13,13,0.2059,0.2575,0.2575,0.0516,0.6588,0.6694,0.6694,0.0106,0.3137,0.3719,0.3719,0.0582
+Recycling,holdout,FEW_SHOT,OFF,highLevelGoals,all_different,12,8,12,0.3224,0.4704,0.3158,0.1546,0.7736,0.7526,0.758,0.021,0.4551,0.579,0.4459,0.1331
+SIA Project 25 26,dev,FEW_SHOT,OFF,lowLevelGoals,all_different,29,32,29,0.7223,0.7139,0.7241,0.0102,0.6757,0.7369,0.6773,0.0612,0.6983,0.7252,0.6999,0.0269
+Assegno Unico Universale - SIA Project 24 25,holdout,FEW_SHOT,OFF,lowLevelGoals,all_different,86,98,67,0.2442,0.227,0.3322,0.1053,0.8025,0.8106,0.795,0.0156,0.3745,0.3546,0.4686,0.114
+La Reine Marlene - SIA Project 23 24,holdout,FEW_SHOT,OFF,lowLevelGoals,all_different,85,52,46,0.2904,0.4673,0.5288,0.2385,0.7713,0.7594,0.7602,0.0119,0.4219,0.5786,0.6237,0.2018
+Ethical Purchasing Group - SIA Project 22 23,holdout,FEW_SHOT,OFF,lowLevelGoals,all_different,34,26,12,0.2832,0.4091,0.2226,0.1865,0.6878,0.7597,0.6519,0.1078,0.4012,0.5318,0.3319,0.1999
+Event Organization Portal - SIA Project 21 22,holdout,FEW_SHOT,OFF,lowLevelGoals,all_different,42,38,36,0.4413,0.4721,0.4981,0.0568,0.6865,0.6644,0.6642,0.0223,0.5373,0.5519,0.5693,0.032
+Genome Nexus,dev,FEW_SHOT,OFF,lowLevelGoals,two_equal,32,32,21,0.7403,0.7403,0.8283,0.088,0.7897,0.7897,0.5798,0.2099,0.7642,0.7642,0.6821,0.0821
+Gestao Hospital,dev,FEW_SHOT,OFF,lowLevelGoals,all_different,33,24,34,0.4006,0.5335,0.3866,0.1469,0.7344,0.7114,0.7303,0.023,0.5184,0.6097,0.5056,0.1041
+London Ambulance Service,dev,FEW_SHOT,OFF,lowLevelGoals,two_equal,14,15,14,0.1142,0.1044,0.1142,0.0098,0.7996,0.7834,0.7996,0.0162,0.1999,0.1843,0.1999,0.0156
+Calculator,holdout,FEW_SHOT,OFF,lowLevelGoals,all_different,10,14,12,0.503,0.3543,0.4189,0.1487,0.7186,0.7086,0.718,0.01,0.5918,0.4724,0.5291,0.1194
+Fitness Tracker,holdout,FEW_SHOT,OFF,lowLevelGoals,all_different,18,18,18,0.5297,0.5186,0.5204,0.0111,0.7335,0.7181,0.7205,0.0154,0.6152,0.6023,0.6043,0.0129
+Planning Poker,holdout,FEW_SHOT,OFF,lowLevelGoals,two_equal,43,42,42,0.5361,0.5568,0.5568,0.0207,0.6986,0.7087,0.7087,0.0101,0.6067,0.6236,0.6236,0.0169
+Recycling,holdout,FEW_SHOT,OFF,lowLevelGoals,all_different,37,35,36,0.5214,0.5559,0.5334,0.0345,0.7716,0.7783,0.7681,0.0101,0.6223,0.6486,0.6296,0.0263

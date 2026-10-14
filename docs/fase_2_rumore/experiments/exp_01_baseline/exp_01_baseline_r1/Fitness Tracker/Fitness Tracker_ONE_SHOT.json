@@ -1,0 +1,80 @@
+{
+    "name": "Fitness Tracker",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "87fa471fd2b1d839fb4d2781fc8abe1a226b91b17c40e1e83dac823e21039001",
+    "timestamp": "2026-10-10T17:51:29",
+    "description": "This project develops a fitness application aimed at helping users track their physical activities, monitor progress, set fitness goals, and receive personalized workout recommendations. This app is designed to cater to both fitness enthusiasts and beginners, providing valuable tools and insights to support their fitness journey.\",\n  \"epics\": [\n    {\n      \"title\": \"User Activity Tracking\",\n      \"description\": \"Allow users to track their physical activities, such as running, walking, or cycling, to monitor their performance over time. This helps users stay consistent and measure their progress in their fitness journey.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Track Daily Physical Activities\",\n          \"story\": \"As a user, I want to track my daily physical activities (e.g., steps, distance, and duration) so that I can monitor my exercise habits.\",\n          \"acceptance_criteria\": [\n            \"The app records the duration and distance of activities such as running, walking, or cycling.\",\n            \"The app displays a summary of all activities recorded each day.\"\n          ]\n        },\n        {\n          \"title\": \"Manual Activity Logging\",\n          \"story\": \"As a user, I want to manually log activities that cannot be automatically tracked so that all my workouts are recorded in one place.\",\n          \"acceptance_criteria\": [\n            \"Users can manually add details of activities such as yoga or weightlifting.\",\n            \"The manually logged activities appear in the daily summary along with automatically tracked activities.\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Progress Monitoring and Visualization\",\n      \"description\": \"Provide visual representations of users' activity data to help them easily monitor their fitness progress. Visualizing progress encourages motivation and helps users understand trends and improvements.\",\n      \"user_stories\": [\n        {\n          \"title\": \"View Weekly and Monthly Progress Reports\",\n          \"story\": \"As a user, I want to view my weekly and monthly progress so that I can assess my consistency and improvements over time.\",\n          \"acceptance_criteria\": [\n            \"The app generates weekly and monthly summaries of activity data.\",\n            \"The progress reports include charts and graphs for visual representation.\"\n          ]\n        },\n        {\n          \"title\": \"Receive Achievement Notifications\",\n          \"story\": \"As a user, I want to receive notifications when I reach fitness milestones so that I stay motivated.\",\n          \"acceptance_criteria\": [\n            \"The app sends a notification when the user reaches a specific goal or personal record.\",\n            \"Notifications are customizable based on user preferences.\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Fitness Goal Setting\",\n      \"description\": \"Enable users to set personalized fitness goals such as daily steps, calories burned, or workout frequency, to give them a target to work towards and help maintain focus.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Set and Edit Fitness Goals\",\n          \"story\": \"As a user, I want to set and edit my fitness goals so that I can tailor my targets to my current fitness level.\",\n          \"acceptance_criteria\": [\n            \"Users can set goals for metrics such as steps, calories burned, and active minutes.\",\n            \"Users can edit their goals at any time, and changes are reflected in their progress tracking.\"\n          ]\n        },\n        {\n          \"title\": \"Track Goal Achievement\",\n          \"story\": \"As a user, I want to track my goal achievement status so that I can see how close I am to reaching my targets.\",\n          \"acceptance_criteria\": [\n            \"The app shows progress towards each goal in percentage form.\",\n            \"Users receive updates on how much more effort is needed to reach their goals.\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Personalized Workout Recommendations\",\n      \"description\": \"Offer personalized workout plans and recommendations based on the user's fitness level, preferences, and goals. This helps users maximize the efficiency of their workouts and achieve their desired outcomes.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Receive Personalized Workout Suggestions\",\n          \"story\": \"As a user, I want to receive personalized workout suggestions based on my fitness level and goals so that I can improve effectively.\",\n          \"acceptance_criteria\": [\n            \"The app recommends workouts based on user preferences (e.g., cardio, strength).\",\n            \"Recommendations adapt based on the user's activity history and progress.\"\n          ]\n        },\n        {\n          \"title\": \"Adjust Workouts Based on Feedback\",\n          \"story\": \"As a user, I want to provide feedback on workout difficulty so that the app can adjust future recommendations to suit my needs.\",\n          \"acceptance_criteria\": [\n            \"Users can rate the difficulty of a workout after completing it.\",\n            \"The app uses the feedback to adjust the intensity of future recommendations.\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Wearable Device Integration\",\n      \"description\": \"Integrate with wearable devices to automatically collect fitness data such as heart rate, steps, and calories burned. This provides a more seamless experience for users who want accurate data tracking.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Connect to Wearable Devices\",\n          \"story\": \"As a user, I want to connect my wearable device to the app so that my physical activity data is automatically synced.\",\n          \"acceptance_criteria\": [\n            \"The app can connect to popular wearable devices (e.g., smartwatches, fitness bands).\",\n            \"Activity data such as steps, heart rate, and calories burned is automatically updated in the app.\"\n          ]\n        },\n        {\n          \"title\": \"Sync Data in Real-Time\",\n          \"story\": \"As a user, I want the app to sync data from my wearable device in real-time so that I have up-to-date information on my fitness progress.\",\n          \"acceptance_criteria\": [\n            \"The app automatically syncs with the wearable device when connected.\",\n            \"Users can view real-time metrics such as current heart rate and step count.\"\n          ]\n        }\n      ]\n    },\n    {\n      \"title\": \"Social Media Sharing\",\n      \"description\": \"Enable users to share their fitness activities, achievements, and progress on social media to engage with friends, celebrate milestones, and motivate others.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Share Activities on Social Media\",\n          \"story\": \"As a user, I want to share my completed activities on social media so that I can celebrate my progress with friends.\",\n          \"acceptance_criteria\": [\n            \"Users can share details of completed workouts (e.g., distance, duration) to popular social media platforms.\",\n            \"The shared posts include customizable messages and images generated by the app.\"\n          ]\n        },\n        {\n          \"title\": \"Post Achievements and Milestones\",\n          \"story\": \"As a user, I want to post my fitness achievements and milestones on social media so that I can motivate others and receive support.\",\n          \"acceptance_criteria\": [\n            \"The app allows users to share milestones (e.g., reaching a goal) as social media posts.\",\n            \"Achievements include celebratory graphics and messages to engage the user's social network.\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+    "actors": [
+        "User",
+        "Wearable Device"
+    ],
+    "highLevelGoals": [
+        "The user aims to easily record and monitor various physical activities, such as running, walking, or cycling, to maintain a comprehensive log of their exercise habits.",
+        "The user seeks clear and intuitive visual representations of their activity data to easily monitor their fitness progress, identify trends, and stay motivated.",
+        "The user desires the ability to set, edit, and track personalized fitness goals (e.g., daily steps, calories burned) to provide clear targets and maintain focus on their fitness journey.",
+        "The user expects to receive personalized workout recommendations and plans based on their fitness level, preferences, and goals to maximize the effectiveness of their workouts.",
+        "The user aims for the application to connect and automatically sync data from their wearable devices to ensure accurate and up-to-date tracking of their fitness metrics.",
+        "The user wants to share their fitness activities, achievements, and progress on social media to engage with friends, celebrate milestones, and inspire others.",
+        "The wearable device aims to accurately collect and transmit fitness data, such as heart rate, steps, and calories burned, to the application in real-time.",
+        "The wearable device seeks to establish and maintain a stable connection with the fitness application to ensure continuous and uninterrupted data synchronization."
+    ],
+    "lowLevelGoals": [
+        "The user can initiate the recording of a new physical activity (e.g., running, walking, cycling) within the application.",
+        "The user can terminate the recording of a physical activity within the application.",
+        "The user can input details for a physical activity that was not tracked in real-time, including activity type, duration, and intensity.",
+        "The user can access a chronological list of all their tracked and manually logged physical activities.",
+        "The user can view a summary of their physical activities for a specific day, including total duration, calories burned, and distance covered.",
+        "The user can view graphical representations of their activity trends over a week, showing changes in performance metrics.",
+        "The user can access charts illustrating their progress for specific fitness metrics (e.g., average pace, total steps) on a monthly basis.",
+        "The user receives an alert or notification when they achieve a predefined fitness milestone (e.g., 100km run, 10,000 steps daily for a week).",
+        "The user can define a new fitness goal, specifying the metric (e.g., daily steps), target value, and timeframe.",
+        "The user can modify the parameters (e.g., target value, timeframe) of an already established fitness goal.",
+        "The user can indicate that a specific fitness goal has been achieved.",
+        "The user can see their current progress against all active fitness goals.",
+        "The user can initiate the generation of a workout plan based on their specified fitness level, preferences, and goals.",
+        "The user can access a list of recommended exercises or activities for the current day.",
+        "The user can modify their preferences (e.g., intensity, duration, exercise types) to influence future workout recommendations.",
+        "The user can provide feedback on the perceived difficulty of a completed workout to help refine future recommendations.",
+        "The user can start the process of connecting the application with a new compatible wearable device.",
+        "The user can see a list of all wearable devices currently paired with the application.",
+        "The user can force the application to sync the latest data from a connected wearable device.",
+        "The user can post details of a specific completed activity (e.g., run, cycle) to their chosen social media platform.",
+        "The user can post an announcement of achieving a fitness goal to their chosen social media platform.",
+        "The user can configure which data points are shared and to which platforms when sharing fitness achievements.",
+        "The wearable device sends continuous heart rate measurements to the connected fitness application.",
+        "The wearable device sends continuous step count measurements to the connected fitness application.",
+        "The wearable device sends continuous estimated calorie burn measurements to the connected fitness application.",
+        "The wearable device initiates and maintains a stable BLE connection for data transfer with the fitness application.",
+        "The wearable device attempts to re-establish a connection with the fitness application if the connection is lost.",
+        "The wearable device provides visual or haptic feedback to the user regarding its connection status with the application."
+    ],
+    "cove_scores": {
+        "actors": [
+            4.0,
+            7.0,
+            10.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            7.0,
+            10.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 2
+    }
+}

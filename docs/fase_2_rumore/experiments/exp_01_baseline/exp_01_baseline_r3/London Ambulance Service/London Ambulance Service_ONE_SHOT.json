@@ -1,0 +1,69 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T20:30:37",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Dispatcher",
+        "Caller"
+    ],
+    "highLevelGoals": [
+        "Ambulance Staff aim to efficiently communicate their departure, destination, and current location to Radio Operators and the CAD system to maintain accurate tracking and dispatch capabilities.",
+        "Radio Operators aim to precisely record all communicated departure, destination, and status updates from Ambulance Staff to ensure the CAD system has the most current information.",
+        "Radio Operators seek to ensure the CAD system accurately reflects the location of all moving ambulances based on received communications.",
+        "The Dispatcher aims to analyze incident forms, allocate an available ambulance for every call, and ensure the ambulance reaches the scene within 11 minutes, all while adhering to the maximum time limit for the entire dispatch process.",
+        "The Caller aims to have an ambulance dispatched and arrive at their location.",
+        "The Caller seeks to effectively communicate the details of their emergency to facilitate appropriate ambulance dispatch and initial triage."
+    ],
+    "lowLevelGoals": [
+        "Ambulance Staff will verbally inform the Radio Operator when their ambulance has departed from the station.",
+        "Ambulance Staff will verbally provide the incident's destination address to the Radio Operator.",
+        "Radio Operators will record the exact time an ambulance departs, as communicated by Ambulance Staff, into the CAD system.",
+        "Radio Operators will input the destination communicated by Ambulance Staff into the CAD system.",
+        "Radio Operators will change the status of an ambulance (e.g., 'en route', 'on scene') in the CAD system as communicated by Ambulance Staff.",
+        "Radio Operators will visually confirm the reported ambulance location against the CAD system's mapping interface.",
+        "Radio Operators will manually correct an ambulance's position on the CAD map if the automated tracking is inaccurate or if a verbal update provides a more precise location.",
+        "The Dispatcher will open and review new incident forms within the CAD system.",
+        "The Dispatcher will consult the CAD system to see which ambulances are currently available for dispatch.",
+        "The Dispatcher will select an available ambulance and link it to a specific incident within the CAD system.",
+        "The Dispatcher will track the projected arrival time of the dispatched ambulance to the incident location using the CAD system.",
+        "The Caller will be informed that an ambulance has been dispatched to their location.",
+        "The Caller will clearly state their current address or landmark to the emergency operator.",
+        "The Caller will explain what kind of emergency they are experiencing (e.g., medical, accident).",
+        "The Caller will respond to detailed questions from the emergency operator to gather more information for triage."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            10.0
+        ],
+        "highLevelGoals": [
+            2.0,
+            5.0,
+            9.5
+        ],
+        "lowLevelGoals": [
+            2.0,
+            4.0,
+            9.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 2,
+        "highLevelGoals": 3,
+        "lowLevelGoals": 3
+    }
+}

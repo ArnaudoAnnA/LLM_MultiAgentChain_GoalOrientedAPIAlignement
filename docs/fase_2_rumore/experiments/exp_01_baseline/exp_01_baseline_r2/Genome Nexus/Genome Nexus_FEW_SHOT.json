@@ -1,0 +1,80 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T20:11:40",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Researcher",
+        "Clinician",
+        "Data Consumer"
+    ],
+    "highLevelGoals": [
+        "The Researcher aims to automate the annotation of genetic variants to accelerate research and analysis.",
+        "The Researcher seeks to integrate information from various existing genetic and clinical databases for comprehensive variant interpretation.",
+        "The Researcher needs to accurately predict and interpret the functional effects of protein mutations on cancer development.",
+        "The Researcher requires access to high-throughput genetic variant data for large-scale studies and analyses.",
+        "The Clinician aims to use the system to inform clinical decision-making and guide patient care based on genetic variant interpretations.",
+        "The Clinician needs to assess the clinical actionability of genetic variants to determine appropriate therapeutic strategies.",
+        "The Clinician requires access to comprehensive information on mutation frequencies, gene function, and variant effects for accurate diagnosis and prognosis.",
+        "The Data Consumer aims to query the system to access specific annotated genetic variant data for their analytical needs.",
+        "The Data Consumer seeks to retrieve integrated information from various resources related to genetic variants in cancer."
+    ],
+    "lowLevelGoals": [
+        "The Researcher can submit raw genetic variant data (e.g., VCF files) to the system for automated annotation.",
+        "The Researcher can configure the automated annotation pipelines by setting specific parameters (e.g., databases to use, filtering criteria).",
+        "The Researcher can retrieve detailed reports containing the automated annotations for their submitted genetic variants.",
+        "The Researcher can upload their own custom genetic or clinical data sources to be integrated into the system.",
+        "The Researcher can select from a list of available external public genetic and clinical databases to integrate into their analysis.",
+        "The Researcher can view a consolidated report showing integrated information from all selected data sources for a given genetic variant.",
+        "The Researcher can submit a specific protein mutation (e.g., amino acid change) to the system to predict its functional effects.",
+        "The Researcher can retrieve numerical scores or classifications indicating the predicted functional impact (e.g., deleterious, benign) of a submitted mutation.",
+        "The Researcher can access visual representations or structural models that illustrate how a mutation might affect protein structure and function.",
+        "The Researcher can download large-scale genetic variant datasets (e.g., from TCGA, gnomAD) for offline analysis.",
+        "The Researcher can apply filters (e.g., gene, variant type, population frequency) to high-throughput datasets to retrieve relevant subsets.",
+        "The Researcher can generate visualizations (e.g., charts, heatmaps) to understand the distribution of variants across different patient cohorts.",
+        "The Clinician can retrieve established clinical guidelines and recommendations linked to specific genetic variants.",
+        "The Clinician can access a list of potential therapeutic options and drug sensitivities/resistances associated with interpreted genetic variants.",
+        "The Clinician can generate customized clinical reports summarizing variant interpretations and their implications for individual patients.",
+        "The Clinician can query the system to identify genetic variants with known clinical actionability, indicating potential therapeutic targets or prognostic markers.",
+        "The Clinician can filter actionability results based on the level of evidence supporting the clinical relevance of a variant (e.g., FDA-approved, clinical trial).",
+        "The Clinician can compare the clinical actionability of a specific variant across various cancer types or indications.",
+        "The Clinician can retrieve data on the frequency of specific mutations in different cancer populations or cohorts.",
+        "The Clinician can access comprehensive descriptions of gene functions, pathways, and their roles in cancer development.",
+        "The Clinician can view predictions and evidence regarding how a specific genetic variant impacts protein function and cellular processes.",
+        "The Data Consumer can submit a query to retrieve all annotated genetic variants associated with a specific gene name.",
+        "The Data Consumer can filter the results of their variant query by specifying the type of genetic variant (e.g., single nucleotide variant, insertion/deletion).",
+        "The Data Consumer can export the results of their queries in different file formats (e.g., CSV, JSON, VCF) for further analysis.",
+        "The Data Consumer can retrieve a consolidated summary of all integrated information (annotations, clinical data, functional predictions) for a given genetic variant ID.",
+        "The Data Consumer can access the raw data contributed by individual integrated sources for a particular genetic variant.",
+        "The Data Consumer can compare the integrated information for several genetic variants simultaneously to identify patterns or differences."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            4.0,
+            6.0
+        ],
+        "highLevelGoals": [
+            9.5
+        ],
+        "lowLevelGoals": [
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

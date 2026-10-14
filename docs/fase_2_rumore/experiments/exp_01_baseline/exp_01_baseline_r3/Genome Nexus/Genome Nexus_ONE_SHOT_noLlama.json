@@ -1,0 +1,60 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T20:22:59",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Researcher",
+        "Bioinformatician",
+        "Oncologist"
+    ],
+    "highLevelGoals": [
+        "The Researcher aims to rapidly and automatically annotate genetic variants in cancer to accelerate research and discovery.",
+        "The Researcher seeks a comprehensive interpretation of genetic variants, integrating diverse information to understand their implications in cancer.",
+        "The Bioinformatician requires a high-throughput system for processing and annotating large datasets of genetic variants efficiently.",
+        "The Bioinformatician aims to access integrated information from various existing resources for comprehensive variant analysis.",
+        "The Oncologist needs to quickly assess the clinical actionability of genetic variants to inform treatment decisions for cancer patients.",
+        "The Oncologist seeks accurate and reliable interpretation of genetic variants to support precise cancer diagnosis and personalized treatment strategies."
+    ],
+    "lowLevelGoals": [
+        "The Researcher can upload a VCF (Variant Call Format) file containing genetic variants for rapid annotation.",
+        "The Researcher can trigger the automated annotation process on their uploaded VCF file.",
+        "The Researcher can download the results of the annotation process in a structured format.",
+        "The Researcher can search for detailed information about a single genetic variant.",
+        "The Researcher can see aggregated information from various sources for a specific variant.",
+        "The Researcher can refine the displayed interpretation results to focus on relevant variants.",
+        "The Bioinformatician can submit multiple VCF files simultaneously for efficient annotation.",
+        "The Bioinformatician can track the execution of large annotation tasks.",
+        "The Bioinformatician can define and apply personalized annotation workflows.",
+        "The Bioinformatician can browse and retrieve previously annotated variant data.",
+        "The Bioinformatician can search across all connected databases with a single query.",
+        "The Bioinformatician can download combined variant data for use in other tools.",
+        "The Oncologist can enter a variant and get a quick assessment of its clinical relevance.",
+        "The Oncologist can see potential treatment options linked to an actionable variant.",
+        "The Oncologist can narrow down actionable variants based on patient context.",
+        "The Oncologist can create a structured report detailing variant findings for a patient.",
+        "The Oncologist can review the scientific basis for variant interpretations.",
+        "The Oncologist can evaluate a patient's variants in the context of established cancer genetics."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

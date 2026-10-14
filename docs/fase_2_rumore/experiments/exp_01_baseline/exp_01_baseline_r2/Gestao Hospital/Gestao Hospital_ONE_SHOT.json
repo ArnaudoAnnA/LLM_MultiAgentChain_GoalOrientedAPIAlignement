@@ -1,0 +1,93 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T20:08:29",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "SUS Manager",
+        "Patient",
+        "Hospital Staff",
+        "Medical Professional"
+    ],
+    "highLevelGoals": [
+        "The SUS Manager aims to minimize waste and maximize the efficient use of resources (beds, products, blood) across all hospitals within the Unified Health System.",
+        "The SUS Manager seeks to ensure that patients are directed to the most suitable hospital with available resources in a timely manner, improving patient care and system efficiency.",
+        "The SUS Manager aims to enable seamless and efficient transfer of critical products (e.g., blood) between hospitals to address shortages and prevent service disruptions.",
+        "The Patient aims to be directed to the closest hospital that has available beds and necessary resources for their specific needs.",
+        "The Patient desires a streamlined and quick process for checking into and out of hospitals, reducing wait times and administrative burden.",
+        "The Hospital Staff aims to keep precise and up-to-date records of available beds, product stock, and blood bank levels within their hospital.",
+        "The Hospital Staff seeks to effectively manage patient check-in and check-out procedures, ensuring accurate bed allocation and patient flow.",
+        "The Hospital Staff aims to easily request and facilitate the transfer of products or blood from other hospitals when their own stock is low.",
+        "The Medical Professional aims to obtain current information on hospital bed availability, product stock, and blood bank levels to make informed decisions.",
+        "The Medical Professional seeks to use the system's data to recommend the most appropriate hospital for patient transfers or admissions, considering proximity and resource availability."
+    ],
+    "lowLevelGoals": [
+        "The SUS Manager needs to add new hospitals to the system for resource oversight.",
+        "The SUS Manager needs to modify hospital information to keep records accurate.",
+        "The SUS Manager needs to fetch a list of all hospitals to oversee resource allocation.",
+        "The SUS Manager needs to check bed availability to optimize resource distribution.",
+        "The SUS Manager needs to view product stock to prevent shortages and optimize allocation.",
+        "The SUS Manager needs to monitor blood bank levels for efficient allocation and transfer planning.",
+        "The SUS Manager needs to analyze resource usage patterns to identify areas for optimization.",
+        "The SUS Manager needs to find suitable hospitals for patient placement based on specific criteria.",
+        "The SUS Manager needs to find the nearest and most appropriate hospital for a patient.",
+        "The SUS Manager needs to facilitate resource movement between hospitals, ensuring that donor hospitals are not at critical stock levels (<= 4 units/liters).",
+        "The SUS Manager needs to manage and authorize resource transfers.",
+        "The SUS Manager needs to monitor the progress of resource transfers.",
+        "The Patient needs to find nearby hospitals for their needs.",
+        "The Patient needs to find hospitals that meet their specific medical requirements.",
+        "The Patient needs to confirm their arrival at the hospital.",
+        "The Patient needs to complete their discharge efficiently.",
+        "Hospital Staff needs to maintain accurate bed counts.",
+        "Hospital Staff needs to update product stock levels.",
+        "Hospital Staff needs to track product consumption.",
+        "Hospital Staff needs to keep blood bank inventory current.",
+        "Hospital Staff needs to process patient admissions and allocate beds.",
+        "Hospital Staff needs to manage patient departures and update bed availability.",
+        "Hospital Staff needs to monitor current patient occupancy.",
+        "Hospital Staff needs to request resources when their stock is low, and the system must ensure the requested hospital has sufficient stock ( > 4 units/liters) to fulfill the request.",
+        "Hospital Staff needs to manage outgoing resource transfers.",
+        "Hospital Staff needs to monitor their resource requests.",
+        "Medical Professionals need current bed availability to make informed decisions.",
+        "Medical Professionals need to know product availability for patient care planning.",
+        "Medical Professionals need current blood bank data for urgent patient needs.",
+        "Medical Professionals need to be informed of critical situations to react promptly.",
+        "Medical Professionals need system-generated recommendations for optimal patient placement, ensuring that recommended donor hospitals have sufficient stock ( > 4 units/liters).",
+        "Medical Professionals need to consider patient location when recommending hospitals.",
+        "The system needs to identify hospitals with low product stock to inform resource allocation decisions.",
+        "The system needs to identify hospitals with low blood bank levels to inform resource allocation decisions.",
+        "This rule enforces that hospitals with critical product stock (<= 4 units) are considered to have only enough for their own use and cannot transfer products.",
+        "This rule enforces that hospitals with critical blood bank stock (<= 4 liters) are considered to have only enough for their own use and cannot transfer blood."
+    ],
+    "cove_scores": {
+        "actors": [
+            7.0,
+            7.0,
+            7.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            4.0,
+            7.0,
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 3
+    }
+}

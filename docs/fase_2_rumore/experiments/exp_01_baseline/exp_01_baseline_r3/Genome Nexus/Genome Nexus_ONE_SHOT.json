@@ -1,0 +1,75 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ONE_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T20:29:56",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Oncologist",
+        "Bioinformatician",
+        "System Administrator",
+        "External Data Provider",
+        "Researcher"
+    ],
+    "highLevelGoals": [
+        "The Oncologist aims to quickly retrieve detailed interpretations of genetic variants, including their functional effects and clinical actionability, to inform and personalize cancer treatment strategies for patients.",
+        "The Bioinformatician aims to automate the process of annotating genetic variants, reducing manual effort and increasing throughput for large datasets.",
+        "The Bioinformatician seeks to seamlessly integrate information from various external databases, ensuring data consistency and completeness for comprehensive variant interpretation.",
+        "The System Administrator needs to efficiently manage the integration of new data sources and updates from existing ones, ensuring the system always provides the most current information.",
+        "The External Data Provider aims to supply genetic and clinical data from various databases for integration into the system.",
+        "The Researcher aims to utilize the system to access a wide array of annotated and interpreted genetic variant data, supporting in-depth analysis and discovery in cancer research.",
+        "The Researcher seeks to leverage the system's integrated data and interpretation capabilities to identify new patterns, correlations, and functional effects of genetic variants relevant to cancer."
+    ],
+    "lowLevelGoals": [
+        "The Oncologist will initiate the process by submitting the patient's genetic variant data to the system.",
+        "The Oncologist will access and view the system-generated report containing comprehensive interpretations and clinical recommendations for the submitted variants.",
+        "The Oncologist will apply filters to narrow down variant interpretations based on relevant treatment guidelines, drug interactions, or other clinical criteria.",
+        "The Bioinformatician will set up and customize the parameters for automated pipelines that annotate genetic variants.",
+        "The Bioinformatician will trigger the execution of an automated annotation process for a specified large dataset.",
+        "The Bioinformatician will track the real-time status and progress of the automated variant annotation jobs.",
+        "The Bioinformatician will specify how data from a new external source should be structured and mapped to the system's internal format.",
+        "The Bioinformatician will initiate the transfer and integration of data from an external source into the centralized system.",
+        "The Bioinformatician will perform checks to ensure that the integrated data is accurate, consistent, and complete.",
+        "The System Administrator will configure the system to recognize and connect to a new external data provider.",
+        "The System Administrator will set up recurring tasks for the system to automatically pull updates from configured external data sources.",
+        "The System Administrator will examine incoming data updates and decide whether to integrate them into the main system.",
+        "The External Data Provider will transfer genetic variant data files to a secure location provided by the system.",
+        "The External Data Provider will send clinical information linked to the genetic data through a programmatic interface.",
+        "The External Data Provider will get a notification confirming that their submitted data has been successfully received and is being processed by the system.",
+        "The Researcher will use the system's search functionality to find variants within particular genes or chromosomal locations.",
+        "The Researcher will export selected datasets of annotated variants from the system for further analysis using external tools.",
+        "The Researcher will use the system's visualization tools to graphically explore genetic variants within a genomic context.",
+        "The Researcher will use the system's analytical tools to conduct statistical tests on combined genetic and clinical information.",
+        "The Researcher will use the system to discover relationships between genetic mutations and patient health outcomes.",
+        "The Researcher will create personalized reports that emphasize newly discovered connections between genetic variants and other data points."
+    ],
+    "cove_scores": {
+        "actors": [
+            7.0,
+            6.0,
+            5.0
+        ],
+        "highLevelGoals": [
+            4.0,
+            9.5
+        ],
+        "lowLevelGoals": [
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 2,
+        "lowLevelGoals": 1
+    }
+}

@@ -1,0 +1,69 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T17:41:38",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Hospital Administrator",
+        "Healthcare Professional",
+        "System Integrator"
+    ],
+    "highLevelGoals": [
+        "The Hospital Administrator aims to efficiently manage and allocate hospital resources, including beds, products, and blood, to avoid waste and meet patient needs effectively.",
+        "The Hospital Administrator seeks to maintain appropriate inventory levels for products and blood banks within the hospital to ensure continuous patient care.",
+        "The Hospital Administrator wants to efficiently manage patient check-in and check-out processes to optimize bed utilization and patient flow.",
+        "The Hospital Administrator aims to enable the smooth transfer of essential products, such as blood, between hospitals to address shortages and support patient care across the health system.",
+        "The Healthcare Professional aims to quickly identify the closest hospital with available beds for a patient to ensure timely and appropriate care.",
+        "The Healthcare Professional seeks to efficiently manage patient admissions and discharges to improve patient flow and reduce administrative burden.",
+        "The System Integrator aims to develop and maintain an API that provides accurate and up-to-date information on hospital resources, including beds, products, and blood banks.",
+        "The System Integrator seeks to create an API that facilitates the smooth and secure exchange of data between different components of the public health system, such as hospital inventory and patient management.",
+        "The System Integrator aims to implement the logic within the API that supports recommendations for the closest hospital with available beds and facilitates inter-hospital product transfers."
+    ],
+    "lowLevelGoals": [
+        "The Hospital Administrator updates the number of available beds for a specific hospital unit.",
+        "The Hospital Administrator updates the stock level of a specific product in the hospital inventory.",
+        "The Hospital Administrator updates the stock level of a specific blood type in the hospital's blood bank.",
+        "The Hospital Administrator sets a minimum threshold for a specific product to trigger reorder alerts.",
+        "The Hospital Administrator sets a minimum threshold for a specific blood type to trigger reorder alerts.",
+        "The Hospital Administrator views alerts for products falling below their minimum stock threshold.",
+        "The Hospital Administrator views alerts for blood types falling below their minimum stock threshold.",
+        "The Hospital Administrator registers a new patient check-in, assigning them to an available bed.",
+        "The Hospital Administrator registers a patient check-out, freeing up their assigned bed.",
+        "The Hospital Administrator views the current occupancy status of all hospital beds.",
+        "The Hospital Administrator initiates a request to transfer a specific product from another hospital.",
+        "The Hospital Administrator approves an incoming request for a product transfer to their hospital.",
+        "The Hospital Administrator denies an incoming request for a product transfer to their hospital.",
+        "The Healthcare Professional searches for hospitals with available beds within a specified geographical area.",
+        "The Healthcare Professional requests a recommendation for the closest hospital with available beds based on a patient's current location.",
+        "The Healthcare Professional initiates the admission process for a patient at a selected hospital.",
+        "The Healthcare Professional finalizes the discharge process for a patient, updating their status in the system.",
+        "The System Integrator provides an API endpoint to retrieve the current bed availability for a specific hospital or all hospitals.",
+        "The System Integrator provides an API endpoint to retrieve the current inventory levels for products in a specific hospital.",
+        "The System Integrator provides an API endpoint to retrieve the current blood bank stock levels for a specific hospital.",
+        "The System Integrator implements an API endpoint for hospitals to securely update their bed, product, and blood bank data.",
+        "The System Integrator implements an API endpoint to exchange patient admission and discharge data between the central system and hospital systems.",
+        "The System Integrator develops the algorithm within the API to identify the closest hospital with available beds based on geographical coordinates.",
+        "The System Integrator develops the logic within the API to manage and track inter-hospital product transfer requests and approvals."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

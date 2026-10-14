@@ -1,0 +1,86 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T20:26:42",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Bioinformatician",
+        "Oncologist",
+        "System Administrator/Curator",
+        "Clinical Geneticist/Pathologist"
+    ],
+    "highLevelGoals": [
+        "To rapidly and automatically annotate genetic variants to accelerate analysis workflows.",
+        "To centralize and integrate information from various genetic and clinical databases for comprehensive variant interpretation.",
+        "To process and interpret a large volume of genetic variants efficiently.",
+        "To provide accurate and actionable genetic variant interpretations to guide patient treatment strategies.",
+        "To quickly retrieve integrated information on mutation frequencies, gene function, variant effects, and clinical actionability for patient care.",
+        "To ensure that integrated data resources are up-to-date, accurate, and consistently maintained.",
+        "To effectively manage and troubleshoot the integration of diverse external databases into the centralized system.",
+        "To guarantee the continuous availability and efficient operation of the variant annotation and interpretation system.",
+        "To obtain reliable and comprehensive interpretations of genetic variants for accurate diagnosis of cancer.",
+        "To leverage variant interpretations for guiding therapeutic strategies and personalized medicine approaches."
+    ],
+    "lowLevelGoals": [
+        "The Bioinformatician submits a VCF or similar file containing genetic variants to the system for automated annotation.",
+        "The Bioinformatician selects specific public and private databases (e.g., dbSNP, ClinVar, gnomAD, internal knowledge bases) to be used for annotating the submitted variants.",
+        "The Bioinformatician sets parameters for the annotation process, such as allele frequency thresholds, pathogenicity prediction tools, and gene panel filters.",
+        "The Bioinformatician retrieves a structured report or data file containing the automatically annotated variants with information from selected databases.",
+        "The Bioinformatician queries the system to retrieve integrated information for a specific genetic variant across all connected data sources.",
+        "The Bioinformatician filters the integrated variant data to display information only from specific genetic or clinical databases.",
+        "The Bioinformatician views a consolidated summary of a variant's characteristics, including allele frequencies, clinical significance, and functional predictions, aggregated from multiple integrated sources.",
+        "The Bioinformatician uploads a large file (e.g., VCF) containing thousands of genetic variants for high-throughput annotation and interpretation.",
+        "The Bioinformatician monitors the real-time status and progress of a large-scale variant annotation and interpretation job.",
+        "The Bioinformatician downloads the complete results of a high-throughput analysis, including annotated and interpreted variants, in a structured format.",
+        "The Oncologist retrieves the clinical interpretation of a specific genetic variant for a patient, including its pathogenicity and associated treatment implications.",
+        "The Oncologist filters variant interpretations to display only those with actionable therapeutic recommendations or prognostic implications.",
+        "The Oncologist views specific treatment guidelines or clinical trial information associated with a particular genetic variant.",
+        "The Oncologist searches for a specific genetic variant using its gene name, genomic coordinates, or rsID to access its comprehensive information.",
+        "The Oncologist views the population allele frequencies of a variant from various cohorts (e.g., gnomAD, 1000 Genomes) to assess its rarity.",
+        "The Oncologist reviews predicted functional impacts of a variant (e.g., missense, frameshift, splice site) and associated protein changes.",
+        "The Oncologist checks the clinical actionability of a variant, including its association with diseases, drug responses, and relevant clinical trials.",
+        "The System Administrator/Curator schedules an automated update process for a specific external genetic or clinical database integrated into the system.",
+        "The System Administrator/Curator manually triggers an immediate refresh of data from a selected external source to ensure the latest information is available.",
+        "The System Administrator/Curator runs a data integrity check to verify consistency and accuracy of data after an update from an external source.",
+        "The System Administrator/Curator configures the parameters and API endpoints for integrating a new external genetic or clinical database into the system.",
+        "The System Administrator/Curator monitors the operational status and health of all active data integration pipelines.",
+        "The System Administrator/Curator accesses logs and diagnostic tools to troubleshoot and resolve issues with a failed data integration pipeline.",
+        "The System Administrator/Curator views real-time and historical uptime metrics for the variant annotation and interpretation system.",
+        "The System Administrator/Curator monitors CPU, memory, and storage utilization of the system to identify potential performance bottlenecks.",
+        "The System Administrator/Curator configures alerts for critical system events, such as service outages or performance degradation.",
+        "The Clinical Geneticist/Pathologist generates a comprehensive diagnostic report for a patient's genetic variant, summarizing its clinical significance and supporting evidence.",
+        "The Clinical Geneticist/Pathologist compares a patient's variant profile against predefined disease-specific gene panels to identify relevant diagnostic associations.",
+        "The Clinical Geneticist/Pathologist requests or accesses expert-curated interpretations for complex or novel genetic variants that require specialized review.",
+        "The Clinical Geneticist/Pathologist identifies specific targeted therapies or drugs that are indicated or contraindicated based on a patient's genetic variant.",
+        "The Clinical Geneticist/Pathologist evaluates a patient's eligibility for relevant clinical trials based on their genetic variant profile and associated therapeutic implications.",
+        "The Clinical Geneticist/Pathologist reviews comprehensive data on drug-gene interactions relevant to a patient's genetic variants to inform treatment choices."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            9.5
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            8.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 2,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

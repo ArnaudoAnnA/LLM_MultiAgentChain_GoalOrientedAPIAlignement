@@ -1,0 +1,92 @@
+{
+    "name": "Gestao Hospital",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "84cd71c9e5dde9e7c343242f5f30f291c79f655a1e7b8bf6894bfa50b49d20a0",
+    "timestamp": "2026-10-10T20:34:48",
+    "description": "We need an API to organize a public health system, specifically to assist the Unified Health System (SUS) in Brazil. The goal is to create a tool that helps avoid waste and optimize resources based on patient needs. The system should manage hospital information, including their stock of products, blood banks, and available beds. It should be able to recommend the closest hospital with available beds to a patient and facilitate the transfer of products, such as blood, between nearby hospitals if one is in need. A hospital with four or fewer items or liters of a product is considered to have only enough for its own use. The API should allow for registering hospitals, indicating the closest hospital to a patient's location, managing patient check-in and check-out, checking available beds, and managing product and blood bank inventories within hospitals.",
+    "actors": [
+        "Public Health System Administrator",
+        "Patient",
+        "Hospital Staff"
+    ],
+    "highLevelGoals": [
+        "The Public Health System Administrator aims to efficiently manage and distribute resources, including hospital beds, medical products, and blood, to minimize waste and meet patient needs effectively.",
+        "The Public Health System Administrator seeks to ensure that patients are directed to the most suitable and closest hospitals with available resources, thereby improving patient care and operational efficiency.",
+        "The Public Health System Administrator aims to enable seamless and rapid transfer of critical resources like blood and medical products between hospitals to address shortages and support patient care.",
+        "The Patient aims to receive precise and timely recommendations for the closest hospital with available beds, ensuring quick access to necessary medical care.",
+        "The Patient desires an efficient and hassle-free process for hospital check-in and check-out, reducing wait times and administrative burden.",
+        "The Hospital Staff aims to streamline the process of patient check-in and check-out, ensuring accurate record-keeping and smooth transitions for patients.",
+        "The Hospital Staff seeks to have up-to-date information on available beds to effectively manage patient flow and allocate resources.",
+        "The Hospital Staff aims to maintain precise control over product and blood bank inventories, preventing shortages and ensuring critical supplies are always available."
+    ],
+    "lowLevelGoals": [
+        "The Public Health System Administrator needs to register new hospitals to expand the public health network.",
+        "The Public Health System Administrator needs to retrieve a list of all hospitals to understand the overall system capacity.",
+        "The Public Health System Administrator needs to query product availability to identify surpluses or shortages.",
+        "The Public Health System Administrator needs to request blood inventory levels to ensure adequate supply.",
+        "The Public Health System Administrator needs to retrieve bed availability to manage patient placement.",
+        "The Public Health System Administrator needs to generate reports to analyze resource usage patterns.",
+        "The Public Health System Administrator needs to submit transfer requests to rebalance resources, explicitly identifying the source and destination.",
+        "The Public Health System Administrator needs to query for suitable hospitals to direct patients efficiently.",
+        "The Public Health System Administrator needs to receive alerts to proactively manage bed availability.",
+        "The Public Health System Administrator needs to update transfer statuses to track patient movement.",
+        "The Public Health System Administrator needs to access a dashboard to visualize patient distribution.",
+        "The Public Health System Administrator needs to initiate blood product transfers to address urgent needs, considering proximity for efficiency.",
+        "The Public Health System Administrator needs to approve or deny requests to control resource movement, potentially overriding or confirming system suggestions.",
+        "The Public Health System Administrator needs to receive notifications to confirm transfer outcomes.",
+        "The Patient needs to query for the closest suitable hospital to receive timely care.",
+        "The Patient needs to receive detailed recommendations to make informed decisions.",
+        "The Patient needs to confirm acceptance to streamline the check-in process.",
+        "The Patient needs to receive updates to manage expectations and reduce anxiety.",
+        "The Patient needs to submit information for pre-registration to expedite check-in.",
+        "The Patient needs to receive a digital confirmation for a smooth check-in.",
+        "The Patient needs to confirm their physical arrival and finalize the check-in, distinct from pre-registration.",
+        "The Hospital Staff needs to register new patients to begin their care journey.",
+        "The Hospital Staff needs to update admission statuses to reflect patient flow.",
+        "The Hospital Staff needs to assign beds to admitted patients.",
+        "The Hospital Staff needs to process discharges to free up beds and finalize patient records.",
+        "The Hospital Staff needs to generate reports to review daily patient movements.",
+        "The Hospital Staff needs to view a dashboard to monitor bed availability.",
+        "The Hospital Staff needs to update bed statuses to reflect their current state.",
+        "The Hospital Staff needs to receive alerts to anticipate potential bed shortages.",
+        "The Hospital Staff needs to access historical data to analyze bed utilization patterns.",
+        "The Hospital Staff needs to add new products to maintain inventory accuracy.",
+        "The Hospital Staff needs to update product quantities to reflect current stock levels.",
+        "The Hospital Staff needs to record blood unit receipts to update blood bank inventory.",
+        "The Hospital Staff needs to mark blood units to maintain accurate and safe blood bank records.",
+        "The Hospital Staff needs to generate inventory reports to monitor stock and identify needs.",
+        "The Hospital Staff needs to submit transfer requests to acquire needed resources, clearly stating what is required.",
+        "The Hospital Staff needs to verify their own stock levels to ensure they meet the minimum threshold for initiating a transfer.",
+        "The system needs to identify hospitals with surplus stock to facilitate resource transfers.",
+        "The system must prevent transfers from hospitals that do not meet the minimum stock threshold.",
+        "The system needs to find the nearest hospital that can provide the requested resource, optimizing transfer logistics."
+    ],
+    "cove_scores": {
+        "actors": [
+            8.5
+        ],
+        "highLevelGoals": [
+            9.5
+        ],
+        "lowLevelGoals": [
+            4.0,
+            4.0,
+            4.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 3
+    }
+}

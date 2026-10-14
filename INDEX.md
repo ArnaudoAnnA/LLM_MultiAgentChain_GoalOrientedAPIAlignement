@@ -15,7 +15,9 @@
 | Tutti i sistemi sempre | Insiemi di sistemi selezionabili: `all` (12), `dev` (4), `holdout` (8) |
 | Un solo output per run | Una cartella per run in `artifacts/results/<RUN_LABEL>/`, con log, CSV e registro cumulativo |
 
-Invariati: `src/data_model.py`, `src/mapping/APIs_mapping.py`, `src/examples/shot_learning.py`, `src/evaluation/goal_evaluator.py` (la metrica è quella originale).
+Invariati: `src/data_model.py`, `src/mapping/APIs_mapping.py`, `src/examples/shot_learning.py`.
+
+`src/evaluation/goal_evaluator.py` calcola per default la metrica originale, quindi il notebook produce gli stessi punteggi di prima. La metrica nuova della fase 3 si attiva con i parametri `encoder`, `ramp` e `max_per_ref`.
 
 ## 2. A cosa serve ogni file
 
@@ -29,7 +31,7 @@ Invariati: `src/data_model.py`, `src/mapping/APIs_mapping.py`, `src/examples/sho
 | `src/extraction/extractor.py` | Genera description, attori, HLG e LLG; può leggere il README da uno snapshot locale |
 | `src/self_critique/refine_response.py` | Ciclo generatore–critico: soglia 8,5/10, massimo 3 tentativi. Restituisce `(risultato, score, critica, tentativi, storico_score)` |
 | `src/utils.py` | Lettura del README (rete o snapshot HTML locale) |
-| `src/evaluation/goal_evaluator.py` | Precision, recall e F1 con embedding BERT, per attori, HLG e LLG |
+| `src/evaluation/goal_evaluator.py` | Precision, recall e F1 per attori, HLG e LLG. Di default con embedding BERT (metrica originale); con `encoder`, `ramp` e `max_per_ref` la metrica nuova |
 | `.env.example` | Modello delle variabili da impostare. Il file `.env` vero non va mai committato |
 | `requirements.txt` | Dipendenze, con le versioni nuove fissate |
 
@@ -82,3 +84,20 @@ experiment_log.txt   verbose_log.txt
 - A `temperature=0` il generatore non è deterministico su tutti i sistemi: per questo si fanno più repliche.
 - `GENERATOR_SEED` è un'indicazione al provider, non una garanzia di riproducibilità.
 - Alcuni commenti nel codice citano file e cartelle del progetto di origine (log, piani, snapshot) che non sono in questo repository: non servono per l'esecuzione.
+
+## 4. Struttura del repository per i risultati
+
+Il codice sta in `src/` e `notebook/`. Ogni fase di lavoro ha una cartella in `docs/`, con lo stesso schema:
+
+```
+docs/fase_<N>_<nome>/
+├── FASE_<N>.md          indice: cosa contiene, a cosa serve ogni script, come rifare i numeri
+├── REPORT_FASE_<N>.md   report: perché, a quale domanda rispondeva ogni esperimento, risposta
+├── *.html               riepiloghi e spiegazioni illustrate
+└── experiments/<esperimento>/<run>/   dati e tabelle prodotti
+```
+
+| Fase | Cartella | Contenuto |
+|---|---|---|
+| 2 — Il rumore | [`docs/fase_2_rumore/`](docs/fase_2_rumore/FASE_2.md) | Tre repliche della baseline, misura del rumore, scelta della regola di confronto. Report: [`REPORT_FASE_2.md`](docs/fase_2_rumore/REPORT_FASE_2.md) |
+| 3 — La metrica | [`docs/fase_3_metrica/`](docs/fase_3_metrica/FASE_3.md) | Difetti misurati della metrica originale, metrica nuova (modello di frasi, credito a rampa, al massimo due goal per riferimento), accordo con un giudice umano e costi. Script di studio in `src/evaluation/phase-3-metric/` |

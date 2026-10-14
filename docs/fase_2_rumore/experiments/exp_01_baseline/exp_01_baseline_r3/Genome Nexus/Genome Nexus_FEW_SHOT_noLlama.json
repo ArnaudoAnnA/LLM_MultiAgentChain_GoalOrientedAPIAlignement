@@ -1,0 +1,63 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T20:24:25",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Researcher",
+        "Bioinformatician"
+    ],
+    "highLevelGoals": [
+        "The researcher aims to rapidly and automatically annotate genetic variants in cancer to accelerate research and clinical decision-making.",
+        "The researcher seeks to accurately interpret the functional and clinical effects of genetic variants to understand their role in cancer.",
+        "The researcher needs to access a comprehensive, centralized resource that integrates diverse genetic and clinical information for variant analysis.",
+        "The researcher requires the system to handle a high volume of genetic variants efficiently to support large-scale studies.",
+        "The bioinformatician aims to seamlessly integrate information from various existing genetic resources into a unified system.",
+        "The bioinformatician seeks to manage and maintain the data pipelines for converting DNA changes to protein changes and predicting functional effects.",
+        "The bioinformatician needs to ensure the accuracy, consistency, and up-to-dateness of integrated data from various databases."
+    ],
+    "lowLevelGoals": [
+        "The researcher can upload a VCF (Variant Call Format) file to the system to initiate the automated annotation process for genetic variants.",
+        "The researcher can download or view a report containing the automatically annotated genetic variants, including relevant clinical and functional information.",
+        "The researcher can apply filters (e.g., gene, variant type, pathogenicity score) to narrow down the list of annotated variants for focused analysis.",
+        "The researcher can input a variant identifier (e.g., rsID, genomic coordinate) to retrieve known functional effects from integrated databases.",
+        "The researcher can access and compare various predicted pathogenicity scores (e.g., SIFT, PolyPhen-2, CADD) for a given genetic variant.",
+        "The researcher can retrieve information about ongoing or completed clinical trials relevant to a specific genetic variant or associated gene.",
+        "The researcher can input a gene name or a specific genomic coordinate range to find all relevant variants within that region.",
+        "The researcher can view a consolidated report that pulls data from various integrated databases (e.g., ClinVar, COSMIC, gnomAD) for a selected variant.",
+        "The researcher can download the integrated genetic and clinical information for selected variants in formats like CSV, TSV, or JSON.",
+        "The researcher can upload multiple VCF files simultaneously, and the system will process them in parallel to handle large-scale studies efficiently.",
+        "The researcher can view the status and progress of multiple variant annotation jobs, including completion rates and any errors encountered.",
+        "The researcher can configure the system to send alerts (e.g., email, in-app notification) when a large-scale annotation or analysis job is completed.",
+        "The bioinformatician can specify parameters (e.g., API endpoint, authentication credentials) to connect the system to a new external genetic database.",
+        "The bioinformatician can trigger a manual or scheduled synchronization process to pull the latest data from an external genetic resource into the system.",
+        "The bioinformatician can define how data fields from an external source correspond to the system's internal data model to ensure proper integration.",
+        "The bioinformatician can create or modify a workflow that specifies the steps for converting raw DNA changes into protein changes.",
+        "The bioinformatician can view the real-time status, logs, and performance metrics of active data processing pipelines.",
+        "The bioinformatician can set up recurring schedules for data processing pipelines to run automatically at specified intervals.",
+        "The bioinformatician can define rules and constraints to automatically check the accuracy and format of data ingested from external sources.",
+        "The bioinformatician can initiate a process to identify discrepancies or inconsistencies between data from different integrated databases.",
+        "The bioinformatician can access a dashboard or report showing data quality issues and take actions to correct or reconcile inconsistent data."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

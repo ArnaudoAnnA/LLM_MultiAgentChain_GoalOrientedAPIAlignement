@@ -1,0 +1,62 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T17:41:38",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Computer Aided Despatch (CAD) System"
+    ],
+    "highLevelGoals": [
+        "The primary goal is to ensure that an available ambulance can reach the scene of an emergency within 11 minutes of being dispatched.",
+        "Ambulance staff must accurately communicate their departure, destination, and current location to allow for effective tracking and dispatching.",
+        "Radio Operators need to accurately track the exact location of moving ambulances to provide up-to-date information to the CAD system and other stakeholders.",
+        "Radio Operators must accurately record and relay departure and destination information from ambulance staff to the CAD system.",
+        "The CAD system must analyze incident forms and efficiently assign available ambulances to ensure timely response to emergencies.",
+        "The CAD system must ensure that the entire dispatch process, from incident analysis to ambulance assignment, does not exceed a set maximum time limit.",
+        "The CAD system needs to accurately record and utilize the exact location of moving ambulances for effective dispatch decisions."
+    ],
+    "lowLevelGoals": [
+        "Ambulance staff must update their status in the system to 'en route to scene' upon departing for an incident.",
+        "Ambulance staff must update their status in the system to 'at scene' upon arrival at the incident location.",
+        "Ambulance staff must transmit their current GPS coordinates to the system at regular intervals.",
+        "Ambulance staff must input the exact time of departure from the station for an incident.",
+        "Ambulance staff must input the precise destination address for the incident they are responding to.",
+        "Radio Operators must receive real-time GPS data streams from all active ambulances.",
+        "Radio Operators must view the current location of all ambulances on a graphical map interface.",
+        "Radio Operators must log the departure time of an ambulance, as communicated by staff, into the CAD system.",
+        "Radio Operators must log the destination address of an ambulance, as communicated by staff, into the CAD system.",
+        "The CAD system must parse and extract relevant information from newly submitted incident forms.",
+        "The CAD system must query the database to identify all ambulances currently marked as 'available' or 'en route to station'.",
+        "The CAD system must calculate the estimated travel time for each available ambulance to the incident location based on current traffic data and distance.",
+        "The CAD system must select the ambulance with the shortest estimated travel time to the incident, considering other relevant factors (e.g., ambulance capabilities).",
+        "The CAD system must send a dispatch command, including incident details, to the selected ambulance.",
+        "The CAD system must record the exact time an incident form is received.",
+        "The CAD system must record the exact time an ambulance is assigned to an incident.",
+        "The CAD system must calculate the total time elapsed between incident form reception and ambulance assignment.",
+        "The CAD system must continuously store the real-time GPS coordinates received from all active ambulances.",
+        "The CAD system must update the displayed location of ambulances on its internal map interface based on received GPS data."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

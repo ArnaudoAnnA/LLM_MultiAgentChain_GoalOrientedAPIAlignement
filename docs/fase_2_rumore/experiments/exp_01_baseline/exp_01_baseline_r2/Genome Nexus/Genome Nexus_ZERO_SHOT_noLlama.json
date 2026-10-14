@@ -1,0 +1,60 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T19:57:41",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Bioinformatician",
+        "Oncologist",
+        "Researcher"
+    ],
+    "highLevelGoals": [
+        "To rapidly and automatically annotate genetic variants in cancer, reducing manual effort and increasing throughput.",
+        "To centralize and integrate information from various existing genetic and clinical databases for comprehensive variant interpretation.",
+        "To receive rapid and accurate interpretations of genetic variants to inform timely and effective cancer treatment decisions.",
+        "To access comprehensive information on variant effects and clinical actionability to personalize cancer therapies for patients.",
+        "To access a centralized and comprehensive resource for investigating genetic variants, their functional effects, and clinical implications in cancer.",
+        "To leverage high-throughput annotation and integrated data to identify new correlations and patterns in genetic variants relevant to cancer."
+    ],
+    "lowLevelGoals": [
+        "The Bioinformatician submits a batch of genetic variants (e.g., a VCF file) to the system for automated annotation.",
+        "The Bioinformatician specifies the desired annotation parameters (e.g., reference genome, annotation databases) for a submitted batch.",
+        "The Bioinformatician retrieves the generated report containing the automated annotations for a submitted variant batch.",
+        "The Bioinformatician configures the system to connect to a new external genetic or clinical database.",
+        "The Bioinformatician queries the system to retrieve integrated information for a specific genetic variant from all connected data sources.",
+        "The Bioinformatician checks the connection status and last synchronization time for all integrated data sources.",
+        "The Oncologist submits a specific genetic variant for rapid interpretation, expecting a summary of its clinical significance.",
+        "The Oncologist retrieves the detailed interpretation report for a previously submitted genetic variant.",
+        "The Oncologist filters a list of variants to display only those with high clinical significance for cancer treatment.",
+        "The Oncologist queries the system to get personalized therapeutic recommendations based on a patient's specific genetic variant profile.",
+        "The Oncologist compares the clinical actionability and evidence levels for different treatment options associated with a specific variant.",
+        "The Oncologist retrieves information on relevant clinical trials for a patient's specific genetic variant and cancer type.",
+        "The Researcher searches for genetic variants based on specific genes and their predicted functional effects (e.g., 'BRAF' and 'missense').",
+        "The Researcher exports a filtered set of variant data, including annotations and clinical implications, for external analysis.",
+        "The Researcher accesses detailed information on the functional impact of a specific variant, including protein changes and pathway alterations.",
+        "The Researcher initiates an analysis to identify common or unique genetic variants across a defined cohort of cancer patients.",
+        "The Researcher generates a visualization (e.g., a heatmap) showing the co-occurrence of specific genetic variants within a dataset.",
+        "The Researcher runs an algorithm to identify statistically significant associations between genetic variants and clinical outcomes or drug responses."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

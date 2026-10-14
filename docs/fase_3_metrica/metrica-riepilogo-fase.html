@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fase 3 — La metrica di valutazione: cosa abbiamo fatto, perché e con quale esito</title>
+<style>
+:root{
+  --bg:#ffffff;--fg:#17202a;--mut:#5b6876;--line:#dfe5ec;--card:#f6f8fa;
+  --accent:#1f5fa8;--ok:#2e7d32;--warn:#b45309;--bad:#b3261e;--todo:#607d8b;
+  --okbg:#e8f3e9;--warnbg:#fdf1e0;--badbg:#fbe9e7;--todobg:#eceff1;--hl:#eaf1fa;
+}
+@media (prefers-color-scheme:dark){
+  :root{--bg:#10151a;--fg:#e9eef3;--mut:#9aa8b6;--line:#27323c;--card:#171e25;
+    --accent:#7fb2ee;--ok:#7cc884;--warn:#f0b057;--bad:#f1887f;--todo:#9fb0bb;
+    --okbg:#18301c;--warnbg:#3a2a10;--badbg:#3b1a17;--todobg:#222c33;--hl:#182838;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font:16px/1.6 ui-sans-serif,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+main{max-width:960px;margin:0 auto;padding:44px 28px 90px}
+h1{font-size:30px;line-height:1.2;margin:0 0 8px}
+h2{font-size:22px;margin:54px 0 10px;padding-top:18px;border-top:1px solid var(--line)}
+h3{font-size:17px;margin:26px 0 8px}
+p{margin:0 0 12px}
+.meta{color:var(--mut);font-size:14px;margin:0 0 6px}
+.lede{font-size:18px;max-width:72ch}
+.mut{color:var(--mut)}
+.small{font-size:14px}
+code{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--card);
+  padding:1px 5px;border-radius:4px;border:1px solid var(--line)}
+.wrap{overflow-x:auto;margin:10px 0 14px}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--mut);font-size:13px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+td.n{white-space:nowrap}
+td.nw{white-space:nowrap}
+tr.base td{background:var(--card)}
+tr.pick td{background:var(--hl)}
+.box{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:16px 18px;margin:14px 0}
+.box h3{margin-top:0}
+.key{border-left:4px solid var(--accent);background:var(--hl);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0}
+.warnbox{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:14px 18px;margin:14px 0}
+.ex{border-left:4px solid var(--line);padding:4px 0 4px 16px;margin:14px 0;color:var(--mut)}
+.ex b{color:var(--fg)}
+.grid2{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid3{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.tag{display:inline-block;font-size:12.5px;font-weight:600;padding:2px 9px;border-radius:999px;white-space:nowrap}
+.t-ok{background:var(--okbg);color:var(--ok)}
+.t-warn{background:var(--warnbg);color:var(--warn)}
+.t-bad{background:var(--badbg);color:var(--bad)}
+.qa{display:grid;grid-template-columns:140px 1fr;gap:6px 14px;margin:10px 0 14px}
+.qa dt{color:var(--mut);font-size:14px;font-weight:600}
+.qa dd{margin:0}
+@media (max-width:600px){.qa{grid-template-columns:1fr}}
+.bars{display:grid;grid-template-columns:230px 1fr 54px;gap:7px 12px;align-items:center;font-size:14px;margin:10px 0}
+.bars .track{background:var(--card);border:1px solid var(--line);border-radius:5px;height:18px;overflow:hidden}
+.bars .fill{height:100%;background:var(--accent);min-width:2px}
+.bars .fill.old{background:var(--bad)}
+.bars .fill.mid{background:var(--warn)}
+.bars .fill.new{background:var(--ok)}
+.bars .v{text-align:right;font-variant-numeric:tabular-nums}
+.bars .grp{grid-column:1/-1;font-weight:600;margin-top:8px}
+@media (max-width:640px){.bars{grid-template-columns:1fr 1fr 44px}}
+.stack{display:flex;height:26px;border-radius:6px;overflow:hidden;border:1px solid var(--line);margin:4px 0 2px}
+.stack span{display:block;height:100%;color:#fff;font-size:12.5px;font-weight:600;line-height:26px;text-align:center;overflow:hidden;white-space:nowrap}
+.s-eq{background:var(--ok)} .s-pa{background:var(--warn)} .s-di{background:var(--bad)}
+.legend{font-size:13.5px;color:var(--mut);margin:6px 0 12px}
+.legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin:0 4px 0 12px;vertical-align:-1px}
+figure{margin:16px 0}
+figcaption{font-size:13.5px;color:var(--mut);margin-top:6px}
+svg{max-width:100%;height:auto;display:block}
+svg text{fill:var(--fg);font:12px ui-sans-serif,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+svg .m{fill:var(--mut)}
+svg .ax{stroke:var(--mut);stroke-width:1}
+svg .gr{stroke:var(--line);stroke-width:1;stroke-dasharray:3 3}
+svg .ln{stroke:var(--accent);stroke-width:2.5;fill:none}
+svg .node{fill:var(--card);stroke:var(--mut);stroke-width:1.3}
+svg .nodeb{fill:var(--hl);stroke:var(--accent);stroke-width:1.5}
+svg .sel{stroke:var(--ok);stroke-width:3}
+svg .no{stroke:var(--mut);stroke-width:1;stroke-dasharray:4 4}
+svg .arrow{stroke:var(--mut);stroke-width:1.6;fill:none}
+svg .band{fill:var(--warn);opacity:.13}
+svg .ramp{stroke:var(--warn);stroke-width:1.5;stroke-dasharray:5 3}
+svg .p-eq{fill:var(--ok);fill-opacity:.8}
+svg .p-pa{fill:var(--warn);fill-opacity:.8}
+svg .p-di{fill:var(--bad);fill-opacity:.7}
+svg .bar-a{fill:var(--accent)}
+svg .bar-b{fill:var(--todo)}
+svg .ci{stroke:var(--accent);stroke-width:2.5}
+svg .dot{fill:var(--accent)}
+svg .zero{stroke:var(--fg);stroke-width:1.2}
+ul,ol{margin:0 0 12px;padding-left:22px}
+li{margin:4px 0}
+.toc{columns:2;font-size:14.5px;padding-left:20px}
+@media (max-width:640px){.toc{columns:1}}
+a{color:var(--accent)}
+@media print{
+  main{max-width:none;padding:0}
+  h2{break-after:avoid}
+  .box,.key,.warnbox,table,svg,figure{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<main>
+
+<h1>La metrica di valutazione: cosa abbiamo fatto nella Fase 3, perché e con quale esito</h1>
+<p class="meta"><b>Data:</b> 13 ottobre 2026</p>
+<p class="meta"><b>Breve descrizione:</b> spiegazione, pensata per chi non conosce i dettagli del progetto, di come abbiamo verificato e riparato il voto con cui valutiamo le liste di goal estratte dalla pipeline: perché, con quali prove, con quale esito e quali scelte ne sono derivate.</p>
+<p class="meta" style="margin-bottom:22px">Tesi magistrale, campagna sperimentale 2.</p>
+
+<p class="lede">Prima di provare qualunque miglioria della pipeline ci siamo chiesti se il voto che usiamo per confrontare le configurazioni
+dice davvero <b>quanti goal giusti ha prodotto il sistema</b>. Dove non lo diceva, abbiamo cercato la correzione, una alla volta,
+verificando ogni correzione con una prova e confermando il risultato con il giudizio di una persona.</p>
+
+<div class="key">
+<b>In breve</b>
+<ol>
+<li><b>Il problema.</b> Il voto del lavoro di partenza (un F1 «soft» basato sulla somiglianza fra frasi) non era mai stato controllato.
+Lo abbiamo messo alla prova su tutte le 648 liste già prodotte dalla baseline, senza richiamare nessun modello.</li>
+<li><b>Cosa non andava.</b> Distingue poco un goal giusto da uno estraneo: una lista ottiene circa l'88% del suo voto giusto anche quando è confrontata
+con la ground truth di <i>un altro</i> sistema (HLG e LLG). E segue le lunghezze delle liste più della qualità dei goal.</li>
+<li><b>Cosa abbiamo cambiato.</b> Tre cose: un <i>encoder</i> (il modello che trasforma le frasi in numeri) addestrato a confrontare frasi,
+un credito «a rampa» al posto della somiglianza grezza, e un abbinamento che lascia a ogni riferimento fino a due goal generati
+(per HLG e LLG; per gli attori resta uno solo). Il voto a vuoto scende da circa l'88% a circa l'1–2% del voto giusto (HLG e LLG).</li>
+<li><b>Conferma con il giudizio umano.</b> Negli HLG la metrica nuova è più d'accordo con il giudice in modo netto (0.81 → 1.00).
+Negli LLG è a favore, ma l'intervallo di incertezza tocca lo zero; sugli attori le due metriche sono pari.</li>
+<li><b>Costi.</b> Un po' più di oscillazione fra repliche; effetti molto piccoli (0.03 di F1) riconosciuti meno spesso.
+<b>Decisione:</b> la metrica nuova è quella principale, e la vecchia resta riportata accanto in ogni risultato.</li>
+</ol>
+</div>
+
+<ol class="toc">
+<li><a href="#contesto">Il contesto del progetto</a></li>
+<li><a href="#come">Come funziona il voto di partenza</a></li>
+<li><a href="#metodo">Come abbiamo lavorato</a></li>
+<li><a href="#diagnosi">La diagnosi: sei problemi misurati</a></li>
+<li><a href="#p1">Passo 1 — Dichiarare le lunghezze</a></li>
+<li><a href="#p2">Passo 2 — Cambiare lo strumento di confronto</a></li>
+<li><a href="#banco">Il banco di coppie giudicate a mano</a></li>
+<li><a href="#p3">Passo 3 — Soglia o rampa</a></li>
+<li><a href="#p4">Passo 4 — Il modo di abbinare</a></li>
+<li><a href="#p5">Passo 5 — Conferma con il giudizio umano</a></li>
+<li><a href="#costi">Cosa costa la metrica nuova</a></li>
+<li><a href="#decisione">La decisione e come si legge ora un risultato</a></li>
+<li><a href="#limiti">Limiti dichiarati</a></li>
+<li><a href="#aperto">Cosa resta aperto</a></li>
+<li><a href="#parole">Parole da conoscere</a></li>
+</ol>
+
+<!-- ============================================================ -->
+<h2 id="contesto">1. Il contesto del progetto</h2>
+<p>Il sistema studiato è una pipeline basata su modelli linguistici (LLM) che legge la <b>descrizione testuale di un software</b> e ne estrae,
+secondo il framework GORE (<i>Goal-Oriented Requirements Engineering</i>), tre liste. Un modello <i>generatore</i> propone le liste;
+un secondo modello, il <i>critico</i>, le valuta e chiede correzioni finché il punteggio supera una soglia o si esauriscono 3 iterazioni.
+Le liste prodotte si confrontano con una <b>ground truth</b>: le stesse tre liste, annotate a mano.</p>
+
+<figure>
+<svg viewBox="0 0 860 150" role="img" aria-label="Flusso: descrizione del sistema, pipeline, liste generate, confronto con la ground truth, voto">
+  <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--mut)"/></marker></defs>
+  <rect class="node" x="4" y="30" width="150" height="70" rx="8"/>
+  <text x="79" y="58" text-anchor="middle" font-weight="600">Descrizione</text><text x="79" y="75" text-anchor="middle">testuale del sistema</text><text class="m" x="79" y="91" text-anchor="middle">(es. Planning Poker)</text>
+  <rect class="node" x="206" y="30" width="150" height="70" rx="8"/>
+  <text x="281" y="58" text-anchor="middle" font-weight="600">Pipeline LLM</text><text x="281" y="75" text-anchor="middle">generatore + critico</text><text class="m" x="281" y="91" text-anchor="middle">(max 3 iterazioni)</text>
+  <rect class="node" x="408" y="30" width="150" height="70" rx="8"/>
+  <text x="483" y="58" text-anchor="middle" font-weight="600">Liste generate</text><text x="483" y="75" text-anchor="middle">attori · HLG · LLG</text>
+  <rect class="nodeb" x="610" y="30" width="246" height="70" rx="8"/>
+  <text x="733" y="58" text-anchor="middle" font-weight="700">LA METRICA (oggetto della fase)</text><text x="733" y="76" text-anchor="middle">confronta le liste con la ground truth</text><text x="733" y="92" text-anchor="middle">e dà un voto (F1) per ogni lista</text>
+  <path class="arrow" d="M154,65 L202,65" marker-end="url(#ah)"/>
+  <path class="arrow" d="M356,65 L404,65" marker-end="url(#ah)"/>
+  <path class="arrow" d="M558,65 L606,65" marker-end="url(#ah)"/>
+  <rect class="node" x="610" y="118" width="246" height="28" rx="8"/>
+  <text x="733" y="137" text-anchor="middle">Ground truth annotata a mano</text>
+  <path class="arrow" d="M733,118 L733,102" marker-end="url(#ah)"/>
+</svg>
+<figcaption>Dove sta la metrica: è il «metro» con cui si misura ogni risultato della tesi.</figcaption>
+</figure>
+
+<div class="wrap"><table>
+<tr><th>Termine</th><th>Cosa è</th><th>Esempio reale (<i>Planning Poker</i>)</th></tr>
+<tr><td><b>Attore</b></td><td>Chi interagisce con il sistema</td><td>«Moderator»</td></tr>
+<tr><td><b>HLG</b> (<i>high-level goal</i>)</td><td>Obiettivo di alto livello, uno scopo del sistema</td><td>«Run an estimation round»</td></tr>
+<tr><td><b>LLG</b> (<i>low-level goal</i>)</td><td>Funzione concreta con cui si realizza un obiettivo</td><td>«Reset the countdown timer after an estimation round»</td></tr>
+</table></div>
+
+<div class="grid3">
+  <div class="box"><h3>12 sistemi</h3><p class="small">Quelli della ground truth finale: 4 <b>di sviluppo</b> (su cui si mettono a punto le migliorie) e 8 <b>di conferma</b> (tenuti da parte per verificarle una volta sola).</p></div>
+  <div class="box"><h3>6 configurazioni × 3 repliche</h3><p class="small">Prompt con zero, uno o più esempi (zero-, one-, few-shot), con critico acceso o spento = 6 configurazioni. Ognuna è eseguita 3 volte (<b>repliche</b>), perché lo stesso esperimento non dà ogni volta la stessa lista.</p></div>
+  <div class="box"><h3>648 liste</h3><p class="small">12 sistemi × 6 configurazioni × 3 repliche × 3 tipi di lista (attori, HLG, LLG) = la <b>baseline</b>: la pipeline del lavoro di partenza, prima di qualunque miglioria.</p></div>
+</div>
+
+<p><b>Perché questa fase.</b> Ogni confronto della tesi (la baseline contro una miglioria, il critico acceso contro spento) passa da un solo numero: il voto.
+Se il voto non misura ciò che dichiara, nessun confronto vale. Il lavoro di partenza non lo aveva verificato e indicava la prova di altri modelli di
+<i>embedding</i> come lavoro futuro; noi abbiamo controllato questo e anche il resto del calcolo.</p>
+
+<!-- ============================================================ -->
+<h2 id="come">2. Come funziona il voto di partenza</h2>
+<p>Si confrontano, per ogni sistema e per ogni tipo di lista, i goal <i>generati</i> con quelli di <i>riferimento</i> (ground truth).</p>
+<ol>
+<li><b>Ogni goal diventa un vettore.</b> Un <i>encoder</i> (nel lavoro di partenza <code>bert-base-uncased</code>) trasforma la frase in una lista di numeri,
+detta <i>embedding</i>. Per HLG e LLG il testo è prima «pulito» (<i>preprocessing</i>: tolte le parole molto comuni, ridotte le parole alla radice); per gli attori no.</li>
+<li><b>Si misura quanto due frasi si somigliano.</b> La <i>somiglianza coseno</i> fra due vettori va da 0 (niente in comune) a 1 (stesso significato).</li>
+<li><b>Si abbinano i goal.</b> Abbinamento <i>uno-a-uno</i>: ogni goal generato può essere associato al più a un riferimento e viceversa;
+si sceglie la combinazione che rende massima la somma delle somiglianze. La somiglianza di una coppia abbinata è il suo <b>credito</b>.
+Un goal generato rimasto senza partner vale 0.</li>
+<li><b>Si calcola il voto.</b> <i>Precision</i> = credito totale ÷ goal generati («di quello che ho prodotto, quanto è giusto»);
+<i>recall</i> = credito totale ÷ goal di riferimento («di quello che c'era da trovare, quanto ho trovato»); <i>F1</i> = loro media armonica.</li>
+</ol>
+
+<div class="grid2">
+<div class="box">
+<h3>Esempio (numeri inventati)</h3>
+<svg viewBox="0 0 380 190" role="img" aria-label="Tre goal generati e due di riferimento: g1 abbinato a ref1 con 0.90, g2 a ref2 con 0.80, g3 senza partner">
+  <line class="no" x1="96" y1="40" x2="284" y2="130"/>
+  <line class="no" x1="96" y1="95" x2="284" y2="60"/>
+  <line class="no" x1="96" y1="150" x2="284" y2="60"/>
+  <line class="no" x1="96" y1="150" x2="284" y2="130"/>
+  <line class="sel" x1="96" y1="40" x2="284" y2="60"/>
+  <line class="sel" x1="96" y1="95" x2="284" y2="130"/>
+  <rect class="node" x="20" y="24" width="76" height="32" rx="6"/><text x="58" y="45" text-anchor="middle">g1</text>
+  <rect class="node" x="20" y="79" width="76" height="32" rx="6"/><text x="58" y="100" text-anchor="middle">g2</text>
+  <rect class="node" x="20" y="134" width="76" height="32" rx="6"/><text x="58" y="155" text-anchor="middle">g3</text>
+  <rect class="node" x="284" y="44" width="76" height="32" rx="6"/><text x="322" y="65" text-anchor="middle">ref1</text>
+  <rect class="node" x="284" y="114" width="76" height="32" rx="6"/><text x="322" y="135" text-anchor="middle">ref2</text>
+  <text x="190" y="38" text-anchor="middle" font-weight="600">0.90</text>
+  <text x="190" y="128" text-anchor="middle" font-weight="600">0.80</text>
+  <text class="m" x="58" y="184" text-anchor="middle">generati</text>
+  <text class="m" x="322" y="184" text-anchor="middle">riferimenti</text>
+</svg>
+<p class="small mut">Linee verdi: abbinamento scelto. Linee tratteggiate: coppie possibili non scelte.</p>
+</div>
+<div class="box">
+<h3>Il conto</h3>
+<p>Credito totale: 0.90 + 0.80 = <b>1.70</b>. Il goal g3 resta senza partner e vale 0.</p>
+<ul>
+<li>precision = 1.70 ÷ 3 = 0.57</li>
+<li>recall = 1.70 ÷ 2 = 0.85</li>
+<li>F1 = <b>0.68</b></li>
+</ul>
+<p class="small mut">In forma compatta: F1 = 2 × credito totale ÷ (generati + riferimenti). Il voto è un credito diviso per la lunghezza delle due liste: da qui nascono molti dei problemi della sezione 4.</p>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="metodo">3. Come abbiamo lavorato</h2>
+<ul>
+<li><b>Solo dati già su disco.</b> Tutta la fase lavora sulle 648 liste della baseline: nessun passo richiama il generatore o il critico. Si può rifare tutto, senza costi, con gli stessi numeri.</li>
+<li><b>Definire prima, calcolare dopo.</b> Per ogni analisi abbiamo scritto cosa si misura, come si legge e cosa <i>non</i> entra nella scelta, prima di guardare i risultati.
+I punti di taglio della metrica si ricavano da regole scritte in anticipo, non dai voti che producono.</li>
+<li><b>Una metrica non si sceglie perché dà numeri più alti o più bassi.</b> I livelli di F1 riportati qui descrivono il comportamento del metro,
+non sono risultati della pipeline né valori di riferimento.</li>
+<li><b>Una riparazione alla volta.</b> Ogni problema ha la sua prova «prima → dopo», così si vede quanto pesa ogni scelta da sola.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="diagnosi">4. La diagnosi: sei problemi misurati</h2>
+<p>L'idea centrale è il <b>voto a vuoto</b>. Si prende la lista generata per un sistema e la si confronta con la ground truth di <i>un altro</i> sistema
+(per esempio i goal di un ospedale contro quelli di un software di genomica). Sono liste che non hanno nulla in comune: il voto che ottengono
+è quello che la metrica assegna <i>senza</i> alcuna corrispondenza reale. Un metro sensato lo dovrebbe tenere vicino a zero.</p>
+
+<figure>
+<svg viewBox="0 0 860 200" role="img" aria-label="La stessa lista generata, confrontata con la ground truth giusta dà F1 0.52, con quella di un altro sistema 0.45">
+  <defs><marker id="ah2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--mut)"/></marker></defs>
+  <rect class="nodeb" x="10" y="62" width="190" height="76" rx="8"/>
+  <text x="105" y="94" text-anchor="middle" font-weight="600">Lista generata</text><text x="105" y="112" text-anchor="middle">per il sistema A</text>
+  <rect class="node" x="340" y="14" width="210" height="64" rx="8"/>
+  <text x="445" y="42" text-anchor="middle" font-weight="600">Ground truth di A</text><text class="m" x="445" y="60" text-anchor="middle">(quella giusta)</text>
+  <rect class="node" x="340" y="122" width="210" height="64" rx="8"/>
+  <text x="445" y="150" text-anchor="middle" font-weight="600">Ground truth di B</text><text class="m" x="445" y="168" text-anchor="middle">(un altro sistema)</text>
+  <path class="arrow" d="M200,90 L336,50" marker-end="url(#ah2)"/>
+  <path class="arrow" d="M200,110 L336,150" marker-end="url(#ah2)"/>
+  <text x="580" y="50" font-size="15" font-weight="700">F1 = 0.52</text><text class="m" x="580" y="68">voto «giusto»</text>
+  <text x="580" y="158" font-size="15" font-weight="700" style="fill:var(--bad)">F1 = 0.45</text><text class="m" x="580" y="176">voto a vuoto: l'87% del voto giusto</text>
+</svg>
+<figcaption>Valori medi sui goal di basso livello (LLG) con il voto di partenza. Dovrebbero essere molto distanti.</figcaption>
+</figure>
+
+<div class="wrap"><table>
+<tr><th>#</th><th>Problema</th><th>La prova misurata</th><th>Riparazione</th><th>Passo</th></tr>
+<tr><td>1</td><td>Il confronto fra frasi distingue poco un goal pertinente da uno estraneo</td>
+    <td>Voto a vuoto ÷ voto giusto: <b>0.66</b> attori, <b>0.88</b> HLG, <b>0.87</b> LLG</td>
+    <td>Encoder addestrato a confrontare frasi, senza «pulizia» del testo</td><td>2</td></tr>
+<tr><td>2</td><td>Nessuna soglia: anche un abbinamento forzato dà credito</td>
+    <td>Con l'encoder di partenza il 99% di tutte le coppie generato–riferimento ha una somiglianza abbastanza alta da far <i>salire</i> l'F1 se abbinata</td>
+    <td>Credito a soglia o a rampa</td><td>3</td></tr>
+<tr><td>3</td><td>Il voto dipende dalle lunghezze delle liste</td>
+    <td>La pipeline genera in media 2.6 HLG e 2.4 LLG per ogni riferimento; il voto segue il «tetto» fissato dalle sole lunghezze (correlazione 0.91–0.97)</td>
+    <td>Lunghezze e tetto dichiarati accanto a ogni voto</td><td>1</td></tr>
+<tr><td>4</td><td>Il vincolo uno-a-uno lascia senza credito circa metà dei goal generati</td>
+    <td>Resta senza partner il 58% degli HLG e il 45% degli LLG generati</td>
+    <td>Modo di abbinare scelto dopo aver capito cosa sono quei goal</td><td>4</td></tr>
+<tr><td>5</td><td>L'aggregato calcolato dal codice è più alto dei voti per sistema</td>
+    <td>Sempre più alto della media degli F1 per sistema: da +0.01 a +0.09, in 54 casi su 54</td>
+    <td>Numero principale = media degli F1 per sistema</td><td>1</td></tr>
+<tr><td>6</td><td>Una lista generata vuota fa fallire la valutazione</td>
+    <td>Errore riprodotto eseguendo il codice</td>
+    <td>Il valutatore restituisce 0</td><td>1</td></tr>
+</table></div>
+<p class="small mut">Prima di toccare qualcosa abbiamo verificato di saper ricalcolare esattamente i voti già scritti dalla baseline: lo scarto massimo è 2·10⁻⁷.</p>
+
+<!-- ============================================================ -->
+<h2 id="p1">5. Passo 1 — Dichiarare le lunghezze <span class="tag t-ok">fatto</span></h2>
+<dl class="qa">
+<dt>Domanda</dt><dd>Quanta parte di un voto viene dalle lunghezze delle due liste e non dalla qualità dei goal?</dd>
+<dt>Cosa abbiamo fatto</dt><dd>Abbiamo accompagnato ogni F1 con il numero di goal generati, il numero di riferimenti e il <b>tetto</b>: l'F1 massimo ottenibile con quelle due lunghezze anche se ogni abbinamento valesse 1.
+Formula: 2 × min(generati, riferimenti) ÷ (generati + riferimenti).</dd>
+</dl>
+
+<figure>
+<svg viewBox="0 0 860 238" role="img" aria-label="Tetto dell'F1 e F1 misurato per quattro sistemi, goal di basso livello">
+  <text class="m" x="0" y="14">Goal di basso livello (LLG), media delle liste della baseline</text>
+  <g>
+    <line class="ax" x1="260" y1="26" x2="260" y2="212"/>
+    <line class="gr" x1="460" y1="26" x2="460" y2="212"/><line class="gr" x1="660" y1="26" x2="660" y2="212"/><line class="gr" x1="860" y1="26" x2="860" y2="212"/>
+    <text class="m" x="260" y="228" text-anchor="middle">0</text><text class="m" x="460" y="228" text-anchor="middle">0.33</text><text class="m" x="660" y="228" text-anchor="middle">0.67</text><text class="m" x="856" y="228" text-anchor="end">1</text>
+  </g>
+  <!-- scale: 600px per 1.0 starting at x=260 -->
+  <text x="252" y="42" text-anchor="end">Planning Poker</text><text class="m" x="252" y="58" text-anchor="end">33 rif. · 40.6 gen.</text>
+  <rect class="bar-b" x="260" y="30" width="534" height="12"/><text class="m" x="798" y="40">tetto 0.89</text>
+  <rect class="bar-a" x="260" y="45" width="384" height="12"/><text x="648" y="55">F1 0.64</text>
+
+  <text x="252" y="92" text-anchor="end">Gestao Hospital</text><text class="m" x="252" y="108" text-anchor="end">18 rif. · 27.1 gen.</text>
+  <rect class="bar-b" x="260" y="80" width="486" height="12"/><text class="m" x="750" y="90">tetto 0.81</text>
+  <rect class="bar-a" x="260" y="95" width="354" height="12"/><text x="618" y="105">F1 0.59</text>
+
+  <text x="252" y="142" text-anchor="end">Assegno Unico Universale</text><text class="m" x="252" y="158" text-anchor="end">28 rif. · 81.1 gen.</text>
+  <rect class="bar-b" x="260" y="130" width="330" height="12"/><text class="m" x="594" y="140">tetto 0.55</text>
+  <rect class="bar-a" x="260" y="145" width="264" height="12"/><text x="528" y="155">F1 0.44</text>
+
+  <text x="252" y="192" text-anchor="end">London Ambulance Service</text><text class="m" x="252" y="208" text-anchor="end">2 rif. · 19.7 gen.</text>
+  <rect class="bar-b" x="260" y="180" width="114" height="12"/><text class="m" x="378" y="190">tetto 0.19</text>
+  <rect class="bar-a" x="260" y="195" width="84" height="12"/><text x="348" y="205">F1 0.14</text>
+</svg>
+<figcaption>Grigio: tetto fissato dalle lunghezze. Blu: F1 misurato. <i>London Ambulance Service</i> ha 2 LLG di riferimento e la pipeline ne genera una ventina: il suo voto basso si spiega quasi tutto così.</figcaption>
+</figure>
+
+<div class="key"><b>Cosa significa.</b> Sulle liste la correlazione per ranghi fra F1 e tetto è 0.91 per gli attori, 0.97 per gli HLG e 0.96 per gli LLG.
+Un confronto fra due configurazioni che generano un numero diverso di goal confronta prima di tutto due lunghezze. Per questo ogni voto è ora riportato con lunghezze e tetto accanto.</div>
+<p class="small mut">Nello stesso passo: la lista vuota dà 0 invece di un errore, e il numero principale diventa la media degli F1 per sistema (l'aggregato del codice resta riportato accanto).
+Questo passo non cambia la metrica: rende leggibili i numeri già prodotti.</p>
+
+<!-- ============================================================ -->
+<h2 id="p2">6. Passo 2 — Cambiare lo strumento di confronto <span class="tag t-ok">fatto</span></h2>
+<dl class="qa">
+<dt>Domanda</dt><dd>Quale encoder dà poco credito a una lista che parla di un altro sistema?</dd>
+<dt>Perché serve</dt><dd>Finché una coppia estranea vale quasi quanto una pertinente, non esiste un punto in cui «tagliare»: la riparazione dei passi successivi non può funzionare.</dd>
+<dt>Cosa abbiamo fatto</dt><dd>Abbiamo confrontato lo strumento in uso con sette alternative (più una media di due encoder), con una regola di scelta fissata prima di guardare i risultati:
+vince la <b>separazione</b> più alta (media su HLG e LLG); se due candidati distano meno di 0.01, vince il modello più piccolo.</dd>
+</dl>
+<p><b>Come leggere i due numeri.</b> La <i>separazione</i> è la probabilità che una coppia abbinata nel sistema giusto abbia somiglianza più alta di una coppia abbinata fra sistemi diversi:
+0.5 equivale al lancio di una moneta, 1 è la separazione perfetta. Il <i>voto a vuoto ÷ voto giusto</i> dice quanta parte del voto prende una lista contro un sistema estraneo: 0 è l'ideale.</p>
+<div class="wrap"><table>
+<tr><th>Encoder</th><th class="n">Separazione HLG</th><th class="n">Separazione LLG</th><th class="n">Voto a vuoto ÷ giusto, HLG</th><th class="n">LLG</th></tr>
+<tr class="base"><td>In uso: <code>bert-base-uncased</code> con «pulizia» del testo</td><td class="n">0.66</td><td class="n">0.67</td><td class="n">0.88</td><td class="n">0.87</td></tr>
+<tr><td>BERT senza «pulizia» del testo</td><td class="n">0.76</td><td class="n">0.76</td><td class="n">0.83</td><td class="n">0.83</td></tr>
+<tr><td>Sentence-BERT originale (<code>bert-base-nli-stsb-mean-tokens</code>)</td><td class="n">0.90</td><td class="n">0.88</td><td class="n">0.53</td><td class="n">0.62</td></tr>
+<tr class="pick"><td><b><code>all-MiniLM-L6-v2</code></b> (scelto)</td><td class="n"><b>0.98</b></td><td class="n"><b>0.95</b></td><td class="n"><b>0.29</b></td><td class="n"><b>0.38</b></td></tr>
+<tr><td><code>all-mpnet-base-v2</code></td><td class="n">0.97</td><td class="n">0.95</td><td class="n">0.31</td><td class="n">0.37</td></tr>
+<tr><td><code>mxbai-embed-large-v1</code></td><td class="n">0.96</td><td class="n">0.94</td><td class="n">0.64</td><td class="n">0.67</td></tr>
+<tr><td><code>Qwen3-Embedding-0.6B</code></td><td class="n">0.96</td><td class="n">0.93</td><td class="n">0.84</td><td class="n">0.84</td></tr>
+</table></div>
+<div class="key"><b>Cosa significa.</b>
+<ul>
+<li>Lo strumento in uso separa le coppie giuste da quelle estranee circa due volte su tre: poco sopra il caso. Con <code>all-MiniLM-L6-v2</code> la separazione è quasi completa.</li>
+<li>Il confronto con Sentence-BERT originale (stessa architettura di BERT, ma addestrata su coppie di frasi) dice che il guadagno viene dall'<b>addestramento a confrontare frasi</b>, non dall'architettura.</li>
+<li>La «pulizia» del testo peggiora la separazione, quindi è stata tolta.</li>
+<li>I due modelli più recenti e più grandi non fanno meglio: separano quasi quanto gli altri, ma danno somiglianze alte anche alle coppie estranee (voto a vuoto 0.64–0.84).</li>
+<li>Lo stesso encoder vale per attori, HLG e LLG: anche sugli attori separa meglio (0.93 contro 0.85).</li>
+</ul></div>
+<p class="small mut">La media di due encoder non è stata adottata: batte il migliore singolo solo sugli LLG, alla terza cifra.
+Questa prova dice solo che un encoder ignora i goal di un altro sistema: se distingue due goal <i>vicini</i> dello stesso sistema lo dice solo il giudizio umano, sezione seguente.</p>
+
+<!-- ============================================================ -->
+<h2 id="banco">7. Il banco di coppie giudicate a mano <span class="tag t-ok">fatto</span></h2>
+<p>Le prove automatiche usano coppie fra sistemi diversi, che sono estranee per costruzione: è il caso facile. Il caso che decide il voto è un altro:
+due goal <b>dello stesso sistema</b> che si somigliano, e che una persona può o non può considerare «lo stesso goal».
+Per misurarlo serve un giudizio umano. Abbiamo costruito un <b>banco di 210 coppie</b> (goal generato, goal di riferimento dello stesso sistema), giudicate una per una.</p>
+
+<div class="grid2">
+<div class="box">
+<h3>Com'è fatto</h3>
+<ul class="small">
+<li>Coppie estratte su <b>tutti e 12 i sistemi</b> (circa 10 per sistema), su tutta la scala di somiglianza (cinque fasce uguali, con seme fisso), per non avere solo coppie facili.</li>
+<li>Un primo lotto di <b>150</b> coppie (60 LLG, 40 HLG, 50 attori), poi <b>60 LLG</b> in più per restringere l'intervallo di incertezza (vedi sezione 10).</li>
+<li>Il giudice vede i due testi e il sistema, <b>mai un punteggio</b>.</li>
+<li>Le regole sono scritte prima di giudicare; le etichette sono state poi rilette contro la ground truth (quattro corrette su 120).</li>
+</ul>
+</div>
+<div class="box">
+<h3>Le tre etichette</h3>
+<ul class="small">
+<li><b>equivalente</b>: stessa azione sullo stesso oggetto; un dettaglio in più che non cambia la funzione non conta.</li>
+<li><b>parziale</b>: stesso oggetto e stessa intenzione, ma ampiezza diversa (uno copre una parte dell'altro).</li>
+<li><b>diverso</b>: azione o oggetto diversi, anche se l'argomento è lo stesso.</li>
+</ul>
+<p class="small mut">Totale sulle 210 coppie: 57 equivalente, 31 parziale, 122 diverso.</p>
+</div>
+</div>
+
+<div class="wrap"><table>
+<tr><th>Etichetta</th><th>Esempio reale: goal di riferimento ↔ goal generato</th><th class="n">Somiglianza</th></tr>
+<tr><td><span class="tag t-ok">equivalente</span></td><td><i>Genome Nexus</i>, HLG: «Annotate genetic variants in cancer» ↔ «The researcher aims to quickly annotate genetic variants in cancer samples to accelerate research and clinical insights.»</td><td class="n">0.89</td></tr>
+<tr><td><span class="tag t-warn">parziale</span></td><td><i>Recycling</i>, HLG: «Discover and navigate recycling facilities» ↔ «Enable users to easily find nearby recycling facilities and relevant information.» (copre solo il «trovare»)</td><td class="n">0.82</td></tr>
+<tr><td><span class="tag t-bad">diverso</span></td><td><i>Recycling</i>, LLG: «Add recycling facility information» ↔ «The system should show relevant contact details for a chosen recycling facility.» (stesso oggetto, azione diversa: aggiungere contro mostrare)</td><td class="n">0.83</td></tr>
+<tr><td><span class="tag t-bad">diverso</span></td><td>Attori, <i>SIA Project 25 26</i>: «Technical Office Staff» ↔ «Organization Office Staff» (ruoli diversi con nomi quasi uguali)</td><td class="n">0.71</td></tr>
+</table></div>
+<p class="small mut">La somiglianza è quella dell'encoder scelto (<code>all-MiniLM-L6-v2</code>). Gli ultimi due esempi anticipano un limite che vedremo: la somiglianza segue l'<b>oggetto</b> della frase più dell'azione.</p>
+
+<!-- ============================================================ -->
+<h2 id="p3">8. Passo 3 — Soglia o rampa <span class="tag t-ok">fatto</span></h2>
+<dl class="qa">
+<dt>Domanda</dt><dd>Da che valore di somiglianza una coppia vale come «goal trovato»? E il credito deve saltare da 0 a 1 oppure salire gradualmente?</dd>
+<dt>Perché serve</dt><dd>Oggi il credito è la somiglianza stessa: anche un abbinamento forzato fra due goal estranei porta qualcosa (per esempio 0.30), e molti piccoli crediti di questo tipo si sommano.</dd>
+</dl>
+
+<div class="grid3">
+<div class="box">
+<h3>Somma (oggi)</h3>
+<svg viewBox="0 0 200 158" role="img" aria-label="Il credito cresce in linea retta con la somiglianza">
+  <line class="ax" x1="30" y1="120" x2="185" y2="120"/><line class="ax" x1="30" y1="120" x2="30" y2="15"/>
+  <line class="gr" x1="30" y1="20" x2="180" y2="20"/>
+  <polyline class="ln" points="30,120 180,20"/>
+  <text class="m" x="30" y="136" text-anchor="middle">0</text><text class="m" x="180" y="136" text-anchor="middle">1</text>
+  <text class="m" x="24" y="24" text-anchor="end">1</text><text class="m" x="105" y="152" text-anchor="middle">somiglianza</text>
+</svg>
+<p class="small">Il credito è la somiglianza stessa.</p>
+</div>
+<div class="box">
+<h3>Soglia</h3>
+<svg viewBox="0 0 200 158" role="img" aria-label="Il credito vale zero sotto la soglia e uno sopra">
+  <line class="ax" x1="30" y1="120" x2="185" y2="120"/><line class="ax" x1="30" y1="120" x2="30" y2="15"/>
+  <line class="gr" x1="30" y1="20" x2="180" y2="20"/>
+  <polyline class="ln" points="30,120 95,120 95,20 180,20"/>
+  <text class="m" x="30" y="136" text-anchor="middle">0</text><text class="m" x="180" y="136" text-anchor="middle">1</text>
+  <text class="m" x="95" y="136" text-anchor="middle">0.43</text>
+  <text class="m" x="24" y="24" text-anchor="end">1</text><text class="m" x="105" y="152" text-anchor="middle">somiglianza</text>
+</svg>
+<p class="small">0 sotto, 1 sopra. Ha uno scalino: una coppia appena sopra vale tutto, una appena sotto niente.</p>
+</div>
+<div class="box">
+<h3>Rampa (scelta)</h3>
+<svg viewBox="0 0 200 158" role="img" aria-label="Il credito vale zero sotto il punto basso, uno sopra il punto alto e cresce in linea retta in mezzo">
+  <line class="ax" x1="30" y1="120" x2="185" y2="120"/><line class="ax" x1="30" y1="120" x2="30" y2="15"/>
+  <line class="gr" x1="30" y1="20" x2="180" y2="20"/>
+  <polyline class="ln" points="30,120 95,120 123.6,20 180,20"/>
+  <text class="m" x="30" y="136" text-anchor="middle">0</text><text class="m" x="180" y="136" text-anchor="middle">1</text>
+  <text class="m" x="88" y="136" text-anchor="middle">0.43</text><text class="m" x="130" y="136" text-anchor="middle">0.62</text>
+  <text class="m" x="24" y="24" text-anchor="end">1</text><text class="m" x="105" y="152" text-anchor="middle">somiglianza</text>
+</svg>
+<p class="small">0 sotto il punto basso, 1 sopra il punto alto, credito graduale in mezzo. Nessuno scalino.</p>
+</div>
+</div>
+<p class="small mut">I grafici usano i punti calcolati per gli LLG.</p>
+
+<div class="ex"><b>Esempio (numeri inventati).</b> Quattro coppie abbinate valgono 0.85, 0.60, 0.42 e 0.20.
+Con la somma: credito totale 2.07 su 4. Con una soglia a 0.40 contano tre coppie: 3 su 4. Con una rampa da 0.40 a 0.80 valgono 1, 0.50, 0.05 e 0: 1.55 su 4.</div>
+
+<h3>Da dove vengono i due punti</h3>
+<p>I punti sono ricavati da regole scritte <b>prima</b> del calcolo. Un <i>percentile</i> è il valore sotto cui sta una data quota dei casi: il 95° percentile è il valore che solo il 5% delle coppie supera.</p>
+<div class="wrap"><table>
+<tr><th>Punto</th><th>Regola</th><th>Perché</th><th class="n">HLG</th><th class="n">LLG</th><th class="n">Attori</th></tr>
+<tr><td><b>Basso</b>: sotto, la coppia vale 0</td><td>95° percentile della somiglianza delle coppie abbinate fra sistemi diversi</td>
+    <td>Sono coppie estranee per costruzione: dicono quanto «vale» una somiglianza senza corrispondenza reale</td><td class="n">0.394</td><td class="n">0.433</td><td class="n">0.697</td></tr>
+<tr><td><b>Alto</b>: sopra, la coppia vale 1</td><td>25° percentile delle coppie del banco giudicate <i>equivalente</i></td>
+    <td>Tre coppie equivalenti su quattro prendono credito pieno. HLG e LLG insieme: 27 coppie</td><td class="n">0.624</td><td class="n">0.624</td><td class="n">0.763</td></tr>
+</table></div>
+<p class="small mut">Per gli attori entrambi i punti vengono dal banco: sistemi diversi hanno davvero gli stessi attori («User», «Customer»), quindi le coppie fra sistemi diversi non sono estranee.
+Il punto alto degli attori poggia su 14 coppie.</p>
+
+<h3>Dove cadono le coppie giudicate</h3>
+<figure>
+<svg viewBox="0 0 860 542" role="img" aria-label="Somiglianza delle coppie giudicate, per etichetta e per tipo di lista">
+<text x="0" y="12" font-weight="700" font-size="13">Goal di alto livello (HLG)</text>
+<rect class="band" x="459.9" y="26" width="144.3" height="114"/>
+<line class="ramp" x1="459.9" y1="22" x2="459.9" y2="140"/>
+<line class="ramp" x1="604.2" y1="22" x2="604.2" y2="140"/>
+<text class="m" x="459.9" y="18" text-anchor="end">punto basso 0.39 </text>
+<text class="m" x="604.2" y="18" text-anchor="start"> punto alto 0.62</text>
+<line class="gr" x1="150" y1="45.0" x2="840" y2="45.0"/>
+<text x="0" y="49.0">equivalente <tspan class="m">(11)</tspan></text>
+<circle class="p-eq" cx="602.1" cy="36.2" r="4.6"/>
+<circle class="p-eq" cx="602.3" cy="51.6" r="4.6"/>
+<circle class="p-eq" cx="625.3" cy="47.2" r="4.6"/>
+<circle class="p-eq" cx="645.9" cy="42.8" r="4.6"/>
+<circle class="p-eq" cx="688.7" cy="38.4" r="4.6"/>
+<circle class="p-eq" cx="706.3" cy="53.8" r="4.6"/>
+<circle class="p-eq" cx="743.2" cy="49.4" r="4.6"/>
+<circle class="p-eq" cx="766.2" cy="45.0" r="4.6"/>
+<circle class="p-eq" cx="767.5" cy="40.6" r="4.6"/>
+<circle class="p-eq" cx="772.4" cy="36.2" r="4.6"/>
+<circle class="p-eq" cx="775.6" cy="51.6" r="4.6"/>
+<line class="gr" x1="150" y1="83.0" x2="840" y2="83.0"/>
+<text x="0" y="87.0">parziale <tspan class="m">(9)</tspan></text>
+<circle class="p-pa" cx="284.6" cy="74.2" r="4.6"/>
+<circle class="p-pa" cx="348.4" cy="89.6" r="4.6"/>
+<circle class="p-pa" cx="473.3" cy="85.2" r="4.6"/>
+<circle class="p-pa" cx="524.9" cy="80.8" r="4.6"/>
+<circle class="p-pa" cx="547.8" cy="76.4" r="4.6"/>
+<circle class="p-pa" cx="568.9" cy="91.8" r="4.6"/>
+<circle class="p-pa" cx="602.0" cy="87.4" r="4.6"/>
+<circle class="p-pa" cx="658.2" cy="83.0" r="4.6"/>
+<circle class="p-pa" cx="729.0" cy="78.6" r="4.6"/>
+<line class="gr" x1="150" y1="121.0" x2="840" y2="121.0"/>
+<text x="0" y="125.0">diverso <tspan class="m">(20)</tspan></text>
+<circle class="p-di" cx="203.8" cy="112.2" r="4.6"/>
+<circle class="p-di" cx="269.1" cy="127.6" r="4.6"/>
+<circle class="p-di" cx="292.0" cy="123.2" r="4.6"/>
+<circle class="p-di" cx="327.2" cy="118.8" r="4.6"/>
+<circle class="p-di" cx="329.3" cy="114.4" r="4.6"/>
+<circle class="p-di" cx="333.7" cy="129.8" r="4.6"/>
+<circle class="p-di" cx="388.1" cy="125.4" r="4.6"/>
+<circle class="p-di" cx="416.5" cy="121.0" r="4.6"/>
+<circle class="p-di" cx="423.3" cy="116.6" r="4.6"/>
+<circle class="p-di" cx="426.2" cy="112.2" r="4.6"/>
+<circle class="p-di" cx="431.6" cy="127.6" r="4.6"/>
+<circle class="p-di" cx="452.0" cy="123.2" r="4.6"/>
+<circle class="p-di" cx="455.2" cy="118.8" r="4.6"/>
+<circle class="p-di" cx="455.5" cy="114.4" r="4.6"/>
+<circle class="p-di" cx="465.7" cy="129.8" r="4.6"/>
+<circle class="p-di" cx="466.0" cy="125.4" r="4.6"/>
+<circle class="p-di" cx="475.6" cy="121.0" r="4.6"/>
+<circle class="p-di" cx="475.9" cy="116.6" r="4.6"/>
+<circle class="p-di" cx="535.9" cy="112.2" r="4.6"/>
+<circle class="p-di" cx="553.1" cy="127.6" r="4.6"/>
+<line class="ax" x1="150" y1="146" x2="840" y2="146"/>
+<line class="ax" x1="212.7" y1="146" x2="212.7" y2="150"/>
+<text class="m" x="212.7" y="163" text-anchor="middle">0</text>
+<line class="ax" x1="338.2" y1="146" x2="338.2" y2="150"/>
+<text class="m" x="338.2" y="163" text-anchor="middle">0.2</text>
+<line class="ax" x1="463.6" y1="146" x2="463.6" y2="150"/>
+<text class="m" x="463.6" y="163" text-anchor="middle">0.4</text>
+<line class="ax" x1="589.1" y1="146" x2="589.1" y2="150"/>
+<text class="m" x="589.1" y="163" text-anchor="middle">0.6</text>
+<line class="ax" x1="714.5" y1="146" x2="714.5" y2="150"/>
+<text class="m" x="714.5" y="163" text-anchor="middle">0.8</text>
+<line class="ax" x1="840.0" y1="146" x2="840.0" y2="150"/>
+<text class="m" x="840.0" y="163" text-anchor="middle">1</text>
+<text x="0" y="188" font-weight="700" font-size="13">Goal di basso livello (LLG)</text>
+<rect class="band" x="484.6" y="202" width="119.6" height="114"/>
+<line class="ramp" x1="484.6" y1="198" x2="484.6" y2="316"/>
+<line class="ramp" x1="604.2" y1="198" x2="604.2" y2="316"/>
+<text class="m" x="484.6" y="194" text-anchor="end">punto basso 0.43 </text>
+<text class="m" x="604.2" y="194" text-anchor="start"> punto alto 0.62</text>
+<line class="gr" x1="150" y1="221.0" x2="840" y2="221.0"/>
+<text x="0" y="225.0">equivalente <tspan class="m">(32)</tspan></text>
+<circle class="p-eq" cx="405.1" cy="212.2" r="4.6"/>
+<circle class="p-eq" cx="453.3" cy="227.6" r="4.6"/>
+<circle class="p-eq" cx="465.5" cy="223.2" r="4.6"/>
+<circle class="p-eq" cx="483.7" cy="218.8" r="4.6"/>
+<circle class="p-eq" cx="499.4" cy="214.4" r="4.6"/>
+<circle class="p-eq" cx="533.3" cy="229.8" r="4.6"/>
+<circle class="p-eq" cx="593.3" cy="225.4" r="4.6"/>
+<circle class="p-eq" cx="598.4" cy="221.0" r="4.6"/>
+<circle class="p-eq" cx="598.9" cy="216.6" r="4.6"/>
+<circle class="p-eq" cx="606.1" cy="212.2" r="4.6"/>
+<circle class="p-eq" cx="615.4" cy="227.6" r="4.6"/>
+<circle class="p-eq" cx="622.8" cy="223.2" r="4.6"/>
+<circle class="p-eq" cx="627.0" cy="218.8" r="4.6"/>
+<circle class="p-eq" cx="634.5" cy="214.4" r="4.6"/>
+<circle class="p-eq" cx="648.8" cy="229.8" r="4.6"/>
+<circle class="p-eq" cx="652.5" cy="225.4" r="4.6"/>
+<circle class="p-eq" cx="662.4" cy="221.0" r="4.6"/>
+<circle class="p-eq" cx="671.7" cy="216.6" r="4.6"/>
+<circle class="p-eq" cx="715.4" cy="212.2" r="4.6"/>
+<circle class="p-eq" cx="718.4" cy="227.6" r="4.6"/>
+<circle class="p-eq" cx="718.4" cy="223.2" r="4.6"/>
+<circle class="p-eq" cx="718.6" cy="218.8" r="4.6"/>
+<circle class="p-eq" cx="719.3" cy="214.4" r="4.6"/>
+<circle class="p-eq" cx="720.3" cy="229.8" r="4.6"/>
+<circle class="p-eq" cx="727.8" cy="225.4" r="4.6"/>
+<circle class="p-eq" cx="728.5" cy="221.0" r="4.6"/>
+<circle class="p-eq" cx="728.6" cy="216.6" r="4.6"/>
+<circle class="p-eq" cx="729.8" cy="212.2" r="4.6"/>
+<circle class="p-eq" cx="733.6" cy="227.6" r="4.6"/>
+<circle class="p-eq" cx="733.7" cy="223.2" r="4.6"/>
+<circle class="p-eq" cx="746.6" cy="218.8" r="4.6"/>
+<circle class="p-eq" cx="758.9" cy="214.4" r="4.6"/>
+<line class="gr" x1="150" y1="259.0" x2="840" y2="259.0"/>
+<text x="0" y="263.0">parziale <tspan class="m">(11)</tspan></text>
+<circle class="p-pa" cx="493.7" cy="250.2" r="4.6"/>
+<circle class="p-pa" cx="506.6" cy="265.6" r="4.6"/>
+<circle class="p-pa" cx="541.0" cy="261.2" r="4.6"/>
+<circle class="p-pa" cx="555.8" cy="256.8" r="4.6"/>
+<circle class="p-pa" cx="561.5" cy="252.4" r="4.6"/>
+<circle class="p-pa" cx="564.2" cy="267.8" r="4.6"/>
+<circle class="p-pa" cx="606.1" cy="263.4" r="4.6"/>
+<circle class="p-pa" cx="608.7" cy="259.0" r="4.6"/>
+<circle class="p-pa" cx="614.7" cy="254.6" r="4.6"/>
+<circle class="p-pa" cx="692.6" cy="250.2" r="4.6"/>
+<circle class="p-pa" cx="725.2" cy="265.6" r="4.6"/>
+<line class="gr" x1="150" y1="297.0" x2="840" y2="297.0"/>
+<text x="0" y="301.0">diverso <tspan class="m">(77)</tspan></text>
+<circle class="p-di" cx="181.6" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="209.3" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="210.2" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="212.6" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="213.4" cy="290.4" r="4.6"/>
+<circle class="p-di" cx="223.9" cy="305.8" r="4.6"/>
+<circle class="p-di" cx="224.7" cy="301.4" r="4.6"/>
+<circle class="p-di" cx="238.7" cy="297.0" r="4.6"/>
+<circle class="p-di" cx="241.4" cy="292.6" r="4.6"/>
+<circle class="p-di" cx="261.3" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="261.7" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="263.3" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="277.6" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="277.8" cy="290.4" r="4.6"/>
+<circle class="p-di" cx="291.9" cy="305.8" r="4.6"/>
+<circle class="p-di" cx="298.2" cy="301.4" r="4.6"/>
+<circle class="p-di" cx="307.2" cy="297.0" r="4.6"/>
+<circle class="p-di" cx="309.4" cy="292.6" r="4.6"/>
+<circle class="p-di" cx="313.8" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="336.8" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="339.1" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="346.5" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="352.2" cy="290.4" r="4.6"/>
+<circle class="p-di" cx="359.2" cy="305.8" r="4.6"/>
+<circle class="p-di" cx="360.4" cy="301.4" r="4.6"/>
+<circle class="p-di" cx="361.0" cy="297.0" r="4.6"/>
+<circle class="p-di" cx="365.8" cy="292.6" r="4.6"/>
+<circle class="p-di" cx="367.3" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="371.7" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="372.3" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="374.3" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="381.7" cy="290.4" r="4.6"/>
+<circle class="p-di" cx="398.7" cy="305.8" r="4.6"/>
+<circle class="p-di" cx="404.6" cy="301.4" r="4.6"/>
+<circle class="p-di" cx="413.5" cy="297.0" r="4.6"/>
+<circle class="p-di" cx="414.8" cy="292.6" r="4.6"/>
+<circle class="p-di" cx="427.7" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="430.2" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="434.1" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="443.3" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="448.5" cy="290.4" r="4.6"/>
+<circle class="p-di" cx="450.1" cy="305.8" r="4.6"/>
+<circle class="p-di" cx="462.3" cy="301.4" r="4.6"/>
+<circle class="p-di" cx="467.7" cy="297.0" r="4.6"/>
+<circle class="p-di" cx="469.6" cy="292.6" r="4.6"/>
+<circle class="p-di" cx="471.1" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="482.8" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="490.6" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="492.5" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="492.7" cy="290.4" r="4.6"/>
+<circle class="p-di" cx="509.3" cy="305.8" r="4.6"/>
+<circle class="p-di" cx="510.4" cy="301.4" r="4.6"/>
+<circle class="p-di" cx="513.3" cy="297.0" r="4.6"/>
+<circle class="p-di" cx="517.2" cy="292.6" r="4.6"/>
+<circle class="p-di" cx="530.7" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="534.1" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="538.3" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="547.5" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="558.2" cy="290.4" r="4.6"/>
+<circle class="p-di" cx="562.7" cy="305.8" r="4.6"/>
+<circle class="p-di" cx="576.0" cy="301.4" r="4.6"/>
+<circle class="p-di" cx="579.2" cy="297.0" r="4.6"/>
+<circle class="p-di" cx="597.7" cy="292.6" r="4.6"/>
+<circle class="p-di" cx="600.2" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="603.5" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="609.4" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="614.7" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="615.4" cy="290.4" r="4.6"/>
+<circle class="p-di" cx="616.5" cy="305.8" r="4.6"/>
+<circle class="p-di" cx="627.7" cy="301.4" r="4.6"/>
+<circle class="p-di" cx="629.0" cy="297.0" r="4.6"/>
+<circle class="p-di" cx="631.0" cy="292.6" r="4.6"/>
+<circle class="p-di" cx="638.9" cy="288.2" r="4.6"/>
+<circle class="p-di" cx="673.3" cy="303.6" r="4.6"/>
+<circle class="p-di" cx="715.9" cy="299.2" r="4.6"/>
+<circle class="p-di" cx="723.0" cy="294.8" r="4.6"/>
+<circle class="p-di" cx="731.0" cy="290.4" r="4.6"/>
+<line class="ax" x1="150" y1="322" x2="840" y2="322"/>
+<line class="ax" x1="212.7" y1="322" x2="212.7" y2="326"/>
+<text class="m" x="212.7" y="339" text-anchor="middle">0</text>
+<line class="ax" x1="338.2" y1="322" x2="338.2" y2="326"/>
+<text class="m" x="338.2" y="339" text-anchor="middle">0.2</text>
+<line class="ax" x1="463.6" y1="322" x2="463.6" y2="326"/>
+<text class="m" x="463.6" y="339" text-anchor="middle">0.4</text>
+<line class="ax" x1="589.1" y1="322" x2="589.1" y2="326"/>
+<text class="m" x="589.1" y="339" text-anchor="middle">0.6</text>
+<line class="ax" x1="714.5" y1="322" x2="714.5" y2="326"/>
+<text class="m" x="714.5" y="339" text-anchor="middle">0.8</text>
+<line class="ax" x1="840.0" y1="322" x2="840.0" y2="326"/>
+<text class="m" x="840.0" y="339" text-anchor="middle">1</text>
+<text x="0" y="364" font-weight="700" font-size="13">Attori</text>
+<rect class="band" x="649.9" y="378" width="41.2" height="114"/>
+<line class="ramp" x1="649.9" y1="374" x2="649.9" y2="492"/>
+<line class="ramp" x1="691.1" y1="374" x2="691.1" y2="492"/>
+<text class="m" x="649.9" y="370" text-anchor="end">punto basso 0.70 </text>
+<text class="m" x="691.1" y="370" text-anchor="start"> punto alto 0.76</text>
+<line class="gr" x1="150" y1="397.0" x2="840" y2="397.0"/>
+<text x="0" y="401.0">equivalente <tspan class="m">(14)</tspan></text>
+<circle class="p-eq" cx="525.7" cy="388.2" r="4.6"/>
+<circle class="p-eq" cx="648.0" cy="403.6" r="4.6"/>
+<circle class="p-eq" cx="652.2" cy="399.2" r="4.6"/>
+<circle class="p-eq" cx="676.5" cy="394.8" r="4.6"/>
+<circle class="p-eq" cx="734.8" cy="390.4" r="4.6"/>
+<circle class="p-eq" cx="736.1" cy="405.8" r="4.6"/>
+<circle class="p-eq" cx="738.2" cy="401.4" r="4.6"/>
+<circle class="p-eq" cx="757.8" cy="397.0" r="4.6"/>
+<circle class="p-eq" cx="767.2" cy="392.6" r="4.6"/>
+<circle class="p-eq" cx="776.7" cy="388.2" r="4.6"/>
+<circle class="p-eq" cx="777.9" cy="403.6" r="4.6"/>
+<circle class="p-eq" cx="782.4" cy="399.2" r="4.6"/>
+<circle class="p-eq" cx="802.6" cy="394.8" r="4.6"/>
+<circle class="p-eq" cx="809.3" cy="390.4" r="4.6"/>
+<line class="gr" x1="150" y1="435.0" x2="840" y2="435.0"/>
+<text x="0" y="439.0">parziale <tspan class="m">(11)</tspan></text>
+<circle class="p-pa" cx="322.1" cy="426.2" r="4.6"/>
+<circle class="p-pa" cx="324.4" cy="441.6" r="4.6"/>
+<circle class="p-pa" cx="334.3" cy="437.2" r="4.6"/>
+<circle class="p-pa" cx="394.0" cy="432.8" r="4.6"/>
+<circle class="p-pa" cx="429.1" cy="428.4" r="4.6"/>
+<circle class="p-pa" cx="500.5" cy="443.8" r="4.6"/>
+<circle class="p-pa" cx="546.8" cy="439.4" r="4.6"/>
+<circle class="p-pa" cx="594.5" cy="435.0" r="4.6"/>
+<circle class="p-pa" cx="603.7" cy="430.6" r="4.6"/>
+<circle class="p-pa" cx="651.0" cy="426.2" r="4.6"/>
+<circle class="p-pa" cx="728.2" cy="441.6" r="4.6"/>
+<line class="gr" x1="150" y1="473.0" x2="840" y2="473.0"/>
+<text x="0" y="477.0">diverso <tspan class="m">(25)</tspan></text>
+<circle class="p-di" cx="243.7" cy="464.2" r="4.6"/>
+<circle class="p-di" cx="273.4" cy="479.6" r="4.6"/>
+<circle class="p-di" cx="312.8" cy="475.2" r="4.6"/>
+<circle class="p-di" cx="318.2" cy="470.8" r="4.6"/>
+<circle class="p-di" cx="320.4" cy="466.4" r="4.6"/>
+<circle class="p-di" cx="334.6" cy="481.8" r="4.6"/>
+<circle class="p-di" cx="341.0" cy="477.4" r="4.6"/>
+<circle class="p-di" cx="360.1" cy="473.0" r="4.6"/>
+<circle class="p-di" cx="376.1" cy="468.6" r="4.6"/>
+<circle class="p-di" cx="381.6" cy="464.2" r="4.6"/>
+<circle class="p-di" cx="381.6" cy="479.6" r="4.6"/>
+<circle class="p-di" cx="404.5" cy="475.2" r="4.6"/>
+<circle class="p-di" cx="428.5" cy="470.8" r="4.6"/>
+<circle class="p-di" cx="430.8" cy="466.4" r="4.6"/>
+<circle class="p-di" cx="458.9" cy="481.8" r="4.6"/>
+<circle class="p-di" cx="469.6" cy="477.4" r="4.6"/>
+<circle class="p-di" cx="502.5" cy="473.0" r="4.6"/>
+<circle class="p-di" cx="519.2" cy="468.6" r="4.6"/>
+<circle class="p-di" cx="519.2" cy="464.2" r="4.6"/>
+<circle class="p-di" cx="568.9" cy="479.6" r="4.6"/>
+<circle class="p-di" cx="572.8" cy="475.2" r="4.6"/>
+<circle class="p-di" cx="572.9" cy="470.8" r="4.6"/>
+<circle class="p-di" cx="605.3" cy="466.4" r="4.6"/>
+<circle class="p-di" cx="661.0" cy="481.8" r="4.6"/>
+<circle class="p-di" cx="661.0" cy="477.4" r="4.6"/>
+<line class="ax" x1="150" y1="498" x2="840" y2="498"/>
+<line class="ax" x1="212.7" y1="498" x2="212.7" y2="502"/>
+<text class="m" x="212.7" y="515" text-anchor="middle">0</text>
+<line class="ax" x1="338.2" y1="498" x2="338.2" y2="502"/>
+<text class="m" x="338.2" y="515" text-anchor="middle">0.2</text>
+<line class="ax" x1="463.6" y1="498" x2="463.6" y2="502"/>
+<text class="m" x="463.6" y="515" text-anchor="middle">0.4</text>
+<line class="ax" x1="589.1" y1="498" x2="589.1" y2="502"/>
+<text class="m" x="589.1" y="515" text-anchor="middle">0.6</text>
+<line class="ax" x1="714.5" y1="498" x2="714.5" y2="502"/>
+<text class="m" x="714.5" y="515" text-anchor="middle">0.8</text>
+<line class="ax" x1="840.0" y1="498" x2="840.0" y2="502"/>
+<text class="m" x="840.0" y="515" text-anchor="middle">1</text>
+<text class="m" x="495" y="532" text-anchor="middle">somiglianza della coppia (encoder all-MiniLM-L6-v2): 0 = niente in comune, 1 = identiche</text>
+</svg>
+<figcaption>Ogni punto è una coppia del banco. Fascia arancione: la zona in cui il credito sale da 0 a 1 (fra punto basso e punto alto).
+Verde = giudicata equivalente, arancione = parziale, rosso = diversa. I punti sono sfalsati in verticale solo per leggerli meglio.</figcaption>
+</figure>
+<div class="key"><b>Come leggerla.</b> Se la somiglianza distingue bene, i punti verdi stanno a destra, i rossi a sinistra, e la fascia li separa.
+<ul>
+<li><b>HLG:</b> nessuna coppia equivalente è sotto il punto basso e nessuna coppia diversa sopra il punto alto: la rampa cade dove deve.</li>
+<li><b>LLG:</b> le due nuvole si sovrappongono. 12 coppie «diverso» su 77 prendono credito pieno e 4 «equivalente» su 32 prendono zero. Il motivo: la somiglianza segue
+l'<b>oggetto</b> della frase, e gli LLG dello stesso sistema condividono spesso l'oggetto e differiscono per l'azione («aggiungere» contro «mostrare»).
+Nessuno spostamento dei punti ripara le due cose insieme.</li>
+<li><b>Attori:</b> 2 coppie «equivalente» su 14 prendono zero e nessuna «diverso» arriva al credito pieno; restano 2 coppie «diverso» nella zona di mezzo (ruoli con nomi quasi uguali, come «Technical Office Staff» e «Organization Office Staff»).</li>
+</ul></div>
+<p class="small mut">Abbiamo deciso di non fare una taratura dedicata agli LLG e di non usare un modello linguistico come giudice al posto della somiglianza: il risultato sugli LLG si riporta com'è.</p>
+
+<h3>Il risultato: quanto voto prende una lista estranea</h3>
+<p>Quota del voto giusto che una lista prende contro un sistema estraneo (0 è l'ideale), cambiando una cosa alla volta:</p>
+<div class="bars">
+  <div class="grp">Attori</div>
+  <div>1. Lavoro di partenza (BERT, somiglianza)</div><div class="track"><div class="fill old" style="width:66%"></div></div><div class="v">0.66</div>
+  <div>2. Encoder nuovo (MiniLM)</div><div class="track"><div class="fill mid" style="width:36%"></div></div><div class="v">0.36</div>
+  <div>3. Encoder nuovo + rampa</div><div class="track"><div class="fill new" style="width:5%"></div></div><div class="v">0.05</div>
+  <div class="grp">HLG</div>
+  <div>1. Lavoro di partenza (BERT, somiglianza)</div><div class="track"><div class="fill old" style="width:88%"></div></div><div class="v">0.88</div>
+  <div>2. Encoder nuovo (MiniLM)</div><div class="track"><div class="fill mid" style="width:29%"></div></div><div class="v">0.29</div>
+  <div>3. Encoder nuovo + rampa</div><div class="track"><div class="fill new" style="width:1.4%"></div></div><div class="v">0.01</div>
+  <div class="grp">LLG</div>
+  <div>1. Lavoro di partenza (BERT, somiglianza)</div><div class="track"><div class="fill old" style="width:87%"></div></div><div class="v">0.87</div>
+  <div>2. Encoder nuovo (MiniLM)</div><div class="track"><div class="fill mid" style="width:38%"></div></div><div class="v">0.38</div>
+  <div>3. Encoder nuovo + rampa</div><div class="track"><div class="fill new" style="width:2.4%"></div></div><div class="v">0.02</div>
+</div>
+<p class="small mut">Le due riparazioni servono entrambe e si possono mostrare una per volta: l'encoder toglie più di metà del voto a vuoto, la rampa quasi tutto il resto.
+Con <code>bert-base-uncased</code> la rampa non può nemmeno esistere: le coppie estranee valgono <i>più</i> delle coppie equivalenti (punto basso 0.79, punto alto 0.74 sugli HLG), quindi non c'è un intervallo in cui farla salire.
+Per questo la riparazione non si può fare tenendo l'encoder di partenza.</p>
+
+<h3>Soglia o rampa: le quattro prove</h3>
+<div class="wrap"><table>
+<tr><th>Tipo</th><th>Forma</th><th class="n">Voto a vuoto ÷ giusto</th><th class="n">Un goal estraneo aggiunto alza l'F1</th><th class="n">Rumore fra repliche</th><th class="n">Ordine delle configurazioni stabile</th></tr>
+<tr><td>HLG</td><td>somma</td><td class="n">0.294</td><td class="n">0.1%</td><td class="n">0.029</td><td class="n">—</td></tr>
+<tr><td>HLG</td><td>soglia</td><td class="n">0.045</td><td class="n">0.3%</td><td class="n">0.048</td><td class="n">0.73</td></tr>
+<tr class="pick"><td>HLG</td><td><b>rampa</b></td><td class="n">0.014</td><td class="n">0.3%</td><td class="n">0.041</td><td class="n">1.00</td></tr>
+<tr><td>LLG</td><td>somma</td><td class="n">0.375</td><td class="n">2.1%</td><td class="n">0.030</td><td class="n">—</td></tr>
+<tr><td>LLG</td><td>soglia</td><td class="n">0.054</td><td class="n">0.7%</td><td class="n">0.062</td><td class="n">0.47</td></tr>
+<tr class="pick"><td>LLG</td><td><b>rampa</b></td><td class="n">0.024</td><td class="n">0.7%</td><td class="n">0.049</td><td class="n">0.87</td></tr>
+</table></div>
+<p><b>Come leggerla.</b> Tutte le righe usano l'encoder nuovo. <i>Un goal estraneo aggiunto</i>: si aggiunge a ogni lista un goal di un altro sistema (30 per lista) e si conta quante volte l'F1 sale; un metro onesto non dovrebbe premiare l'aggiunta.
+<i>Rumore</i>: oscillazione (deviazione standard) dell'F1 fra le tre repliche identiche. <i>Ordine stabile</i>: vale 1 se l'ordine delle sei configurazioni non cambia spostando un po' il punto basso (dal 95° al 90° o al 97° percentile); 0.47 vuol dire che l'ordine cambia molto.</p>
+<div class="key"><b>Cosa significa.</b> Soglia e rampa tolgono entrambe quasi tutto il voto a vuoto; la rampa di più sui goal. La rampa tiene l'ordine delle configurazioni molto più stabile della soglia (1.00 e 0.87 contro 0.73 e 0.47)
+e oscilla meno. Sul banco, il 45% delle coppie LLG «diverso» supera il punto basso: la soglia dà loro credito pieno, con la rampa una coppia «diverso» prende in media 0.28. <b>Il costo c'è:</b> rispetto alla somma il rumore sale (da 0.029 a 0.041 negli HLG, da 0.030 a 0.049 negli LLG).
+Per questo la rampa è stata scelta come candidata, con la conferma rimandata al passo 5 e alla sezione sui costi.</div>
+
+<!-- ============================================================ -->
+<h2 id="p4">9. Passo 4 — Il modo di abbinare <span class="tag t-ok">fatto</span></h2>
+<dl class="qa">
+<dt>Domanda</dt><dd>Cosa sono i goal generati che prendono zero? Parti di un riferimento, copie di un altro goal generato, o goal che la ground truth non prevede? E quale modo di abbinare li tratta in modo giusto?</dd>
+<dt>Perché serve</dt><dd>La pipeline genera più del doppio dei goal di riferimento, quindi con l'uno-a-uno molti goal restano per forza senza partner: l'algoritmo non sbaglia, finisce i riferimenti.
+Se questo sia ingiusto dipende da cosa sono quei goal, e non era mai stato misurato.</dd>
+</dl>
+<div class="ex"><b>Esempio (lista vera: <i>Gestao Hospital</i>, HLG, zero esempi, critico acceso, replica 1).</b> 10 goal generati, 4 riferimenti.
+Tutti e 4 i riferimenti sono trovati a credito pieno; i 6 goal in più prendono zero. F1 = 0.57, che è il massimo possibile con quelle lunghezze.
+Se invece ogni goal prendesse il credito del suo riferimento più vicino, l'F1 sarebbe 0.78.</div>
+
+<h3>Primo: quanto è grande il problema (censimento delle 648 liste)</h3>
+<div class="wrap"><table>
+<tr><th>Tipo</th><th class="n">Goal generati</th><th class="n">A credito zero</th><th class="n">F1 uno-a-uno</th><th class="n">F1 senza vincolo</th><th class="n">Distanza</th><th class="n">Rumore fra repliche</th></tr>
+<tr><td>HLG</td><td class="n">2 556</td><td class="n">62%</td><td class="n">0.477</td><td class="n">0.681</td><td class="n"><b>0.204</b></td><td class="n">0.041</td></tr>
+<tr><td>LLG</td><td class="n">8 180</td><td class="n">55%</td><td class="n">0.429</td><td class="n">0.632</td><td class="n"><b>0.203</b></td><td class="n">0.049</td></tr>
+<tr><td>Attori</td><td class="n">831</td><td class="n">33%</td><td class="n">0.700</td><td class="n">0.717</td><td class="n">0.017</td><td class="n">0.018</td></tr>
+</table></div>
+<p><b>Come leggerla.</b> «A credito zero» sono i goal generati che l'uno-a-uno non premia. «F1 senza vincolo» è l'F1 se ogni goal prendesse il credito del suo riferimento più vicino, senza esclusività. La <i>distanza</i> fra i due è il massimo che un modo di abbinare più indulgente potrebbe aggiungere al voto.</p>
+<div class="key"><b>Cosa significa.</b> Per HLG e LLG la scelta dell'abbinamento può spostare il voto di 0.20, quattro o cinque volte il rumore: conta. Per gli attori la distanza è pari al rumore, e il 94% degli attori a zero è lontano da ogni riferimento:
+<b>gli attori tengono l'uno-a-uno</b>.</div>
+
+<h3>Secondo: cosa sono quei goal (campione di 167 goal giudicati)</h3>
+<p>Abbiamo estratto 167 goal a credito zero (83 HLG e 84 LLG, 7 per sistema), distribuiti fra goal più o meno vicini a un riferimento, e li abbiamo giudicati ognuno contro i suoi tre riferimenti più vicini con le tre etichette del banco.
+Ogni quota è una stima sul corpus intero, con il suo margine di incertezza al 95%.</p>
+<div class="legend"><i class="s-eq"></i>equivalente a un riferimento <i class="s-pa"></i>parziale <i class="s-di"></i>diverso</div>
+<p class="small" style="margin-bottom:2px"><b>HLG a credito zero</b></p>
+<div class="stack"><span class="s-eq" style="width:21%">21% (±9)</span><span class="s-pa" style="width:60%">60% (±13)</span><span class="s-di" style="width:19%">19% (±11)</span></div>
+<p class="small" style="margin:10px 0 2px"><b>LLG a credito zero</b></p>
+<div class="stack"><span class="s-eq" style="width:24%">24% (±9)</span><span class="s-pa" style="width:36%">36% (±12)</span><span class="s-di" style="width:40%">40% (±11)</span></div>
+<div class="key" style="margin-top:14px"><b>Cosa significa.</b> Negli HLG circa quattro goal a zero su cinque corrispondono, del tutto o in parte, a un riferimento: sono soprattutto <b>spezzamenti</b>
+(la pipeline divide un goal di riferimento in più goal). Negli LLG sono circa tre su cinque, e due su cinque non corrispondono a nulla.
+Questo è un argomento GORE (granularità) prima che statistico: il vincolo uno-a-uno non rappresenta bene liste in cui un goal viene spezzato in più parti.</div>
+
+<p>Per i goal giudicati <i>equivalente</i> ma rimasti a zero abbiamo guardato anche chi aveva preso il loro riferimento:</p>
+<div class="wrap"><table>
+<tr><th>Tipo</th><th class="n">Goal «equivalente» rimasti a zero</th><th class="n">Vincitore «equivalente» (il perdente è una copia)</th><th class="n">Vincitore «parziale»</th><th class="n">Vincitore «diverso» (errore di abbinamento)</th></tr>
+<tr><td>HLG</td><td class="n">21</td><td class="n"><b>11</b></td><td class="n">4</td><td class="n">6</td></tr>
+<tr><td>LLG</td><td class="n">27</td><td class="n">5</td><td class="n">6</td><td class="n"><b>16</b></td></tr>
+</table></div>
+<p>Negli HLG circa metà sono copie di un goal già premiato: lì il vincolo fa il suo lavoro. Negli LLG più spesso il riferimento è andato a un goal che non gli corrisponde.
+Non è l'algoritmo a sbagliare: è l'encoder che dà a quell'altro goal una somiglianza uguale o maggiore (lo stesso limite degli LLG visto sopra).</p>
+
+<h3>Terzo: tre modi di abbinare a confronto</h3>
+<figure>
+<svg viewBox="0 0 860 190" role="img" aria-label="Tre modi di abbinare: una volta sola, al massimo due, senza limite">
+  <!-- panel template: three at x offsets 0, 295, 590 -->
+  <g transform="translate(0,0)">
+    <text x="130" y="16" text-anchor="middle" font-weight="700">Una volta sola</text>
+    <rect class="node" x="10" y="30" width="60" height="28" rx="6"/><text x="40" y="49" text-anchor="middle">g1</text>
+    <rect class="node" x="10" y="74" width="60" height="28" rx="6"/><text x="40" y="93" text-anchor="middle">g2</text>
+    <rect class="node" x="10" y="118" width="60" height="28" rx="6"/><text x="40" y="137" text-anchor="middle">g3</text>
+    <rect class="nodeb" x="190" y="48" width="60" height="28" rx="6"/><text x="220" y="67" text-anchor="middle">R1</text>
+    <rect class="nodeb" x="190" y="108" width="60" height="28" rx="6"/><text x="220" y="127" text-anchor="middle">R2</text>
+    <line class="sel" x1="70" y1="44" x2="190" y2="62"/>
+    <line class="no" x1="70" y1="88" x2="190" y2="66"/>
+    <line class="sel" x1="70" y1="132" x2="190" y2="122"/>
+    <text class="m" x="130" y="168" text-anchor="middle">g2 resta a zero</text>
+  </g>
+  <g transform="translate(295,0)">
+    <text x="130" y="16" text-anchor="middle" font-weight="700">Al massimo due</text>
+    <rect class="node" x="10" y="30" width="60" height="28" rx="6"/><text x="40" y="49" text-anchor="middle">g1</text>
+    <rect class="node" x="10" y="74" width="60" height="28" rx="6"/><text x="40" y="93" text-anchor="middle">g2</text>
+    <rect class="node" x="10" y="118" width="60" height="28" rx="6"/><text x="40" y="137" text-anchor="middle">g3</text>
+    <rect class="nodeb" x="190" y="48" width="60" height="28" rx="6"/><text x="220" y="67" text-anchor="middle">R1</text>
+    <rect class="nodeb" x="190" y="108" width="60" height="28" rx="6"/><text x="220" y="127" text-anchor="middle">R2</text>
+    <line class="sel" x1="70" y1="44" x2="190" y2="62"/>
+    <line class="sel" x1="70" y1="88" x2="190" y2="66"/>
+    <line class="sel" x1="70" y1="132" x2="190" y2="122"/>
+    <text class="m" x="130" y="168" text-anchor="middle">R1 premia fino a due parti</text>
+  </g>
+  <g transform="translate(590,0)">
+    <text x="130" y="16" text-anchor="middle" font-weight="700">Senza limite</text>
+    <rect class="node" x="10" y="30" width="60" height="28" rx="6"/><text x="40" y="49" text-anchor="middle">g1</text>
+    <rect class="node" x="10" y="74" width="60" height="28" rx="6"/><text x="40" y="93" text-anchor="middle">g2</text>
+    <rect class="node" x="10" y="118" width="60" height="28" rx="6"/><text x="40" y="137" text-anchor="middle">g3</text>
+    <rect class="nodeb" x="190" y="48" width="60" height="28" rx="6"/><text x="220" y="67" text-anchor="middle">R1</text>
+    <rect class="nodeb" x="190" y="108" width="60" height="28" rx="6"/><text x="220" y="127" text-anchor="middle">R2</text>
+    <line class="sel" x1="70" y1="44" x2="190" y2="62"/>
+    <line class="sel" x1="70" y1="88" x2="190" y2="66"/>
+    <line class="sel" x1="70" y1="132" x2="190" y2="122"/>
+    <text class="m" x="130" y="168" text-anchor="middle">ogni goal prende il suo massimo</text>
+  </g>
+</svg>
+<figcaption>Schema illustrativo: g1 e g2 sono due parti del riferimento R1. Con «senza limite» ogni goal prende il credito del riferimento più vicino, quante che siano le copie:
+è il modo più indulgente e serve da limite superiore.</figcaption>
+</figure>
+
+<p>Abbiamo calcolato tutte le combinazioni di encoder (BERT del lavoro di partenza, MiniLM), credito (somma, rampa) e abbinamento (una volta sola, al massimo due, senza limite), con le stesse prove per tutte. Le righe che contano:</p>
+<div class="wrap"><table>
+<tr><th>Combinazione</th><th class="n">Voto a vuoto ÷ giusto HLG</th><th class="n">LLG</th><th class="n">Goal estraneo alza l'F1, HLG</th><th class="n">LLG</th></tr>
+<tr class="base"><td>BERT, somma, una volta sola (lavoro di partenza)</td><td class="n">0.88</td><td class="n">0.87</td><td class="n">0.0%</td><td class="n">10.2%</td></tr>
+<tr><td>BERT, somma, al massimo due</td><td class="n">0.81</td><td class="n">0.81</td><td class="n">12.4%</td><td class="n"><b>37.8%</b></td></tr>
+<tr><td>MiniLM, somma, una volta sola</td><td class="n">0.29</td><td class="n">0.38</td><td class="n">0.1%</td><td class="n">2.2%</td></tr>
+<tr><td>MiniLM, rampa, una volta sola</td><td class="n">0.01</td><td class="n">0.02</td><td class="n">0.3%</td><td class="n">0.8%</td></tr>
+<tr class="pick"><td><b>MiniLM, rampa, al massimo due</b> (scelta)</td><td class="n">0.01</td><td class="n">0.02</td><td class="n">0.6%</td><td class="n">1.3%</td></tr>
+<tr><td>MiniLM, rampa, senza limite</td><td class="n">0.01</td><td class="n">0.02</td><td class="n">0.8%</td><td class="n">1.3%</td></tr>
+</table></div>
+<p class="small mut">Le tre combinazioni con BERT e rampa non sono calcolabili: la rampa non esiste per BERT (vedi sopra).</p>
+
+<p>Le altre prove, solo con l'encoder nuovo e la rampa, fra i tre abbinamenti:</p>
+<div class="wrap"><table>
+<tr><th>Tipo</th><th>Abbinamento</th><th class="n">Credito medio ai goal del campione: equivalente / parziale / diverso</th><th class="n">Lista raddoppiata: F1 sale in</th><th class="n">Rumore fra repliche</th></tr>
+<tr><td>HLG</td><td class="nw">una volta sola</td><td class="n">0 / 0 / 0</td><td class="n">0.0%</td><td class="n">0.041</td></tr>
+<tr class="pick"><td>HLG</td><td class="nw"><b>al massimo due</b></td><td class="n">0.59 / 0.48 / 0.00</td><td class="n">0.9%</td><td class="n">0.044</td></tr>
+<tr><td>HLG</td><td class="nw">senza limite</td><td class="n">0.71 / 0.54 / 0.17</td><td class="n">0.0% *</td><td class="n">0.044</td></tr>
+<tr><td>LLG</td><td class="nw">una volta sola</td><td class="n">0 / 0 / 0</td><td class="n">1.9%</td><td class="n">0.049</td></tr>
+<tr class="pick"><td>LLG</td><td class="nw"><b>al massimo due</b></td><td class="n">0.70 / 0.48 / 0.26</td><td class="n">9.3%</td><td class="n">0.049</td></tr>
+<tr><td>LLG</td><td class="nw">senza limite</td><td class="n">0.78 / 0.61 / 0.40</td><td class="n">0.0% *</td><td class="n">0.053</td></tr>
+</table></div>
+<p><b>Come leggerla.</b> Il campione è fatto di goal che oggi prendono zero: per «una volta sola» il credito è 0 per costruzione. La colonna del credito va letta in orizzontale: un buon modo di abbinare dà molto agli <i>equivalente</i>, meno ai <i>parziale</i>, poco ai <i>diverso</i>.
+<i>Lista raddoppiata</i>: ogni goal è copiato due volte; un voto che sale premia le copie. * Con «senza limite» una lista raddoppiata prende lo stesso voto: le copie non costano nulla.</p>
+
+<div class="key"><b>Cosa significa.</b>
+<ul>
+<li><b>Il voto a vuoto resta vicino a zero</b> con tutti e tre gli abbinamenti: il punto basso della rampa regge anche allargando l'abbinamento.</li>
+<li><b>Senza la rampa allargare l'abbinamento peggiora le cose</b>: con BERT e somma, negli LLG un goal estraneo aggiunto alza l'F1 nel 10% dei casi con «una volta sola» e nel 38% con «al massimo due». Con encoder nuovo e rampa: 0.8% e 1.3%. Le due riparazioni lavorano insieme.</li>
+<li><b>«Al massimo due»</b> riconosce le parti di un riferimento (il caso più frequente) e dà ai goal «diverso» meno credito di «senza limite» (0.00 contro 0.17 negli HLG, 0.26 contro 0.40 negli LLG). «Senza limite» non fa pagare nulla alle copie.</li>
+<li><b>Sugli attori</b> le tre strategie stanno fra 0.700 e 0.717: resta «una volta sola».</li>
+</ul></div>
+
+<h3>Due dettagli che abbiamo dovuto sistemare</h3>
+<ul>
+<li><b>Lo spareggio.</b> Con la rampa molte coppie hanno lo stesso credito (0 o 1), quindi più abbinamenti hanno lo stesso totale e il solutore ne restituiva uno qualsiasi:
+lo stesso elenco in ordine diverso poteva prendere un voto diverso (6 liste HLG e 46 liste LLG su 216, fino a 0.18 e 0.07). A parità di credito totale si prende ora l'abbinamento con la recall più alta: il voto non dipende più dall'ordine dei goal.</li>
+<li><b>Le copie.</b> Tentare di misurarle con una regola automatica non ha superato il controllo: riconosceva 15 copie su 16, ma chiamava copia anche 15 goal su 32 che non lo erano
+(goal dello stesso sistema si somigliano oltre il punto alto anche quando dicono cose diverse). Non c'è quindi una misura dedicata: si riportano solo le voci ripetute parola per parola (2.8% degli HLG, 1.6% degli LLG, nessuna fra gli attori) e il limite si dichiara.
+La metrica non distingue una copia da una parte: raddoppiando ogni goal l'F1 sale nel 9% delle liste LLG (1% negli HLG) e in media scende di 0.08, quindi copiare continua a convenire poco.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="p5">10. Passo 5 — Conferma con il giudizio umano <span class="tag t-ok">fatto</span></h2>
+<dl class="qa">
+<dt>Domanda</dt><dd>La metrica nuova è più d'accordo con una persona di quanto lo sia quella di partenza?</dd>
+<dt>Come si misura</dt><dd>Sulle coppie del banco: probabilità che una coppia giudicata <i>equivalente</i> prenda più credito di una giudicata <i>diverso</i> (pari = mezzo punto; 1.00 = ordine perfetto, 0.50 = caso).
+Si calcola per la metrica di partenza e per la nuova; la differenza ha un <b>intervallo di incertezza al 95%</b>, ottenuto ricalcolando 2000 volte il valore su coppie ripescate a caso.
+Regola di lettura scritta prima: se l'intervallo sta tutto sopra zero, la metrica nuova è più d'accordo; se contiene lo zero, <i>la differenza non si legge</i>.</dd>
+</dl>
+
+<figure>
+<svg viewBox="0 0 860 170" role="img" aria-label="Differenza di accordo con il giudice, metrica nuova meno metrica di partenza, con intervallo al 95%">
+  <!-- x axis: -0.2 .. +0.4 mapped to 330..830 (500px per 0.6) -->
+  <line class="gr" x1="330" y1="22" x2="330" y2="122"/><line class="gr" x1="413.3" y1="22" x2="413.3" y2="122"/>
+  <line class="gr" x1="580" y1="22" x2="580" y2="122"/><line class="gr" x1="663.3" y1="22" x2="663.3" y2="122"/>
+  <line class="gr" x1="746.7" y1="22" x2="746.7" y2="122"/><line class="gr" x1="830" y1="22" x2="830" y2="122"/>
+  <line class="zero" x1="496.7" y1="18" x2="496.7" y2="126"/>
+  <line class="ax" x1="330" y1="126" x2="830" y2="126"/>
+  <text class="m" x="330" y="142" text-anchor="middle">−0.2</text><text class="m" x="413.3" y="142" text-anchor="middle">−0.1</text>
+  <text class="m" x="496.7" y="142" text-anchor="middle">0</text><text class="m" x="580" y="142" text-anchor="middle">+0.1</text>
+  <text class="m" x="663.3" y="142" text-anchor="middle">+0.2</text><text class="m" x="746.7" y="142" text-anchor="middle">+0.3</text><text class="m" x="830" y="142" text-anchor="middle">+0.4</text>
+  <text class="m" x="580" y="160" text-anchor="middle">← metrica di partenza più d'accordo · metrica nuova più d'accordo →</text>
+
+  <text x="0" y="48" font-weight="600">HLG (11 e 20 coppie)</text><text class="m" x="0" y="64">0.81 → 1.00 · +0.19 (+0.06, +0.37)</text>
+  <line class="ci" x1="546.7" y1="56" x2="805" y2="56"/><circle class="dot" cx="655" cy="56" r="5.5"/>
+
+  <text x="0" y="94" font-weight="600">LLG, 120 coppie (32 e 77)</text><text class="m" x="0" y="110">0.73 → 0.82 · +0.09 (−0.01, +0.19)</text>
+  <line class="ci" x1="491.7" y1="102" x2="655" y2="102"/><circle class="dot" cx="571.7" cy="102" r="5.5"/>
+</svg>
+<figcaption>Il punto è la differenza stimata, la barra è l'intervallo al 95%: se la barra non tocca lo zero (linea nera), la differenza si legge. Fra parentesi, il numero di coppie «equivalente» e «diverso».</figcaption>
+</figure>
+
+<div class="wrap"><table>
+<tr><th>Tipo di lista</th><th class="n">Metrica di partenza</th><th class="n">Metrica nuova</th><th class="n">Differenza (intervallo 95%)</th><th>Si legge?</th></tr>
+<tr><td>HLG</td><td class="n">0.81</td><td class="n">1.00</td><td class="n">+0.19 (+0.06, +0.37)</td><td><span class="tag t-ok">sì</span></td></tr>
+<tr><td>LLG, 120 coppie</td><td class="n">0.73</td><td class="n">0.82</td><td class="n">+0.09 (−0.01, +0.19)</td><td><span class="tag t-warn">appena no</span></td></tr>
+<tr><td>Attori</td><td class="n">0.90</td><td class="n">0.92</td><td class="n">+0.02 (−0.09, +0.13)</td><td><span class="tag t-warn">no: pari</span></td></tr>
+</table></div>
+
+<div class="key"><b>Cosa significa.</b>
+<ul>
+<li><b>HLG: il risultato solido.</b> La metrica nuova ordina meglio, e anche la distinzione fra <i>parziale</i> e <i>diverso</i> migliora molto (0.38 → 0.82). Con la metrica di partenza una coppia «parziale» prende più credito di una «diverso» meno di una volta su due: è sotto il caso.</li>
+<li><b>LLG: a favore, non netto.</b> L'intervallo tocca lo zero (limite inferiore −0.006): con la regola scritta prima, la differenza resta appena sotto la soglia di lettura.
+Raddoppiando le coppie il valore stimato è salito da +0.04 a +0.09 e l'intervallo si è stretto. La rampa perde parte del vantaggio dell'encoder (0.87 la sola somiglianza, 0.82 il credito a rampa; BERT 0.73).</li>
+<li><b>Attori: pari.</b> Le due metriche sono indistinguibili.</li>
+<li><b>Le coppie «parziale» prendono circa metà credito</b>, sia sul banco sia sul campione del passo 4 (HLG 0.54 sul banco e 0.46 sul campione del passo 4; LLG 0.79 su sole 6 coppie e 0.54 su 28): è il comportamento che ci si aspetta.</li>
+</ul></div>
+<!-- ============================================================ -->
+<h2 id="costi">11. Cosa costa la metrica nuova</h2>
+<p>Una metrica che separa meglio non è gratis: ne abbiamo rimisurato i costi. Prima, due termini della fase precedente del lavoro, quella sul rumore:</p>
+<ul>
+<li><b>Rumore fra repliche</b>: quanto cambia l'F1 ripetendo identicamente la stessa esecuzione (oscillazione, in valore assoluto e in rapporto al voto medio).</li>
+<li><b>Regola di confronto</b>: la regola con cui si decide se una differenza fra due configurazioni è reale o dovuta al caso. Usa le tre repliche e un intervallo di incertezza al 95%: la differenza è «riconosciuta» se lo zero resta fuori.
+<i>Falsi allarmi</i>: quante volte su 100 dice «effetto» quando non c'è. <i>Effetto riconosciuto</i>: su esperimenti simulati in cui si aggiunge a tutti i sistemi un miglioramento di F1 noto (0.03, 0.05 o 0.10), quante volte su 100 la regola lo vede.</li>
+</ul>
+<div class="wrap"><table>
+<tr><th>Tipo</th><th>Metrica</th><th class="n">Rumore (oscillazione dell'F1)</th><th class="n">Rumore ÷ F1 medio</th><th class="n">Falsi allarmi su 100</th><th class="n">Effetto riconosciuto su 100: 0.03 / 0.05 / 0.10</th></tr>
+<tr class="base"><td>HLG</td><td class="nw">di partenza</td><td class="n">0.032</td><td class="n">7.3%</td><td class="n">2.1</td><td class="n">71 / 93 / 100</td></tr>
+<tr class="pick"><td>HLG</td><td>nuova</td><td class="n">0.044</td><td class="n">7.2%</td><td class="n">2.0</td><td class="n">50 / 84 / 100</td></tr>
+<tr class="base"><td>LLG</td><td class="nw">di partenza</td><td class="n">0.040</td><td class="n">7.8%</td><td class="n">1.9</td><td class="n">57 / 88 / 100</td></tr>
+<tr class="pick"><td>LLG</td><td>nuova</td><td class="n">0.049</td><td class="n">9.7%</td><td class="n">2.2</td><td class="n">47 / 83 / 100</td></tr>
+<tr class="base"><td>Attori</td><td class="nw">di partenza</td><td class="n">0.017</td><td class="n">2.2%</td><td class="n">1.1</td><td class="n">77 / 94 / 100</td></tr>
+<tr class="pick"><td>Attori</td><td>nuova</td><td class="n">0.018</td><td class="n">2.6%</td><td class="n">0.9</td><td class="n">75 / 88 / 97</td></tr>
+</table></div>
+<p class="small mut">Valori sui 12 sistemi. Negli HLG il rumore assoluto sale ma l'F1 medio sale in proporzione (0.44 → 0.61), quindi in rapporto al voto è uguale; negli LLG l'F1 medio è quasi lo stesso e il rumore sale davvero (7.8% → 9.7%). I livelli di F1 delle due metriche non si confrontano: un effetto di 0.03 pesa meno su un voto di 0.61 che su uno di 0.44.</p>
+<div class="key"><b>Cosa significa.</b>
+<ul>
+<li>I <b>falsi allarmi non cambiano</b> (circa 2 su 100 sui goal, 1 su 100 sugli attori).</li>
+<li>Un miglioramento di <b>0.10</b> si vede sempre; uno di <b>0.05</b> un po' meno spesso (circa 83–84 volte su 100 sui goal); uno di <b>0.03</b> circa una volta su due. Sui soli 4 sistemi di sviluppo si vede ancora meno (effetto 0.05: HLG 77 → 66, LLG 69 → 61 su 100).</li>
+<li>Lo spostamento tipico fra due repliche identiche sale sui goal (mediana HLG 0.02 → 0.03, LLG 0.03 → 0.05).</li>
+<li>Negli LLG circa una coppia «diverso» su sei prende ancora credito pieno e 4 «equivalente» su 32 restano a zero (sezione 8).</li>
+</ul>
+Le conclusioni «nessun effetto» su differenze molto piccole vanno quindi lette con questo limite accanto.</div>
+
+<!-- ============================================================ -->
+<h2 id="decisione">12. La decisione e come si legge ora un risultato</h2>
+<div class="wrap"><table>
+<tr><th></th><th>Metrica del lavoro di partenza</th><th>Metrica nuova (primaria)</th></tr>
+<tr><td><b>Encoder</b></td><td><code>bert-base-uncased</code>, media dei token</td><td><code>all-MiniLM-L6-v2</code>, addestrato a confrontare frasi</td></tr>
+<tr><td><b>Preprocessing</b></td><td>su HLG e LLG (non sugli attori)</td><td>nessuno</td></tr>
+<tr><td><b>Credito di una coppia</b></td><td>la somiglianza stessa</td><td>rampa: 0 sotto il punto basso, 1 sopra il punto alto, lineare in mezzo</td></tr>
+<tr><td><b>Abbinamento</b></td><td>uno-a-uno</td><td>HLG e LLG: ogni riferimento dà credito a due generati al massimo; attori: uno-a-uno. A parità di credito, si prende la recall più alta</td></tr>
+<tr><td><b>Numero principale</b></td><td>aggregato calcolato dal codice</td><td>media degli F1 per sistema, con lunghezze e tetto accanto</td></tr>
+</table></div>
+
+<div class="grid2">
+<div class="box">
+<h3><span class="tag t-ok">deciso</span></h3>
+<ul>
+<li>La metrica nuova è <b>primaria su attori, HLG e LLG</b>.</li>
+<li>La metrica del lavoro di partenza <b>resta in ogni report, come ultima colonna</b>, senza commento salvo quando le due vanno in versi opposti: risponde all'obiezione «il miglioramento sta nel metro», e segnala subito dove divergono. I confronti si decidono solo sulla primaria.</li>
+<li>Il notebook continua a scrivere i voti con la metrica di partenza; la metrica nuova si applica dopo, ripunteggiando le liste salvate, senza richiamare i modelli.</li>
+</ul>
+</div>
+<div class="box">
+<h3><span class="tag t-warn">da discutere</span></h3>
+<ul>
+<li>Per HLG la regola di lettura scritta prima è soddisfatta. Per <b>LLG e attori dava «la differenza non si legge»</b>: la scelta di adottare la metrica nuova su tutti e tre i tipi pesa anche il voto a vuoto (che crolla ovunque) e il fatto che negli LLG i due gruppi vanno nello stesso verso. È una scelta, non una conseguenza meccanica.</li>
+<li>Gli LLG restano il punto debole: l'encoder segue l'oggetto della frase più dell'azione.</li>
+</ul>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<h2 id="limiti">13. Limiti dichiarati</h2>
+<ul>
+<li><b>Tutto è calcolato sugli output della baseline.</b> Banco, punti della rampa e costi valgono per queste liste; quelle di una miglioria possono essere diverse. Un secondo lotto di coppie è previsto dal primo esperimento con una miglioria.</li>
+<li><b>Un solo giudice</b>, che conosce ground truth e sistemi.</li>
+<li><b>Le quote del passo 4 sono stime</b>: distinguono «pochi», «circa metà» e «quasi tutti», non differenze fini.</li>
+<li><b>I punti della rampa poggiano su poche coppie</b>: 27 equivalenti per i goal, 14 per gli attori. Lasciando fuori un sistema alla volta il punto alto va da 0.62 a 0.64 per i goal e da 0.73 a 0.83 per gli attori.</li>
+<li><b>I sistemi di conferma sono nel banco</b>: la metrica non li vede più «per la prima volta». Il controllo è ricavare i valori lasciando fuori un sistema per volta, e le conclusioni reggono.</li>
+<li><b>Liste di riferimento molto corte</b> (<i>London Ambulance Service</i>: 2 HLG e 2 LLG): nessuna metrica lo risolve; si riporta sempre il voto per sistema.</li>
+<li><b>Una metrica di somiglianza non vede gli errori che lasciano il goal sull'argomento giusto</b> (livello sbagliato, attore sbagliato, goal reciproci come «chiedere assistenza» e «fornire assistenza»).</li>
+<li><b>Alcune scelte sono state prese guardando i dati</b> e vanno presentate così: il percentile del punto basso; la forma del credito e l'abbinamento (scelti leggendo le tabelle, senza criterio meccanico); aver proseguito col campione dopo il censimento;
+lo spareggio (nato dopo il primo calcolo); l'allargamento del banco LLG (deciso dopo aver visto l'intervallo).</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="aperto">14. Cosa resta aperto</h2>
+<ul>
+<li>Rileggere con la metrica nuova i confronti fra configurazioni della baseline (critico acceso/spento, numero di esempi). Rumore e regola di confronto sono già ricalcolati; i confronti no.</li>
+<li>Capire se le differenze lette in precedenza restano a parità di lunghezze delle liste.</li>
+<li>Capire in cosa consiste la variazione delle liste fra una replica e l'altra.</li>
+<li>Ripetere il banco di coppie con gli output di una miglioria; riaprire la misura delle copie se una miglioria producesse liste molto più lunghe.</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2 id="parole">15. Parole da conoscere</h2>
+<div class="wrap"><table>
+<tr><th>Termine</th><th>Significato</th></tr>
+<tr><td><b>Ground truth</b></td><td>Le liste di attori, HLG e LLG di ogni sistema, annotate a mano e usate come riferimento.</td></tr>
+<tr><td><b>HLG / LLG</b></td><td>Goal di alto livello (scopo del sistema) / di basso livello (funzione concreta).</td></tr>
+<tr><td><b>Baseline</b></td><td>La pipeline del lavoro di partenza, con due modelli sostituiti, prima di qualunque miglioria.</td></tr>
+<tr><td><b>Configurazione e replica</b></td><td>Una combinazione di numero di esempi nel prompt e critico acceso/spento; una replica è un'esecuzione ripetuta in modo identico.</td></tr>
+<tr><td><b>Encoder, embedding</b></td><td>Il modello che trasforma una frase in un vettore di numeri; due frasi si confrontano con il coseno fra i vettori.</td></tr>
+<tr><td><b>Preprocessing</b></td><td>Pulizia del testo prima dell'encoder: tolte le parole molto comuni, ridotte le parole alla radice.</td></tr>
+<tr><td><b>Credito</b></td><td>Quanto vale una coppia abbinata nel voto: la somiglianza (oggi) oppure il valore a rampa (metrica nuova).</td></tr>
+<tr><td><b>Precision, recall, F1</b></td><td>Quota di goal generati che è giusta / quota di riferimenti trovata / media armonica delle due.</td></tr>
+<tr><td><b>Voto a vuoto</b></td><td>Il voto di una lista contro la ground truth di un altro sistema. Dovrebbe essere vicino a zero.</td></tr>
+<tr><td><b>Separazione</b></td><td>Probabilità che una coppia giusta valga più di una coppia estranea. 0.5 è il caso, 1 il massimo.</td></tr>
+<tr><td><b>Tetto</b></td><td>F1 massimo possibile date le sole lunghezze: 2 × min(generati, riferimenti) ÷ (generati + riferimenti).</td></tr>
+<tr><td><b>Rampa, punto basso, punto alto</b></td><td>Credito che vale 0 sotto un punto basso, 1 sopra un punto alto, e cresce in linea retta in mezzo.</td></tr>
+<tr><td><b>Percentile</b></td><td>Il valore sotto cui sta una data quota dei casi (95° percentile: lo supera solo il 5%).</td></tr>
+<tr><td><b>Uno-a-uno, al massimo due, senza limite</b></td><td>Quanti goal generati può premiare ogni riferimento: uno, fino a due, quanti ne servono.</td></tr>
+<tr><td><b>Goal a credito zero</b></td><td>Goal generato senza partner, o con un partner che non gli dà credito.</td></tr>
+<tr><td><b>Spareggio</b></td><td>Criterio che sceglie fra abbinamenti con lo stesso credito totale, in modo che il voto non dipenda dall'ordine dei goal.</td></tr>
+<tr><td><b>Rumore fra repliche</b></td><td>Quanto cambia l'F1 fra esecuzioni identiche della pipeline.</td></tr>
+<tr><td><b>Banco</b></td><td>Coppie (goal generato, goal di riferimento) giudicate: equivalente, parziale, diverso.</td></tr>
+<tr><td><b>Intervallo al 95%</b></td><td>Fascia entro cui cade il valore vero in 95 casi su 100; se contiene lo zero, la differenza non si distingue dal caso.</td></tr>
+<tr><td><b>Sviluppo e conferma</b></td><td>4 sistemi su cui si mettono a punto le migliorie, 8 tenuti da parte per confermarle.</td></tr>
+</table></div>
+
+</main>
+</body>
+</html>

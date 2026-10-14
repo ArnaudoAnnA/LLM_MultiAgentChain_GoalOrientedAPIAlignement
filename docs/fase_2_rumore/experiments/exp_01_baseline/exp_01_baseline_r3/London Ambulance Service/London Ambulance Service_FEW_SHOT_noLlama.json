@@ -1,0 +1,57 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "FEW_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T20:24:35",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Emergency Callers"
+    ],
+    "highLevelGoals": [
+        "Ambulance Staff aim to reach emergency scenes within the 11-minute target to provide critical care.",
+        "Ambulance Staff need to ensure their exact location is continuously and accurately tracked by the CAD system.",
+        "Ambulance Staff must effectively communicate departure and destination information to Radio Operators for accurate record-keeping.",
+        "Radio Operators aim to accurately record ambulance departure and destination information based on communications from Ambulance Staff.",
+        "Radio Operators need to ensure that the Computer Aided Despatch (CAD) system is continuously updated with correct ambulance status and location data.",
+        "Emergency Callers expect an ambulance to be dispatched quickly after reporting an emergency.",
+        "Emergency Callers require an ambulance to reach their location within the specified 11-minute target."
+    ],
+    "lowLevelGoals": [
+        "Ambulance Staff need to receive immediate notifications and details of new emergency dispatches from the CAD system to ensure timely response.",
+        "Ambulance Staff must be able to update their status to 'en route' to the emergency scene in the CAD system upon departure.",
+        "Ambulance Staff must be able to update their status to 'on scene' in the CAD system upon arrival at the emergency location.",
+        "Ambulance Staff need to continuously transmit their current GPS coordinates to the CAD system for accurate location tracking.",
+        "Ambulance Staff should be able to view and confirm their current location as displayed on the CAD system interface to ensure accuracy.",
+        "Ambulance Staff must be able to send a clear 'departed' status message, including their destination, to Radio Operators.",
+        "Ambulance Staff must be able to send a clear 'arrived' status message, confirming their arrival at the destination, to Radio Operators.",
+        "Radio Operators need to receive and accurately log the 'departed' status and destination information communicated by Ambulance Staff.",
+        "Radio Operators need to receive and accurately log the 'arrived' status communicated by Ambulance Staff.",
+        "Radio Operators must be able to manually input the exact departure time of an ambulance into the CAD system.",
+        "Radio Operators must be able to manually input the exact arrival time of an ambulance at its destination into the CAD system.",
+        "Radio Operators need to be able to view the real-time, continuously updated location of all ambulances on the CAD system's geographical interface.",
+        "Emergency Callers expect to receive a confirmation message or notification that an ambulance has been dispatched to their location.",
+        "Emergency Callers require periodic updates on the estimated time of arrival (ETA) of the dispatched ambulance."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

@@ -1,0 +1,103 @@
+{
+    "name": "Recycling",
+    "run_label": "exp_01_baseline_r2",
+    "replica": 2,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "62982305d7389c19c833cefc92fd2428ce79913f5861f020999aa64836f95366",
+    "timestamp": "2026-10-10T20:05:28",
+    "description": "The software project will develop a user-friendly web application that allows users to discover and manage recycling facilities. Key features include searching for nearby centers by zip code, viewing operational hours, accessing maps of recycling locations, and receiving notifications about events. Administrators will manage facility information and user feedback, ensuring data security while enabling communication between facility representatives and site admins to improve community recycling efforts.\",\n  \"epics\": [\n    {\n      \"title\": \"Manage User Accounts and Preferences\",\n      \"description\": \"This epic encompasses features related to user account creation, customization, and personal preferences. It aims to provide users with control over their profiles and ensure they receive relevant notifications and a personalized experience.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Create an Account\",\n          \"story\": \"As a user, I want to be able to create an account, so that I can create my own profile.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Add Favorites\",\n          \"story\": \"As a user, I want to add donation centers as favorites on my profile, so that I can view them later.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Link Email to Profile\",\n          \"story\": \"As a user, I want to link my email account to my profile, so that I can get a temporary password in case I forget my own one.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Receive Notifications\",\n          \"story\": \"As a user, I want to be able to give my email ID, so that I can receive notifications for new events as they are posted.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Secure Personal Information\",\n          \"story\": \"As a user, I want to have my personal information kept securely in the database of the website, so that I will not suffer from identity theft or telephone harassment.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Receive Rewards\",\n          \"story\": \"As a user, I want to be able to receive tempting rewards, so that I have a reason to use the website.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"View User Documentation\",\n          \"story\": \"As a user, I want to view user documentation for the website, so that I know how to use the web app.\",\n          \"acceptance_criteria\": []\n        }\n      ]\n    },\n    {\n      \"title\": \"Discover and Navigate Recycling Facilities\",\n      \"description\": \"This epic provides users with the ability to find and navigate recycling facilities and public recycling options. It aims to improve accessibility to recycling centers and public bins through maps and convenient location-based searches.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Search Recycling Facilities by Zip Code\",\n          \"story\": \"As a user, I want to be able to enter my zip code and get a list of nearby recycling facilities, so that I can determine which ones I should consider.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"View Recycling Centers on a Map\",\n          \"story\": \"As a user, I want to view all locations of recycling centers on a map, so that I can check which routes to take to drop off waste.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"View Public Recycling Bins\",\n          \"story\": \"As a user, I want to be able to view a map display of the public recycling bins around my area.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"View Special Waste Drop-off Sites\",\n          \"story\": \"As a user, I want to be able to view a map display of the special waste drop-off sites around my area.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"View Safe Disposal Events\",\n          \"story\": \"As a user, I want to be able to view the safe disposal events currently being organized around my area.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Click on Address to Open Google Maps\",\n          \"story\": \"As a user, I want to click on the address, so that it takes me to a new tab with Google Maps.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Browse Environment-friendly Facilities\",\n          \"story\": \"As a user, I want to be able to browse through the list of facilities and see which ones are environment-friendly, so that I can know for sure my waste is not going to leave a negative ecological footprint.\",\n          \"acceptance_criteria\": []\n        }\n      ]\n    },\n    {\n      \"title\": \"Schedule and Optimize Recycling Visits\",\n      \"description\": \"This epic is focused on enabling users to schedule and optimize their visits to recycling centers. It aims to provide flexibility and convenience for users to match their availability with facility hours and reduce planning complexity.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Flexible Pickup Time\",\n          \"story\": \"As a user, I want to have a flexible pick-up time, so that I can more conveniently use the website.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Choose Flexible Pickup Time\",\n          \"story\": \"As a user, I want to choose a flexible pick-up time, so that I can more conveniently use the website.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Get Recommendations Based on Weekly Schedule\",\n          \"story\": \"As a user, I want to upload my week's schedule, so that I can get recommendations for recycling centers that best fit my availability.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Select Different Types of Recyclable Waste\",\n          \"story\": \"As a user, I want to be able to select different types of recyclable waste, so that I have and get a list of facilities that accept each type and their opening hours, so that I can find an optimal route and schedule.\",\n          \"acceptance_criteria\": []\n        }\n      ]\n    },\n    {\n      \"title\": \"Administer Recycling Facility Information\",\n      \"description\": \"This epic allows admins and superusers to manage recycling facility information on the platform, ensuring users receive accurate and up-to-date information about available services.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Add or Remove Facility Information\",\n          \"story\": \"As an admin, I want to be able to add or remove recycling facilities' information, so that users get the most recent information.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Onboard Recycling Centers\",\n          \"story\": \"As an admin, I want to onboard recycling centers on the platform, so that I can increase information accuracy.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Update Facility Information\",\n          \"story\": \"As an admin, I want to add recycling center information, so that I can keep the database up-to-date over time.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Superuser Updates Information\",\n          \"story\": \"As a superuser, I want to update the recycling center information, so that I can provide the latest information about the recycling center.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Facility Representative Updates Information\",\n          \"story\": \"As a recycling facility representative, I want to be able to update my information and the type of material I accept, so that I can avoid any miscommunication with users.\",\n          \"acceptance_criteria\": []\n        }\n      ]\n    },\n    {\n      \"title\": \"Provide User Support and Engage with Users\",\n      \"description\": \"This epic provides users and admins with communication channels to report issues, give feedback, and respond to queries, fostering interaction and improving support for users.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Contact Administrators\",\n          \"story\": \"As a user, I want to contact the administrators, so that I can give feedback or ask for help.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Read Feedback and Complaints\",\n          \"story\": \"As an admin, I want to be able to read users' feedback and complaints, so that we can add more features and keep improving the service we provide to them.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Reply to User Questions\",\n          \"story\": \"As a superuser, I want to reply to user questions, so that I can answer any questions about my recycling center.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Communicate with Facilities\",\n          \"story\": \"As an admin, I want to be able to communicate directly with facilities, so that I can keep them updated about features we have on our website.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Facility to Admin Communication\",\n          \"story\": \"As a recycling facility, I want to be able to communicate directly with the site admin and convey any issues or concerns I have, so that they fix them.\",\n          \"acceptance_criteria\": []\n        }\n      ]\n    },\n    {\n      \"title\": \"Ensure a Smooth and Reliable User Experience\",\n      \"description\": \"This epic addresses the usability and responsiveness of the system, including providing real-time feedback, accessibility, and ensuring a positive user experience.\",\n      \"user_stories\": [\n        {\n          \"title\": \"Invalid Zip Code Feedback\",\n          \"story\": \"As a user, I want to get feedback when I enter an invalid zip code.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Access Site on All Devices\",\n          \"story\": \"As a user, I want to be able to access the site and do all the other stuff on all of my electronic devices.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Great UI and UX\",\n          \"story\": \"As a user, I want to have a great UI and UX from the sites, so that I have a pleasant experience when navigating through them.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"Easy Website Navigation\",\n          \"story\": \"As a company, I want to have a website that is easy to use, so that I can upload or delete stuff step by step.\",\n          \"acceptance_criteria\": []\n        },\n        {\n          \"title\": \"UI/UX Lessons for Developers\",\n          \"story\": \"As a developer, I want to attend some UI/UX lessons, so that I can develop an awesome and beautiful features website.\",\n          \"acceptance_criteria\": []\n        }\n      ]\n    }\n  ]\n}",
+    "actors": [
+        "User",
+        "Administrator",
+        "Facility Representative",
+        "Superuser"
+    ],
+    "highLevelGoals": [
+        "To enable users to easily find nearby recycling facilities, view their operational details, and access location maps for efficient waste disposal.",
+        "To allow users to create and manage their accounts, personalize their experience, and receive relevant notifications.",
+        "To provide users with tools to schedule and plan their recycling activities, including flexible pickup options and recommendations based on their availability and waste types.",
+        "To offer users a channel to communicate with administrators, provide feedback, and seek assistance regarding the application or recycling services.",
+        "To incentivize user engagement by providing a system for users to earn and receive rewards for their recycling activities.",
+        "To ensure that all recycling facility information displayed on the platform is current, accurate, and comprehensive for users.",
+        "To enable administrators to review user feedback and complaints, communicate with facilities, and continuously improve the service based on user input.",
+        "To empower facility representatives to directly manage and update their facility's details, including accepted materials and operational hours, to ensure accuracy.",
+        "To provide a direct communication channel for facility representatives to convey issues or concerns to site administrators for resolution.",
+        "To allow superusers to update recycling center information, ensuring the platform provides the latest and most accurate details to users.",
+        "To enable superusers to directly answer user questions related to recycling centers, providing timely and accurate support."
+    ],
+    "lowLevelGoals": [
+        "The system shall allow the user to retrieve a list of recycling facilities within a specified radius of their current location.",
+        "The system shall allow the user to view detailed information for a selected recycling facility, including accepted materials, operating hours, and contact information.",
+        "The system shall display the selected recycling facility's location on an interactive map.",
+        "The system shall allow the user to open the selected recycling facility's location in an external mapping application (e.g., Google Maps).",
+        "The system shall allow the user to filter the list of recycling facilities by specific material types they wish to recycle.",
+        "The system shall allow the user to filter the list of recycling facilities by their environment-friendly status.",
+        "The system shall display the locations of public recycling bins on an interactive map.",
+        "The system shall display the locations of special waste drop-off sites on an interactive map.",
+        "The system shall allow the user to view a list of upcoming safe disposal events, including dates, times, and locations.",
+        "The system shall allow the user to mark a recycling facility as a favorite for quick access.",
+        "The system shall allow the user to create a new user account by providing a unique email and password.",
+        "The system shall allow the user to update their personal information, such as name, address, and contact details.",
+        "The system shall allow the user to link their email address to their profile for password recovery purposes.",
+        "The system shall allow the user to set their preferred recycling material types and notification preferences.",
+        "The system shall send push notifications to the user based on their set preferences, such as nearby facility updates or recycling reminders.",
+        "The system shall allow the user to schedule a drop-off time at a selected recycling facility.",
+        "The system shall allow the user to upload or sync their weekly schedule to receive personalized recycling recommendations.",
+        "The system shall provide recommendations to the user for optimal recycling methods or facilities based on their waste types and availability.",
+        "The system shall allow the user to submit feedback or suggestions regarding the application or recycling services.",
+        "The system shall allow the user to submit a support request for assistance with application issues or general inquiries.",
+        "The system shall allow the user to view the status and responses for their submitted support requests.",
+        "The system shall allow the user to access help articles and documentation for using the application.",
+        "The system shall automatically award reward points to the user upon completion of a verified recycling activity.",
+        "The system shall allow the user to view their current reward point balance.",
+        "The system shall allow the user to redeem their accumulated reward points for available incentives.",
+        "The system shall allow the administrator to add new recycling facility information, including name, address, and contact details.",
+        "The system shall allow the administrator to edit existing recycling facility details, such as operating hours, accepted materials, and services.",
+        "The system shall allow the administrator to remove outdated or incorrect recycling facility entries.",
+        "The system shall allow the administrator to review and approve updates submitted by facility representatives.",
+        "The system shall allow the administrator to view a consolidated list of all user feedback and complaints.",
+        "The system shall allow the administrator to respond directly to user feedback or support requests.",
+        "The system shall allow the administrator to forward specific user feedback or complaints to the relevant facility representative.",
+        "The system shall allow the facility representative to update their facility's operating hours.",
+        "The system shall allow the facility representative to update the list of accepted recycling materials at their facility.",
+        "The system shall allow the facility representative to update their facility's contact information.",
+        "The system shall allow the facility representative to submit their updated facility information for administrator approval.",
+        "The system shall allow the facility representative to send a report of an issue or concern directly to site administrators.",
+        "The system shall allow the facility representative to receive responses from site administrators regarding their reported issues.",
+        "The system shall allow the superuser to update any information related to recycling centers, including those not directly managed by facility representatives.",
+        "The system shall allow the superuser to add new recycling centers to the platform.",
+        "The system shall allow the superuser to delete recycling center entries from the platform.",
+        "The system shall allow the superuser to view all user questions and inquiries related to recycling centers.",
+        "The system shall allow the superuser to directly reply to a user's question regarding recycling centers.",
+        "The system shall allow the superuser to mark a user inquiry as resolved after providing a response."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            8.0,
+            9.0
+        ],
+        "highLevelGoals": [
+            4.0,
+            9.0
+        ],
+        "lowLevelGoals": [
+            4.0,
+            4.0,
+            8.0
+        ]
+    },
+    "cove_attempts": {
+        "actors": 3,
+        "highLevelGoals": 2,
+        "lowLevelGoals": 3
+    }
+}

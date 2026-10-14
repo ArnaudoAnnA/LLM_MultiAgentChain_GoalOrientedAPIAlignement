@@ -1,0 +1,62 @@
+{
+    "name": "Genome Nexus",
+    "run_label": "exp_01_baseline_r1",
+    "replica": 1,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": false,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": null,
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "8ac4af754cfeb81686e3e06dbdee9871717529541556fb8c0df0dda565dc7cd1",
+    "timestamp": "2026-10-10T17:41:30",
+    "description": "We need a comprehensive, centralized resource for the rapid, automated, and high-throughput annotation and interpretation of genetic variants in cancer. This system should integrate information from various existing resources, including databases that convert DNA changes to protein changes, predict the functional effects of protein mutations, and contain information about mutation frequencies, gene function, variant effects, and clinical actionability.",
+    "actors": [
+        "Bioinformatician",
+        "Oncologist",
+        "Researcher"
+    ],
+    "highLevelGoals": [
+        "To rapidly and automatically annotate genetic variants with comprehensive information from diverse sources, reducing manual effort and increasing throughput.",
+        "To centralize and integrate information from various existing databases (DNA-protein conversion, functional effect prediction, mutation frequencies, gene function, variant effects, clinical actionability) to provide a holistic view of genetic variants.",
+        "To provide accurate and clinically actionable interpretations of genetic variants to guide treatment strategies and patient management.",
+        "To facilitate the exploration and understanding of genetic variants and their effects in cancer, supporting new discoveries and hypothesis generation.",
+        "To ensure the high accuracy and reliability of variant interpretations by leveraging comprehensive and up-to-date information from integrated resources.",
+        "To provide a centralized and easily accessible platform for all relevant genetic variant information, improving efficiency for all users."
+    ],
+    "lowLevelGoals": [
+        "The Bioinformatician submits a genetic variant (e.g., VCF file, HGVS notation) to the system for automated annotation.",
+        "The Bioinformatician retrieves the comprehensive annotation report for a previously submitted genetic variant.",
+        "The Bioinformatician configures specific parameters or data sources to be used during the variant annotation process.",
+        "The Bioinformatician queries the system to retrieve DNA-protein conversion information for a specific variant.",
+        "The Bioinformatician retrieves functional effect predictions (e.g., SIFT, PolyPhen) for a given genetic variant.",
+        "The Bioinformatician accesses population mutation frequencies for a specific variant from integrated databases.",
+        "The Bioinformatician views detailed gene function information associated with a variant's gene.",
+        "The Bioinformatician obtains clinical actionability information for a specific genetic variant.",
+        "The Oncologist requests an interpretation report for a specific genetic variant to guide treatment.",
+        "The Oncologist reviews treatment recommendations and patient management strategies based on the variant interpretation.",
+        "The Oncologist filters genetic variants based on their clinical significance or actionability.",
+        "The Researcher searches for genetic variants associated with a specific gene of interest.",
+        "The Researcher explores biological pathways affected by a particular genetic variant.",
+        "The Researcher compares the annotation profiles of multiple genetic variants to identify commonalities or differences.",
+        "The Bioinformatician validates the source of a specific annotation to ensure its reliability and currency.",
+        "The Bioinformatician reviews any discrepancies or conflicts in annotations from different integrated data sources.",
+        "The Bioinformatician updates the configuration of integrated data sources to ensure access to the latest information.",
+        "The Researcher browses a comprehensive list of all available genetic variants in the system.",
+        "The Researcher exports selected genetic variant data and their annotations in a specified format (e.g., CSV, JSON).",
+        "The Researcher searches for genetic variants using free-text keywords across all available annotation fields."
+    ],
+    "cove_scores": {
+        "actors": [],
+        "highLevelGoals": [],
+        "lowLevelGoals": []
+    },
+    "cove_attempts": {
+        "actors": 1,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 1
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "name": "London Ambulance Service",
+    "run_label": "exp_01_baseline_r3",
+    "replica": 3,
+    "shot_mode": "ZERO_SHOT",
+    "critic_active": true,
+    "generator_model": "gemini-2.5-flash",
+    "generator_seed": 42,
+    "generator_thinking_budget": 0,
+    "critic_model": "qwen/qwen3.8-27b",
+    "ground_truth_version": "final",
+    "acceptance_threshold": 8.5,
+    "max_attempts": 3,
+    "input_hash": "d72855a796546d79aca2d78373be27c18ebf326f573c553c492e28efb5fd9206",
+    "timestamp": "2026-10-10T20:27:11",
+    "description": "The London Ambulance Service dispatches ambulances in emergencies. The key goal is to allocate an available ambulance for every call that can reach the scene within 11 minutes. The entire dispatch process must not exceed a set maximum time limit. The Computer Aided Despatch system analyzes incident forms and assigns vehicles. The exact location of moving ambulances must be tracked, requiring ambulance staff to follow standard routes and communicate departure and destination information so that radio operators and the CAD can accurately record the corresponding data.",
+    "actors": [
+        "Ambulance Staff",
+        "Radio Operators",
+        "Dispatchers/Control Room Operators",
+        "Callers"
+    ],
+    "highLevelGoals": [
+        "Ambulance Staff aim to reach incident scenes within the 11-minute target to provide prompt medical assistance.",
+        "Ambulance Staff need to accurately communicate their departure, destination, and current location to ensure the CAD system and Radio Operators have up-to-date information.",
+        "Radio Operators aim to accurately track the exact location of moving ambulances to support dispatch decisions and provide real-time updates.",
+        "Radio Operators need to effectively relay information between Ambulance Staff, Dispatchers, and the CAD system to ensure smooth operations.",
+        "Dispatchers/Control Room Operators aim to allocate an available ambulance for every call that can reach the scene within 11 minutes.",
+        "Dispatchers/Control Room Operators need to ensure that the overall dispatch process, from call to ambulance dispatch, does not exceed the set maximum time limit.",
+        "Callers aim to provide clear and accurate information about the emergency and location to facilitate effective dispatch.",
+        "Callers expect to receive an ambulance and medical assistance as quickly as possible in an emergency situation."
+    ],
+    "lowLevelGoals": [
+        "Ambulance Staff update their status to 'en route' to the incident scene via the in-ambulance terminal.",
+        "Ambulance Staff confirm their arrival at the incident scene via the in-ambulance terminal.",
+        "Ambulance Staff update their status to 'available' after clearing an incident via the in-ambulance terminal.",
+        "Ambulance Staff record their departure time from the station or previous incident into the in-ambulance terminal, which updates the CAD system.",
+        "Ambulance Staff input the incident scene's destination into the in-ambulance navigation system.",
+        "Radio Operators view the real-time GPS location of all active ambulances on the CAD system's map interface.",
+        "Radio Operators query the current status (e.g., 'available', 'en route', 'at scene') of a specific ambulance via the CAD system.",
+        "Radio Operators send text messages or alerts to specific Ambulance Staff via the CAD system's communication module.",
+        "Radio Operators receive automated notifications and updates on ambulance status changes (e.g., 'en route', 'at scene') from the CAD system.",
+        "Radio Operators record the departure time and destination communicated by Ambulance Staff into the CAD system.",
+        "Dispatchers/Control Room Operators input all relevant incident details (e.g., location, nature of emergency, caller information) into the CAD system to create an incident form.",
+        "Dispatchers/Control Room Operators review the incident form in the CAD system to ensure accuracy and completeness before dispatch.",
+        "Dispatchers/Control Room Operators select an available ambulance from a list and assign it to a specific incident in the CAD system.",
+        "Dispatchers/Control Room Operators filter the list of available ambulances in the CAD system to show only those within a specified radius of an incident.",
+        "Dispatchers/Control Room Operators view the estimated time of arrival (ETA) for a selected ambulance to an incident scene, calculated by the CAD system.",
+        "Dispatchers/Control Room Operators monitor a real-time timer in the CAD system that tracks the elapsed time from call reception to ambulance dispatch.",
+        "Dispatchers/Control Room Operators receive an automated alert from the CAD system if a dispatch process exceeds the predefined time limit.",
+        "Callers verbally provide their current location and the incident address to the emergency operator.",
+        "Callers verbally describe the nature of the emergency and any relevant symptoms or conditions to the emergency operator.",
+        "Callers receive verbal confirmation from the emergency operator that an ambulance has been dispatched.",
+        "Callers receive an estimated time of arrival (ETA) for the ambulance from the emergency operator."
+    ],
+    "cove_scores": {
+        "actors": [
+            6.0,
+            10.0
+        ],
+        "highLevelGoals": [
+            10.0
+        ],
+        "lowLevelGoals": [
+            4.0,
+            9.5
+        ]
+    },
+    "cove_attempts": {
+        "actors": 2,
+        "highLevelGoals": 1,
+        "lowLevelGoals": 2
+    }
+}

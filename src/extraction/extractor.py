@@ -1,12 +1,18 @@
 from  src.examples.shot_learning import ShotPromptingMode, example1_actors, example2_actors, example3_actors, example1_hl, example2_hl, example3_hl, example1_ll, example2_ll, example3_ll
 from src.data_model import DocumentDescription,  Actors,  LowLevelGoals,  HighLevelGoals
-from src.utils import get_markdown
+from src.utils import get_markdown, get_local_markdown
 from src.llm_clients import generate_response
 
-def generate_description(documentation_link=None):
+def generate_description(documentation_link=None, local_readme_path=None):
+    """Generate the description of a system from its README.
+
+    If `local_readme_path` is given, the README is read from that local snapshot
+    instead of being downloaded. `documentation_link` is still required as the
+    reference to the original source, even when it is not used for the download.
+    """
     if documentation_link == None:
         raise Exception("No documentation link provided")
-    
+
     sys_prompt = (
         "You are a technical writing assistant specialized in summarizing software documentation. "
         "Your goal is to extract a clear, well-written, and accurate description of a project from its README file. "
@@ -16,8 +22,13 @@ def generate_description(documentation_link=None):
         "elicitation)."
     )
 
+    if local_readme_path is not None:
+        readme_content = get_local_markdown(local_readme_path)
+    else:
+        readme_content = get_markdown(link=documentation_link)
+
     prompt = (
-        f"Here is the README file of a software project:\n\n{get_markdown(link=documentation_link)}\n\n"
+        f"Here is the README file of a software project:\n\n{readme_content}\n\n"
         "Based on this README, write a well-structured description of the project. "
         "Explain its purpose, the problem it addresses (if mentioned), and its main functionalities. "
         "Do not include software implementation details"

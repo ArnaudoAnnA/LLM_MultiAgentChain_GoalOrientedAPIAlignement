@@ -1,4 +1,5 @@
 import sys
+import re
 from enum import Enum
 
 from sympy.strategies.core import switch
@@ -174,41 +175,83 @@ def get_evaluation(eval_mode: EvalMode, description, actors, high_level_goals=No
     critique = generate_response_llama(prompt, sys_prompt)
     return critique 
 
-def parse_evaluation(evaluation: str|Critique):
-    if type(evaluation) == str:
-        lines = evaluation.strip().split("\n")
-        score_line = lines[len(lines)-1]
-        if not score_line.startswith("Score:"):
-                raise ValueError("Input text does not contain a valid 'Score:' line.")
-        feedback_line = " ".join(lines[:len(lines)-1])
-        if not feedback_line.startswith("Feedback:"):
-                raise ValueError("Input text does not contain a valid 'Feedback:' line.")
-        score = float(score_line.split(":")[1].strip())
-        feedback = feedback_line.split(":")[1].strip()
+_SCORE_RE = re.compile(r"score\s*:?\s*\**\s*([0-9]+(?:[.,][0-9]+)?)", re.IGNORECASE)
+_FEEDBACK_RE = re.compile(r"^\**\s*feedback\s*\**\s*:\s*\**\s*", re.IGNORECASE)
 
-    elif type(evaluation) == Critique:
-        score = evaluation.score
-        feedback = evaluation.comment
 
-    else:
+def parse_evaluation(evaluation: str | Critique):
+    if isinstance(evaluation, Critique):
+        return evaluation.score, evaluation.comment
+
+    if not isinstance(evaluation, str):
         raise ValueError("Input evaluation is not in the expected format.")
 
+    righe = [r for r in evaluation.strip().split("\n") if r.strip()]
+
+    # Scan from the bottom: the prompt contains few-shot examples with their own
+    # "Score:" lines, and the actual verdict is the last one.
+    score = None
+    indice_score = None
+    for i in range(len(righe) - 1, -1, -1):
+        m = _SCORE_RE.search(righe[i])
+        if m:
+            score = float(m.group(1).replace(",", "."))
+            indice_score = i
+            break
+
+    if score is None:
+        raise ValueError("Input text does not contain a valid 'Score:' line.")
+
+    feedback = _FEEDBACK_RE.sub("", " ".join(righe[:indice_score]).strip())
     return score, feedback
 
 
+def generate_response_with_reflection(target_type, call_function, define_args, eval_mode, eval_args, shotPromptingMode=ShotPromptingMode.ZERO_SHOT, max_attempts=MAX_ATTEMPTS, llama_ablation=False):
+    """Generate an output and iteratively refine it using the critic model's feedback.
 
+    At each attempt the function (re)generates the output with ``call_function``,
+    has the critic evaluate it and, if the score is below ``QUALITY_THRESHOLD``,
+    retries passing the critique as feedback. The loop stops at the first
+    sufficient score or when ``max_attempts`` is exhausted.
 
+    Args:
+        target_type: Label of the phase (e.g. ``"Actors"``), used in the logs.
+        call_function: Generation function, invoked as
+            ``call_function(*define_args, feedback=..., mode=...)``.
+        define_args: Positional arguments for ``call_function``.
+        eval_mode: Evaluation mode of the critic (``EvalMode``).
+        eval_args: Positional arguments for ``get_evaluation``; the generated
+            output is appended to them automatically.
+        shotPromptingMode: Shot prompting mode propagated to the generation.
+        max_attempts: Maximum number of generation attempts.
+        llama_ablation: If ``True`` the critic is disabled: the first output is
+            returned without evaluation or refinement.
 
-def generate_response_with_reflection(target_type, call_function, define_args, eval_mode, eval_args, shotPromptingMode=ShotPromptingMode.ZERO_SHOT, max_attempts=MAX_ATTEMPTS, llama_ablation = False):
+    Returns:
+        Tuple ``(result, score, critique, attempts, score_history)``:
+
+        - ``result``: last generated output (the phase's Pydantic object);
+        - ``score``: final critic score (``float``); ``None`` if no attempt was
+          evaluable; ``10`` in ablation;
+        - ``critique``: text of the last critique; ``None`` if absent;
+        - ``attempts``: number of generation attempts actually performed;
+        - ``score_history``: score of each attempt, in execution order
+          (``None`` for an attempt whose evaluation could not be parsed);
+          empty in ablation.
+    """
     feedback = None
+    score = None
+    critique = None
+    score_history = []
+
     for attempt in range(1, max_attempts + 1):
         print(f"{target_type} STARTING... (attempt {attempt})")
-        result = call_function(*define_args, feedback=feedback, mode = shotPromptingMode )
+        result = call_function(*define_args, feedback=feedback, mode=shotPromptingMode)
         print(f"{target_type} DONE...")
         print(result)
 
         if llama_ablation:
-            return result, 10, None
+            return result, 10, None, attempt, score_history
 
         print(f"Evaluation for {target_type} STARTING...")
         evaluation = get_evaluation(eval_mode, *eval_args, result)
@@ -216,23 +259,22 @@ def generate_response_with_reflection(target_type, call_function, define_args, e
 
         try:
             score, critique = parse_evaluation(evaluation)
+            score_history.append(score)
             print(f"Score: {score}")
             print(f"Critique: {critique}")
 
-            #log this to check output
-            #with open("output.txt", "a") as file:  # Use "w" to overwrite or "a" to append
-            #   file.write(f"Critique: {critique}\nScore: {score}\nHLG: 
-
             if score >= QUALITY_THRESHOLD:
                 print("Satisfactory score achieved! Breaking out of the loop.")
-                return result, score, critique
-            else:
-                print("Unsatisfactory score. Retrying...")
-                feedback = Feedback(previous_output=result, critique=critique)
-        except ValueError as e:
-            print(f"Error while parsing evaluation: {e}")
-            sys.exit(1)  # Exit the program if parsing fails
+                return result, score, critique, attempt, score_history
 
-    #raise RuntimeError("Failed to achieve a satisfactory score within the maximum number of attempts.")
+            print("Unsatisfactory score. Retrying...")
+            feedback = Feedback(previous_output=result, critique=critique)
+        except ValueError as e:
+            score, critique = None, None
+            score_history.append(None)
+            print(f"Error while parsing evaluation: {e}")
+            print(f"Attempt {attempt} not evaluable, continuing.")
+            continue
+
     print("Failed to achieve a satisfactory score within the maximum number of attempts.")
-    return result, score, critique
+    return result, score, critique, max_attempts, score_history
